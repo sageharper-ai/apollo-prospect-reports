@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SEO Research Report — DeLeon &amp; Stang | HighRock</title>
+<style>
+:root {
+  --hr-green: #b2bd30;
+  --hr-green-dark: #8a921f;
+  --hr-green-bg: #f7f9e8;
+  --ink: #3c3c3c;
+  --ink-dark: #1a1a1a;
+  --ink-soft: #6b7280;
+  --rule: #e5e7eb;
+  --bg: #fafaf9;
+  --card: #ffffff;
+  --quote-bg: #f3f4f6;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --cyan: #06b6d4;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'proxima-nova', 'Helvetica', 'Roboto', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.header { background: #1f2937; border-bottom: 4px solid var(--hr-green); padding: 2rem 3rem 1.5rem; color: #ffffff; }
+.header .logo img { height: 32px; width: auto; display: block; margin-bottom: 1.25rem; }
+.header h1 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em; color: #ffffff; }
+.header .subtitle { color: #cbd5e1; margin-top: 0.4rem; font-size: 1rem; }
+.header .meta { display: flex; gap: 0.6rem; margin-top: 1.1rem; font-size: 0.78rem; color: #cbd5e1; flex-wrap: wrap; }
+.header .meta span { background: rgba(178,189,48,0.15); border: 1px solid rgba(178,189,48,0.4); color: #e8edc5; padding: 0.22rem 0.7rem; border-radius: 14px; font-weight: 500; }
+.nav { background: white; border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; gap: 0; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+.nav button { background: none; border: none; padding: 0.9rem 1.3rem; font-size: 0.92rem; color: var(--ink-soft); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; font-family: inherit; font-weight: 500; }
+.nav button:hover { color: var(--hr-green-dark); background: rgba(178,189,48,0.05); }
+.nav button.active { color: var(--hr-green-dark); border-bottom-color: var(--hr-green); font-weight: 600; }
+.content { max-width: 1200px; margin: 0 auto; padding: 2rem 3rem; }
+.section { display: none; }
+.section.active { display: block; }
+.section h2 { font-size: 1.35rem; color: var(--ink-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--hr-green); font-weight: 600; }
+.section h3 { font-size: 1.05rem; color: var(--ink-dark); margin: 1.6rem 0 0.75rem; font-weight: 600; }
+.section p { margin-bottom: 0.9rem; }
+.section ul { padding-left: 1.4rem; margin: 0.75rem 0; }
+.section li { margin-bottom: 0.45rem; }
+.badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; font-size: 0.78rem; font-weight: 600; }
+.badge-ok { background: #dcfce7; color: #166534; }
+.badge-warn { background: #fef9c3; color: #854d0e; }
+.badge-error { background: #fee2e2; color: #991b1b; }
+.badge-info { background: #dbeafe; color: #1e40af; }
+.badge-incomplete { background: #fce7f3; color: #9d174d; }
+table.data { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; background: white; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+table.data th { background: var(--ink-dark); color: white; padding: 0.65rem 1rem; text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+table.data th.num { text-align: right; }
+table.data td { padding: 0.55rem 1rem; border-bottom: 1px solid var(--rule); }
+table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.data tr:last-child td { border-bottom: none; }
+table.data tr:hover { background: rgba(178,189,48,0.04); }
+.callout { padding: 1rem 1.25rem; border-left: 4px solid var(--hr-green); background: var(--hr-green-bg); border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: 0.93rem; }
+.callout.warn { border-left-color: var(--yellow); background: #fefce8; }
+.callout.red { border-left-color: var(--red); background: #fef2f2; }
+.callout.info { border-left-color: var(--cyan); background: #ecfeff; }
+.callout strong { color: var(--ink-dark); }
+.callout .h { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hr-green-dark); margin-bottom: 0.3rem; }
+.callout.warn .h { color: #854d0e; }
+.callout.red .h { color: #991b1b; }
+.callout.info .h { color: #155e75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+.card { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 1.15rem; text-align: center; }
+.card .value { font-size: 1.6rem; font-weight: 700; color: var(--hr-green-dark); }
+.card .label { font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.source-note { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.4rem; font-style: italic; }
+footer { margin-top: 3rem; padding: 1.5rem 3rem; border-top: 1px solid var(--rule); text-align: center; font-size: 0.78rem; color: var(--ink-soft); background: white; }
+footer a { color: var(--hr-green-dark); text-decoration: none; }
+
+details { margin: 0.5rem 0 1rem; border: 1px solid var(--rule); border-radius: 6px; background: white; }
+details[open] { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+details summary { padding: 0.7rem 1rem; cursor: pointer; font-size: 0.92rem; color: var(--ink-dark); list-style: none; position: relative; user-select: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: "▸"; display: inline-block; margin-right: 0.55rem; color: var(--hr-green-dark); transition: transform 0.15s; font-size: 0.8rem; }
+details[open] summary::before { transform: rotate(90deg); }
+details summary:hover { background: rgba(178,189,48,0.04); }
+details[open] summary { border-bottom: 1px solid var(--rule); }
+details > table.data, details > p.source-note { margin-left: 1rem; margin-right: 1rem; }
+details > table.data { margin-bottom: 0.5rem; }
+details > p.source-note { margin-bottom: 0.75rem !important; }
+details summary .badge { margin-left: 0.25rem; }
+
+@media print { .nav { display: none; } .section { display: block !important; page-break-inside: avoid; } }
+@media (max-width: 640px) {
+  .header { padding: 1.25rem 1.5rem; }
+  .content { padding: 1.25rem 1.5rem; }
+  .nav { padding: 0 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo"><img src="../../../assets/highrock-logo.png" alt="HighRock" /></div>
+  <h1>SEO Research Report — DeLeon &amp; Stang, CPAs + Advisors</h1>
+  <div class="subtitle">deleonandstang.com — Frederick County, Maryland</div>
+  <div class="meta">
+    <span>Prepared: April 17, 2026</span>
+    <span>Location filter: Frederick County MD</span>
+    <span>19 keywords analyzed</span>
+    <span>3 competitors benchmarked</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showTab('summary')">Executive Summary</button>
+  <button onclick="showTab('health')">Site Health</button>
+  <button onclick="showTab('keywords')">Keywords</button>
+  <button onclick="showTab('competitive')">Competitive Landscape</button>
+  <button onclick="showTab('next')">Next Steps</button>
+</div>
+
+<div class="content">
+
+<!-- TAB: SUMMARY -->
+<div id="summary" class="section active">
+  <h2>Executive Summary</h2>
+  <p>DeLeon &amp; Stang is a well-established CPA firm in Frederick, MD with a structurally solid website — schema + Open Graph tags on all 99 crawled pages, a healthy 589-URL sitemap, and no redirect chains. Surface-level on-page SEO has room to improve: <strong>554 images are missing alt text</strong> (71% of all images), 901 external links are without <code>nofollow</code>, 29 titles run over 60 characters, and 24 pages have multiple H1 tags.</p>
+  <p>The Frederick County keyword landscape is narrow but honest. Only <strong>3 of 19 submitted keywords</strong> show county-filtered search volume — these are the ranking targets for the next 6 months.</p>
+
+  <div class="cards">
+    <div class="card"><div class="value">140</div><div class="label">cpa frederick md SV/mo</div></div>
+    <div class="card"><div class="value">90</div><div class="label">tax prep frederick md SV/mo</div></div>
+    <div class="card"><div class="value">30</div><div class="label">accounting firm frederick md SV/mo</div></div>
+    <div class="card"><div class="value">$3,900</div><div class="label">Core-3 PPC-equivalent / mo</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="h">Where the next $ should go</div>
+    <ol style="padding-left:1.4rem; margin-top:0.4rem;">
+      <li><strong>Alt text + image SEO pass</strong> — highest impact-to-effort ratio. 554 images, Squarespace bulk workflow.</li>
+      <li><strong>Core-3 keyword ranking push</strong> — "cpa / tax preparation / accounting firm frederick md." Combined ~260 monthly searches at ~$15 avg CPC = <strong>$3,900/mo equivalent PPC spend avoided</strong> if ranked in top-3 organically.</li>
+      <li><strong>Content depth on specialty pages</strong> — government contractor, nonprofit, family business. These have national search patterns, not local — the current zero-SV signal is honest data, not a bug.</li>
+      <li><strong>Backlink acquisition</strong> — DeLeon &amp; Stang has 3,018 backlinks but DR 16 / DA 27. Competitor KatzAbosch has DR 20 / DA 30 on similar backlink counts. The delta is link <em>quality</em>, not quantity.</li>
+    </ol>
+  </div>
+
+  <h3>The honest frame on the 16 zero-SV keywords</h3>
+  <p>16 specialty-vertical terms (government contractor, nonprofit, family business, business valuation, exit strategy) returned 0 county-filtered search volume. This does <em>not</em> mean the keywords are worthless — it means those buyers don't search them geo-qualified. A nonprofit looking for a CPA searches "cpa for nonprofit" nationally, without "frederick md." Your service-page architecture is intelligent; the gap is that 3 of your service specialties have national search patterns. Local SEO won't win those — content marketing + national intent-matching will.</p>
+</div>
+
+<!-- TAB: HEALTH -->
+<div id="health" class="section">
+  <h2>Site Health</h2>
+  <p class="source-note">Crawl: 2026-04-16 · 99 of 589 sitemap URLs · Platform: Squarespace · Schema coverage: 99/99 · OG tag coverage: 99/99</p>
+
+  <h3>On-page findings</h3>
+  <table class="data">
+    <thead><tr><th>Finding</th><th class="num">Count</th><th>Impact</th></tr></thead>
+    <tbody>
+      <tr><td>Titles over 60 characters</td><td class="num">29</td><td>SERP truncation</td></tr>
+      <tr><td>Titles under 30 characters</td><td class="num">15</td><td>Under-utilized real estate</td></tr>
+      <tr><td>Duplicate titles</td><td class="num">6</td><td>Cannibalization risk (6 titles shared across 13 pages)</td></tr>
+      <tr><td>Missing meta description</td><td class="num">0</td><td><span class="badge badge-ok">Clean</span></td></tr>
+      <tr><td>Meta description under 70 chars</td><td class="num">7</td><td>Thin snippet</td></tr>
+      <tr><td>Missing H1</td><td class="num">1</td><td>Accessibility + SEO</td></tr>
+      <tr><td>Multiple H1 tags on one page</td><td class="num">24</td><td>Signal dilution</td></tr>
+      <tr><td>Total images</td><td class="num">776</td><td>—</td></tr>
+      <tr><td><strong>Images missing alt text</strong></td><td class="num"><strong>554 (71%)</strong></td><td>Accessibility + image SEO loss</td></tr>
+      <tr><td>External links without nofollow</td><td class="num">901</td><td>Link-equity leak</td></tr>
+      <tr><td>Broken links (4xx/5xx)</td><td class="num">9</td><td>UX + crawl waste</td></tr>
+      <tr><td>Redirect chains</td><td class="num">0</td><td><span class="badge badge-ok">Clean</span></td></tr>
+    </tbody>
+  </table>
+
+  
+
+  <h3 style="margin-top:2rem;">Detailed breakdown &mdash; fix guide</h3>
+  <p>Each expandable block below lists the specific pages (or broken URLs) affected by each finding, capped at the first 50 per category. This is the fix-guide view &mdash; use these to prioritize and execute the work. Full crawl data available on request.</p>
+
+<details>
+<summary><strong>Titles over 60 characters</strong> <span class="badge badge-info">29 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>Page</th><th>Current title</th><th class="num">Length</th></tr></thead>
+<tbody>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/self-employed-tax-mistakes-to-avoid/" target="_blank">/insights/self-employed-tax-mistakes-to-avoid/</a></td><td>7 Self-Employed Tax Mistakes That Cost Business Owners Thousands — DeLeon &amp; Stang</td><td class="num">81</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/cash-flow/" target="_blank">/insights/cash-flow/</a></td><td>How Cash Flow and Tax Strategy Work Together  — DeLeon &amp; Stang</td><td class="num">62</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/firm-news/new-tax-manager/" target="_blank">/firm-news/new-tax-manager/</a></td><td>DeLeon &amp; Stang Announces New Tax Manager, Cindy Ash — DeLeon &amp; Stang</td><td class="num">68</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/audit-summer-spending/" target="_blank">/insights/audit-summer-spending/</a></td><td>Summer Spending Check: Why Your Budget Needs a Mid-Year Reset  — DeLeon &amp; Stang</td><td class="num">79</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/worker-classification/" target="_blank">/insights/worker-classification/</a></td><td>Classifying Employees Vs. Contractors: Why it Matters — DeLeon &amp; Stang</td><td class="num">70</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/md-529-updates/" target="_blank">/insights/md-529-updates/</a></td><td>Rolling Over MD 529s to Roth IRAs: A Breakdown of the Latest Updates — DeLeon &amp; Stang</td><td class="num">85</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/youth-savings-account/" target="_blank">/insights/youth-savings-account/</a></td><td>What You Need to Know About a Youth Savings Account — DeLeon &amp; Stang</td><td class="num">68</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/new-llc-reporting-2024/" target="_blank">/insights/new-llc-reporting-2024/</a></td><td>A Breakdown of the New Beneficial Ownership Reporting Requirements for LLCs — DeLeon &amp; Stang</td><td class="num">92</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/firm-news/intern-celebration-promotion/" target="_blank">/firm-news/intern-celebration-promotion/</a></td><td>DeLeon &amp; Stang Celebrates Incoming Fall Interns &amp; Intern Promotion — DeLeon &amp; Stang</td><td class="num">83</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/wyntk-marylandsaves/" target="_blank">/insights/wyntk-marylandsaves/</a></td><td>What Businesses Need to Know About Maryland Saves — DeLeon &amp; Stang</td><td class="num">66</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/solar-tax-credit-extension/" target="_blank">/insights/solar-tax-credit-extension/</a></td><td>Solar Energy Tax Credits Extended &amp; Increased — DeLeon &amp; Stang</td><td class="num">62</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/nonprofit-internal-control/" target="_blank">/insights/nonprofit-internal-control/</a></td><td>What Are Some Practical Steps a Nonprofit Can Take to Improve Their Internal Control? — DeLeon &amp; Stang</td><td class="num">102</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/business-ye-planning-checklist/" target="_blank">/insights/business-ye-planning-checklist/</a></td><td>Business Year-End Planning Checklist: 5 Essential Steps for 2025 — DeLeon &amp; Stang</td><td class="num">81</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/alternative-lending/" target="_blank">/insights/alternative-lending/</a></td><td>Alternative Lending Explained: Flexible Loan Options for Individuals — DeLeon &amp; Stang</td><td class="num">85</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/2025-business-tax-deadlines/" target="_blank">/insights/2025-business-tax-deadlines/</a></td><td>What Are the Deadlines for My 2025 Business Taxes? — DeLeon &amp; Stang</td><td class="num">67</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/succession-planning-how-to-ask-a-parent-to-step-down-from-leading-the-family-business/" target="_blank">/insights/succession-planning-how-to-ask-a-parent-to-step-down-from-leading-the-family-business/</a></td><td>Succession Planning: How to Ask a Parent to Step Down from Leading the Family Business — DeLeon &amp; Stang</td><td class="num">103</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/secure-20-act/" target="_blank">/insights/secure-20-act/</a></td><td>The Secure 2.0 Act &amp; What it Means for Retirement Accounts — DeLeon &amp; Stang</td><td class="num">75</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/small-business-spending-guide/" target="_blank">/insights/small-business-spending-guide/</a></td><td>Small Business Budget Guide: The Key to Successful Year-End Planning — DeLeon &amp; Stang</td><td class="num">85</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/worst-tax-scams-circulating-this-tax-season/" target="_blank">/insights/worst-tax-scams-circulating-this-tax-season/</a></td><td>Tax Scams: The Worst Ones Circulating Now &amp; How to Spot Them — DeLeon &amp; Stang</td><td class="num">77</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/government-contractors/" target="_blank">/government-contractors/</a></td><td>CPA &amp; Assurance Services for GovCon | DeLeon &amp; Stang | DeLeon &amp; Stang</td><td class="num">69</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/secure-20-catch-up-contributions/" target="_blank">/insights/secure-20-catch-up-contributions/</a></td><td>What You Need to Know About the New SECURE 2.0 Act Rules for High Earners — DeLeon &amp; Stang</td><td class="num">90</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/car-purchase-tax-break/" target="_blank">/insights/car-purchase-tax-break/</a></td><td>Which Cars Are Eligible for Clean Energy Tax Credits? — DeLeon &amp; Stang</td><td class="num">70</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/build-back-better-plan-businesses/" target="_blank">/insights/build-back-better-plan-businesses/</a></td><td>How the Build Back Better Plan Could Affect Businesses if Signed into Law — DeLeon &amp; Stang</td><td class="num">90</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/uniform-guidance-updates/" target="_blank">/insights/uniform-guidance-updates/</a></td><td>Effective October 1, 2024: OMB’s Revised Uniform Guidance — DeLeon &amp; Stang</td><td class="num">74</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/how-to-classify-workers/" target="_blank">/insights/how-to-classify-workers/</a></td><td>How to Classify Workers: The Difference Between an Employee and an Independent Contractor — DeLeon &amp; Stang</td><td class="num">106</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/individual-year-end-checklist/" target="_blank">/insights/individual-year-end-checklist/</a></td><td>Year-End Financial Planning Checklist for Individuals | 2025 Guide — DeLeon &amp; Stang</td><td class="num">83</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/va-military-tax-benefits/" target="_blank">/insights/va-military-tax-benefits/</a></td><td>Tax Benefits for Active &amp; Retired Military in Virginia — DeLeon &amp; Stang</td><td class="num">71</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/maryland-saves/" target="_blank">/insights/maryland-saves/</a></td><td>MarylandSaves Explained: A Small Business Owner’s Guide to Retirement Savings — DeLeon &amp; Stang</td><td class="num">94</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/working-remotely-from-out-of-state-can-be-taxing/" target="_blank">/insights/working-remotely-from-out-of-state-can-be-taxing/</a></td><td>Working Remotely From “Out of State” Can Be Taxing — DeLeon &amp; Stang</td><td class="num">67</td></tr>
+</tbody>
+</table>
+
+</details>
+
+<details>
+<summary><strong>Titles under 30 characters</strong> <span class="badge badge-info">15 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>Page</th><th>Current title</th><th class="num">Length</th></tr></thead>
+<tbody>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/acceptable-use/" target="_blank">/acceptable-use/</a></td><td>ACCEPTABLE USE</td><td class="num">14</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/cart/" target="_blank">/cart/</a></td><td>DeLeon &amp; Stang</td><td class="num">14</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/disclaimer/" target="_blank">/disclaimer/</a></td><td>DISCLAIMER</td><td class="num">10</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/contact/" target="_blank">/contact/</a></td><td>Contact Us | DeLeon &amp; Stang</td><td class="num">27</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/privacy-policy/" target="_blank">/privacy-policy/</a></td><td>PRIVACY POLICY</td><td class="num">14</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/about-DeLeonandStang/" target="_blank">/about-DeLeonandStang/</a></td><td>About Us</td><td class="num">8</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/client-login/" target="_blank">/client-login/</a></td><td>Client Access Portal</td><td class="num">20</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/resources/" target="_blank">/resources/</a></td><td>Resources | DeLeon &amp; Stang</td><td class="num">26</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/about/" target="_blank">/about/</a></td><td>About Us</td><td class="num">8</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/team/" target="_blank">/team/</a></td><td>Team</td><td class="num">4</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/firm-profile/" target="_blank">/firm-profile/</a></td><td>Firm Profile | DeLeon &amp; Stang</td><td class="num">29</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/cookie-policy/" target="_blank">/cookie-policy/</a></td><td>COOKIE POLICY</td><td class="num">13</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/" target="_blank">/insights/</a></td><td>Insights | DeLeon &amp; Stang</td><td class="num">25</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/careers/" target="_blank">/careers/</a></td><td>Careers | DeLeon &amp; Stang</td><td class="num">24</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/locations/" target="_blank">/locations/</a></td><td>Locations | DeLeon &amp; Stang</td><td class="num">26</td></tr>
+</tbody>
+</table>
+
+</details>
+
+<details>
+<summary><strong>Duplicate titles</strong> <span class="badge badge-info">6 titles shared across 13 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>Duplicated title</th><th>Pages using this title</th><th class="num">Count</th></tr></thead>
+<tbody>
+<tr><td><em>"DeLeon &amp; Stang | Advisory, Assurance, and Tax Services"</em></td><td><a href="https://deleonandstang.com/" target="_blank">/</a><br><a href="https://deleonandstang.com/home/" target="_blank">/home/</a></td><td class="num">2</td></tr>
+<tr><td><em>"Strategic Management Consulting Services | DeLeon &amp; Stang"</em></td><td><a href="https://deleonandstang.com/consulting-services/" target="_blank">/consulting-services/</a><br><a href="https://deleonandstang.com/consulting-overview/" target="_blank">/consulting-overview/</a><br><a href="https://deleonandstang.com/mega-services/" target="_blank">/mega-services/</a></td><td class="num">3</td></tr>
+<tr><td><em>"Business Advisors for Small Businesses | DeLeon &amp; Stang"</em></td><td><a href="https://deleonandstang.com/growing-businesses/" target="_blank">/growing-businesses/</a><br><a href="https://deleonandstang.com/mega-markets/" target="_blank">/mega-markets/</a></td><td class="num">2</td></tr>
+<tr><td><em>"Insights — Insights | DeLeon &amp; Stang"</em></td><td><a href="https://deleonandstang.com/insights/category/Insights/" target="_blank">/insights/category/Insights/</a><br><a href="https://deleonandstang.com/insights/tag/Insights/" target="_blank">/insights/tag/Insights/</a></td><td class="num">2</td></tr>
+<tr><td><em>"Strategic Tax Advisory Services | DeLeon &amp; Stang"</em></td><td><a href="https://deleonandstang.com/tax/" target="_blank">/tax/</a><br><a href="https://deleonandstang.com/tax-overview/" target="_blank">/tax-overview/</a></td><td class="num">2</td></tr>
+<tr><td><em>"About Us"</em></td><td><a href="https://deleonandstang.com/about-DeLeonandStang/" target="_blank">/about-DeLeonandStang/</a><br><a href="https://deleonandstang.com/about/" target="_blank">/about/</a></td><td class="num">2</td></tr>
+</tbody>
+</table>
+</details>
+
+<details>
+<summary><strong>Meta descriptions under 70 characters</strong> <span class="badge badge-info">7 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>Page</th><th>Current description</th><th class="num">Length</th></tr></thead>
+<tbody>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/privacy-policy/" target="_blank">/privacy-policy/</a></td><td>Read to learn more about DeLeon &amp; Stang’s privacy policy.</td><td class="num">57</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/resources/" target="_blank">/resources/</a></td><td>Tools and guides for working with us.</td><td class="num">37</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/team/" target="_blank">/team/</a></td><td>Meet the experienced, talented team at DeLeon &amp; Stang.</td><td class="num">54</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/2025-business-tax-deadlines/" target="_blank">/insights/2025-business-tax-deadlines/</a></td><td>Here are the important deadlines for your 2025 business taxes. </td><td class="num">63</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/team/angela-miles/" target="_blank">/team/angela-miles/</a></td><td>Audit Supervisor</td><td class="num">16</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/5-tax-planning-tips-for-retirees/" target="_blank">/insights/5-tax-planning-tips-for-retirees/</a></td><td>This article provides five tax-planning tips for retirees.</td><td class="num">58</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/team/cristina-delatorre/" target="_blank">/team/cristina-delatorre/</a></td><td>Staff Accountant </td><td class="num">17</td></tr>
+</tbody>
+</table>
+</details>
+
+<details>
+<summary><strong>Pages missing H1</strong> <span class="badge badge-info">1 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>Page</th></tr></thead>
+<tbody>
+<tr><td><a href="https://deleonandstang.com/cart/" target="_blank">/cart/</a></td></tr>
+</tbody>
+</table>
+</details>
+
+<details>
+<summary><strong>Pages with multiple H1 tags</strong> <span class="badge badge-info">24 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>Page</th><th>H1 tags on page</th><th class="num">Count</th></tr></thead>
+<tbody>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Cash+Flow/" target="_blank">/insights/tag/Cash+Flow/</a></td><td>We See Things Differently<br>How Cash Flow and Tax Strategy Work Together</td><td class="num">2</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/category/Insights/" target="_blank">/insights/category/Insights/</a></td><td>We See Things Differently<br>Self-Employed Tax Mistakes That Cost You Money (And How to Fix Them)<br>Year-End Financial Planning Checklist for Individuals<br>MarylandSaves: What Business Owners Need to Know<br>Audit Your Summer Spending: Set Yourself Up for A Strong Fall<br>Exploring Alternative Lending – Beyond Traditional Bank Loans<br>What You Need to Know About a Youth Savings Account<br>What You Need to Know About Beneficial Ownership Reporting Requirements<br><em style="color:var(--ink-soft);">+ 11 more H1 tags</em></td><td class="num">19</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Summer+Spending/" target="_blank">/insights/tag/Summer+Spending/</a></td><td>We See Things Differently<br>Audit Your Summer Spending: Set Yourself Up for A Strong Fall</td><td class="num">2</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/firm-news/tag/internal+growth/" target="_blank">/firm-news/tag/internal+growth/</a></td><td>FIRM NEWS<br>DeLeon &amp; Stang Welcomes Cindy Ash to the Team<br>DeLeon &amp; Stang Welcomes Seven New Interns to the Team<br>From Internships to Full-Time Careers: DeLeon &amp; Stang Welcomes Two New Professionals</td><td class="num">4</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/category/Resources/" target="_blank">/insights/category/Resources/</a></td><td>We See Things Differently<br>How Cash Flow and Tax Strategy Work Together<br>What Are Some Practical Steps a Nonprofit Can Take to Improve Their Internal Control?<br>What Are the Deadlines For My 2025 Taxes?<br>What Are the Deadlines for My 2025 Business Taxes?<br>Looking Ahead: Key 2026 Tax &amp; Financial Trends to Watch<br>Business Year-End Planning Checklist: 5 Essential Steps<br>Year-End Financial Planning Checklist for Individuals<br><em style="color:var(--ink-soft);">+ 5 more H1 tags</em></td><td class="num">13</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Tax/" target="_blank">/insights/tag/Tax/</a></td><td>We See Things Differently<br>Self-Employed Tax Mistakes That Cost You Money (And How to Fix Them)<br>What Are the Deadlines For My 2025 Taxes?<br>What Are the Deadlines for My 2025 Business Taxes?<br>Business Year-End Planning Checklist: 5 Essential Steps<br>Individual Tax Prep Checklist<br>When Are Gift &amp; Estate Taxes Due?<br>5 Ways for Businesses and Individuals to Make Tax-Efficient Investments<br><em style="color:var(--ink-soft);">+ 11 more H1 tags</em></td><td class="num">19</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/resources/" target="_blank">/resources/</a></td><td>RESOURCES<br>Using Compliancely<br>How to Pay Your DeLeon &amp; Stang Invoice<br>Using TaxCaddy to Work with Us<br>Using SafeSend to Work with Us<br>DeLeon &amp; Stang Form 8655, Reporting Agent Authorization</td><td class="num">6</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Individuals/" target="_blank">/insights/tag/Individuals/</a></td><td>We See Things Differently<br>What Are the Deadlines For My 2025 Taxes?<br>Year-End Financial Planning Checklist for Individuals<br>New Retirement Rules for High Earners: What You Need to Know About the SECURE 2.0 Act<br>Audit Your Summer Spending: Set Yourself Up for A Strong Fall<br>Maryland Tax Law Changes Now in Effect: What Individual Taxpayers Need to Know<br>What You Need to Know About Filing a Tax Extension<br>Extended &amp; Increased: A Breakdown of the Latest Changes to Solar Energy Tax Credits<br><em style="color:var(--ink-soft);">+ 4 more H1 tags</em></td><td class="num">12</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Small+Business/" target="_blank">/insights/tag/Small+Business/</a></td><td>We See Things Differently<br>Business Year-End Planning Checklist: 5 Essential Steps<br>What Businesses Should Plan for in 2025: Changing Inflation, Interest Rates, and Tax Policies<br>5 Ways for Businesses and Individuals to Make Tax-Efficient Investments<br>Small Business Budget Guide: The Key to Successful Year-End Planning<br>Tax Credits vs Tax Deductions: What’s the Difference?<br>What Businesses Should Plan for in 2024: How to Navigate the Current Economic Landscape of Inflation<br>What Businesses Need to Know About the MarylandSaves Program<br><em style="color:var(--ink-soft);">+ 5 more H1 tags</em></td><td class="num">13</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Insights/" target="_blank">/insights/tag/Insights/</a></td><td>We See Things Differently<br>How Cash Flow and Tax Strategy Work Together<br>MarylandSaves: What Business Owners Need to Know<br>New Retirement Rules for High Earners: What You Need to Know About the SECURE 2.0 Act<br>Audit Your Summer Spending: Set Yourself Up for A Strong Fall<br>Maryland Tax Law Changes Now in Effect: What Individual Taxpayers Need to Know<br>Which Car Purchase Can I Get a Tax Break For?<br>The IRS Announces 2022 Retirement Contribution Limits<br><em style="color:var(--ink-soft);">+ 4 more H1 tags</em></td><td class="num">12</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/team/" target="_blank">/team/</a></td><td>A Highly Experienced Team with Diverse Backgrounds and Talents.<br>Addie Blickenstaff, CPA<br>Alex Myers<br>Allyson Thomas, CPA<br>Alondra Burgos<br>Andrew Gardiner<br>Angela Miles, CPA<br>Angie Sfrisi<br><em style="color:var(--ink-soft);">+ 13 more H1 tags</em></td><td class="num">21</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Small+Businesses/" target="_blank">/insights/tag/Small+Businesses/</a></td><td>We See Things Differently<br>Business Year-End Planning Checklist: 5 Essential Steps<br>What Businesses Need to Know About the MarylandSaves Program<br>The Inflation Reduction Act Signed into Law: How It Affects Taxes for Businesses<br>Rental real estate: Determining if a property is a business or an investment<br>A Cost Segregation Study Is One Way To Boost Cash Flow<br>When can you deduct business-related meals . . . and how much can you deduct?</td><td class="num">7</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/2025+Tax+Center/" target="_blank">/insights/tag/2025+Tax+Center/</a></td><td>We See Things Differently<br>Business Year-End Planning Checklist: 5 Essential Steps<br>Maryland Tax Law Changes Now in Effect: What Individual Taxpayers Need to Know<br>Individual Tax Prep Questionnaire and Organizer<br>Individual Tax Prep Checklist</td><td class="num">5</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/non-profit/" target="_blank">/insights/tag/non-profit/</a></td><td>We See Things Differently<br>What Are Some Practical Steps a Nonprofit Can Take to Improve Their Internal Control?<br>How to Ask a Board Member to Resign<br>Understanding Your Responsibilities on the Finance Committee<br>What To Expect During A Financial Audit<br>Will We Ever Get Back to the Old Normal?<br>Who&#x27;s Responsible for What During the Audit Process? Boards of Directors, Managing Agents, and Audit<br>Is An Audit Required For My Non-Profit Organization?<br><em style="color:var(--ink-soft);">+ 4 more H1 tags</em></td><td class="num">12</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Retirement/" target="_blank">/insights/tag/Retirement/</a></td><td>We See Things Differently<br>MarylandSaves: What Business Owners Need to Know<br>New Retirement Rules for High Earners: What You Need to Know About the SECURE 2.0 Act<br>Things to Consider Before You Meet with a Financial Planner<br>The Secure 2.0 Act and What it Means for Retirement Accounts<br>IRS Increases Retirement Contribution Limits in Response to Inflation<br>New Year’s Resolutions: Don’t Forget to Set Them for Your Business<br>Staying Ahead of the Great Resignation &amp; Retirement: How Business Leaders Can Prepare for the Future<br><em style="color:var(--ink-soft);">+ 1 more H1 tags</em></td><td class="num">9</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Individual/" target="_blank">/insights/tag/Individual/</a></td><td>We See Things Differently<br>When Are Gift &amp; Estate Taxes Due?<br>Tax Credits vs Tax Deductions: What’s the Difference?<br>Overview of the Latest Cost of Living Updates for 2024<br>TCJA Tax Benefits Phasing Out: What You Need to Know<br>Two New Bills Propose Tax Changes</td><td class="num">6</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Tax+Center/" target="_blank">/insights/tag/Tax+Center/</a></td><td>We See Things Differently<br>What Are the Deadlines For My 2025 Taxes?<br>What Are the Deadlines for My 2025 Business Taxes?<br>Looking Ahead: Key 2026 Tax &amp; Financial Trends to Watch<br>Which Car Purchase Can I Get a Tax Break For?<br>Why Tax Planning Is Important</td><td class="num">6</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Tax+Planning/" target="_blank">/insights/tag/Tax+Planning/</a></td><td>We See Things Differently<br>Business Year-End Planning Checklist: 5 Essential Steps<br>Year-End Financial Planning Checklist for Individuals<br>Why Tax Planning Is Important<br>IRS Increases Retirement Contribution Limits in Response to Inflation</td><td class="num">5</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Financial+Planning/" target="_blank">/insights/tag/Financial+Planning/</a></td><td>We See Things Differently<br>Year-End Financial Planning Checklist for Individuals<br>Audit Your Summer Spending: Set Yourself Up for A Strong Fall<br>An Overview of IRS’ Changes to the FY2024 Tax Brackets<br>Things to Consider Before You Meet with a Financial Planner</td><td class="num">5</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/build-back-better-plan-businesses/" target="_blank">/insights/build-back-better-plan-businesses/</a></td><td>How the Build Back Better Plan Could Affect Businesses if Signed into Law<br>What Comes Next?<br>Have Questions?</td><td class="num">3</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/small+business/" target="_blank">/insights/tag/small+business/</a></td><td>We See Things Differently<br>IRS to Raise Mileage Rate for Rest of 2022<br>How to Ask a Board Member to Resign<br>Preparing for the Sale of Your Growing Business<br>What to Do Before You Decide to Sell Your Small Business<br>The Current Cost Crisis for Small Businesses<br>Can I Write Off My Home Office?<br>The New Lease Accounting Standard: How it May Affect Your Business<br><em style="color:var(--ink-soft);">+ 11 more H1 tags</em></td><td class="num">19</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/" target="_blank">/insights/</a></td><td>We See Things Differently<br>Self-Employed Tax Mistakes That Cost You Money (And How to Fix Them)<br>How Cash Flow and Tax Strategy Work Together<br>What Are Some Practical Steps a Nonprofit Can Take to Improve Their Internal Control?<br>What Are the Deadlines For My 2025 Taxes?<br>What Are the Deadlines for My 2025 Business Taxes?<br>Looking Ahead: Key 2026 Tax &amp; Financial Trends to Watch<br>Business Year-End Planning Checklist: 5 Essential Steps<br><em style="color:var(--ink-soft);">+ 11 more H1 tags</em></td><td class="num">19</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/firm-news/tag/careers/" target="_blank">/firm-news/tag/careers/</a></td><td>FIRM NEWS<br>From Internships to Full-Time Careers: DeLeon &amp; Stang Welcomes Two New Professionals<br>DeLeon &amp; Stang Celebrates Incoming Fall Interns &amp; Intern Promotions</td><td class="num">3</td></tr>
+<tr><td style="width:35%;"><a href="https://deleonandstang.com/insights/tag/Business+Planning/" target="_blank">/insights/tag/Business+Planning/</a></td><td>We See Things Differently<br>What Businesses Should Plan for in 2025: Changing Inflation, Interest Rates, and Tax Policies<br>5 Ways for Businesses and Individuals to Make Tax-Efficient Investments<br>Small Business Budget Guide: The Key to Successful Year-End Planning<br>What Businesses Should Plan for in 2024: How to Navigate the Current Economic Landscape of Inflation<br>Developing the Next Generation of Leadership<br>Landing the Right Talent: Developing Your Recruiting Strategy<br>How to Ask a Parent to Step Down from Leading the Family Business</td><td class="num">8</td></tr>
+</tbody>
+</table>
+
+</details>
+
+<details>
+<summary><strong>Pages with images missing alt text</strong> <span class="badge badge-info">99 pages &middot; 554 images total</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>Page</th><th class="num">Total images</th><th class="num">Missing alt</th><th>Sample missing images</th></tr></thead>
+<tbody>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/team/" target="_blank">/team/</a></td><td class="num">27</td><td class="num">25</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/" target="_blank">/</a></td><td class="num">20</td><td class="num">16</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/home/" target="_blank">/home/</a></td><td class="num">20</td><td class="num">16</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/about-DeLeonandStang/" target="_blank">/about-DeLeonandStang/</a></td><td class="num">15</td><td class="num">13</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/about/" target="_blank">/about/</a></td><td class="num">15</td><td class="num">13</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/non-profit/" target="_blank">/non-profit/</a></td><td class="num">12</td><td class="num">10</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/careers/" target="_blank">/careers/</a></td><td class="num">32</td><td class="num">10</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/consulting-services/" target="_blank">/consulting-services/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/growing-businesses/" target="_blank">/growing-businesses/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/trade-associations/" target="_blank">/trade-associations/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/consulting-overview/" target="_blank">/consulting-overview/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/mega-markets/" target="_blank">/mega-markets/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/family-businesses/" target="_blank">/family-businesses/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/accounting/" target="_blank">/accounting/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/government-contractors/" target="_blank">/government-contractors/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/mega-services/" target="_blank">/mega-services/</a></td><td class="num">10</td><td class="num">8</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/audit/" target="_blank">/audit/</a></td><td class="num">9</td><td class="num">7</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/resources/" target="_blank">/resources/</a></td><td class="num">9</td><td class="num">7</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/private-clients/" target="_blank">/private-clients/</a></td><td class="num">9</td><td class="num">7</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/assurance/" target="_blank">/assurance/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Cash+Flow/" target="_blank">/insights/tag/Cash+Flow/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/software-consulting/" target="_blank">/software-consulting/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/category/Insights/" target="_blank">/insights/category/Insights/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/private-client-taxes/" target="_blank">/private-client-taxes/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Summer+Spending/" target="_blank">/insights/tag/Summer+Spending/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/tax/" target="_blank">/tax/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/tax-overview/" target="_blank">/tax-overview/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/category/Resources/" target="_blank">/insights/category/Resources/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Tax/" target="_blank">/insights/tag/Tax/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/tax-planning/" target="_blank">/tax-planning/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Individuals/" target="_blank">/insights/tag/Individuals/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/resources/how-to-pay/" target="_blank">/resources/how-to-pay/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Small+Business/" target="_blank">/insights/tag/Small+Business/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Insights/" target="_blank">/insights/tag/Insights/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Small+Businesses/" target="_blank">/insights/tag/Small+Businesses/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/2025+Tax+Center/" target="_blank">/insights/tag/2025+Tax+Center/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/non-profit/" target="_blank">/insights/tag/non-profit/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Retirement/" target="_blank">/insights/tag/Retirement/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Individual/" target="_blank">/insights/tag/Individual/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/firm-profile/" target="_blank">/firm-profile/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Tax+Center/" target="_blank">/insights/tag/Tax+Center/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Tax+Planning/" target="_blank">/insights/tag/Tax+Planning/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Financial+Planning/" target="_blank">/insights/tag/Financial+Planning/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/small+business/" target="_blank">/insights/tag/small+business/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/" target="_blank">/insights/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/locations/" target="_blank">/locations/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/tag/Business+Planning/" target="_blank">/insights/tag/Business+Planning/</a></td><td class="num">8</td><td class="num">6</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/acceptable-use/" target="_blank">/acceptable-use/</a></td><td class="num">7</td><td class="num">5</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/assurance-risk-advisory/" target="_blank">/assurance-risk-advisory/</a></td><td class="num">7</td><td class="num">5</td><td></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/disclaimer/" target="_blank">/disclaimer/</a></td><td class="num">7</td><td class="num">5</td><td></td></tr>
+</tbody>
+</table>
+<p class="source-note" style="margin-top:0.4rem;">Showing first 50 pages of 99 (ranked by missing-alt count descending). Sample shows first 5 missing-alt images per page.</p>
+</details>
+
+<details>
+<summary><strong>External links without nofollow</strong> <span class="badge badge-info">99 pages &middot; 901 links total</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>Page</th><th class="num">Links without nofollow</th><th>Sample links</th></tr></thead>
+<tbody>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/worst-tax-scams-circulating-this-tax-season/" target="_blank">/insights/worst-tax-scams-circulating-this-tax-season/</a></td><td class="num">21</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/resources/" target="_blank">/resources/</a></td><td class="num">19</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/careers/" target="_blank">/careers/</a></td><td class="num">18</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/firm-news/new-tax-manager/" target="_blank">/firm-news/new-tax-manager/</a></td><td class="num">14</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/solar-tax-credit-extension/" target="_blank">/insights/solar-tax-credit-extension/</a></td><td class="num">13</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/car-purchase-tax-break/" target="_blank">/insights/car-purchase-tax-break/</a></td><td class="num">13</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/wyntk-marylandsaves/" target="_blank">/insights/wyntk-marylandsaves/</a></td><td class="num">12</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/succession-planning-how-to-ask-a-parent-to-step-down-from-leading-the-family-business/" target="_blank">/insights/succession-planning-how-to-ask-a-parent-to-step-down-from-leading-the-family-business/</a></td><td class="num">12</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/uniform-guidance-updates/" target="_blank">/insights/uniform-guidance-updates/</a></td><td class="num">12</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/md-529-updates/" target="_blank">/insights/md-529-updates/</a></td><td class="num">11</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/client-login/" target="_blank">/client-login/</a></td><td class="num">11</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/tax-planning/" target="_blank">/tax-planning/</a></td><td class="num">11</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/maryland-saves/" target="_blank">/insights/maryland-saves/</a></td><td class="num">11</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/private-client-taxes/" target="_blank">/private-client-taxes/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/tax/" target="_blank">/tax/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/youth-savings-account/" target="_blank">/insights/youth-savings-account/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/new-llc-reporting-2024/" target="_blank">/insights/new-llc-reporting-2024/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/tax-overview/" target="_blank">/tax-overview/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/resources/how-to-pay/" target="_blank">/resources/how-to-pay/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/3-common-retirement-mistakes/" target="_blank">/insights/3-common-retirement-mistakes/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/secure-20-catch-up-contributions/" target="_blank">/insights/secure-20-catch-up-contributions/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/how-to-classify-workers/" target="_blank">/insights/how-to-classify-workers/</a></td><td class="num">10</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/self-employed-tax-mistakes-to-avoid/" target="_blank">/insights/self-employed-tax-mistakes-to-avoid/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/cash-flow/" target="_blank">/insights/cash-flow/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/audit-summer-spending/" target="_blank">/insights/audit-summer-spending/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/firm-news/intern-celebration-promotion/" target="_blank">/firm-news/intern-celebration-promotion/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/nonprofit-internal-control/" target="_blank">/insights/nonprofit-internal-control/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/business-ye-planning-checklist/" target="_blank">/insights/business-ye-planning-checklist/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/alternative-lending/" target="_blank">/insights/alternative-lending/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/individual-tax-prep-organizer/" target="_blank">/insights/individual-tax-prep-organizer/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/2025-business-tax-deadlines/" target="_blank">/insights/2025-business-tax-deadlines/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/secure-20-act/" target="_blank">/insights/secure-20-act/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/gift-estate-tax-deadlines/" target="_blank">/insights/gift-estate-tax-deadlines/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/small-business-spending-guide/" target="_blank">/insights/small-business-spending-guide/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/team/angela-miles/" target="_blank">/team/angela-miles/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/build-back-better-plan-businesses/" target="_blank">/insights/build-back-better-plan-businesses/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/team/cristina-delatorre/" target="_blank">/team/cristina-delatorre/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/individual-year-end-checklist/" target="_blank">/insights/individual-year-end-checklist/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/insights/va-military-tax-benefits/" target="_blank">/insights/va-military-tax-benefits/</a></td><td class="num">9</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/" target="_blank">/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/home/" target="_blank">/home/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/assurance/" target="_blank">/assurance/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/consulting-services/" target="_blank">/consulting-services/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/acceptable-use/" target="_blank">/acceptable-use/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/assurance-risk-advisory/" target="_blank">/assurance-risk-advisory/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/growing-businesses/" target="_blank">/growing-businesses/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/cart/" target="_blank">/cart/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/disclaimer/" target="_blank">/disclaimer/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/trade-associations/" target="_blank">/trade-associations/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+<tr><td style="width:30%;"><a href="https://deleonandstang.com/contact/" target="_blank">/contact/</a></td><td class="num">8</td><td><em style="color:var(--ink-soft);">Count only &mdash; link-level detail not captured in crawl schema for this field</em></td></tr>
+</tbody>
+</table>
+<p class="source-note" style="margin-top:0.4rem;">Showing first 50 pages of 99 (ranked by link count descending).</p>
+</details>
+
+<details>
+<summary><strong>Broken links (4xx/5xx responses)</strong> <span class="badge badge-info">9 found</span> <span style="color:var(--ink-soft); font-size:0.85rem;">&middot; click to expand</span></summary>
+<table class="data" style="margin-top:0.75rem;">
+<thead><tr><th>On page</th><th>Broken href</th><th>Anchor text</th><th class="num">Status</th></tr></thead>
+<tbody>
+<tr><td><a href="https://deleonandstang.com/" target="_blank">/</a></td><td><code style="font-size:0.78rem;">https://deleonstang.aiwyn.ai/client-portal</code></td><td>PAY ONLINE</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+<tr><td><a href="https://deleonandstang.com/" target="_blank">/</a></td><td><code style="font-size:0.78rem;">https://www.facebook.com/DeLeonStang/</code></td><td></td><td class="num"><span class="badge badge-error">400</span></td></tr>
+<tr><td><a href="https://deleonandstang.com/client-login/" target="_blank">/client-login/</a></td><td><code style="font-size:0.78rem;">https://deleonstang.aiwyn.ai/client-portal/</code></td><td>Go to Aiwyn Portal</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+<tr><td><a href="https://deleonandstang.com/resources/" target="_blank">/resources/</a></td><td><code style="font-size:0.78rem;">https://deleonstang.aiwyn.ai/client-portal/login</code></td><td>Pay An Invoice</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+<tr><td><a href="https://deleonandstang.com/insights/solar-tax-credit-extension/" target="_blank">/insights/solar-tax-credit-extension/</a></td><td><code style="font-size:0.78rem;">https://www.energy.gov/eere/solar/homeowners-guide-federal-tax-credit-solar-photovoltaics</code></td><td>extended</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+<tr><td><a href="https://deleonandstang.com/insights/solar-tax-credit-extension/" target="_blank">/insights/solar-tax-credit-extension/</a></td><td><code style="font-size:0.78rem;">https://www.energy.gov/eere/solar/federal-solar-tax-credits-businesses</code></td><td>extended</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+<tr><td><a href="https://deleonandstang.com/insights/solar-tax-credit-extension/" target="_blank">/insights/solar-tax-credit-extension/</a></td><td><code style="font-size:0.78rem;">https://www.energy.gov/eere/solar/federal-solar-tax-credits-businesses#_edn4</code></td><td>requirements</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+<tr><td><a href="https://deleonandstang.com/insights/worst-tax-scams-circulating-this-tax-season/" target="_blank">/insights/worst-tax-scams-circulating-this-tax-season/</a></td><td><code style="font-size:0.78rem;">https://www.dol.gov/agencies/eta/UIIDtheft</code></td><td>here</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+<tr><td><a href="https://deleonandstang.com/insights/worst-tax-scams-circulating-this-tax-season/" target="_blank">/insights/worst-tax-scams-circulating-this-tax-season/</a></td><td><code style="font-size:0.78rem;">https://irs.treasury.gov/oic_pre_qualifier/</code></td><td>OIC Pre-Qualifier</td><td class="num"><span class="badge badge-error">503</span></td></tr>
+</tbody>
+</table>
+</details>
+
+
+  <h3>Infrastructure</h3>
+  <table class="data">
+    <thead><tr><th>Factor</th><th>Status</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Sitemap XML</td><td><span class="badge badge-ok">Found</span></td><td>589 URLs — healthy coverage</td></tr>
+      <tr><td>Robots.txt</td><td><span class="badge badge-warn">Found — AI bots blocked</span></td><td>Blocks GPTBot, ClaudeBot, anthropic-ai, Google-Extended — relevant for AI Overviews visibility (see Next Steps)</td></tr>
+      <tr><td>Canonical tags</td><td><span class="badge badge-ok">99/99</span></td><td>Clean</td></tr>
+      <tr><td>HTTPS</td><td><span class="badge badge-ok">Yes</span></td><td>—</td></tr>
+      <tr><td>Schema markup</td><td><span class="badge badge-ok">99/99</span></td><td>Squarespace default</td></tr>
+      <tr><td>OpenGraph tags</td><td><span class="badge badge-ok">99/99</span></td><td>Squarespace default</td></tr>
+      <tr><td>Redirect chains</td><td><span class="badge badge-ok">None</span></td><td>Clean</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <div class="h">Note: PageSpeed Insights not captured</div>
+    PSI runs independently of the crawl and was not executed in this engagement. Recommend running as a Day 3 add-on or part of the next engagement.
+  </div>
+
+  <h3>Recommended fix priority</h3>
+  <ol>
+    <li><strong>Alt text on 554 images</strong> — Squarespace bulk-edit workflow, highest impact-to-effort ratio</li>
+    <li><strong>Consolidate 7 duplicate titles</strong> — likely tag/category or Insights archive pages</li>
+    <li><strong>Fix 24 multiple-H1 pages</strong> — pick one H1 per page, demote the rest to H2</li>
+    <li><strong>Trim 29 over-length titles</strong> to ≤60 characters</li>
+    <li><strong>Audit + fix 9 broken internal links</strong></li>
+    <li><strong>Review robots.txt AI-bot blocks</strong> — the blocks on GPTBot/ClaudeBot/Google-Extended prevent citation in conversational AI platforms (Gemini chat, ChatGPT, etc.). Current strategic posture: strong Google AI Overviews presence (91 mentions, ahead of all competitors), zero conversational AI presence. If the conversational surface matters, the <code>robots.txt</code> posture needs revisiting.</li>
+  </ol>
+
+  <h3 style="margin-top:2rem;">PageSpeed Insights — mobile</h3>
+  <p class="source-note">Source: Google PageSpeed Insights · deleonandstang.com · Mobile form factor · captured 2026-04-17</p>
+  <table class="data">
+    <thead><tr><th>Performance Lab Score</th><th class="num">Value</th><th>Band</th></tr></thead>
+    <tbody>
+      <tr><td>Performance</td><td class="num"><strong>39</strong></td><td><span class="badge badge-error">Poor</span></td></tr>
+      <tr><td>Accessibility</td><td class="num">58</td><td><span class="badge badge-error">Poor</span></td></tr>
+      <tr><td>Best Practices</td><td class="num">100</td><td><span class="badge badge-ok">Good</span></td></tr>
+    </tbody>
+  </table>
+  <table class="data">
+    <thead><tr><th>CrUX Real-User Data (28-day field, mobile)</th><th class="num">75th percentile</th><th>Assessment</th></tr></thead>
+    <tbody>
+      <tr><td>Largest Contentful Paint (LCP)</td><td class="num">1.3 s</td><td><span class="badge badge-ok">Good</span></td></tr>
+      <tr><td>First Contentful Paint (FCP)</td><td class="num">1.3 s</td><td><span class="badge badge-ok">Good</span></td></tr>
+      <tr><td>Cumulative Layout Shift (CLS)</td><td class="num">0.03</td><td><span class="badge badge-ok">Good</span></td></tr>
+      <tr><td>Total Blocking Time (TBT)</td><td class="num">660 ms</td><td><span class="badge badge-warn">Poor (lab)</span></td></tr>
+      <tr><td>Speed Index</td><td class="num">11.5 s</td><td><span class="badge badge-warn">Poor (lab)</span></td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <div class="h">Interpretation</div>
+    <p style="margin:0;">The lab Performance score of 39 is pulled down by TBT (660 ms) and Speed Index (11.5 s) — both reflect heavy JavaScript on initial load. But <strong>real users see Good LCP/FCP/CLS</strong> from CrUX 28-day data, indicating caching and CDN softens the first-load penalty. This is the common Squarespace pattern: initial bundle is heavy, but the origin server and CDN cushion it for real visits. Priority fix: reduce unused JS / async-load non-critical Squarespace scripts.</p>
+  </div>
+  <div class="callout warn">
+    <div class="h">Not captured this run</div>
+    <p style="margin:0;">Desktop PSI capture was not completed in this pass. Desktop numbers for deleonandstang.com are expected to improve on Performance vs. mobile (typical 15-25 point lift on Squarespace). Can be captured in a follow-on pass on request.</p>
+  </div>
+
+</div>
+
+<!-- TAB: KEYWORDS -->
+<div id="keywords" class="section">
+  <h2>Keyword Research — Frederick County Filter</h2>
+  <p class="source-note">Source: keyword research pulled 2026-04-16, extracted 2026-04-17 after a 30-hour propagation window. Frederick County, MD location filter applied.</p>
+
+  <h3>Keywords with Frederick County search volume (3 of 19)</h3>
+  <table class="data">
+    <thead><tr><th>#</th><th>Keyword</th><th>Intent</th><th class="num">SV / month</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>cpa frederick md</strong></td><td>Commercial</td><td class="num"><strong>140</strong></td><td class="num">2</td><td class="num">$15.40</td><td class="num">65</td></tr>
+      <tr><td>2</td><td><strong>tax preparation frederick md</strong></td><td>Commercial</td><td class="num"><strong>90</strong></td><td class="num">1</td><td class="num">$19.10</td><td class="num">83</td></tr>
+      <tr><td>3</td><td><strong>accounting firm frederick md</strong></td><td>Commercial</td><td class="num"><strong>30</strong></td><td class="num">0</td><td class="num">$10.80</td><td class="num">21</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Keywords with 0 county-level SV but measured competition (16 of 19)</h3>
+  <p>These terms returned 0 search volume at the Frederick County filter. Competitor Pressure scores (4–20) show national/regional demand exists; county-level searches are thin. Treat as long-tail authority plays, not primary ranking targets.</p>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV</th><th class="num">Competitor Pressure</th></tr></thead>
+    <tbody>
+      <tr><td>nonprofit accounting frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">18</td></tr>
+      <tr><td>exit strategy planning frederick md</td><td>Commercial + Transactional</td><td class="num">0</td><td class="num">20</td></tr>
+      <tr><td>business valuation frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">19</td></tr>
+      <tr><td>nonprofit audit frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">16</td></tr>
+      <tr><td>family business accountant frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">15</td></tr>
+      <tr><td>nonprofit bookkeeping services frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">14</td></tr>
+      <tr><td>nonprofit cpa frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">12</td></tr>
+      <tr><td>government contractor bookkeeping frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">11</td></tr>
+      <tr><td>business advisory services frederick md</td><td>Commercial + Transactional</td><td class="num">0</td><td class="num">9</td></tr>
+      <tr><td>government contractor accounting frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">9</td></tr>
+      <tr><td>government contractor cpa frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">9</td></tr>
+      <tr><td>cpa near me frederick md</td><td>Commercial + Transactional</td><td class="num">0</td><td class="num">7</td></tr>
+      <tr><td>business tax accountant frederick md</td><td>Transactional</td><td class="num">0</td><td class="num">4</td></tr>
+      <tr><td>accounting firms near me frederick md</td><td>Commercial + Transactional</td><td class="num">0</td><td class="num">4</td></tr>
+      <tr><td>audit services frederick md</td><td>Commercial</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td>tax planning frederick md</td><td>Commercial</td><td class="num">0</td><td class="num">0</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Keyword → service page alignment</h3>
+  <table class="data">
+    <thead><tr><th>Page</th><th>Primary KW (has SV)</th><th>Supporting / long-tail (0 SV)</th></tr></thead>
+    <tbody>
+      <tr><td>Homepage / firm overview</td><td>cpa frederick md (140), accounting firm frederick md (30)</td><td>cpa near me frederick md, accounting firms near me frederick md</td></tr>
+      <tr><td>/tax/ + /tax-planning/ + /business-taxes/</td><td>tax preparation frederick md (90)</td><td>tax planning frederick md, business tax accountant</td></tr>
+      <tr><td>/assurance/ + /audit/</td><td>—</td><td>audit services frederick md</td></tr>
+      <tr><td>/consulting-services/ + /exit-strategy/</td><td>—</td><td>business advisory, business valuation, exit strategy planning</td></tr>
+      <tr><td>/non-profit/ + /public-charities/ + /trade-associations/</td><td>—</td><td>nonprofit accounting, audit, cpa, bookkeeping</td></tr>
+      <tr><td>/government-contractors/</td><td>—</td><td>govt contractor accounting, bookkeeping, cpa</td></tr>
+      <tr><td>/family-businesses/</td><td>—</td><td>family business accountant</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="h">Strategic read</div>
+    <p style="margin:0;"><strong>Core 3 keywords = revenue-driving phrases.</strong> Combined ~260 monthly Frederick County searches at ~$15 avg CPC = ~$3,900/mo in avoided PPC spend if ranked top-3 organically. These are the ranking targets for the next 6 months.</p>
+    <p style="margin-top:0.7rem;"><strong>"Show" / Commercial intent on the core 3</strong> means Google returns a mixed SERP (local map pack + 3–5 organic results). <strong>Google Business Profile optimization + map-pack ranking matters as much as classic SEO</strong> for these queries. GBP optimization is not in this deliverable's scope but is a logical next engagement.</p>
+    <p style="margin-top:0.7rem;"><strong>Intent distribution:</strong> 14 of 19 keywords show Transactional or Commercial intent — a healthy profile for a services firm. Transactional signals mean searchers are close to picking a provider, not just researching.</p>
+  </div>
+
+  <h3>What was submitted vs. what people actually search</h3>
+  <table class="data">
+    <thead><tr><th>Service page framing</th><th>What Frederick County actually searches</th></tr></thead>
+    <tbody>
+      <tr><td>"Tax Services" page</td><td>tax preparation frederick md (90/mo) — present tense, clear buying intent</td></tr>
+      <tr><td>"Assurance &amp; Audit" page</td><td>cpa frederick md (140/mo) — generic trust term, highest volume</td></tr>
+      <tr><td>"Government Contractors" specialty</td><td>0 local volume — this is a <strong>national search</strong>, not local</td></tr>
+      <tr><td>"Nonprofit" specialty</td><td>0 local volume — nonprofit clients search "cpa for nonprofit" nationally</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Takeaway:</strong> Your service-page IA is complete and intelligent. But 3 of your service specialties (govt contractors, nonprofits, family businesses) have national search patterns, not local. Local SEO won't win those — content marketing + national intent-matching will.</p>
+</div>
+
+<!-- TAB: COMPETITIVE -->
+<div id="competitive" class="section">
+  <h2>Competitive Landscape</h2>
+  <p class="source-note">Source: competitive landscape pulled 2026-04-17 across 4 domains via third-party SEO authority data.</p>
+
+  <h3>Domain metrics comparison</h3>
+  <table class="data">
+    <thead><tr><th>Metric</th><th class="num">DeLeon &amp; Stang</th><th class="num">Lombardo Ayers</th><th class="num">KatzAbosch</th><th class="num">CST CPA</th></tr></thead>
+    <tbody>
+      <tr><td>Domain Power</td><td class="num">31</td><td class="num">23</td><td class="num">33</td><td class="num">29</td></tr>
+      <tr><td>Domain Rating (DR)</td><td class="num">16</td><td class="num">8</td><td class="num"><strong>20</strong></td><td class="num">23</td></tr>
+      <tr><td>Domain Authority (DA)</td><td class="num">27</td><td class="num">11</td><td class="num"><strong>30</strong></td><td class="num">27</td></tr>
+      <tr><td>Brand Signal</td><td class="num">40</td><td class="num">29.87</td><td class="num">35.68</td><td class="num">35.55</td></tr>
+      <tr><td>AI Overviews (count)</td><td class="num"><strong>91</strong></td><td class="num">3</td><td class="num">66</td><td class="num">22</td></tr>
+      <tr><td>URL PageRank</td><td class="num">8</td><td class="num">4</td><td class="num">4</td><td class="num">14</td></tr>
+      <tr><td>Referring Domains</td><td class="num">768</td><td class="num">214</td><td class="num">539</td><td class="num">558</td></tr>
+      <tr><td>Backlinks</td><td class="num">3,018</td><td class="num">670</td><td class="num">3.4K</td><td class="num">2.2K</td></tr>
+      <tr><td>Trust Flow</td><td class="num">23</td><td class="num">14</td><td class="num">25</td><td class="num">9</td></tr>
+      <tr><td>Citation Flow</td><td class="num">21</td><td class="num">24</td><td class="num">49</td><td class="num">18</td></tr>
+      <tr><td>Spam Score</td><td class="num"><span class="badge badge-error"><strong>60</strong></span></td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+      <tr><td>Organic Keywords</td><td class="num">3,000</td><td class="num">327</td><td class="num">2,400</td><td class="num">1,200</td></tr>
+      <tr><td>Organic Traffic (monthly)</td><td class="num">1,500</td><td class="num">214</td><td class="num">1,900</td><td class="num">797</td></tr>
+      <tr><td>Organic Traffic Value</td><td class="num">$1,100</td><td class="num">$742</td><td class="num">$6,400</td><td class="num">$1,600</td></tr>
+      <tr><td>Paid Keywords</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout red">
+    <div class="h">Spam Score 60 flagged for disavow</div>
+    <p style="margin:0;">DeLeon &amp; Stang's Spam Score of 60 is elevated vs. competitors' 1. This is driven by blog-spam PBN backlinks (<code>syngrit.blogspot.com</code>, <code>rqclima.blogspot.com</code>, similar) identified in the backlink profile. These are nofollow but still count against the trust profile. Recommended fix: file a Google disavow file. Low-effort SEO hygiene.</p>
+  </div>
+
+  <h3>LLM Visibility (Brand Insights baseline tier)</h3>
+  <table class="data">
+    <thead><tr><th>Platform</th><th class="num">DeLeon &amp; Stang</th><th class="num">Lombardo Ayers</th><th class="num">KatzAbosch</th><th class="num">CST CPA</th></tr></thead>
+    <tbody>
+      <tr><td>Gemini</td><td class="num">0 topics</td><td class="num">2 / 40%</td><td class="num">0 / 0%</td><td class="num">2 / 40%</td></tr>
+      <tr><td>ChatGPT</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">1 / 20%</td></tr>
+      <tr><td>Perplexity</td><td class="num">0 / 0%</td><td class="num">1 / 20%</td><td class="num">0 / 0%</td><td class="num">2 / 40%</td></tr>
+      <tr><td>Grok</td><td class="num">0 / 0%</td><td class="num">2 / 40%</td><td class="num">1 / 20%</td><td class="num">3 / 60%</td></tr>
+      <tr><td>Copilot</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">1 / 20%</td></tr>
+      <tr><td>Google AI Mode</td><td class="num">0 / 0%</td><td class="num">3 / 60%</td><td class="num">1 / 20%</td><td class="num">2 / 40%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="h">LLM visibility — strategic read</div>
+    <p style="margin-bottom:0.7rem;">DeLeon &amp; Stang has <strong>zero brand visibility across all 6 conversational AI platforms</strong> (Gemini, ChatGPT, Perplexity, Grok, Copilot, Google AI Mode). All 3 competitors have at least partial conversational-AI visibility.</p>
+    <p style="margin-bottom:0.7rem;">However, DeLeon &amp; Stang leads the group on <strong>Google AI Overviews (91 mentions)</strong> — above KatzAbosch (66) and CST (22). AI Overviews is a Google SERP feature; conversational AI is a different surface. The two can diverge.</p>
+    <p style="margin:0;"><strong>The pattern:</strong> DeLeon &amp; Stang's <code>robots.txt</code> blocks AI <em>training</em> bots (GPTBot, ClaudeBot, anthropic-ai, Google-Extended). Those blocks prevent Gemini's chat, ChatGPT, and other conversational platforms from citing the site for brand-match queries — hence 0 across all 6. But Google AI Overviews uses Google's standard crawler path (not <code>Google-Extended</code>), which is why DeLeon &amp; Stang still scores 91 there. <strong>This is a strategic posture, not an oversight.</strong> The tradeoff: strong Google SERP AI presence, zero direct chatbot citation. A deeper AIO engagement could quantify what reopening the conversational surface would be worth.</p>
+  </div>
+</div>
+
+<!-- TAB: NEXT -->
+<div id="next" class="section">
+  <h2>Next Steps — Where the Next $ Goes</h2>
+
+  <h3>This week — free / in-house</h3>
+  <ol>
+    <li>Bulk-update 554 image alt tags via Squarespace's bulk workflow — 2–3 hours</li>
+    <li>Consolidate 7 duplicate page titles</li>
+    <li>Demote secondary H1 tags to H2 on 24 pages</li>
+  </ol>
+
+  <h3>Next 30 days — under $500</h3>
+  <ol>
+    <li>Audit and fix 9 broken internal links</li>
+    <li>Trim 29 over-length page titles to ≤60 characters</li>
+    <li>File Google disavow for the ~10 blog-spam backlinks driving Spam Score to 60</li>
+    <li><strong>Decide:</strong> keep AI-bot blocks in <code>robots.txt</code> (current posture) or open AIO visibility (competitor path). Strategic, not tactical.</li>
+  </ol>
+
+  <h3>Next 90 days — strategy engagement</h3>
+  <ol>
+    <li><strong>Core-3 ranking push</strong> for "cpa frederick md" / "tax preparation frederick md" / "accounting firm frederick md" — combines on-page, internal linking, backlinks, GBP</li>
+    <li><strong>Local content depth on specialty pages</strong> — govt contractor, nonprofit, family business. Won't win Frederick County searches (0 SV) but will surface when Google geo-expands national queries</li>
+    <li><strong>Backlink acquisition plan</strong> — current 3,018 backlinks produce DR 16. Competitor KatzAbosch: 3.4K backlinks produce DR 20. The delta is link quality. 20–30 quality links (industry publications, local chambers, CPA society directories) could move DR meaningfully</li>
+  </ol>
+
+  <h3>Recommended upsell paths</h3>
+  <table class="data">
+    <thead><tr><th>Upsell</th><th>Why it matters here</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Google Business Profile optimization</strong></td><td>Core-3 keywords return mixed SERPs with local map packs. GBP is where "Show" / Commercial intent converts — this is arguably higher-leverage than classic on-page for this firm.</td></tr>
+      <tr><td><strong>$297 AIO Research</strong></td><td>DeLeon &amp; Stang's 0 LLM visibility is an active strategic choice (robots.txt blocks). AIO Research quantifies the tradeoff and produces an AIO-optimized content plan.</td></tr>
+      <tr><td><strong>Monthly SEO retainer</strong></td><td>Ongoing content production + backlink execution. Current 771 organic keywords with zero monthly growth vs. KatzAbosch at 2.4K growing +150/mo.</td></tr>
+      <tr><td><strong>$75 PPC Research</strong></td><td>DeLeon &amp; Stang and all 3 competitors run 0 paid keywords. The paid search lane is wide open — first-mover advantage available.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Methodology notes</h3>
+  <ul>
+    <li>City-phrased keywords ("frederick md") with a Frederick County, MD geographic filter. County names are never searched directly; city names are. This is the correct methodology for local SEO research.</li>
+    <li>US-wide data was not used and is not used in any Apollo SEO deliverable — it inflates expectations and breaks client trust.</li>
+    <li>All 4 domains were pulled through an authority-data lookup that avoids the caching issues of managed-project views, so backlink counts reflect what public-facing audit tools would also see.</li>
+    <li>Any metric that returned null, zero-as-artifact, or was unavailable at extraction time is flagged INCOMPLETE or No-Data-Returned rather than presented as fact.</li>
+  </ul>
+</div>
+
+</div>
+
+<footer>
+  <p>Prepared for <strong>HighRock</strong> · Research by Apollo Marketing · <a href="https://apollollc.com">apollollc.com</a></p>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
