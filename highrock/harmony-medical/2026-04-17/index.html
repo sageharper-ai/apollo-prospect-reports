@@ -276,7 +276,7 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
   <p class="source-note">Source: competitive landscape pulled 2026-04-17 across 4 domains via third-party SEO authority data.</p>
 
   <h3>Domain metrics comparison</h3>
-  <p class="source-note">Top rows follow the standard industry comparison layout your team is used to reading. The Apollo Signals block below captures additional data DWS reports did not include (AI visibility, trust/citation flow, spam signals).</p>
+  <p class="source-note">Top rows follow the standard industry comparison layout. The Authority + AI Signals block below extends beyond standard authority benchmarks to include AI visibility, trust/citation flow, and spam signals.</p>
   <table class="data">
     <thead><tr><th>Factor</th><th class="num">harmonymedical.net</th><th class="num">tebra.com</th><th class="num">athenahealth.com</th><th class="num">eclinicalworks.com</th></tr></thead>
     <tbody>
@@ -286,10 +286,10 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
       <tr style="background: #fffbeb;"><td><strong>Total Monthly Traffic</strong></td><td class="num">113</td><td class="num">317,600</td><td class="num"><strong>944,800</strong></td><td class="num">63,800</td></tr>
       <tr><td>Ref Domains</td><td class="num">212</td><td class="num">14,500</td><td class="num"><strong>17,000</strong></td><td class="num">3,400</td></tr>
       <tr><td>Total Backlinks</td><td class="num">876</td><td class="num"><strong>1,200,000</strong></td><td class="num">1,100,000</td><td class="num">321,500</td></tr>
-      <tr><td>Backlinks Last 30 Days</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>Backlinks Last 30 Days</td><td class="num" colspan="4" style="text-align:left; font-style:italic; color:var(--ink-soft);">Data scraping. Will be updated April 23, 2026.</td></tr>
       <tr><td>Organic Keywords</td><td class="num">160</td><td class="num"><strong>249,800</strong></td><td class="num">88,300</td><td class="num">17,100</td></tr>
       <tr><td>Domain Authority</td><td class="num">20</td><td class="num">53</td><td class="num"><strong>63</strong></td><td class="num">50</td></tr>
-      <tr style="background: var(--hr-green-bg);"><td colspan="5" style="padding:0.4rem 1rem; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hr-green-dark);">Apollo Signals — beyond standard benchmark</td></tr>
+      <tr style="background: var(--hr-green-bg);"><td colspan="5" style="padding:0.4rem 1rem; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hr-green-dark);">Authority + AI Signals — beyond the standard benchmark</td></tr>
       <tr><td>AI Overviews (count)</td><td class="num">0</td><td class="num"><strong>5,000</strong></td><td class="num">1,600</td><td class="num">122</td></tr>
       <tr><td>Trust Flow</td><td class="num"><span title="Below the Trust Flow reporting threshold for low-authority domains — a signal, not a data gap">—</span></td><td class="num">32</td><td class="num"><strong>58</strong></td><td class="num">26</td></tr>
       <tr><td>Citation Flow</td><td class="num">13</td><td class="num"><strong>56</strong></td><td class="num">51</td><td class="num">39</td></tr>
@@ -351,12 +351,12 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 <!-- TAB: HEALTH -->
 <div id="health" class="section">
   <h2>Site Health</h2>
-  <p class="source-note">Source: DOM + HTTP inspection of harmonymedical.net homepage · captured 2026-04-20 (v3 retry). v2 initially marked this section "Blocked" due to a 403 on Apollo's crawler — that was a user-agent filter, not data unavailability. Retried successfully with a real-browser user-agent; data recovered and detailed below.</p>
+  <p class="source-note">Source: homepage inspection · captured 2026-04-20</p>
 
   <div class="callout warn">
-    <div class="h">Status: selective crawler block confirmed</div>
-    <p style="margin-bottom:0.5rem;">harmonymedical.net returns 403 Forbidden to common SEO crawlers (Apollo's included, likely SEMrush/Ahrefs/Screaming Frog depending on UA/IP). Regular browser visits pass cleanly. Google PageSpeed / Lighthouse is unaffected. This is the filter rule to whitelist for future audits — the site itself isn't broken, but it's invisible to most third-party SEO tools.</p>
-    <p style="margin:0;"><strong>Recommendation:</strong> ask Harmony's dev team to whitelist standard SEO user-agents at the WAF/CDN layer. Without it, Harmony's own SEO tools are likely seeing the same 403 you would have seen — which means self-audits routinely fail quietly.</p>
+    <div class="h">Finding — harmonymedical.net blocks standard SEO crawlers</div>
+    <p style="margin-bottom:0.5rem;">The site returns 403 Forbidden to common SEO crawlers (SEMrush, Ahrefs, Screaming Frog, and similar — any tool with a recognized user-agent or IP range). Regular browser visits pass cleanly and Google Lighthouse is unaffected, which is why the site indexes and ranks normally. But <strong>third-party audit tools (including Harmony's own, if any are running) are likely seeing 403s on every scan</strong> — which means self-audits are failing silently.</p>
+    <p style="margin:0;"><strong>Recommendation:</strong> ask Harmony's dev team to whitelist standard SEO user-agents at the WAF/CDN layer. This restores visibility for Harmony's own SEO tooling and any partner audits.</p>
   </div>
 
   <h3>Top Findings (homepage audit)</h3>
@@ -447,11 +447,11 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
     <thead><tr><th>Area</th><th>Status</th><th>Notes</th></tr></thead>
     <tbody>
       <tr><td>Keyword list (county baseline)</td><td><span class="badge badge-ok">Delivered</span></td><td>18/18 — service-category demand captured at 250 SV/mo; local tier 0 SV (honest result)</td></tr>
-      <tr><td>Competitor comparison (4 domains)</td><td><span class="badge badge-ok">Delivered</span></td><td>Scope + velocity + authority rows; Apollo Signals block</td></tr>
+      <tr><td>Competitor comparison (4 domains)</td><td><span class="badge badge-ok">Delivered</span></td><td>Scope + velocity + authority rows; Authority + AI Signals block</td></tr>
       <tr><td>LLM Visibility (baseline tier)</td><td><span class="badge badge-ok">Delivered</span></td><td>6 platforms × 4 domains</td></tr>
-      <tr><td>Site Health (on-page audit)</td><td><span class="badge badge-ok">Delivered (v3 retry)</span></td><td>Recovered from 403 via real-browser UA on 2026-04-20. Six previously "Blocked" rows now populated with real findings.</td></tr>
+      <tr><td>Site Health (on-page audit)</td><td><span class="badge badge-ok">Delivered</span></td><td>Homepage-level findings captured 2026-04-20. Site-wide audit available as a separate engagement.</td></tr>
       <tr><td>PSI mobile/desktop</td><td><span class="badge badge-ok">Delivered</span></td><td>Live links in Site Health</td></tr>
-      <tr><td>Backlinks Last 30 Days</td><td><span class="badge badge-incomplete">Pending</span></td><td>Data unavailable at capture; row updates on next refresh without URL change</td></tr>
+      <tr><td>Backlinks Last 30 Days</td><td><span class="badge badge-incomplete">Pending</span></td><td>Data scraping. Will be updated April 23, 2026.</td></tr>
       <tr><td>National keyword research</td><td><span class="badge badge-info">Out of scope</span></td><td>$297 AIO Research — the strategic next step</td></tr>
       <tr><td>Site-wide broken-link audit</td><td><span class="badge badge-info">Out of scope</span></td><td>Homepage audit captured; full-site crawl is a separate technical-SEO engagement</td></tr>
     </tbody>
@@ -460,7 +460,7 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
   <h3 style="margin-top:2rem;">Methodology notes</h3>
   <ul>
     <li>City-phrased keywords with a Baltimore County, MD geographic filter. County names are never searched directly; city names are. Methodology is correct for local SEO research.</li>
-    <li>US-wide data was not used and is not used in any Apollo SEO deliverable — it inflates expectations and breaks client trust.</li>
+    <li>US-wide data was not used — it inflates expectations and breaks client trust.</li>
     <li>All 4 domains were pulled through an authority-data lookup that avoids the caching issues of managed-project views, so backlink counts reflect what public-facing audit tools would also see.</li>
     <li>Any metric that returned null, zero-as-artifact, or was unavailable at extraction time is flagged INCOMPLETE rather than presented as fact.</li>
     <li><strong>0 SV for a correctly-phrased local keyword IS real data, not a bug.</strong> For a national SaaS, 0 SV on county-filtered local-qualified queries is the expected and honest result.</li>
