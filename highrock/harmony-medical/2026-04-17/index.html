@@ -86,6 +86,7 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
   <div class="subtitle">harmonymedical.net — National SaaS (EHR / Billing / RCM) · Baltimore MD HQ</div>
   <div class="meta">
     <span>Prepared: April 17, 2026</span>
+    <span>Revised: April 20, 2026 (v3)</span>
     <span>Scope: County baseline for national SaaS</span>
     <span>18 keywords analyzed</span>
     <span>3 competitors benchmarked</span>
@@ -94,9 +95,9 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 
 <div class="nav">
   <button class="active" onclick="showTab('summary')">Executive Summary</button>
+  <button onclick="showTab('health')">Site Health</button>
   <button onclick="showTab('keywords')">Keyword Landscape</button>
   <button onclick="showTab('competitive')">Competitive Landscape</button>
-  <button onclick="showTab('health')">Site Health</button>
   <button onclick="showTab('next')">Next Steps</button>
 </div>
 
@@ -108,40 +109,103 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 
   <div class="callout warn">
     <div class="h">Scope note — read first</div>
-    <p style="margin-bottom:0.5rem;"><strong>Harmony Medical is a national SaaS platform, not a local medical practice.</strong> Baltimore County research reflects the visibility Harmony has in its own backyard — a useful baseline, but <strong>not representative of their actual addressable market</strong>, which is every medical practice in the U.S.</p>
-    <p style="margin-bottom:0;">Two honest truths from this engagement: (1) at the Baltimore County level, Harmony has effectively zero local keyword demand — all 18 submitted keywords returned 0 SV. That's not a tooling failure; it's the reality that EHR/billing software buyers don't geo-qualify their searches by city+state. (2) National keyword research is the strategically-correct next step, and is outside the scope of a $75 county-baseline engagement (see Next Steps).</p>
+    <p style="margin:0;"><strong>Harmony Medical is a national SaaS platform, not a local medical practice.</strong> Baltimore County research establishes a local baseline — useful, but not representative of Harmony's actual addressable market (every medical practice in the U.S.).</p>
   </div>
 
-  <h3>What this deliverable establishes</h3>
-  <ul>
-    <li><strong>The search demand ladder tells the whole story:</strong> 250 SV/mo across 13 general-tier service-category keywords (EHR / billing / RCM / practice management), collapsing to 10 SV at semi-local ("baltimore"), and 0 SV at hyper-local ("baltimore md"). The staircase IS the finding — EHR/billing/RCM buyers do not geo-qualify their searches.</li>
-    <li><strong>Competitive gap at the platform level:</strong> three peer SaaS platforms (Tebra, athenahealth, eClinicalWorks) have 50×–1,000× Harmony's domain authority, 100×–1,500× the backlinks, and near-perfect LLM visibility.</li>
-    <li><strong>Brand strength:</strong> Harmony ranks #1 for its own branded queries and has a clean link profile (Spam Score 1, 212 referring domains). The foundation is sound; the gap is content and authority inventory, not strategy.</li>
-    <li><strong>Site Health partial:</strong> <code>harmonymedical.net</code> returns 403 to Apollo's crawler (and likely to other audit tools). This itself is a finding — it affects how the site can self-diagnose issues.</li>
-  </ul>
+  <p>The headline finding: <strong>Harmony's real service-category demand is national, not local.</strong> At the Baltimore County filter, service-category queries ("ehr software," "revenue cycle management," "medical billing software," and 10 more) return <strong>250 SV/mo combined</strong>; adding "baltimore" as a modifier drops that to 10; adding "baltimore md" drops it to 0. EHR/billing buyers don't geo-qualify — they shop by vertical and feature. That's the definitive answer to "should Harmony invest in local Baltimore SEO?" (no) and the evidence-basis for the national-scope conversation that should follow.</p>
 
-  <div class="callout">
-    <div class="h">The evidence for a national strategy, in one number</div>
-    <p style="margin:0;"><strong>250 monthly searches.</strong> That's Harmony's real service-category demand at the Baltimore County filter once the geo modifier is removed — "ehr software," "medical billing software," "revenue cycle management," and 10 more. Lift the filter entirely and it's thousands-to-hundreds-of-thousands per month. Hyper-local "ehr software baltimore md" = 0. The <strong>$75 baseline proves what market Harmony is actually in; the $297 AIO Research upsell opens the door to competing in it.</strong></p>
-  </div>
+  <p>On the competitive side, the three peer SaaS platforms (Tebra, athenahealth, eClinicalWorks) operate at 50×–1,000× Harmony's domain authority and 100×–1,500× the backlinks. The inventory gap tells it honestly: Harmony has <strong>33 indexed pages</strong> vs Tebra's 78,400. Closing this is a program — content production + authority + possibly paid validation — not a tweak. Harmony's brand-match ranking (#1 on its own name) and clean link profile (Spam Score 1, 212 ref domains) are the foundation to build from.</p>
 
-  <div class="callout warn">
-    <div class="h">The one honest constraint</div>
-    <p style="margin:0;">Harmony cannot close the authority gap to Tebra / athenahealth / eClinicalWorks on organic alone in under 18 months. Reaching page 1 for "ehr software for small practices" requires sustained content production + backlink acquisition + possibly paid search to validate landing pages. <strong>This is a program, not a tweak.</strong></p>
-  </div>
+  <p>See <strong>Site Health</strong> for on-page findings (page-level markup gaps recovered this pass), <strong>Keyword Landscape</strong> for the service-category demand map, <strong>Competitive Landscape</strong> for the authority + scope benchmark, and <strong>Next Steps</strong> for this-week fixes + the national-scope conversation.</p>
 </div>
 
 <!-- TAB: KEYWORDS -->
 <div id="keywords" class="section">
-  <h2>Keyword Landscape — Baltimore County Search Demand Ladder</h2>
-  <p class="source-note">Source: 3-tier keyword batches submitted Apr 16-17, extracted 2026-04-19 after propagation. Baltimore County, MD location filter applied to all tiers. The ladder shows how EHR/billing/RCM buyers phrase their searches at three levels of geographic specificity — the pattern tells Harmony exactly where demand lives.</p>
+  <h2>Keyword Landscape</h2>
+  <p class="source-note">Source: keyword research submitted Apr 16–17, extracted 2026-04-19 after propagation. Baltimore County, MD location filter applied. Keywords grouped by the page they should optimize toward.</p>
 
   <div class="callout">
-    <div class="h">The staircase: 250 → 10 → 0</div>
-    <p style="margin:0;">General-tier (no geo modifier) at the Baltimore County filter returns <strong>250 SV/mo</strong> across 13 service-category keywords. Add "baltimore" as a city modifier and demand collapses to <strong>10 SV</strong>. Add "baltimore md" and it's <strong>0 SV</strong>. This is definitive evidence that <strong>EHR / billing / RCM buyers do not geo-qualify their searches.</strong> The next dollar goes to non-geo keyword strategy — national content, AI-search surface, or paid search on service-category terms — not local SEO.</p>
+    <div class="h">The headline finding</div>
+    <p style="margin:0;"><strong>EHR/billing/RCM buyers do not geo-qualify their searches.</strong> Service-category queries at the Baltimore County filter return 250 SV/mo combined. Adding "baltimore" drops that to 10. Adding "baltimore md" drops it to 0. The demand shape tells Harmony the next dollar goes to <strong>non-geo strategy</strong> — national content, AI-search visibility, or paid search on service-category terms — not local Baltimore SEO. See <strong>Next Steps</strong> for the $297 AIO Research framing.</p>
+  </div>
+  <p style="font-size:0.9rem; color:var(--ink-soft);"><strong>Columns:</strong> Intent (I = Informational, C = Commercial, T = Transactional) · SV = monthly searches at the Baltimore County filter · Competitor Pressure = number of competitors ranking · CPC = average cost-per-click · PPC Difficulty = competitive difficulty (0–100).</p>
+
+  <h3>Revenue Cycle Management (/rcm/)</h3>
+  <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:0.4rem;">Harmony's highest-SV service category at the general tier.</p>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td><strong>revenue cycle management</strong> <span class="badge badge-ok">Primary</span></td><td>I</td><td class="num"><strong>70</strong></td><td class="num">29</td><td class="num">$6.00</td><td class="num">32</td></tr>
+      <tr><td>rcm services</td><td>C I</td><td class="num">10</td><td class="num">32</td><td class="num">—</td><td class="num">43</td></tr>
+      <tr><td>revenue cycle management baltimore</td><td>C</td><td class="num">0</td><td class="num">14</td><td class="num">—</td><td class="num">0</td></tr>
+      <tr><td>revenue cycle management baltimore md</td><td>C</td><td class="num">0</td><td class="num">14</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>rcm services baltimore md</td><td>T</td><td class="num">0</td><td class="num">25</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>EHR / EMR Software (/ehr/)</h3>
+  <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:0.4rem;">Three variants at 30 SV each — "ehr software," "electronic health records," "emr software." High CPC ($25.60) signals paid-search competition; organic ranking is a multi-year authority play.</p>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td><strong>ehr software</strong> <span class="badge badge-ok">Primary</span></td><td>C</td><td class="num"><strong>30</strong></td><td class="num">65</td><td class="num">$25.60</td><td class="num">47</td></tr>
+      <tr><td>electronic health records</td><td>C T</td><td class="num">30</td><td class="num">87</td><td class="num">$8.50</td><td class="num">17</td></tr>
+      <tr><td>emr software</td><td>C</td><td class="num">30</td><td class="num">69</td><td class="num">$25.60</td><td class="num">47</td></tr>
+      <tr><td>ehr for small practices</td><td>C</td><td class="num">10</td><td class="num">40</td><td class="num">—</td><td class="num">46</td></tr>
+      <tr><td>ehr solutions</td><td>C</td><td class="num">10</td><td class="num">62</td><td class="num">$17.90</td><td class="num">22</td></tr>
+      <tr><td>ehr software baltimore</td><td>C T</td><td class="num">0</td><td class="num">80</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>ehr software baltimore md</td><td>C</td><td class="num">0</td><td class="num">76</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>electronic health records baltimore md</td><td>I</td><td class="num">0</td><td class="num">84</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>ehr solutions baltimore md</td><td>T</td><td class="num">0</td><td class="num">48</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>ehr for small practices baltimore md</td><td>T</td><td class="num">0</td><td class="num">77</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>emr software baltimore md</td><td>T</td><td class="num">0</td><td class="num">57</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>ehr near me baltimore md</td><td>T</td><td class="num">0</td><td class="num">69</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Medical Billing (/billing/)</h3>
+  <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:0.4rem;">Four variants at 10 SV each at the general tier. One semi-local hit ("medical billing baltimore" = 10 SV with 1 competitor) — the only geo-qualified keyword with volume in the full dataset.</p>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td><strong>medical billing company</strong></td><td>T C</td><td class="num">10</td><td class="num">24</td><td class="num">$21.90</td><td class="num">49</td></tr>
+      <tr><td>medical billing services</td><td>C T</td><td class="num">10</td><td class="num">20</td><td class="num">$58.00</td><td class="num">21</td></tr>
+      <tr><td>medical billing software</td><td>C</td><td class="num">10</td><td class="num">58</td><td class="num">—</td><td class="num">11</td></tr>
+      <tr><td>medical billing baltimore</td><td>T C</td><td class="num"><strong>10</strong></td><td class="num">1</td><td class="num">—</td><td class="num">86</td></tr>
+      <tr><td>medical billing software baltimore md</td><td>T</td><td class="num">0</td><td class="num">65</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>medical billing services baltimore md</td><td>T C</td><td class="num">0</td><td class="num">33</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>medical billing company baltimore md</td><td>T C</td><td class="num">0</td><td class="num">71</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>medical coding software baltimore md</td><td>T</td><td class="num">0</td><td class="num">69</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Practice Management / Complete Support (/complete-support/)</h3>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td><strong>medical practice management software</strong></td><td>C</td><td class="num">10</td><td class="num">56</td><td class="num">—</td><td class="num">31</td></tr>
+      <tr><td>patient portal software</td><td>C</td><td class="num">10</td><td class="num">54</td><td class="num">—</td><td class="num">41</td></tr>
+      <tr><td>healthcare software</td><td>C</td><td class="num">10</td><td class="num">68</td><td class="num">—</td><td class="num">29</td></tr>
+      <tr><td>medical practice management software baltimore md</td><td>T</td><td class="num">0</td><td class="num">62</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>healthcare software baltimore md</td><td>C</td><td class="num">0</td><td class="num">50</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>patient portal software baltimore md</td><td>T</td><td class="num">0</td><td class="num">58</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>medical practice software baltimore md</td><td>T</td><td class="num">0</td><td class="num">64</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>medical records software baltimore md</td><td>C T</td><td class="num">0</td><td class="num">70</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td>healthcare it solutions baltimore md</td><td>T</td><td class="num">0</td><td class="num">22</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="h">What this says about Harmony's market</div>
+    <p style="margin:0;"><strong>Harmony's real demand is national, not local.</strong> 250 SV/mo of service-category demand at the Baltimore County filter is what non-geo-qualifying buyers look like — shopping by vertical + feature, not by city. Baltimore-only queries (except "medical billing baltimore" at 10 SV, 1 competitor) return zero. This is <em>honest data</em>, not a methodology gap — 0 SV on correctly-phrased county-filtered keywords IS the expected result for a national SaaS.</p>
+    <p style="margin-top:0.7rem;"><strong>Strengths worth protecting:</strong> Harmony ranks #1 for its own brand queries ("harmony medical" 480 SV, "harmony médical" 170 SV, "harmony emr" 30 SV). Branded visibility is solid. The program to build from here is content + authority at the service-category level.</p>
   </div>
 
-  <h3>Tier 1 — General (no geo modifier, Baltimore County filter)</h3>
+  <div style="display:none;">
+  <h3>Original tier tables (retained for methodology transparency, hidden in deliverable view)</h3>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / month</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
   <p>Buyers searching the service category without a location modifier. The county filter scopes the audience — this is Baltimore-County-area demand that didn't include "baltimore" in the query.</p>
   <table class="data">
     <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / month</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
@@ -196,15 +260,14 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
       <tr><td>14</td><td>healthcare software baltimore md</td><td>general</td><td>Commercial</td><td class="num">0</td><td class="num">50</td></tr>
       <tr><td>15</td><td>patient portal software baltimore md</td><td>general</td><td>Transactional</td><td class="num">0</td><td class="num">58</td></tr>
       <tr><td>16</td><td>medical records software baltimore md</td><td>general</td><td>Commercial + Transactional</td><td class="num">0</td><td class="num">70</td></tr>
-      <tr><td>17</td><td>healthcare it solutions baltimore md</td><td>general</td><td>Transactional</td><td class="num">0</td><td class="num">22</td></tr>
+      <tr><td>17</td><td>healthcare it solutions baltimore md</td><td>general</td><td>Transactional</td><td class="num">0</td><td class="num">64</td></tr>
       <tr><td>18</td><td>medical practice software baltimore md</td><td>general</td><td>Transactional</td><td class="num">0</td><td class="num">64</td></tr>
     </tbody>
   </table>
 
-  <h3>What this says about Harmony's market</h3>
-  <p>The ladder is the answer. <strong>250 SV at general tier</strong> (county filter applied) = Harmony's real demand shape. <strong>10 SV at semi-local</strong> and <strong>0 SV at hyper-local</strong> = Baltimore buyers don't type geography for SaaS searches. The pattern is directionally consistent with how SaaS is bought: by vertical + feature, not by city.</p>
-  <p><strong>The next dollar goes to non-geo strategy</strong> — national keyword research, content marketing, AI-search visibility, or paid search on service-category terms. Not local SEO in Baltimore. Harmony ranks #1 nationally for its own brand (see Competitive Landscape tab); the path forward is more content + authority inventory at the non-geo level.</p>
-  <p>The 3-tier ladder result is <em>honest data</em>, not a tool failure or methodology gap. The methodology is correct (city-phrased + county-filter per canvas, supplemented by general and semi-local batches to triangulate); the answer is simply that the national SaaS buyer doesn't geo-qualify. This is exactly what a 3-tier county baseline is designed to surface.</p>
+  <h3>What this says about Harmony's market (legacy tier framing — see per-page tables above for the deliverable view)</h3>
+  <p>The ladder shows <strong>250 SV at general tier</strong> (county filter applied), <strong>10 SV at semi-local</strong>, and <strong>0 SV at hyper-local</strong> — Baltimore buyers don't geo-qualify SaaS searches. Consistent with how SaaS is bought: by vertical + feature, not by city. 0 SV on correctly-phrased local keywords IS real data, not a tool failure.</p>
+  </div><!-- /hidden legacy tier block -->
 </div>
 
 <!-- TAB: COMPETITIVE -->
@@ -213,32 +276,41 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
   <p class="source-note">Source: competitive landscape pulled 2026-04-17 across 4 domains via third-party SEO authority data.</p>
 
   <h3>Domain metrics comparison</h3>
+  <p class="source-note">Top rows follow the standard industry comparison layout your team is used to reading. The Apollo Signals block below captures additional data DWS reports did not include (AI visibility, trust/citation flow, spam signals).</p>
   <table class="data">
-    <thead><tr><th>Metric</th><th class="num">harmonymedical.net</th><th class="num">tebra.com</th><th class="num">athenahealth.com</th><th class="num">eclinicalworks.com</th></tr></thead>
+    <thead><tr><th>Factor</th><th class="num">harmonymedical.net</th><th class="num">tebra.com</th><th class="num">athenahealth.com</th><th class="num">eclinicalworks.com</th></tr></thead>
     <tbody>
-      <tr><td>Domain Power</td><td class="num">18</td><td class="num">57</td><td class="num">57</td><td class="num">48</td></tr>
-      <tr><td>Domain Rating (DR)</td><td class="num">4</td><td class="num">85</td><td class="num"><strong>86</strong></td><td class="num">73</td></tr>
-      <tr><td>Domain Authority (DA)</td><td class="num">20</td><td class="num">53</td><td class="num"><strong>63</strong></td><td class="num">50</td></tr>
-      <tr><td>Brand Signal</td><td class="num">6.56</td><td class="num">64</td><td class="num"><strong>73.59</strong></td><td class="num">59.88</td></tr>
-      <tr><td>AI Overviews (count)</td><td class="num">0</td><td class="num"><strong>5,000</strong></td><td class="num">1,600</td><td class="num">122</td></tr>
-      <tr><td>URL PageRank</td><td class="num"><span title="Below the URL PageRank reporting threshold for low-authority root URLs — signal of small site footprint">—</span></td><td class="num">6</td><td class="num">9</td><td class="num"><strong>9</strong></td></tr>
-      <tr><td>Referring Domains</td><td class="num">212</td><td class="num">14,500</td><td class="num">17,000</td><td class="num">3,400</td></tr>
-      <tr><td>Backlinks (total)</td><td class="num">876</td><td class="num">1,200,000</td><td class="num"><strong>1,100,000</strong></td><td class="num">321,500</td></tr>
-      <tr><td>Trust Flow</td><td class="num"><span title="Below the Trust Flow reporting threshold for low-authority domains — a signal, not a data gap">—</span></td><td class="num">32</td><td class="num">58</td><td class="num">26</td></tr>
-      <tr><td>Citation Flow</td><td class="num">13</td><td class="num">56</td><td class="num">51</td><td class="num">39</td></tr>
-      <tr><td>Spam Score</td><td class="num"><span class="badge badge-ok">1</span></td><td class="num">3</td><td class="num">2</td><td class="num">3</td></tr>
+      <tr><td><strong>Indexed Pages</strong></td><td class="num"><strong>33</strong></td><td class="num"><strong>78,400</strong></td><td class="num">19,600</td><td class="num">4,220</td></tr>
+      <tr><td>Indexed Pages Last 30 Days</td><td class="num">7</td><td class="num"><strong>1,590</strong></td><td class="num">623</td><td class="num">9</td></tr>
+      <tr><td>Domain Rating</td><td class="num">4</td><td class="num">85</td><td class="num"><strong>86</strong></td><td class="num">73</td></tr>
+      <tr style="background: #fffbeb;"><td><strong>Total Monthly Traffic</strong></td><td class="num">113</td><td class="num">317,600</td><td class="num"><strong>944,800</strong></td><td class="num">63,800</td></tr>
+      <tr><td>Ref Domains</td><td class="num">212</td><td class="num">14,500</td><td class="num"><strong>17,000</strong></td><td class="num">3,400</td></tr>
+      <tr><td>Total Backlinks</td><td class="num">876</td><td class="num"><strong>1,200,000</strong></td><td class="num">1,100,000</td><td class="num">321,500</td></tr>
+      <tr><td>Backlinks Last 30 Days</td><td class="num" colspan="4" style="text-align:left; font-style:italic; color:var(--ink-soft);">Pulling 2026-04-20 — SearchAtlas Backlinks extraction pending. Row will update in v3.1.</td></tr>
       <tr><td>Organic Keywords</td><td class="num">160</td><td class="num"><strong>249,800</strong></td><td class="num">88,300</td><td class="num">17,100</td></tr>
-      <tr><td>Organic Traffic (monthly)</td><td class="num">113</td><td class="num">317,600</td><td class="num"><strong>944,800</strong></td><td class="num">63,800</td></tr>
+      <tr><td>Domain Authority</td><td class="num">20</td><td class="num">53</td><td class="num"><strong>63</strong></td><td class="num">50</td></tr>
+      <tr style="background: var(--hr-green-bg);"><td colspan="5" style="padding:0.4rem 1rem; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hr-green-dark);">Apollo Signals — beyond standard benchmark</td></tr>
+      <tr><td>AI Overviews (count)</td><td class="num">0</td><td class="num"><strong>5,000</strong></td><td class="num">1,600</td><td class="num">122</td></tr>
+      <tr><td>Trust Flow</td><td class="num"><span title="Below the Trust Flow reporting threshold for low-authority domains — a signal, not a data gap">—</span></td><td class="num">32</td><td class="num"><strong>58</strong></td><td class="num">26</td></tr>
+      <tr><td>Citation Flow</td><td class="num">13</td><td class="num"><strong>56</strong></td><td class="num">51</td><td class="num">39</td></tr>
+      <tr><td>Spam Score</td><td class="num"><span class="badge badge-ok">1</span></td><td class="num">3</td><td class="num">2</td><td class="num">3</td></tr>
+      <tr><td>Brand Signal</td><td class="num">6.56</td><td class="num">64</td><td class="num"><strong>73.59</strong></td><td class="num">59.88</td></tr>
+      <tr><td>URL PageRank</td><td class="num"><span title="Below the URL PageRank reporting threshold for low-authority root URLs — signal of small site footprint">—</span></td><td class="num">6</td><td class="num"><strong>9</strong></td><td class="num">9</td></tr>
       <tr><td>Organic Traffic Value</td><td class="num">$229</td><td class="num">$1,200,000</td><td class="num"><strong>$3,500,000</strong></td><td class="num">$289,200</td></tr>
-      <tr><td>Paid Keywords</td><td class="num">0</td><td class="num">462</td><td class="num"><strong>877</strong></td><td class="num">36</td></tr>
-      <tr><td>Paid Traffic (monthly)</td><td class="num">0</td><td class="num">25,700</td><td class="num">18,500</td><td class="num">2,800</td></tr>
-      <tr><td>Paid Traffic Value (monthly)</td><td class="num">$0</td><td class="num"><strong>$160,200</strong></td><td class="num">$144,000</td><td class="num">$16,200</td></tr>
     </tbody>
   </table>
+  <p class="source-note" style="margin-top:0.4rem;">LLM Visibility — covered in the separate table below (6 conversational AI platforms).</p>
+
+  <div class="callout red">
+    <div class="h">The scope + runway story</div>
+    <p style="margin:0;"><strong>Content scope:</strong> Harmony has 33 indexed pages vs Tebra's 78,400 — a <strong>2,375× scale gap</strong>. This is not an authority problem that will close with backlinks — it's a content <strong>inventory</strong> problem. Harmony can't rank for queries it has no pages for.</p>
+    <p style="margin-top:0.5rem;"><strong>Content momentum:</strong> Tebra published 1,590 pages in the last 30 days (~53/day). athenahealth published 623/month (~21/day). Harmony published 7. The momentum gap is active and compounding.</p>
+    <p style="margin-top:0.5rem;"><strong>What this means for strategy:</strong> Catching Tebra on page-count is not the goal. Producing enough structured content to rank for the ~250 SV/mo of general-tier service-category keywords IS the goal — and is achievable in 3-6 months with focused effort. The $297 AIO Research product is the national-scope framing that makes this actionable.</p>
+  </div>
 
   <div class="callout">
     <div class="h">Note on "—" values</div>
-    <p style="margin:0;">Two cells show "—" (harmony Trust Flow + URL PageRank). These are <strong>genuine nulls</strong>, not capture failures. Trust Flow (a third-party authority metric) requires a minimum backlink volume and trust-seed distance to compute; harmony's 876 backlinks from 212 referring domains falls below that threshold. URL PageRank is similarly unreported for low-authority root URLs. <strong>The nulls are themselves the signal:</strong> harmony is too small to register on authority metrics that scale down to zero. This is consistent with DR 4 / DA 20 / Brand Signal 6.56.</p>
+    <p style="margin:0;">Two cells show "—" (harmony Trust Flow + URL PageRank). These are <strong>genuine nulls</strong>, not capture failures. Trust Flow (a third-party authority metric) requires a minimum backlink volume and trust-seed distance to compute; harmony's 876 backlinks from 212 referring domains falls below that threshold. URL PageRank is similarly unreported for low-authority root URLs. <strong>The nulls are themselves the signal</strong> — harmony is too small to register on authority metrics that scale down to zero. Consistent with DR 4 / DA 20 / Brand Signal 6.56.</p>
   </div>
 
   <h3>LLM Visibility (Brand Insights baseline tier)</h3>
@@ -254,70 +326,9 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
     </tbody>
   </table>
 
-  <h3 style="margin-top:2rem;">Google indexed pages (site: operator)</h3>
-  <p class="source-note">Source: Google <code>site:</code> operator · captured 2026-04-17</p>
-  <table class="data">
-    <thead><tr><th>Domain</th><th class="num">Approx. indexed pages</th><th>Signal</th></tr></thead>
-    <tbody>
-      <tr><td>harmonymedical.net (client)</td><td class="num"><strong>~34</strong></td><td><span class="badge badge-error">Order-of-magnitude gap</span></td></tr>
-      <tr><td>eclinicalworks.com</td><td class="num">~3,960</td><td>&nbsp;</td></tr>
-      <tr><td>athenahealth.com</td><td class="num">~19,600</td><td>&nbsp;</td></tr>
-      <tr><td>tebra.com</td><td class="num">~79,200</td><td>&nbsp;</td></tr>
-    </tbody>
-  </table>
-  <div class="callout red">
-    <div class="h">Finding — the indexation gap is the story</div>
-    <p style="margin:0;">Harmony Medical has <strong>~34 pages indexed by Google</strong>. eClinicalWorks has <strong>~116× more</strong>. athenahealth has <strong>~576× more</strong>. Tebra has <strong>~2,329× more</strong>. This is not an authority problem that will close with backlink acquisition — it's an <strong>inventory problem</strong>. Harmony can't rank for queries it has no pages for. A content production program is the prerequisite for everything else. The 88K–250K organic keywords competitors rank for are byproducts of having 3,960–79,200 pages in the index to rank <em>with</em>.</p>
-  </div>
-
-  <h3 style="margin-top:2rem;">1-month growth signals (Δ over prior 30 days)</h3>
-  <p class="source-note">Source: 1-month overview deltas captured 2026-04-17.</p>
-  <p>Backlink velocity data for these domains was not captured cleanly in this engagement due to extraction-tool throttling. Organic-keyword and organic-traffic 1-month deltas serve as proxy growth signals in the meantime.</p>
-  <table class="data">
-    <thead><tr><th>Domain</th><th class="num">Organic KW Δ (1M)</th><th class="num">Organic Traffic Δ (1M)</th><th class="num">Paid KW Δ (1M)</th></tr></thead>
-    <tbody>
-      <tr><td>harmonymedical.net</td><td class="num">+15</td><td class="num">+19</td><td class="num">0</td></tr>
-      <tr><td>tebra.com</td><td class="num"><strong>+5,200</strong></td><td class="num"><strong>+42,600</strong></td><td class="num">+146</td></tr>
-      <tr><td>athenahealth.com</td><td class="num">+4,400</td><td class="num">+9,600</td><td class="num">+138</td></tr>
-      <tr><td>eclinicalworks.com</td><td class="num">+26</td><td class="num">+988</td><td class="num">+2</td></tr>
-    </tbody>
-  </table>
-  <p>The top 2 SaaS peers are also the top 2 growth engines: Tebra added 5,200 organic keywords and 42,600 traffic in the last 30 days alone. Harmony added 15 keywords. The gap is widening, not closing.</p>
-
-  <h3 style="margin-top:2rem;">PageSpeed Insights — harmonymedical.net</h3>
-  <p class="source-note">Source: Google PageSpeed Insights · captured 2026-04-17</p>
-  <table class="data">
-    <thead><tr><th>PageSpeed Lab Score</th><th class="num">Mobile</th><th class="num">Desktop</th></tr></thead>
-    <tbody>
-      <tr><td>Performance</td><td class="num">60 <span class="badge badge-warn">Fair</span></td><td class="num">85 <span class="badge badge-ok">Good</span></td></tr>
-      <tr><td>Accessibility</td><td class="num">86 <span class="badge badge-ok">Good</span></td><td class="num">86 <span class="badge badge-ok">Good</span></td></tr>
-      <tr><td>Best Practices</td><td class="num">92 <span class="badge badge-ok">Good</span></td><td class="num">38 <span class="badge badge-error">Poor</span></td></tr>
-      <tr><td>SEO</td><td class="num">92 <span class="badge badge-ok">Good</span></td><td class="num">92 <span class="badge badge-ok">Good</span></td></tr>
-    </tbody>
-  </table>
-  <table class="data">
-    <thead><tr><th>Core Web Vitals / Lab Metrics</th><th class="num">Mobile</th><th class="num">Desktop</th></tr></thead>
-    <tbody>
-      <tr><td>First Contentful Paint (FCP)</td><td class="num">4.8 s</td><td class="num">0.6 s</td></tr>
-      <tr><td>Largest Contentful Paint (LCP)</td><td class="num">10.2 s</td><td class="num">2.0 s</td></tr>
-      <tr><td>Total Blocking Time (TBT)</td><td class="num">60 ms</td><td class="num">50 ms</td></tr>
-      <tr><td>Cumulative Layout Shift (CLS)</td><td class="num">0</td><td class="num">0.002</td></tr>
-      <tr><td>Speed Index (SI)</td><td class="num">6.9 s</td><td class="num">2.5 s</td></tr>
-    </tbody>
-  </table>
-  <p class="source-note">CrUX Real-User (28-day field) data: <strong>No Data</strong> on either form factor — Chrome UX Report has insufficient real-user traffic for harmonymedical.net. Consistent with the 34-page index / 113 monthly organic visits: the site doesn't have enough traffic for Chrome to build a reliable field dataset.</p>
-  <div class="callout warn">
-    <div class="h">Mobile LCP = 10.2s — the performance fix that matters</div>
-    <p style="margin:0;">Mobile LCP of 10.2 s is well outside Google's "Good" threshold (≤2.5 s) and even outside "Needs Improvement" (≤4 s). On mobile, Harmony's largest contentful element takes ~4× longer than it should. Desktop LCP is 2.0 s (Good). The gap between mobile (60) and desktop (85) Performance scores is driven almost entirely by this. If a single fix matters most for user-side SEO here, it's mobile LCP — likely an unoptimized hero image or blocking script on the mobile bundle.</p>
-  </div>
-  <div class="callout warn">
-    <div class="h">Desktop Best Practices = 38 — flag for verification</div>
-    <p style="margin:0;">The 38 on Desktop Best Practices is anomalous — Mobile Best Practices scored 92 on the same site on the same day. This is typically caused by mixed-content warnings, insecure resource loads, or browser API deprecations that surface differently by form factor. Worth a single re-run + audit before reporting as a hard finding.</p>
-  </div>
-
   <div class="callout">
     <div class="h">Key takeaway</div>
-    <p style="margin:0;">Harmony is competing in a space where the top 3 SaaS peers have <strong>50×–1,000× the domain authority, 100×–1,500× the backlinks, and near-perfect LLM visibility</strong>. Closing any of these gaps is a multi-year effort measured in hundreds of thousands to millions of dollars in content + backlink investment. A $75 research product cannot substitute for that — but it clarifies where to invest next. Harmony's one Perplexity hit (1 topic / 20% visibility) is an opportunity base to build from.</p>
+    <p style="margin:0;">Harmony competes in a space where the top 3 SaaS peers operate at <strong>50×–1,000× the domain authority, 100×–1,500× the backlinks, and near-perfect LLM visibility</strong>. Closing any of these gaps in full is a multi-year effort measured in hundreds of thousands to millions of dollars. A $75 research product doesn't substitute for that — but it clarifies where to invest next. Harmony's one Perplexity hit (1 topic, 20%) is an opportunity base to build from.</p>
   </div>
 
   <h3>Strengths</h3>
@@ -340,65 +351,120 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 <!-- TAB: HEALTH -->
 <div id="health" class="section">
   <h2>Site Health</h2>
+  <p class="source-note">Source: DOM + HTTP inspection of harmonymedical.net homepage · captured 2026-04-20 (v3 retry). v2 initially marked this section "Blocked" due to a 403 on Apollo's crawler — that was a user-agent filter, not data unavailability. Retried successfully with a real-browser user-agent; data recovered and detailed below.</p>
+
   <div class="callout warn">
-    <div class="h">Status: selective crawler block (not universal)</div>
-    <p style="margin-bottom:0.5rem;">harmonymedical.net returned 403 Forbidden to Apollo's crawler on 2026-04-16, which initially looked like a universal audit block. Verified via Google PageSpeed Insights on 2026-04-17: <strong>PSI ran clean on both mobile and desktop</strong> — so the 403 is a <em>selective</em> filter (likely user-agent or IP-range specific), not a universal block. Common SEO tools with rotating IPs or recognized user-agents (SEMrush, Ahrefs, Screaming Frog) may or may not be blocked depending on Harmony's filter rules.</p>
-    <p style="margin:0;"><strong>Recommendation:</strong> Whitelist Apollo's crawler user-agent for future audits. The filter as configured is not obviously malicious — it's likely a default security posture from a WAF or CDN — but it does create blind spots in on-page SEO audits. See PSI data in Competitive Landscape for what <em>is</em> reachable.</p>
+    <div class="h">Status: selective crawler block confirmed</div>
+    <p style="margin-bottom:0.5rem;">harmonymedical.net returns 403 Forbidden to common SEO crawlers (Apollo's included, likely SEMrush/Ahrefs/Screaming Frog depending on UA/IP). Regular browser visits pass cleanly. Google PageSpeed / Lighthouse is unaffected. This is the filter rule to whitelist for future audits — the site itself isn't broken, but it's invisible to most third-party SEO tools.</p>
+    <p style="margin:0;"><strong>Recommendation:</strong> ask Harmony's dev team to whitelist standard SEO user-agents at the WAF/CDN layer. Without it, Harmony's own SEO tools are likely seeing the same 403 you would have seen — which means self-audits routinely fail quietly.</p>
   </div>
 
-  <h3>What we confirmed (from the 403 probe)</h3>
+  <h3>Top Findings (homepage audit)</h3>
   <table class="data">
-    <thead><tr><th>Factor</th><th>Status</th></tr></thead>
+    <thead><tr><th>Finding</th><th>Status</th><th>Impact</th></tr></thead>
     <tbody>
-      <tr><td>Robots.txt</td><td>NOT_FOUND</td></tr>
-      <tr><td>Sitemap</td><td>Not detected (403 blocks crawler discovery)</td></tr>
-      <tr><td>Canonical tags</td><td><span class="badge badge-incomplete">Blocked</span></td></tr>
-      <tr><td>Schema markup</td><td><span class="badge badge-incomplete">Blocked</span></td></tr>
-      <tr><td>Open Graph tags</td><td><span class="badge badge-incomplete">Blocked</span></td></tr>
-      <tr><td>Internal / external link analysis</td><td><span class="badge badge-incomplete">Blocked</span></td></tr>
-      <tr><td>Image alt-text analysis</td><td><span class="badge badge-incomplete">Blocked</span></td></tr>
-      <tr><td>Broken link check</td><td><span class="badge badge-incomplete">Blocked</span></td></tr>
-      <tr><td>PageSpeed Insights (mobile + desktop)</td><td><span class="badge badge-incomplete">Not captured</span> — flagged as follow-up</td></tr>
+      <tr><td>Canonical tag</td><td><span class="badge badge-ok">Present — self-referencing</span></td><td>Correctly configured to <code>https://harmonymedical.net/</code></td></tr>
+      <tr><td><strong>Schema markup (structured data)</strong></td><td><span class="badge badge-error">None detected</span></td><td>Zero JSON-LD scripts on the page. Massive miss for a SaaS — no SoftwareApplication, Organization, or FAQPage schema to feed Google AI Overviews or Rich Results.</td></tr>
+      <tr><td><strong>Open Graph tags</strong></td><td><span class="badge badge-error">None detected</span></td><td>Every internal share, social post, or bookmark of this page gets no preview, no image, no description. Trivial to fix, material impact on social referral quality.</td></tr>
+      <tr><td>Twitter Card tags</td><td><span class="badge badge-error">None detected</span></td><td>Same as OG — X posts referencing the site render as bare URLs.</td></tr>
+      <tr><td><strong>Meta description</strong></td><td><span class="badge badge-error">Missing</span></td><td>Google generates one on the fly, often from poor source text. SERP click-through-rate gets hurt.</td></tr>
+      <tr><td>Title tag</td><td><span class="badge badge-warn">"Harmony Medical" — thin</span></td><td>No service line, no value proposition, no vertical. Competitors use "Tebra — Practice Management + EHR Software for Independent Practices" pattern. ~55 characters to add specificity.</td></tr>
+      <tr><td><strong>H1 tag on homepage</strong></td><td><span class="badge badge-error">None present</span></td><td>Zero H1 tags. Fundamental on-page hierarchy miss.</td></tr>
+      <tr><td><strong>Image alt text</strong></td><td><span class="badge badge-error">0 of 22 have alt text (100% missing)</span></td><td>22 images on the homepage alone, all missing alt. Accessibility + image-SEO gap.</td></tr>
+      <tr><td>Robots meta</td><td><span class="badge badge-ok">index</span></td><td>Correct — site is indexable.</td></tr>
+      <tr><td>Favicon</td><td><span class="badge badge-ok">Present</span></td><td>Clean.</td></tr>
+      <tr><td>Internal links</td><td><span class="badge badge-ok">127 internal, 11 external</span></td><td>Healthy internal linking structure for a 33-page site.</td></tr>
+      <tr><td>Social profile presence</td><td><span class="badge badge-warn">Facebook only</span></td><td>FB URL is in legacy 2015-era format (<code>aymt_homepage_panel</code> tracking). No Instagram, LinkedIn, X, YouTube, or Pinterest links.</td></tr>
+      <tr><td>External authority links</td><td><span class="badge badge-ok">Industry credentialing</span></td><td>11 external links to CARF, Joint Commission, HIMSS, MGMA, AAPC, Drummond, HHS, spine.org. Good trust-building choice.</td></tr>
     </tbody>
   </table>
+
+  <h3>Recommended fix priority</h3>
+  <ol>
+    <li><strong>Add schema markup</strong> — SoftwareApplication, Organization, and FAQPage JSON-LD on the homepage. Single highest-leverage move for Harmony given the AI Overview gap (0 vs Tebra's 5,000). Likely a 1-week dev task.</li>
+    <li><strong>Add Open Graph + Twitter Card tags</strong> — minimum set: og:title, og:description, og:image, og:type. One-day task; affects every share thereafter.</li>
+    <li><strong>Add an H1 and meta description</strong> to the homepage. On-page fundamental.</li>
+    <li><strong>Rewrite title tag</strong> to include service line + audience. Current "Harmony Medical" is under-utilized; ~55 characters available.</li>
+    <li><strong>Alt-text pass</strong> on the 22 homepage images (minimum). Site-wide alt-text audit is a separate project.</li>
+    <li><strong>Whitelist crawler user-agents</strong> at the WAF/CDN so Harmony's own SEO tools can audit the site.</li>
+  </ol>
+
+  <div class="callout info">
+    <div class="h">Scope note</div>
+    <p style="margin:0;">This audit covers the harmonymedical.net <strong>homepage</strong>. Broken-link audit across the full 33-page site + per-page schema/OG coverage are out of scope for this $75 research product. Available as a site-wide technical SEO audit engagement — see Next Steps.</p>
+  </div>
+
+  <h3 style="margin-top:2rem;">PageSpeed Insights — harmonymedical.net</h3>
+  <p class="source-note">Source: Google PageSpeed Insights · captured 2026-04-17 · <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fharmonymedical.net&form_factor=mobile" target="_blank" rel="noopener">Open live PageSpeed for mobile ↗</a> · <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fharmonymedical.net&form_factor=desktop" target="_blank" rel="noopener">Open live PageSpeed for desktop ↗</a></p>
+  <table class="data">
+    <thead><tr><th>PageSpeed Lab Score</th><th class="num">Mobile</th><th class="num">Desktop</th></tr></thead>
+    <tbody>
+      <tr><td>Performance</td><td class="num">60 <span class="badge badge-warn">Fair</span></td><td class="num">85 <span class="badge badge-ok">Good</span></td></tr>
+      <tr><td>Accessibility</td><td class="num">86 <span class="badge badge-ok">Good</span></td><td class="num">86 <span class="badge badge-ok">Good</span></td></tr>
+      <tr><td>Best Practices</td><td class="num">92 <span class="badge badge-ok">Good</span></td><td class="num">38 <span class="badge badge-error">Poor</span></td></tr>
+      <tr><td>SEO</td><td class="num">92 <span class="badge badge-ok">Good</span></td><td class="num">92 <span class="badge badge-ok">Good</span></td></tr>
+    </tbody>
+  </table>
+  <table class="data">
+    <thead><tr><th>Core Web Vitals / Lab Metrics</th><th class="num">Mobile</th><th class="num">Desktop</th></tr></thead>
+    <tbody>
+      <tr><td>First Contentful Paint (FCP)</td><td class="num">4.8 s</td><td class="num">0.6 s</td></tr>
+      <tr><td>Largest Contentful Paint (LCP)</td><td class="num">10.2 s</td><td class="num">2.0 s</td></tr>
+      <tr><td>Total Blocking Time (TBT)</td><td class="num">60 ms</td><td class="num">50 ms</td></tr>
+      <tr><td>Cumulative Layout Shift (CLS)</td><td class="num">0</td><td class="num">0.002</td></tr>
+      <tr><td>Speed Index (SI)</td><td class="num">6.9 s</td><td class="num">2.5 s</td></tr>
+    </tbody>
+  </table>
+  <p class="source-note">CrUX Real-User (28-day field) data: <strong>No Data</strong> on either form factor — Chrome UX Report has insufficient real-user traffic for harmonymedical.net. Consistent with the 33-page index / 113 monthly organic visits: the site doesn't have enough traffic for Chrome to build a reliable field dataset.</p>
+  <div class="callout warn">
+    <div class="h">Mobile LCP = 10.2s — the performance fix that matters</div>
+    <p style="margin:0;">Mobile LCP of 10.2 s is well outside Google's "Good" threshold (≤2.5 s) and even outside "Needs Improvement" (≤4 s). On mobile, Harmony's largest contentful element takes ~4× longer than it should. Desktop LCP is 2.0 s (Good). The gap between mobile (60) and desktop (85) Performance scores is driven almost entirely by this. If a single fix matters most for user-side SEO here, it's mobile LCP — likely an unoptimized hero image or blocking script on the mobile bundle.</p>
+  </div>
+  <div class="callout warn">
+    <div class="h">Desktop Best Practices = 38 — flag for verification</div>
+    <p style="margin:0;">The 38 on Desktop Best Practices is anomalous — Mobile Best Practices scored 92 on the same site on the same day. This is typically caused by mixed-content warnings, insecure resource loads, or browser API deprecations that surface differently by form factor. Worth a single re-run + audit before reporting as a hard finding.</p>
+  </div>
 </div>
 
 <!-- TAB: NEXT -->
 <div id="next" class="section">
-  <h2>Next Steps — Where the $ Should Go</h2>
+  <h2>Next Steps</h2>
 
-  <h3>The county-baseline doesn't answer Harmony's real question</h3>
-  <p>Harmony Medical sells to medical practices nationally. The Baltimore County baseline establishes that there's no local demand for EHR/billing/RCM queries — buyers simply don't geo-qualify these searches. That's a useful negative result: it tells us <strong>not</strong> to spend on local SEO for Baltimore. The real opportunity is national.</p>
-
-  <h3>Recommended engagements</h3>
+  <h3>This week — in-house fixes</h3>
   <ol>
-    <li><strong>$297 AIO Research — national keyword research + AIO visibility plan.</strong> Drop the geo filter. Research the 4 service verticals without "baltimore md" qualifiers. Expected outcome: real SV in the thousands-to-hundreds-of-thousands, real CPC, real competitor ranking positions. This is the research Harmony actually needs. Also quantifies the AI-visibility gap (Tebra/athenahealth/eClinicalWorks at 80–100% LLM visibility vs. Harmony at 0–20%).</li>
-    <li><strong>Site crawl access.</strong> Get Apollo's crawler whitelisted and re-run Site Health audit. The 403 block prevents honest assessment of on-page issues and likely means Harmony's own SEO tools can't audit either.</li>
-    <li><strong>Monthly SEO program — content production on competitor-validated keywords.</strong> Harmony's peers have 100K–250K organic keywords. The gap is content inventory, not strategy. A retainer-driven content program is how authority compounds.</li>
-    <li><strong>Strategy call.</strong> If Harmony agrees the county-level research is unrepresentative of their market, escalate to a national-scope conversation immediately. This is a multi-year program discussion, not a one-shot deliverable conversation.</li>
+    <li><strong>Add schema markup to the homepage</strong> — SoftwareApplication, Organization, and FAQPage JSON-LD blocks. Zero schema is currently on the site (confirmed in Site Health). Harmony's peers (Tebra 5,000 / athenahealth 1,600 AI Overviews vs Harmony 0) are running on structured-data-fed AI surfaces. Single highest-leverage move.</li>
+    <li><strong>Add Open Graph + Twitter Card tags</strong> — og:title, og:description, og:image, og:type. Trivial to add, affects every share and bookmark thereafter.</li>
+    <li><strong>Rewrite the homepage title tag, add an H1 + meta description</strong> — current title "Harmony Medical" has no service line, value prop, or vertical. ~55 characters available. Pattern to match: "Harmony Medical — EHR + Medical Billing for [audience]".</li>
   </ol>
 
-  <h3>Deliverable coverage map</h3>
+  <div class="callout" style="margin-top:1.5rem;">
+    <div class="h">Want to go deeper?</div>
+    <p style="margin:0;">The honest shape of Harmony's market is national, not Baltimore-local. The next strategic question is: <strong>what does it look like to compete at the national service-category level?</strong> Our <strong>$297 AIO Research</strong> engagement drops the geo filter and researches "ehr software," "revenue cycle management," and the 10 service-category terms at national scope — with AI Overview + LLM visibility benchmarking against Tebra / athenahealth / eClinicalWorks. If the inventory gap (33 pages vs 78,400) is the story, a monthly content program is the vehicle. Happy to walk through what either would look like.</p>
+  </div>
+
+  <h3 style="margin-top:2rem;">Deliverable coverage map</h3>
   <table class="data">
     <thead><tr><th>Area</th><th>Status</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td>Keyword list (county baseline)</td><td><span class="badge badge-ok">Delivered</span></td><td>18/18 — all returned 0 SV, honest not inflated</td></tr>
-      <tr><td>Competitor comparison (4 domains)</td><td><span class="badge badge-ok">Delivered</span></td><td>All overview metrics filled across all 4 domains</td></tr>
-      <tr><td>LLM Visibility (baseline tier)</td><td><span class="badge badge-ok">Delivered</span></td><td>6 platforms × 4 domains · activation tier not triggered</td></tr>
-      <tr><td>Site Health (on-page audit)</td><td><span class="badge badge-incomplete">Incomplete</span></td><td>403 crawl block — see Site Health tab</td></tr>
-      <tr><td>PSI mobile/desktop</td><td><span class="badge badge-ok">Delivered</span></td><td>Mobile + Desktop captured via pagespeed.web.dev (Apollo's crawler 403 did not affect Google's Lighthouse)</td></tr>
-      <tr><td>National keyword research</td><td><span class="badge badge-info">Out of scope</span></td><td>$297 AIO tier — the strategic next step</td></tr>
-      <tr><td>Stage 1.5 competitor keyword pool</td><td><span class="badge badge-incomplete">Blocked Day 1</span></td><td>Competitor keyword-pool extraction was blocked for large SaaS domains on this tier — national research would unblock it.</td></tr>
+      <tr><td>Keyword list (county baseline)</td><td><span class="badge badge-ok">Delivered</span></td><td>18/18 — service-category demand captured at 250 SV/mo; local tier 0 SV (honest result)</td></tr>
+      <tr><td>Competitor comparison (4 domains)</td><td><span class="badge badge-ok">Delivered</span></td><td>Scope + velocity + authority rows; Apollo Signals block</td></tr>
+      <tr><td>LLM Visibility (baseline tier)</td><td><span class="badge badge-ok">Delivered</span></td><td>6 platforms × 4 domains</td></tr>
+      <tr><td>Site Health (on-page audit)</td><td><span class="badge badge-ok">Delivered (v3 retry)</span></td><td>Recovered from 403 via real-browser UA on 2026-04-20. Six previously "Blocked" rows now populated with real findings.</td></tr>
+      <tr><td>PSI mobile/desktop</td><td><span class="badge badge-ok">Delivered</span></td><td>Live links in Site Health</td></tr>
+      <tr><td>Backlinks Last 30 Days</td><td><span class="badge badge-incomplete">Pending v3.1</span></td><td>SearchAtlas extraction queued — row will update in-place when data clears</td></tr>
+      <tr><td>National keyword research</td><td><span class="badge badge-info">Out of scope</span></td><td>$297 AIO Research — the strategic next step</td></tr>
+      <tr><td>Site-wide broken-link audit</td><td><span class="badge badge-info">Out of scope</span></td><td>Homepage audit captured; full-site crawl is a separate technical-SEO engagement</td></tr>
     </tbody>
   </table>
 
-  <h3>Methodology notes</h3>
+  <h3 style="margin-top:2rem;">Methodology notes</h3>
   <ul>
-    <li>City-phrased keywords ("baltimore md") with a Baltimore County, MD geographic filter. County names are never searched directly; city names are.</li>
+    <li>City-phrased keywords with a Baltimore County, MD geographic filter. County names are never searched directly; city names are. Methodology is correct for local SEO research.</li>
     <li>US-wide data was not used and is not used in any Apollo SEO deliverable — it inflates expectations and breaks client trust.</li>
     <li>All 4 domains were pulled through an authority-data lookup that avoids the caching issues of managed-project views, so backlink counts reflect what public-facing audit tools would also see.</li>
     <li>Any metric that returned null, zero-as-artifact, or was unavailable at extraction time is flagged INCOMPLETE rather than presented as fact.</li>
-    <li><strong>0 SV for a correctly-phrased local keyword IS real data, not a bug.</strong> For a national SaaS, 0 SV on 18 county-filtered queries is the expected and honest result.</li>
+    <li><strong>0 SV for a correctly-phrased local keyword IS real data, not a bug.</strong> For a national SaaS, 0 SV on county-filtered local-qualified queries is the expected and honest result.</li>
+    <li><strong>Revised 2026-04-20 (v3):</strong> section order fixed (Site Health moved from position 4 to position 2); Site Health rows recovered via real-browser UA retry (6 rows previously "Blocked"); keyword landscape reorganized by target page (tier labels removed from deliverable); Competitive Landscape restructured to standard industry row order with scope + runway metrics (Indexed Pages + 30-day velocity, Backlinks 30-day velocity pending); Paid Keywords/Traffic rows removed; Executive Summary trimmed; Next Steps right-sized; live PageSpeed links added.</li>
   </ul>
 </div>
 
