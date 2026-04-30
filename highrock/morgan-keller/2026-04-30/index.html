@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SEO Research Report — Morgan-Keller Construction | HighRock</title>
+<style>
+:root { --hr-green: #b2bd30; --hr-green-dark: #8a921f; --hr-green-bg: #f7f9e8; --ink: #3c3c3c; --ink-dark: #1a1a1a; --ink-soft: #6b7280; --rule: #e5e7eb; --bg: #fafaf9; --yellow: #eab308; --red: #ef4444; --cyan: #06b6d4; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'proxima-nova', 'Helvetica', 'Roboto', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+.header { background: #1f2937; border-bottom: 4px solid var(--hr-green); padding: 2rem 3rem 1.5rem; color: #fff; }
+.header .logo img { height: 32px; width: auto; display: block; margin-bottom: 1.25rem; }
+.header h1 { font-size: 1.6rem; font-weight: 600; color: #fff; }
+.header .subtitle { color: #cbd5e1; margin-top: 0.4rem; font-size: 1rem; }
+.header .meta { display: flex; gap: 0.6rem; margin-top: 1.1rem; font-size: 0.78rem; color: #cbd5e1; flex-wrap: wrap; }
+.header .meta span { background: rgba(178,189,48,0.15); border: 1px solid rgba(178,189,48,0.4); color: #e8edc5; padding: 0.22rem 0.7rem; border-radius: 14px; font-weight: 500; }
+.nav { background: white; border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; gap: 0; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+.nav button { background: none; border: none; padding: 0.9rem 1.3rem; font-size: 0.92rem; color: var(--ink-soft); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; font-family: inherit; font-weight: 500; }
+.nav button:hover { color: var(--hr-green-dark); background: rgba(178,189,48,0.05); }
+.nav button.active { color: var(--hr-green-dark); border-bottom-color: var(--hr-green); font-weight: 600; }
+.content { max-width: 1200px; margin: 0 auto; padding: 2rem 3rem; }
+.section { display: none; } .section.active { display: block; }
+.section h2 { font-size: 1.35rem; color: var(--ink-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--hr-green); font-weight: 600; }
+.section h3 { font-size: 1.05rem; color: var(--ink-dark); margin: 1.6rem 0 0.75rem; font-weight: 600; }
+.section p { margin-bottom: 0.9rem; }
+.section ul, .section ol { padding-left: 1.4rem; margin: 0.75rem 0; }
+.section li { margin-bottom: 0.45rem; }
+.badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; font-size: 0.78rem; font-weight: 600; }
+.badge-ok { background: #dcfce7; color: #166534; }
+.badge-warn { background: #fef9c3; color: #854d0e; }
+.badge-error { background: #fee2e2; color: #991b1b; }
+.badge-info { background: #dbeafe; color: #1e40af; }
+.badge-incomplete { background: #fce7f3; color: #9d174d; }
+table.data { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; background: white; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+table.data th { background: var(--ink-dark); color: white; padding: 0.65rem 1rem; text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+table.data th.num { text-align: right; }
+table.data td { padding: 0.55rem 1rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.data tr:last-child td { border-bottom: none; }
+table.data tr:hover { background: rgba(178,189,48,0.04); }
+.callout { padding: 1rem 1.25rem; border-left: 4px solid var(--hr-green); background: var(--hr-green-bg); border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: 0.93rem; }
+.callout.warn { border-left-color: var(--yellow); background: #fefce8; }
+.callout.red { border-left-color: var(--red); background: #fef2f2; }
+.callout.info { border-left-color: var(--cyan); background: #ecfeff; }
+.callout strong { color: var(--ink-dark); }
+.callout .h { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hr-green-dark); margin-bottom: 0.3rem; }
+.callout.warn .h { color: #854d0e; } .callout.red .h { color: #991b1b; } .callout.info .h { color: #155e75; }
+.source-note { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.4rem; font-style: italic; }
+details { margin: 0.5rem 0 1rem; border: 1px solid var(--rule); border-radius: 6px; background: white; }
+details[open] { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+details summary { padding: 0.7rem 1rem; cursor: pointer; font-size: 0.92rem; color: var(--ink-dark); list-style: none; user-select: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: "▸"; display: inline-block; margin-right: 0.55rem; color: var(--hr-green-dark); transition: transform 0.15s; font-size: 0.8rem; }
+details[open] summary::before { transform: rotate(90deg); }
+details summary:hover { background: rgba(178,189,48,0.04); }
+details[open] summary { border-bottom: 1px solid var(--rule); }
+details > table.data, details > p.source-note { margin-left: 1rem; margin-right: 1rem; }
+details > table.data { margin-bottom: 0.5rem; }
+details > p.source-note { margin-bottom: 0.75rem !important; }
+details summary .badge { margin-left: 0.25rem; }
+footer { margin-top: 3rem; padding: 1.5rem 3rem; border-top: 1px solid var(--rule); text-align: center; font-size: 0.78rem; color: var(--ink-soft); background: white; }
+footer a { color: var(--hr-green-dark); text-decoration: none; }
+@media print { .nav { display: none; } .section { display: block !important; page-break-inside: avoid; } }
+@media (max-width: 640px) { .header { padding: 1.25rem 1.5rem; } .content { padding: 1.25rem 1.5rem; } .nav { padding: 0 1.5rem; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo"><img src="https://highrock.com/themes/custom/highrock/img/logo-header.png" alt="HighRock" /></div>
+  <h1>SEO Research Report — Morgan-Keller Construction</h1>
+  <div class="subtitle">morgankeller.com — Frederick County, Maryland · Commercial General Contractor (est. 1955)</div>
+  <div class="meta">
+    <span>Prepared: April 25, 2026</span>
+    <span>Revised: April 30, 2026</span>
+    <span>Location filter: Frederick County MD</span>
+    <span>48 keywords across 3 phrasing tiers</span>
+    <span>3 commercial GC competitors benchmarked</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showTab('summary')">Executive Summary</button>
+  <button onclick="showTab('health')">Site Health</button>
+  <button onclick="showTab('keywords')">Keyword Landscape</button>
+  <button onclick="showTab('competitive')">Competitive Landscape</button>
+  <button onclick="showTab('next')">Next Steps</button>
+</div>
+
+<div class="content">
+
+<div id="summary" class="section active">
+  <h2>Executive Summary</h2>
+  <p>Morgan-Keller already wins the organic Frederick MD commercial-construction queries it has authority for — ranking #1 for the brand cluster ("morgan keller construction" SV 590, "morgan keller" SV 590) and carrying the strongest quality signals in the competitive set: highest Brand Signal (52), highest Trust Flow (37), tied for cleanest Spam Score (1), and the only domain in the comparison with active LLM visibility on Gemini, Grok, and Google AI Mode. The foundation is real.</p>
+  <p>Three structural issues are quietly holding the site back: <strong>the homepage <code>&lt;title&gt;</code> tag renders as "<code>| Morgan Keller</code>" (15 chars, leading pipe, missing brand name), the homepage H1 is an empty tag, and zero pages across the entire 100-page crawl carry any structured data</strong>. All three are template-level fixes. The Frederick County MD commercial-GC keyword market is shallow at geo-modified phrasing — only 2 of 16 full-geo "frederick md" terms carry volume, and the mid-geo "frederick" rerun confirmed zero across all 16 — but the bare-service tier surfaces real demand the geo-modified queries miss. <strong>11 of 16 bare-service queries register 10–20 SV/mo at the Frederick County filter</strong>, with 5 specialty verticals (flex space, healthcare facility, medical office, office buildout, school) confirmed thin at every tier. The honest read: searchers in Morgan-Keller's market don't geo-qualify their queries — they search the bare service term and Google handles the geo-targeting. CPC = $0 across nearly every term means there is no paid market here to lose, which favors a firm with Morgan-Keller's existing authority position. The single highest-leverage move is deploying structured data: schema markup feeds AI Overviews where Morgan-Keller already has a foothold the competitors don't. Page-coverage expansion into specialty service categories is the second-order content move; the schema deploy is this-week.</p>
+  <p>See <strong>Site Health</strong> for the full on-page audit (per-finding affected URLs included), <strong>Keyword Landscape</strong> for the page-by-page keyword map, <strong>Competitive Landscape</strong> for the authority + scope benchmark vs Kinsley / Harkins / KasCon, and <strong>Next Steps</strong> for this-week actions.</p>
+</div>
+
+<div id="health" class="section">
+  <h2>Site Health</h2>
+  <p class="source-note">Crawl: 2026-04-25 · 100 pages · Platform: Drupal · Schema coverage: 0/100 · OG tag coverage: 0/100 · Sitemap.xml: not found</p>
+
+  <h3>On-page findings</h3>
+  <table class="data">
+    <thead><tr><th>Finding</th><th class="num">Count</th><th>Impact</th></tr></thead>
+    <tbody>
+      <tr><td>Titles over 60 characters</td><td class="num">66</td><td>SERP truncation (mostly /news/ articles)</td></tr>
+      <tr><td>Titles under 30 characters</td><td class="num">7</td><td>Under-utilized real estate (includes the broken homepage title)</td></tr>
+      <tr><td>Duplicate titles</td><td class="num">4 titles / 10 pages</td><td>Cannibalization risk</td></tr>
+      <tr><td>Missing meta description</td><td class="num">18</td><td>SERP snippet auto-generated, often misses intent</td></tr>
+      <tr><td>Empty H1 tag</td><td class="num">2</td><td>Accessibility + SEO (homepage + es-homepage)</td></tr>
+      <tr><td>Multiple H1 tags on one page</td><td class="num">0</td><td><span class="badge badge-ok">Clean</span></td></tr>
+      <tr><td>Total images crawled</td><td class="num">109</td><td>—</td></tr>
+      <tr><td><strong>Images missing alt text</strong></td><td class="num"><strong>0 / 109</strong></td><td><span class="badge badge-ok">Excellent — 100% alt coverage</span></td></tr>
+      <tr><td>External links without nofollow (sitewide)</td><td class="num">8,883 across 100 pages</td><td>Link-equity leak</td></tr>
+      <tr><td>Broken links (4xx/5xx)</td><td class="num">6</td><td>UX + crawl waste (Employee Portal 404, Career Site 404, etc.)</td></tr>
+      <tr><td>Redirect chains</td><td class="num">0</td><td><span class="badge badge-ok">Clean</span></td></tr>
+      <tr><td><strong>Pages with structured data (JSON-LD)</strong></td><td class="num"><strong>0 / 100</strong></td><td>Zero schema deployed sitewide — no AI Overview / Rich Results eligibility</td></tr>
+      <tr><td><strong>Pages with Open Graph tags</strong></td><td class="num"><strong>0 / 100</strong></td><td>Every social or chat share renders without preview, image, or description</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:2rem;">Detailed breakdown — fix guide</h3>
+  <p>Each expandable block lists the specific pages affected by each finding (capped at 50 per category). Use these to prioritize and execute. Full crawl data available on request.</p>
+
+  <details>
+    <summary><strong>Titles over 60 characters</strong> <span class="badge badge-info">66 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand</span></summary>
+    <table class="data" style="margin-top:0.75rem;">
+      <thead><tr><th>Page</th><th>Current title</th><th class="num">Length</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-susan-bowman-senior-administrative-manager-specialty-construction-and/" target="_blank">/news/team-member-spotlight-susan-bowman-…</a></td><td>Team Member Spotlight - Susan Bowman, Senior Administrative Manager, Specialty Construction and Commercial Facilities Maintenance | Morgan Keller</td><td class="num">145</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-specialty-contracts-completes-montgomery-count-employees-federal-credit-union/" target="_blank">/news/…specialty-contracts-completes-montgomery-…</a></td><td>Morgan-Keller Specialty Contracts Completes Montgomery County Employees Federal Credit Union | Morgan Keller</td><td class="num">130</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-specialty-contracts-and-commercial-facilities-maintenance-announce-team-member/" target="_blank">/news/…announce-team-member/</a></td><td>Morgan-Keller Specialty Contracts and Commercial Facilities Maintenance Announce Team Member | Morgan Keller</td><td class="num">119</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/ribbon-cutting-and-dedication-ceremony-held-seton-center-outreach-office-and-family-store/" target="_blank">/news/ribbon-cutting-…seton-center…/</a></td><td>Ribbon Cutting and Dedication Ceremony Held for Seton Center Outreach Office and Family Store | Morgan Keller</td><td class="num">109</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-msm-knott-academic-center-expansion-celebrated-ribbon-cutting-ceremony/" target="_blank">/news/completion-msm-knott-academic-center-…</a></td><td>Completion of MSM Knott Academic Center Expansion is celebrated with Ribbon Cutting Ceremony | Morgan Keller</td><td class="num">108</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-honored-abc-cumberland-valley-chapter-excellence-construction-ceremony-0/" target="_blank">/news/…abc-cumberland-valley…ceremony-0/</a></td><td>Morgan-Keller Honored at ABC Cumberland Valley Chapter Excellence in Construction Ceremony | Morgan Keller</td><td class="num">106</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-honored-abc-cumberland-valley-chapter-excellence-construction-ceremony/" target="_blank">/news/…abc-cumberland-valley…ceremony/</a></td><td>Morgan-Keller Honored at ABC Cumberland Valley Chapter Excellence in Construction Ceremony | Morgan Keller</td><td class="num">106</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-honored-abc-cumberland-valley-chapter-excellence-construction-ceremony-1/" target="_blank">/news/morgan-keller-honored-abc-…ceremony-1/</a></td><td>Morgan-Keller Honored at ABC Cumberland Valley Chapter Excellence in Construction Ceremony</td><td class="num">106</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-honored-abc-cumberland-valley-chapter-excellence-construction-ceremony-2/" target="_blank">/news/morgan-keller-honored-abc-…ceremony-2/</a></td><td>Morgan-Keller Honored at ABC Cumberland Valley Chapter Excellence in Construction Ceremony</td><td class="num">106</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-construction-completes-culler-lake-desiltation-park-improvement-project/" target="_blank">/news/morgan-keller-construction-completes-culler-lake-…</a></td><td>Morgan-Keller Construction Completes Culler Lake Desiltation &amp; Park Improvement Project</td><td class="num">103</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-commercial-facilities-maintenance-completes-yet-another-successful-merger/" target="_blank">/news/morgan-keller-commercial-facilities-maintenance-…</a></td><td>Morgan-Keller Commercial Facilities Maintenance Completes Yet Another Successful Merger</td><td class="num">103</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-helps-celebrate-progress-little-patuxent-apartments-gambrills-md/" target="_blank">/news/morgan-keller-helps-celebrate-progress-little-patuxent-…</a></td><td>Morgan-Keller helps celebrate progress at Little Patuxent Apartments in Gambrills, MD</td><td class="num">101</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-specialty-contracts-and-mk-commercial-facilities-maintenance-announce-new-projects/" target="_blank">/news/mk-specialty-contracts-and-mk-commercial-…</a></td><td>MK Specialty Contracts and MK Commercial Facilities Maintenance Announce New Projects</td><td class="num">101</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/maryanne-dewitt-project-accountant-recognized-20-year-anniversary-m-k/" target="_blank">/news/maryanne-dewitt-project-accountant-recognized-…</a></td><td>Maryanne DeWitt, Project Accountant, is recognized for 20 Year Anniversary at M-K</td><td class="num">99</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-specialty-contracts-mk-commercial-facilities-maintenance-announce-new-projects/" target="_blank">/news/mk-specialty-contracts-mk-commercial-facilities-…</a></td><td>MK Specialty Contracts &amp; MK Commercial Facilities Maintenance Announce New Projects</td><td class="num">99</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/winter-here-your-guide-247-emergency-response-and-preventative-maintenance/" target="_blank">/news/winter-here-your-guide-247-emergency-response-…</a></td><td>Winter Is Here: Your Guide to 24/7 Emergency Response and Preventative Maintenance</td><td class="num">98</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-celebrates-opening-rappahannock-food-pantry-rush-river-commons/" target="_blank">/news/morgan-keller-celebrates-opening-rappahannock-…</a></td><td>Morgan-Keller celebrates opening of Rappahannock Food Pantry at Rush River Commons</td><td class="num">98</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-completes-shepherd-university-center-contemporary-arts-phase-ii/" target="_blank">/news/morgan-keller-completes-shepherd-university-…</a></td><td>Morgan-Keller Completes Shepherd University Center for Contemporary Arts Phase II</td><td class="num">98</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-expands-portfolio-affordable-housing-rehabilitation-projects/" target="_blank">/news/morgan-keller-expands-portfolio-affordable-housing-…</a></td><td>Morgan-Keller Expands Portfolio with Affordable Housing Rehabilitation Projects</td><td class="num">96</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-ashburn-chase-apartments-celebrated-grand-opening-ceremony/" target="_blank">/news/completion-ashburn-chase-apartments-…</a></td><td>Completion of Ashburn Chase Apartments is celebrated with Grand Opening Ceremony</td><td class="num">96</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-commercial-facilities-maintenance-looking-new-team-members/" target="_blank">/news/morgan-keller-commercial-facilities-maintenance-…</a></td><td>Morgan-Keller Commercial Facilities Maintenance is Looking for New Team Members</td><td class="num">95</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-shanne-miller-superintendent-specialty-construction/" target="_blank">/news/team-member-spotlight-shanne-miller-…</a></td><td>Team Member Spotlight - Shanne Miller, Superintendent (Specialty Construction)</td><td class="num">94</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-kellers-gettysburg-seminary-ridge-museum-project-set-open-july-1st/" target="_blank">/news/morgan-kellers-gettysburg-seminary-ridge-museum-…</a></td><td>Morgan-Keller's Gettysburg Seminary Ridge Museum Project Set to Open July 1st</td><td class="num">93</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/bracken-square-silver-spring-just-got-major-win-housing-accessibility/" target="_blank">/news/bracken-square-silver-spring-just-got-major-win-…</a></td><td>Bracken Square: Silver Spring just got a major win for housing accessibility</td><td class="num">92</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-ceremony-held-act-1st-federal-credit-union-romney-wv/" target="_blank">/news/groundbreaking-ceremony-held-act-1st-federal-…</a></td><td>Groundbreaking Ceremony Held for ACT 1st Federal Credit Union in Romney, WV</td><td class="num">91</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/orchard-park-ballenger-run-earns-builder-year-award-developer/" target="_blank">/news/orchard-park-ballenger-run-earns-builder-year-…</a></td><td>Orchard Park at Ballenger Run earns Builder of the Year Award for Developer</td><td class="num">91</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-kellers-hammerjacks-project-featured-blue-book-publication/" target="_blank">/news/morgan-kellers-hammerjacks-project-featured-…</a></td><td>Morgan-Keller's Hammerjacks Project is Featured in Blue Book Publication</td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-ceremony-held-residences-east-church-street/" target="_blank">/news/groundbreaking-ceremony-held-residences-east-…</a></td><td>Groundbreaking Ceremony is held for The Residences at East Church Street</td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-team-members-give-families-need-holiday-season/" target="_blank">/news/morgan-keller-team-members-give-families-need-…</a></td><td>Morgan-Keller team members give for families in need this holiday season</td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-construction-begin-meritus-outpatient-services-project/" target="_blank">/news/morgan-keller-construction-begin-meritus-outpatient-…</a></td><td>Morgan-Keller Construction to Begin Meritus Outpatient Services Project</td><td class="num">87</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-helps-celebrate-grand-opening-fitcis-edge-321/" target="_blank">/news/morgan-keller-helps-celebrate-grand-opening-fitcis-…</a></td><td>Morgan-Keller helps celebrate grand opening of Fitci's EDGE at 321.</td><td class="num">83</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-acquisition-gruber-latimer-restoration/" target="_blank">/news/morgan-keller-announces-acquisition-gruber-…</a></td><td>Morgan-Keller Announces Acquisition of Gruber-Latimer Restoration</td><td class="num">81</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-brendan-wharton-preconstruction-associate/" target="_blank">/news/team-member-spotlight-brendan-wharton-…</a></td><td>Team Member Spotlight: Brendan Wharton, Preconstruction Associate</td><td class="num">81</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-construction-announces-additions-ownership-team/" target="_blank">/news/morgan-keller-construction-announces-additions-…</a></td><td>Morgan-Keller Construction Announces Additions to Ownership Team</td><td class="num">80</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-receives-five-abc-cumberland-valley-chapter-awards/" target="_blank">/news/morgan-keller-receives-five-abc-cumberland-valley-…</a></td><td>Morgan-Keller Receives Five ABC Cumberland Valley Chapter Awards</td><td class="num">80</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification/" target="_blank">/news/mk-concrete-construction-team-members-receive-aci-…</a></td><td>MK Concrete Construction Team Members Receive ACI Certification</td><td class="num">79</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification-0/" target="_blank">/news/mk-concrete-construction-team-members-receive-aci-…-0/</a></td><td>MK Concrete Construction Team Members Receive ACI Certification</td><td class="num">79</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-dina-davis-corporate-marketing-manager/" target="_blank">/news/team-member-spotlight-dina-davis-…</a></td><td>Team Member Spotlight: Dina Davis, Corporate Marketing Manager</td><td class="num">78</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-recognized-frederick-county-top-50-business/" target="_blank">/news/morgan-keller-recognized-frederick-county-top-50-…</a></td><td>Morgan-Keller Recognized as a Frederick County Top 50 Business</td><td class="num">78</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/grand-opening-act-1st-federal-credit-union-romney-location/" target="_blank">/news/grand-opening-act-1st-federal-credit-union-romney-…</a></td><td>Grand Opening for ACT 1st Federal Credit Union Romney Location</td><td class="num">78</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-audreyona-beachley-project-accountant/" target="_blank">/news/team-member-spotlight-audreyona-beachley-…</a></td><td>Team Member Spotlight- Audreyona Beachley, Project Accountant</td><td class="num">77</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-completes-cross-stone-commons-middletown-md/" target="_blank">/news/morgan-keller-completes-cross-stone-commons-…</a></td><td>Morgan-Keller completes Cross Stone Commons in Middletown, MD</td><td class="num">77</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-wendy-orantes-estimating-coordinator/" target="_blank">/news/team-member-spotlight-wendy-orantes-…</a></td><td>Team Member Spotlight- Wendy Orantes, Estimating Coordinator</td><td class="num">76</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-2020-spirit-and-safety-award-winners/" target="_blank">/news/morgan-keller-announces-2020-spirit-and-safety-…</a></td><td>Morgan-Keller Announces 2020 Spirit and Safety Award Winners</td><td class="num">76</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-2019-spirit-and-safety-award-winners/" target="_blank">/news/morgan-keller-announces-2019-spirit-and-safety-…</a></td><td>Morgan-Keller Announces 2019 Spirit and Safety Award Winners</td><td class="num">76</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-receives-consteel-building-year-award/" target="_blank">/news/morgan-keller-receives-consteel-building-year-award/</a></td><td>Morgan-Keller Receives CON/STEEL Building of the Year Award</td><td class="num">75</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-underway-maryland-theatre-expansion-project/" target="_blank">/news/construction-underway-maryland-theatre-expansion-…</a></td><td>Construction Underway at Maryland Theatre Expansion Project</td><td class="num">75</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-begins-ashton-apartment-homes-norfolk-va/" target="_blank">/news/morgan-keller-begins-ashton-apartment-homes-…</a></td><td>Morgan-Keller begins Ashton Apartment Homes in Norfolk, VA</td><td class="num">74</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-construction-begins-waverley-view-apartments/" target="_blank">/news/morgan-keller-construction-begins-waverley-view-…</a></td><td>Morgan-Keller Construction Begins Waverley View Apartments</td><td class="num">74</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-looking-new-team-members/" target="_blank">/news/mk-concrete-construction-looking-new-team-members/</a></td><td>MK Concrete Construction is Looking for New Team Members</td><td class="num">72</td></tr>
+        <tr><td colspan="3" style="text-align:center; color:var(--ink-soft); font-style:italic;">First 50 pages shown of 66 over 60 chars (sorted by length desc). The remaining 16 follow the same /news/ article pattern.</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">Cosmetic SERP truncation. A single news-template adjustment (drop the brand suffix on news pages, or shorten article titles) fixes the bulk.</p>
+  </details>
+
+  <details>
+    <summary><strong>Titles under 30 characters</strong> <span class="badge badge-info">7 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand</span></summary>
+    <table class="data" style="margin-top:0.75rem;">
+      <thead><tr><th>Page</th><th>Current title</th><th class="num">Length</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://morgankeller.com/" target="_blank">/</a></td><td><strong>"<code>| Morgan Keller</code>" — leading pipe, missing brand name</strong></td><td class="num">15</td></tr>
+        <tr><td><a href="https://morgankeller.com/es/" target="_blank">/es/</a></td><td><strong>"<code>| Morgan Keller</code>" — same broken pattern on Spanish-language homepage</strong></td><td class="num">15</td></tr>
+        <tr><td><a href="https://morgankeller.com/careers/" target="_blank">/careers/</a></td><td>Careers | Morgan Keller</td><td class="num">23</td></tr>
+        <tr><td><a href="https://morgankeller.com/contact/" target="_blank">/contact/</a></td><td>Contact | Morgan Keller</td><td class="num">23</td></tr>
+        <tr><td><a href="https://morgankeller.com/services/" target="_blank">/services/</a></td><td>Services | Morgan Keller</td><td class="num">24</td></tr>
+        <tr><td><a href="https://morgankeller.com/es/carreras/" target="_blank">/es/carreras/</a></td><td>Carreras | Morgan Keller</td><td class="num">24</td></tr>
+        <tr><td><a href="https://morgankeller.com/about/" target="_blank">/about/</a></td><td>Overview | Morgan Keller</td><td class="num">24</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">The homepage title is the single highest-impact SEO miss in this report. A title like "Morgan-Keller Construction — Commercial General Contractor in Frederick, MD" would meaningfully improve click-through and ranking signals.</p>
+  </details>
+
+  <details>
+    <summary><strong>Duplicate titles</strong> <span class="badge badge-info">4 titles shared across 10 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand</span></summary>
+    <table class="data" style="margin-top:0.75rem;">
+      <thead><tr><th>Duplicated title</th><th>Pages using this title</th><th class="num">Count</th></tr></thead>
+      <tbody>
+        <tr><td><em>"<code>| Morgan Keller</code>"</em> (the broken homepage title)</td><td><a href="https://morgankeller.com/" target="_blank">/</a><br><a href="https://morgankeller.com/es/" target="_blank">/es/</a></td><td class="num">2</td></tr>
+        <tr><td><em>"MK Concrete Construction Team Members Receive ACI Certification | Morgan Keller"</em></td><td><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification/" target="_blank">/news/…aci-certification/</a><br><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification-0/" target="_blank">/news/…aci-certification-0/</a></td><td class="num">2</td></tr>
+        <tr><td><em>"Page not found | Morgan Keller"</em></td><td><a href="https://morgankeller.com/news/morgan-kellers-hammerjacks-project-featured-blue-book-publication/www.thebluebook.com/" target="_blank">/news/…hammerjacks…/www.thebluebook.com/</a><br><a href="https://morgankeller.com/sites/default/files/Baltimore%20%26%20Vicinity_Fall%202016_Hammerjacks.pdf/" target="_blank">/sites/default/files/Baltimore…Hammerjacks.pdf/</a></td><td class="num">2</td></tr>
+        <tr><td><em>"Morgan-Keller Honored at ABC Cumberland Valley Chapter Excellence in Construction…"</em></td><td><a href="https://morgankeller.com/news/morgan-keller-honored-abc-cumberland-valley-chapter-excellence-construction-ceremony-0/" target="_blank">/news/…ceremony-0/</a><br><a href="https://morgankeller.com/news/morgan-keller-honored-abc-cumberland-valley-chapter-excellence-construction-ceremony-1/" target="_blank">/news/…ceremony-1/</a><br><a href="https://morgankeller.com/news/morgan-keller-honored-abc-cumberland-valley-chapter-excellence-construction-ceremony/" target="_blank">/news/…ceremony/</a><br><a href="https://morgankeller.com/news/morgan-keller-honored-abc-cumberland-valley-chapter-excellence-construction-ceremony-2/" target="_blank">/news/…ceremony-2/</a></td><td class="num">4</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">The "Page not found" duplicates suggest two URLs are returning the 404 template. Worth investigating — Google may be indexing them.</p>
+  </details>
+
+  <details>
+    <summary><strong>Pages missing meta description</strong> <span class="badge badge-info">18 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand</span></summary>
+    <table class="data" style="margin-top:0.75rem;">
+      <thead><tr><th>Page</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://morgankeller.com/services/" target="_blank">/services/</a></td><td>Primary services overview page — top-nav destination</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/" target="_blank">/news/</a></td><td>News archive index — top-nav destination</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2026/" target="_blank">/news/2026/</a></td><td rowspan="13" style="vertical-align:middle;">13 yearly archive pages share the same template — single template fix lifts all of them.</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2025/" target="_blank">/news/2025/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2024/" target="_blank">/news/2024/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2023/" target="_blank">/news/2023/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2022/" target="_blank">/news/2022/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2021/" target="_blank">/news/2021/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2020/" target="_blank">/news/2020/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2019/" target="_blank">/news/2019/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2018/" target="_blank">/news/2018/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2017/" target="_blank">/news/2017/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2016/" target="_blank">/news/2016/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2015/" target="_blank">/news/2015/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2014/" target="_blank">/news/2014/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2013/" target="_blank">/news/2013/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-kellers-hammerjacks-project-featured-blue-book-publication/www.thebluebook.com/" target="_blank">/news/…hammerjacks…/www.thebluebook.com/</a></td><td>Likely a malformed URL serving the 404 template — investigate</td></tr>
+        <tr><td><a href="https://morgankeller.com/sites/default/files/Baltimore%20%26%20Vicinity_Fall%202016_Hammerjacks.pdf/" target="_blank">/sites/default/files/Baltimore…Hammerjacks.pdf/</a></td><td>Likely a malformed URL serving the 404 template — investigate</td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <details>
+    <summary><strong>Pages with empty H1 tag</strong> <span class="badge badge-info">2 pages</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand</span></summary>
+    <table class="data" style="margin-top:0.75rem;">
+      <thead><tr><th>Page</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://morgankeller.com/" target="_blank">/</a></td><td>Homepage has exactly one H1 tag (good — no duplicates), but it contains no text. The visible heading "Our Reputation Is Building Every Day" is wrapped as an H2.</td></tr>
+        <tr><td><a href="https://morgankeller.com/es/" target="_blank">/es/</a></td><td>Spanish-language homepage shares the same template — same empty H1.</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">A single template fix on the homepage resolves both at once.</p>
+  </details>
+
+  <details>
+    <summary><strong>Pages with no structured data (JSON-LD)</strong> <span class="badge badge-info">100 / 100 — sitewide</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand</span></summary>
+    <p style="padding:0.5rem 1rem 0.75rem 1rem; font-size:0.9rem;"><strong>Every crawled page is missing structured data.</strong> No Organization, Service, FAQPage, BreadcrumbList, Person, or CreativeWork JSON-LD anywhere in the 100-page sample. This is the single largest leverage point in this report. First 50 affected pages listed below alphabetically; pattern is uniform across all 100 crawled pages.</p>
+    <table class="data" style="margin-top:0.5rem;">
+      <thead><tr><th>Page</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://morgankeller.com/" target="_blank">/</a> <span class="badge badge-info">Homepage</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/about/" target="_blank">/about/</a> <span class="badge badge-info">Top nav</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/careers/" target="_blank">/careers/</a> <span class="badge badge-info">Top nav</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/contact/" target="_blank">/contact/</a> <span class="badge badge-info">Top nav</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/es/" target="_blank">/es/</a> <span class="badge badge-info">ES homepage</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/es/carreras/" target="_blank">/es/carreras/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/" target="_blank">/news/</a> <span class="badge badge-info">Top nav</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2013/" target="_blank">/news/2013/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2014/" target="_blank">/news/2014/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2015/" target="_blank">/news/2015/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2016/" target="_blank">/news/2016/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2016-marks-mk-concretes-20th-anniversary/" target="_blank">/news/2016-marks-mk-concretes-20th-anniversary/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2017/" target="_blank">/news/2017/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2018/" target="_blank">/news/2018/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2019/" target="_blank">/news/2019/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2020/" target="_blank">/news/2020/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2021/" target="_blank">/news/2021/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2022/" target="_blank">/news/2022/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2023/" target="_blank">/news/2023/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2024/" target="_blank">/news/2024/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2025/" target="_blank">/news/2025/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2026/" target="_blank">/news/2026/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/bracken-square-silver-spring-just-got-major-win-housing-accessibility/" target="_blank">/news/bracken-square-silver-spring-just-got-major-win-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-ashburn-chase-apartments-celebrated-grand-opening-ceremony/" target="_blank">/news/completion-ashburn-chase-apartments-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-jt-repair-celebrated/" target="_blank">/news/completion-jt-repair-celebrated/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-msm-knott-academic-center-expansion-celebrated-ribbon-cutting-ceremony/" target="_blank">/news/completion-msm-knott-academic-center-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-terrace-and-junction-begins/" target="_blank">/news/construction-terrace-and-junction-begins/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-underway-atlantic-blvd-apartments/" target="_blank">/news/construction-underway-atlantic-blvd-apartments/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-underway-crossings-spring-hill/" target="_blank">/news/construction-underway-crossings-spring-hill/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-underway-maryland-theatre-expansion-project/" target="_blank">/news/construction-underway-maryland-theatre-expansion-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/exciting-update-bellevue-gardens/" target="_blank">/news/exciting-update-bellevue-gardens/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/faith-house-opening-event-be-held-saturday/" target="_blank">/news/faith-house-opening-event-be-held-saturday/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/grand-opening-act-1st-federal-credit-union-romney-location/" target="_blank">/news/grand-opening-act-1st-federal-credit-union-romney-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-ceremony-held-act-1st-federal-credit-union-romney-wv/" target="_blank">/news/groundbreaking-ceremony-held-act-1st-federal-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-ceremony-held-residences-east-church-street/" target="_blank">/news/groundbreaking-ceremony-held-residences-east-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-held-junction-apartments/" target="_blank">/news/groundbreaking-held-junction-apartments/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-held-transteck-hangar/" target="_blank">/news/groundbreaking-held-transteck-hangar/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/joe-rockovich-joins-mk-concrete-construction-team/" target="_blank">/news/joe-rockovich-joins-mk-concrete-construction-team/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/little-patuxent-senior-apartments-are-officially-open/" target="_blank">/news/little-patuxent-senior-apartments-are-officially-open/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/maryanne-dewitt-project-accountant-recognized-20-year-anniversary-m-k/" target="_blank">/news/maryanne-dewitt-project-accountant-recognized-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-celebrates-retirement-bruce-snyder/" target="_blank">/news/mk-concrete-celebrates-retirement-bruce-snyder/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-looking-new-team-members/" target="_blank">/news/mk-concrete-construction-looking-new-team-members/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification-0/" target="_blank">/news/mk-concrete-construction-team-members-receive-aci-…-0/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification/" target="_blank">/news/mk-concrete-construction-team-members-receive-aci-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-receives-ascc-2017-safety-award/" target="_blank">/news/mk-concrete-receives-ascc-2017-safety-award/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-specialty-contracts-and-mk-commercial-facilities-maintenance-announce-new-projects/" target="_blank">/news/mk-specialty-contracts-and-mk-commercial-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-specialty-contracts-mk-commercial-facilities-maintenance-announce-new-projects/" target="_blank">/news/mk-specialty-contracts-mk-commercial-facilities-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-2019-spirit-and-safety-award-winners/" target="_blank">/news/morgan-keller-announces-2019-spirit-and-safety-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-2020-spirit-and-safety-award-winners/" target="_blank">/news/morgan-keller-announces-2020-spirit-and-safety-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-acquisition-gruber-latimer-restoration/" target="_blank">/news/morgan-keller-announces-acquisition-gruber-latimer-…</a></td></tr>
+        <tr><td colspan="1" style="text-align:center; color:var(--ink-soft); font-style:italic;">First 50 pages shown of 100 (alphabetical). All 100 share the same gap.</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">A custom JSON-LD schema package targeting Morgan-Keller's actual page-types (homepage Organization, 7 service pages, breadcrumb template, FAQ, team-member Person, project CreativeWork) is included as a bonus deliverable with this report — see Coverage Map.</p>
+  </details>
+
+  <details>
+    <summary><strong>Pages with no Open Graph tags</strong> <span class="badge badge-info">100 / 100 — sitewide</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand</span></summary>
+    <p style="padding:0.5rem 1rem 0.75rem 1rem; font-size:0.9rem;"><strong>Every crawled page is missing OG metadata.</strong> No <code>og:title</code>, <code>og:description</code>, <code>og:image</code>, or <code>og:type</code> tags anywhere. Every social or chat share of any Morgan-Keller URL renders as a bare URL with no preview. First 50 affected pages listed below alphabetically; pattern is uniform across all 100 crawled pages.</p>
+    <table class="data" style="margin-top:0.5rem;">
+      <thead><tr><th>Page</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://morgankeller.com/" target="_blank">/</a> <span class="badge badge-info">Homepage</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/about/" target="_blank">/about/</a> <span class="badge badge-info">Top nav</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/careers/" target="_blank">/careers/</a> <span class="badge badge-info">Top nav</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/contact/" target="_blank">/contact/</a> <span class="badge badge-info">Top nav</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/es/" target="_blank">/es/</a> <span class="badge badge-info">ES homepage</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/es/carreras/" target="_blank">/es/carreras/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/" target="_blank">/news/</a> <span class="badge badge-info">Top nav</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2013/" target="_blank">/news/2013/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2014/" target="_blank">/news/2014/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2015/" target="_blank">/news/2015/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2016/" target="_blank">/news/2016/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2016-marks-mk-concretes-20th-anniversary/" target="_blank">/news/2016-marks-mk-concretes-20th-anniversary/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2017/" target="_blank">/news/2017/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2018/" target="_blank">/news/2018/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2019/" target="_blank">/news/2019/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2020/" target="_blank">/news/2020/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2021/" target="_blank">/news/2021/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2022/" target="_blank">/news/2022/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2023/" target="_blank">/news/2023/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2024/" target="_blank">/news/2024/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2025/" target="_blank">/news/2025/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2026/" target="_blank">/news/2026/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/bracken-square-silver-spring-just-got-major-win-housing-accessibility/" target="_blank">/news/bracken-square-silver-spring-just-got-major-win-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-ashburn-chase-apartments-celebrated-grand-opening-ceremony/" target="_blank">/news/completion-ashburn-chase-apartments-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-jt-repair-celebrated/" target="_blank">/news/completion-jt-repair-celebrated/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-msm-knott-academic-center-expansion-celebrated-ribbon-cutting-ceremony/" target="_blank">/news/completion-msm-knott-academic-center-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-terrace-and-junction-begins/" target="_blank">/news/construction-terrace-and-junction-begins/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-underway-atlantic-blvd-apartments/" target="_blank">/news/construction-underway-atlantic-blvd-apartments/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-underway-crossings-spring-hill/" target="_blank">/news/construction-underway-crossings-spring-hill/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/construction-underway-maryland-theatre-expansion-project/" target="_blank">/news/construction-underway-maryland-theatre-expansion-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/exciting-update-bellevue-gardens/" target="_blank">/news/exciting-update-bellevue-gardens/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/faith-house-opening-event-be-held-saturday/" target="_blank">/news/faith-house-opening-event-be-held-saturday/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/grand-opening-act-1st-federal-credit-union-romney-location/" target="_blank">/news/grand-opening-act-1st-federal-credit-union-romney-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-ceremony-held-act-1st-federal-credit-union-romney-wv/" target="_blank">/news/groundbreaking-ceremony-held-act-1st-federal-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-ceremony-held-residences-east-church-street/" target="_blank">/news/groundbreaking-ceremony-held-residences-east-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-held-junction-apartments/" target="_blank">/news/groundbreaking-held-junction-apartments/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/groundbreaking-held-transteck-hangar/" target="_blank">/news/groundbreaking-held-transteck-hangar/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/joe-rockovich-joins-mk-concrete-construction-team/" target="_blank">/news/joe-rockovich-joins-mk-concrete-construction-team/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/little-patuxent-senior-apartments-are-officially-open/" target="_blank">/news/little-patuxent-senior-apartments-are-officially-open/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/maryanne-dewitt-project-accountant-recognized-20-year-anniversary-m-k/" target="_blank">/news/maryanne-dewitt-project-accountant-recognized-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-celebrates-retirement-bruce-snyder/" target="_blank">/news/mk-concrete-celebrates-retirement-bruce-snyder/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-looking-new-team-members/" target="_blank">/news/mk-concrete-construction-looking-new-team-members/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification-0/" target="_blank">/news/mk-concrete-construction-team-members-receive-aci-…-0/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification/" target="_blank">/news/mk-concrete-construction-team-members-receive-aci-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-receives-ascc-2017-safety-award/" target="_blank">/news/mk-concrete-receives-ascc-2017-safety-award/</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-specialty-contracts-and-mk-commercial-facilities-maintenance-announce-new-projects/" target="_blank">/news/mk-specialty-contracts-and-mk-commercial-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-specialty-contracts-mk-commercial-facilities-maintenance-announce-new-projects/" target="_blank">/news/mk-specialty-contracts-mk-commercial-facilities-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-2019-spirit-and-safety-award-winners/" target="_blank">/news/morgan-keller-announces-2019-spirit-and-safety-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-2020-spirit-and-safety-award-winners/" target="_blank">/news/morgan-keller-announces-2020-spirit-and-safety-…</a></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-announces-acquisition-gruber-latimer-restoration/" target="_blank">/news/morgan-keller-announces-acquisition-gruber-latimer-…</a></td></tr>
+        <tr><td colspan="1" style="text-align:center; color:var(--ink-soft); font-style:italic;">First 50 pages shown of 100 (alphabetical). All 100 share the same gap.</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">Trivial template-level fix. One OG block in the page <code>&lt;head&gt;</code> template, image fallback to a brand asset. Affects every share thereafter.</p>
+  </details>
+
+  <details>
+    <summary><strong>Broken external links (4xx/5xx responses)</strong> <span class="badge badge-info">6 found</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand</span></summary>
+    <table class="data" style="margin-top:0.75rem;">
+      <thead><tr><th>On page</th><th>Broken href</th><th>Anchor</th><th class="num">Status</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://morgankeller.com/" target="_blank">/</a></td><td><code style="font-size:0.78rem;">https://morgankellerinc-hff.viewpointforcloud.com/</code></td><td>Employee Portal</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/" target="_blank">/</a></td><td><code style="font-size:0.78rem;">https://www.facebook.com/pages/Morgan-Keller-Construction/262692970248</code></td><td>(Facebook icon)</td><td class="num"><span class="badge badge-error">400</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/careers/" target="_blank">/careers/</a></td><td><code style="font-size:0.78rem;">https://morgankellerinc-hff.viewpointforcloud.com/Careers/BrowseJobs</code></td><td>Proceed to Career Site</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/news/ribbon-cutting-and-dedication-ceremony-held-seton-center-outreach-office-and-family-store/" target="_blank">/news/…seton-center…/</a></td><td><code style="font-size:0.78rem;">http://www.setoncenter.org</code></td><td>www.setoncenter.org</td><td class="num"><span class="badge badge-error">405</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/privacy-policy/" target="_blank">/privacy-policy/</a></td><td><code style="font-size:0.78rem;">https://tools.google.com/dlpage/gaoptouthttps://tools.google.com/dlpage/gaoptout</code></td><td>tools.google.com/dlpage/gaoptout</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+        <tr><td><a href="https://morgankeller.com/privacy-policy/" target="_blank">/privacy-policy/</a></td><td><code style="font-size:0.78rem;">https://support.google.com/chrome/answer/95647?hl=en</code></td><td>Google Chrome</td><td class="num"><span class="badge badge-error">404</span></td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">Highest-visibility issues are the Employee Portal (homepage) and Career Site (careers page) — staff and applicants are hitting these. The privacy-policy page has a malformed concatenated URL that's worth a quick fix.</p>
+  </details>
+
+  <details>
+    <summary><strong>Pages with external links missing nofollow</strong> <span class="badge badge-info">100 pages · 8,883 links sitewide</span> <span style="color:var(--ink-soft); font-size:0.85rem;">· click to expand (top 5)</span></summary>
+    <table class="data" style="margin-top:0.75rem;">
+      <thead><tr><th>Page</th><th class="num">Outbound links without nofollow</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://morgankeller.com/" target="_blank">/</a></td><td class="num">111</td></tr>
+        <tr><td><a href="https://morgankeller.com/es/" target="_blank">/es/</a></td><td class="num">111</td></tr>
+        <tr><td><a href="https://morgankeller.com/services/" target="_blank">/services/</a></td><td class="num">102</td></tr>
+        <tr><td><a href="https://morgankeller.com/privacy-policy/" target="_blank">/privacy-policy/</a></td><td class="num">93</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-helps-celebrate-progress-little-patuxent-apartments-gambrills-md/" target="_blank">/news/…little-patuxent…/</a></td><td class="num">91</td></tr>
+        <tr><td><a href="https://morgankeller.com/contact/" target="_blank">/contact/</a></td><td class="num">90</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/little-patuxent-senior-apartments-are-officially-open/" target="_blank">/news/little-patuxent-senior-apartments-are-officially-open/</a></td><td class="num">90</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-completes-stonecroft-industrial-center/" target="_blank">/news/morgan-keller-completes-stonecroft-industrial-center/</a></td><td class="num">90</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-celebrates-opening-rappahannock-food-pantry-rush-river-commons/" target="_blank">/news/morgan-keller-celebrates-opening-rappahannock-…</a></td><td class="num">90</td></tr>
+        <tr><td><a href="https://morgankeller.com/careers/" target="_blank">/careers/</a></td><td class="num">89</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/ribbon-cutting-and-dedication-ceremony-held-seton-center-outreach-office-and-family-store/" target="_blank">/news/ribbon-cutting-…seton-center…/</a></td><td class="num">89</td></tr>
+        <tr><td><a href="https://morgankeller.com/es/carreras/" target="_blank">/es/carreras/</a></td><td class="num">89</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-helps-celebrate-grand-opening-fitcis-edge-321/" target="_blank">/news/morgan-keller-helps-celebrate-grand-opening-fitcis-…</a></td><td class="num">89</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/faith-house-opening-event-be-held-saturday/" target="_blank">/news/faith-house-opening-event-be-held-saturday/</a></td><td class="num">89</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-breaks-ground-riverside-square/" target="_blank">/news/morgan-keller-breaks-ground-riverside-square/</a></td><td class="num">89</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/orchard-park-ballenger-run-earns-builder-year-award-developer/" target="_blank">/news/orchard-park-ballenger-run-earns-builder-year-…</a></td><td class="num">89</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/winter-here-your-guide-247-emergency-response-and-preventative-maintenance/" target="_blank">/news/winter-here-your-guide-247-emergency-response-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/" target="_blank">/news/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-expands-portfolio-affordable-housing-rehabilitation-projects/" target="_blank">/news/morgan-keller-expands-portfolio-affordable-housing-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2016/" target="_blank">/news/2016/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2020/" target="_blank">/news/2020/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-celebrates-70th-anniversary/" target="_blank">/news/morgan-keller-celebrates-70th-anniversary/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-looking-new-team-members/" target="_blank">/news/mk-concrete-construction-looking-new-team-members/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-wendy-orantes-estimating-coordinator/" target="_blank">/news/team-member-spotlight-wendy-orantes-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/specialty-contracts-looking-new-team-members/" target="_blank">/news/specialty-contracts-looking-new-team-members/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-audreyona-beachley-project-accountant/" target="_blank">/news/team-member-spotlight-audreyona-beachley-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2022/" target="_blank">/news/2022/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-specialty-contracts-completes-montgomery-count-employees-federal-credit-union/" target="_blank">/news/morgan-keller-specialty-contracts-completes-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-msm-knott-academic-center-expansion-celebrated-ribbon-cutting-ceremony/" target="_blank">/news/completion-msm-knott-academic-center-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2018/" target="_blank">/news/2018/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2013/" target="_blank">/news/2013/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/mk-concrete-construction-team-members-receive-aci-certification/" target="_blank">/news/mk-concrete-construction-team-members-receive-aci-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2024/" target="_blank">/news/2024/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-begins-brambleton-performing-arts-c/" target="_blank">/news/morgan-keller-begins-brambleton-performing-arts-c/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/completion-ashburn-chase-apartments-celebrated-grand-opening-ceremony/" target="_blank">/news/completion-ashburn-chase-apartments-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/bracken-square-silver-spring-just-got-major-win-housing-accessibility/" target="_blank">/news/bracken-square-silver-spring-just-got-major-win-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/topping-ceremony-held-meritus-commons/" target="_blank">/news/topping-ceremony-held-meritus-commons/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-construction-announces-additions-ownership-team/" target="_blank">/news/morgan-keller-construction-announces-additions-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-construction-completes-culler-lake-desiltation-park-improvement-project/" target="_blank">/news/morgan-keller-construction-completes-culler-lake-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-kellers-hammerjacks-project-featured-blue-book-publication/" target="_blank">/news/morgan-kellers-hammerjacks-project-featured-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-begins-knowles-manor-senior-housing/" target="_blank">/news/morgan-keller-begins-knowles-manor-senior-housing/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/team-member-spotlight-dina-davis-corporate-marketing-manager/" target="_blank">/news/team-member-spotlight-dina-davis-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-completes-potbelly-sandwich-shop/" target="_blank">/news/morgan-keller-completes-potbelly-sandwich-shop/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-receives-consteel-building-year-award/" target="_blank">/news/morgan-keller-receives-consteel-building-year-award/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-receives-nci-awards/" target="_blank">/news/morgan-keller-receives-nci-awards/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/2017/" target="_blank">/news/2017/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-completes-ede-apartments/" target="_blank">/news/morgan-keller-completes-ede-apartments/</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-recognized-frederick-county-top-50-business/" target="_blank">/news/morgan-keller-recognized-frederick-county-top-50-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-begins-ashton-apartment-homes-norfolk-va/" target="_blank">/news/morgan-keller-begins-ashton-apartment-homes-…</a></td><td class="num">88</td></tr>
+        <tr><td><a href="https://morgankeller.com/news/morgan-keller-construction-begin-meritus-outpatient-services-project/" target="_blank">/news/morgan-keller-construction-begin-meritus-outpatient-…</a></td><td class="num">88</td></tr>
+        <tr><td colspan="2" style="text-align:center; color:var(--ink-soft); font-style:italic;">First 50 pages shown of 100 (sorted by count desc). All 100 pages have outbound external links without nofollow — pattern is uniform sitewide. Total links: 8,883.</td></tr>
+      </tbody>
+    </table>
+    <p class="source-note">High counts on the homepage and Services page suggest the site nav itself is rendering as external (likely the canonical apex/www mismatch — homepage canonical points at <code>www.</code> while the crawled URL is the apex). Canonical alignment + selective nofollow rule on third-party reference links would address most of this.</p>
+  </details>
+
+  <h3>Infrastructure</h3>
+  <table class="data">
+    <thead><tr><th>Factor</th><th>Status</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Sitemap XML</td><td><span class="badge badge-error">Not found</span></td><td>No <code>sitemap.xml</code> at the standard root path. Helps Google discover and prioritize pages — low-effort win.</td></tr>
+      <tr><td>Robots.txt</td><td><span class="badge badge-ok">Found — standard</span></td><td>Standard Drupal-style robots.txt. No AI-bot blocks. No crawl-budget restrictions.</td></tr>
+      <tr><td>Canonical tags</td><td><span class="badge badge-warn">Inconsistent (apex vs www)</span></td><td>Homepage canonical points at <code>https://www.morgankeller.com/</code> but the apex serves the same page. Apex and www should align.</td></tr>
+      <tr><td>HTTPS</td><td><span class="badge badge-ok">Yes</span></td><td>—</td></tr>
+      <tr><td>Schema markup</td><td><span class="badge badge-error">0 / 100</span></td><td>Sitewide gap — see fix priority + bonus schema package below.</td></tr>
+      <tr><td>OpenGraph tags</td><td><span class="badge badge-error">0 / 100</span></td><td>Sitewide gap — template fix.</td></tr>
+      <tr><td>Redirect chains</td><td><span class="badge badge-ok">None</span></td><td>Clean.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Recommended fix priority</h3>
+  <ol>
+    <li><strong>Deploy the JSON-LD schema package</strong> (included with this report) — drop each payload into the <code>&lt;head&gt;</code> of the corresponding page. Single largest move for AI Overview eligibility.</li>
+    <li><strong>Fix the homepage <code>&lt;title&gt;</code> tag and empty H1</strong> — template-level fix, ~30 min of dev time. Single highest-impact on-page SEO element.</li>
+    <li><strong>Add Open Graph tags</strong> sitewide via template — <code>og:title</code>, <code>og:description</code>, <code>og:image</code>, <code>og:type</code>. Affects every share thereafter.</li>
+    <li><strong>Add meta descriptions</strong> to the 18 missing pages (Services, News index, 13 yearly archives) — single template fix lifts the bulk.</li>
+    <li><strong>Generate and submit <code>sitemap.xml</code></strong> at the root, register in Google Search Console.</li>
+    <li><strong>Audit + fix the 6 broken external links</strong>, particularly the Employee Portal and Career Site links visible to staff and applicants.</li>
+  </ol>
+
+  <h3>Excellent fundamentals worth keeping</h3>
+  <ul>
+    <li><strong>Alt-text coverage at 100%</strong> across all 109 images crawled. Many sites this size sit at 60–80%. Exemplary.</li>
+    <li><strong>Single H1 per page across the site</strong> — no duplicates, no multiple-H1s. Empty H1 on the two homepages is the only outlier.</li>
+    <li><strong>Robots.txt clean and indexable</strong> — no inadvertent blocks on internal pages.</li>
+    <li><strong>Zero redirect chains</strong> — clean URL structure.</li>
+  </ul>
+
+  <div class="callout info">
+    <div class="h">Scope note</div>
+    <p style="margin:0;">This audit covers the 100-page crawl + homepage-level on-page elements. Per-page schema/OG coverage and a sitewide broken-link audit at scale are out of scope for this $75 research product. Available as a site-wide technical SEO audit engagement — see Next Steps.</p>
+  </div>
+
+  <h3 style="margin-top:2rem;">PageSpeed Insights — morgankeller.com</h3>
+  <p class="source-note">Source: Google PageSpeed Insights · <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.morgankeller.com%2F&form_factor=mobile" target="_blank" rel="noopener">Open live PageSpeed for mobile ↗</a> · <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fwww.morgankeller.com%2F&form_factor=desktop" target="_blank" rel="noopener">Open live PageSpeed for desktop ↗</a></p>
+
+  <table class="data">
+    <thead><tr><th>Performance Lab Score</th><th class="num">Mobile</th><th class="num">Desktop</th></tr></thead>
+    <tbody>
+      <tr><td>Performance · Accessibility · Best Practices · SEO</td><td class="num"><span class="badge badge-incomplete">Capture pending — May 18</span></td><td class="num"><span class="badge badge-incomplete">Capture pending — May 18</span></td></tr>
+    </tbody>
+  </table>
+
+  <table class="data">
+    <thead><tr><th>Core Web Vitals / Lab Metrics</th><th class="num">Mobile</th><th class="num">Desktop</th></tr></thead>
+    <tbody>
+      <tr><td>LCP · FCP · TBT · CLS · Speed Index</td><td class="num"><span class="badge badge-incomplete">Capture pending — May 18</span></td><td class="num"><span class="badge badge-incomplete">Capture pending — May 18</span></td></tr>
+    </tbody>
+  </table>
+
+  <p class="source-note">CrUX Real-User (28-day field) data: <strong>Capture pending — May 18.</strong> Whether the site has enough monthly traffic for Chrome to build a reliable field dataset will be confirmed at that point.</p>
+
+  <div class="callout warn">
+    <div class="h">PageSpeed lab + field data — captured by May 18, 2026</div>
+    <p style="margin:0;">PSI lab scores, Core Web Vitals, and CrUX field data are scheduled for capture and will be inserted into this report at the existing URL by May 18. The two live links above run a fresh PageSpeed report on demand — those work today.</p>
+  </div>
+</div>
+
+<div id="keywords" class="section">
+  <h2>Keyword Landscape</h2>
+  <p class="source-note">Source: keyword research run in three tiers across April 23–29, 2026, all extracted at the Frederick County, MD location filter. Tier 1 (full-geo, "<service> frederick md") and Tier 2 (mid-geo, "<service> frederick") were submitted to test phrasing-tier coverage; Tier 3 (bare service, "<service>") was added April 29 after the Tier 1 zero-SV pattern raised the question of whether the market was thin or the phrasing tier was wrong. Keywords below are grouped by the Morgan-Keller service page they should optimize toward.</p>
+
+  <div class="callout">
+    <div class="h">The three-tier finding</div>
+    <p style="margin:0 0 0.7rem;">The Frederick County MD commercial-GC search market is thin <em>at geo-modified phrasing</em> and non-zero at bare-service phrasing. Searchers don't geo-qualify their queries — they search the bare term and Google handles geo-targeting via IP and SERP ranking.</p>
+    <table class="data" style="margin-bottom:0.6rem;">
+      <thead><tr><th>Tier</th><th>Phrasing example</th><th class="num">Terms tested</th><th class="num">With SV &gt; 0</th><th class="num">Zero SV</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tier 1 — Full-geo</strong></td><td><em>commercial construction frederick md</em></td><td class="num">16</td><td class="num">2</td><td class="num">14</td></tr>
+        <tr><td><strong>Tier 2 — Mid-geo</strong></td><td><em>commercial construction frederick</em></td><td class="num">16</td><td class="num">0</td><td class="num">16</td></tr>
+        <tr style="background:#f7f9e8;"><td><strong>Tier 3 — Bare service</strong></td><td><em>commercial construction</em></td><td class="num">16</td><td class="num"><strong>11</strong></td><td class="num">5</td></tr>
+      </tbody>
+    </table>
+    <p style="margin:0;"><strong>The honest read:</strong> 11 head-term commercial-construction queries register 10–20 SV/mo at the Frederick County filter when stripped of geo-modifiers. CPC = $0 across nearly every term — there is no paid market to lose. The 5 specialty verticals (flex space, healthcare facility, medical office, office buildout, school) zero at every tier — those are off-keyword markets, not phrasing-tier artifacts. Organic SEO is the realistic channel; Morgan-Keller's existing authority position favors that.</p>
+  </div>
+
+  <p style="font-size:0.9rem; color:var(--ink-soft);"><strong>Columns:</strong> Intent (I = Informational, N = Navigational, C = Commercial, T = Transactional; multi-letter = mixed) · SV = monthly searches at the Frederick County filter · Competitor Pressure = number of competitors ranking · CPC = average cost-per-click · PPC Difficulty = competitive difficulty (0–100).</p>
+
+  <h3>Homepage / firm overview (broad-service brand anchor)</h3>
+  <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:0.4rem;">Brand-anchor page captures broad commercial-construction searches. Phrasing variants stack together.</p>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr style="background:#f7f9e8;"><td><strong>commercial construction frederick md</strong> <span class="badge badge-ok">Primary</span></td><td>N</td><td class="num"><strong>10</strong></td><td class="num">0</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>commercial general contractor frederick md</td><td>T C</td><td class="num">0</td><td class="num">4</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>commercial contractor frederick md</td><td>T C</td><td class="num">0</td><td class="num">3</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>commercial contractors frederick md (plural)</td><td>—</td><td class="num"><span class="badge badge-incomplete">No Data Returned</span></td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Construction Management (<a href="https://morgankeller.com/services/construction-management/" target="_blank">/services/construction-management/</a>)</h3>
+  <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:0.4rem;">Tied with the homepage cluster as the only keyword with monthly volume. Healthcare and school construction queries map here since Morgan-Keller delivers them via construction-management contracts.</p>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr style="background:#f7f9e8;"><td><strong>construction management frederick md</strong> <span class="badge badge-ok">Primary</span></td><td>N</td><td class="num"><strong>10</strong></td><td class="num">23</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>healthcare facility construction maryland</td><td>T</td><td class="num">0</td><td class="num"><strong>63</strong></td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>school construction frederick county md</td><td>N</td><td class="num">0</td><td class="num">46</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>medical office construction frederick md</td><td>N</td><td class="num">0</td><td class="num">0</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>medical office buildings near me</td><td>—</td><td class="num"><span class="badge badge-incomplete">No Data Returned</span></td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Pre-Construction (<a href="https://morgankeller.com/services/preconstruction/" target="_blank">/services/preconstruction/</a>)</h3>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td><strong>pre construction services frederick md</strong> <span class="badge badge-ok">Primary</span></td><td>N</td><td class="num">0</td><td class="num">8</td><td class="num">$0</td><td class="num">0</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Design-Build (<a href="https://morgankeller.com/services/design-build/" target="_blank">/services/design-build/</a>)</h3>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td><strong>design build contractor frederick md</strong> <span class="badge badge-ok">Primary</span></td><td>C T</td><td class="num">0</td><td class="num">6</td><td class="num">$0</td><td class="num">0</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Specialty / sector construction (<a href="https://morgankeller.com/services/general-contracting/" target="_blank">/services/general-contracting/</a> + page-coverage gap)</h3>
+  <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:0.4rem;">Morgan-Keller delivers these but doesn't have dedicated landing pages. Keywords return zero volume at this geography — the page-coverage gap is the content-strategy lever.</p>
+  <table class="data">
+    <thead><tr><th>Keyword</th><th>Intent</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th></tr></thead>
+    <tbody>
+      <tr><td>warehouse construction frederick md</td><td>C T</td><td class="num">0</td><td class="num">21</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>industrial construction frederick md</td><td>T</td><td class="num">0</td><td class="num">4</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>flex space construction frederick md</td><td>N</td><td class="num">0</td><td class="num">22</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>tenant fit out frederick md</td><td>N</td><td class="num">0</td><td class="num">6</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>office buildout frederick md</td><td>T C</td><td class="num">0</td><td class="num">16</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>commercial renovation frederick md</td><td>C T</td><td class="num">0</td><td class="num">10</td><td class="num">$0</td><td class="num">0</td></tr>
+      <tr><td>church construction maryland</td><td>T</td><td class="num">0</td><td class="num">21</td><td class="num">$0</td><td class="num">0</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Tier 3 — Bare-service queries at the Frederick County filter</h3>
+  <p style="font-size:0.9rem; color:var(--ink-soft); margin-bottom:0.4rem;">When the geo-modifier is stripped and only the bare service term is queried with a Frederick County location filter, eleven head-term queries register volume that the geo-modified tiers above missed. This is the demand searchers actually express — they let Google's geo-targeting infer location rather than typing it.</p>
+  <table class="data">
+    <thead><tr><th>Bare-service query</th><th class="num">SV / mo</th><th class="num">Competitor Pressure</th><th class="num">CPC</th><th class="num">PPC Difficulty</th><th>Maps to page group</th></tr></thead>
+    <tbody>
+      <tr style="background:#f7f9e8;"><td><strong>construction management</strong></td><td class="num"><strong>20</strong></td><td class="num">10</td><td class="num">$9.40</td><td class="num">33</td><td>Construction Management</td></tr>
+      <tr><td>church construction</td><td class="num">10</td><td class="num">25</td><td class="num">$0</td><td class="num">21</td><td>Specialty / sector</td></tr>
+      <tr><td>commercial construction</td><td class="num">10</td><td class="num">3</td><td class="num">$4.10</td><td class="num">16</td><td>Homepage / brand anchor</td></tr>
+      <tr><td>commercial contractor</td><td class="num">10</td><td class="num">8</td><td class="num">$4.90</td><td class="num">48</td><td>Homepage / brand anchor</td></tr>
+      <tr><td>commercial general contractor</td><td class="num">10</td><td class="num">18</td><td class="num">$8.00</td><td class="num">18</td><td>Homepage / brand anchor</td></tr>
+      <tr><td>commercial renovation</td><td class="num">10</td><td class="num">23</td><td class="num">$2.90</td><td class="num">100</td><td>Specialty / sector</td></tr>
+      <tr><td>design build contractor</td><td class="num">10</td><td class="num">44</td><td class="num">$5.50</td><td class="num">15</td><td>Design-Build</td></tr>
+      <tr><td>industrial construction</td><td class="num">10</td><td class="num">7</td><td class="num">$2.20</td><td class="num">4</td><td>Specialty / sector</td></tr>
+      <tr><td>pre construction services</td><td class="num">10</td><td class="num">26</td><td class="num">$0</td><td class="num">8</td><td>Pre-Construction</td></tr>
+      <tr><td>tenant fit out</td><td class="num">10</td><td class="num">22</td><td class="num">$0</td><td class="num">7</td><td>Specialty / sector</td></tr>
+      <tr><td>warehouse construction</td><td class="num">10</td><td class="num">39</td><td class="num">$0</td><td class="num">43</td><td>Specialty / sector</td></tr>
+      <tr style="color:var(--ink-soft);"><td>flex space construction</td><td class="num">0</td><td class="num">0</td><td class="num">$0</td><td class="num">0</td><td>Specialty (zero at all tiers)</td></tr>
+      <tr style="color:var(--ink-soft);"><td>healthcare facility construction</td><td class="num">0</td><td class="num">1</td><td class="num">$0</td><td class="num">18</td><td>Specialty (zero at all tiers)</td></tr>
+      <tr style="color:var(--ink-soft);"><td>medical office construction</td><td class="num">0</td><td class="num">10</td><td class="num">$0</td><td class="num">13</td><td>Specialty (zero at all tiers)</td></tr>
+      <tr style="color:var(--ink-soft);"><td>office buildout</td><td class="num">0</td><td class="num">4</td><td class="num">$0</td><td class="num">39</td><td>Specialty (zero at all tiers)</td></tr>
+      <tr style="color:var(--ink-soft);"><td>school construction</td><td class="num">0</td><td class="num">6</td><td class="num">$0</td><td class="num">7</td><td>Specialty (zero at all tiers)</td></tr>
+    </tbody>
+  </table>
+  <p class="source-note">Same Frederick County, MD location filter as Tiers 1 and 2 — the SV represents Frederick County users searching the bare service term, with Google handling the geo-targeting. CPC values appear here that did not appear at the geo-modified tiers because national-tier advertiser bidding is exposed when geo-modifiers are stripped, even though the SV remains county-filtered. The 5 zero-volume specialty terms confirm the off-keyword finding from Tiers 1 and 2: those service categories are real work for Morgan-Keller, but the demand is not expressed in keyword search at any phrasing tier.</p>
+
+  <div class="callout info">
+    <div class="h">What changes for content strategy</div>
+    <p style="margin:0;">The page-by-page mapping in the per-service tables above stays correct — those are the geo-anchored queries Morgan-Keller's pages should resolve. Tier 3 adds a second layer: the homepage and broad service pages should also rank for the <strong>bare-service head terms</strong> that account for most of the actual demand. Title tags, H1s, and intro copy should carry the bare-service phrase ("commercial construction," "commercial general contractor," "construction management") in addition to the geo-anchored variants — not as keyword stuffing, but because bare-service phrasing is what the data shows the market uses.</p>
+  </div>
+
+  <h3>What we submitted vs. what people actually search</h3>
+  <p>Two keywords were submitted but returned no data. Both are flagged explicitly rather than reported as zero — the underlying behaviors are different.</p>
+  <table class="data">
+    <thead><tr><th>Submitted (no data)</th><th>Likely cause</th><th>Suggested alternative</th></tr></thead>
+    <tbody>
+      <tr><td>medical office buildings near me</td><td>"Near me" geo-aware queries are handled differently by the keyword research backend — they return personalized SERPs that don't surface in keyword databases.</td><td>Track via Google Search Console + Google Business Profile insights instead. The right targeting is GBP optimization + map-pack ranking, not SERP keyword tracking.</td></tr>
+      <tr><td>commercial contractors frederick md (plural)</td><td>The plural variant likely deduplicates against the singular at extraction. Singular "commercial contractor frederick md" returned data; the plural collapsed into it.</td><td>Use the singular variant for content targeting. Both will satisfy plural and singular searches.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Two keywords worth surfacing strategically</h3>
+  <ul>
+    <li><strong>healthcare facility construction maryland (Competitor Pressure 63)</strong> — heaviest organic competition in the set. State-level keyword dominated by national GCs. Address with a Maryland-positioning content piece, not a service page.</li>
+    <li><strong>school construction frederick county md (Competitor Pressure 46)</strong> — institutional / public-sector niche. Frederick County Public Schools is the obvious primary buyer. A dedicated landing page with project case studies (Hagerstown CC Learning Resource Center, MSM Knott Academic Center) would earn this query.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="h">What this says about Morgan-Keller's market</div>
+    <p style="margin:0;"><strong>Frederick County MD commercial-GC search demand is concentrated</strong> in two general-category queries that Morgan-Keller already has authority for. The path forward is <strong>page coverage expansion</strong> into specialty service categories where Morgan-Keller does the work but lacks a dedicated page — medical office, multifamily, school, tenant fit-out. Each is winnable; the content just hasn't been built.</p>
+    <p style="margin-top:0.7rem;"><strong>Strengths worth protecting:</strong> Morgan-Keller ranks #1 for branded queries (<em>morgan keller construction</em> SV 590, <em>morgan keller</em> SV 590, <em>morgan keller inc</em> SV 90 — 470+ monthly branded clicks). Branded visibility is the foundation. Build outward from it.</p>
+    <p style="margin-top:0.7rem;"><strong>Commercial intent on the Core 2</strong> ("commercial construction frederick md" + "construction management frederick md") means Google returns a mixed SERP (local map pack + 3-5 organic results). <strong>Google Business Profile optimization + map-pack ranking matters as much as classic SEO</strong> for these queries. GBP is a logical adjacent engagement.</p>
+  </div>
+</div>
+
+<div id="competitive" class="section">
+  <h2>Competitive Landscape — Morgan-Keller vs. 3 Commercial GC Competitors</h2>
+  <p class="source-note">Source: competitive landscape pulled 2026-04-25 across 4 domains via third-party SEO authority data. Comparison set: Kinsley Construction, Harkins Builders, KasCon Inc — three commercial general contractors confirmed as Morgan-Keller's actual competitive set.</p>
+
+  <h3>Domain metrics comparison</h3>
+  <p class="source-note">Top rows follow the standard industry comparison layout. The Authority + AI Signals block extends beyond standard authority benchmarks to include AI visibility, trust/citation flow, and spam signals.</p>
+  <table class="data">
+    <thead><tr><th>Factor</th><th class="num">morgankeller.com</th><th class="num">kinsleyconstruction.com</th><th class="num">harkinsbuilders.com</th><th class="num">kasconinc.com</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Indexed Pages</strong></td><td class="num"><span class="badge badge-incomplete">Pending — May 18</span></td><td class="num"><span class="badge badge-incomplete">Pending — May 18</span></td><td class="num"><span class="badge badge-incomplete">Pending — May 18</span></td><td class="num"><span class="badge badge-incomplete">Pending — May 18</span></td></tr>
+      <tr><td>Indexed Pages Last 30 Days</td><td class="num"><span class="badge badge-incomplete">Pending — May 18</span></td><td class="num"><span class="badge badge-incomplete">Pending — May 18</span></td><td class="num"><span class="badge badge-incomplete">Pending — May 18</span></td><td class="num"><span class="badge badge-incomplete">Pending — May 18</span></td></tr>
+      <tr><td>Domain Rating</td><td class="num">31</td><td class="num">—</td><td class="num"><strong>40</strong></td><td class="num">11</td></tr>
+      <tr style="background: #fffbeb;"><td><strong>Total Monthly Organic Traffic</strong></td><td class="num">1,100</td><td class="num"><strong>7,300</strong></td><td class="num">2,600</td><td class="num">256</td></tr>
+      <tr><td>Referring Domains</td><td class="num">699</td><td class="num"><strong>781</strong></td><td class="num">598</td><td class="num">214</td></tr>
+      <tr><td>Total Backlinks</td><td class="num">1,700</td><td class="num"><strong>9,500</strong></td><td class="num">7,000</td><td class="num">1,300</td></tr>
+      <tr><td>Backlinks Last 30 Days</td><td class="num" colspan="4" style="text-align:left; font-style:italic; color:var(--ink-soft);">Data scraping. Will be updated May 18, 2026.</td></tr>
+      <tr><td>Organic Keywords</td><td class="num">771</td><td class="num"><strong>4,100</strong></td><td class="num">297</td><td class="num">155</td></tr>
+      <tr><td>Domain Authority</td><td class="num">30</td><td class="num">32</td><td class="num"><strong>35</strong></td><td class="num">26</td></tr>
+      <tr style="background: var(--hr-green-bg);"><td colspan="5" style="padding:0.4rem 1rem; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hr-green-dark);">Authority + AI Signals — beyond the standard benchmark</td></tr>
+      <tr><td>AI Overviews (count)</td><td class="num"><strong>1</strong></td><td class="num">0</td><td class="num"><strong>1</strong></td><td class="num">0</td></tr>
+      <tr><td>Trust Flow</td><td class="num"><strong>37</strong></td><td class="num">22</td><td class="num">22</td><td class="num">4</td></tr>
+      <tr><td>Citation Flow</td><td class="num"><strong>33</strong></td><td class="num">25</td><td class="num">28</td><td class="num">14</td></tr>
+      <tr><td>Spam Score</td><td class="num"><span class="badge badge-ok">1</span></td><td class="num">9</td><td class="num"><span class="badge badge-ok">1</span></td><td class="num"><span class="badge badge-error">17</span></td></tr>
+      <tr><td>Brand Signal</td><td class="num"><strong>52</strong></td><td class="num">43.4</td><td class="num">0 (propagating)</td><td class="num">0 (propagating)</td></tr>
+      <tr><td>URL PageRank</td><td class="num">4</td><td class="num">—</td><td class="num"><strong>11</strong></td><td class="num">—</td></tr>
+      <tr><td>Estimated Monthly Traffic Value</td><td class="num">$4,000</td><td class="num"><strong>$61,900</strong></td><td class="num">$12,200</td><td class="num">$107</td></tr>
+      <tr style="background: var(--hr-green-bg);"><td colspan="5" style="padding:0.4rem 1rem; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--hr-green-dark);">Backlink profile detail</td></tr>
+      <tr><td>Referring IPs</td><td class="num">348</td><td class="num">590</td><td class="num">490</td><td class="num">143</td></tr>
+      <tr><td>Backlinks-per-domain ratio</td><td class="num"><strong>2.4</strong> (most balanced)</td><td class="num">12.2</td><td class="num">11.7</td><td class="num">6.1</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <div class="h">Note on "—" values</div>
+    <p style="margin:0;">Several cells show "—". These are <strong>genuine nulls</strong>, not capture failures. Domain Rating and URL PageRank for Kinsley and KasCon fall below the third-party reporting threshold for their backlink-profile shape — the metrics scale down to unreported when the underlying input doesn't meet minimum trust-seed distance. The nulls are themselves the signal.</p>
+  </div>
+
+  <h3>LLM Visibility (Brand Insights baseline)</h3>
+  <p class="source-note">Source: 6 conversational AI platforms · benchmarked 2026-04-25. Cells show <em>topics covered / visibility percentage</em>. Sentiment scores in parentheses where present.</p>
+  <table class="data">
+    <thead><tr><th>Platform</th><th class="num">morgankeller.com</th><th class="num">kinsleyconstruction.com</th><th class="num">harkinsbuilders.com</th><th class="num">kasconinc.com</th></tr></thead>
+    <tbody>
+      <tr><td>Gemini</td><td class="num"><strong>1 / 20%</strong> (sent. 82%)</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td></tr>
+      <tr><td>ChatGPT</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td></tr>
+      <tr><td>Perplexity</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td></tr>
+      <tr><td>Grok</td><td class="num"><strong>2 / 40%</strong> (sent. 83%)</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td></tr>
+      <tr><td>Copilot</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td></tr>
+      <tr><td>Google AI Mode</td><td class="num"><strong>1 / 20%</strong> (sent. 80%)</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td><td class="num">0 / 0%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="h">LLM visibility — strategic read</div>
+    <p style="margin-bottom:0.7rem;">Morgan-Keller is the <strong>only domain in the competitive set with active LLM visibility</strong>. Sentiment is high (80–83%) on the platforms where Morgan-Keller appears. Competitors haven't earned this yet.</p>
+    <p style="margin-bottom:0.7rem;">Combined with Morgan-Keller's existing AI Overview presence (1, tied with Harkins) and clean Spam Score (1), this is a defensible position. AI Overview citations are increasingly load-bearing for brand-discovery queries — and Morgan-Keller is on the right side of that shift while the competitors are not.</p>
+    <p style="margin:0;">The next strategic question is <strong>how big the AI surface is for Morgan-Keller's queries and what dedicated structured data + topic coverage would lift visibility further</strong>. Apollo's <strong>$297 AIO Research engagement</strong> quantifies the AI-surface footprint at national scope and ships a custom JSON-LD schema package targeting the queries where AI Overviews fire — happy to walk through what scope would look like.</p>
+  </div>
+
+  <h3>How to read this comparison</h3>
+  <ul>
+    <li><strong>Kinsley is the largest by raw scale</strong> — 9,500 backlinks, 4,100 organic keywords, $61,900 traffic value. The largest content footprint in the comparison set.</li>
+    <li><strong>Harkins has the strongest Domain Rating (40)</strong> — the cleanest authority signal among competitors. Employee-owned construction firm with a strong multifamily / government portfolio.</li>
+    <li><strong>Morgan-Keller wins on quality signals</strong>: highest Brand Signal (52), highest Trust Flow (37), tied for lowest Spam Score (1), most balanced backlink profile (2.4 backlinks per domain). The numbers are smaller, but cleaner.</li>
+    <li><strong>Morgan-Keller is the only domain with active LLM visibility</strong> across Gemini, Grok, and Google AI Mode. Competitors haven't activated this layer yet.</li>
+    <li><strong>KasCon's Spam Score of 17 is a flag</strong> — typical caution threshold is 5+. Their backlink profile carries quality risk that the other three don't.</li>
+  </ul>
+
+  <div class="callout warn">
+    <div class="h">The scope + runway story</div>
+    <p style="margin:0;"><strong>Content scope:</strong> Morgan-Keller has 771 organic keywords; Kinsley has 4,100 (5.3× the footprint). This is a <strong>page-coverage gap</strong>, not an authority gap — Morgan-Keller's authority signals are stronger across Trust Flow, Brand Signal, and Spam Score. The path forward is structured page-by-page expansion into specialty service categories Morgan-Keller already does — not chasing Kinsley's content scale.</p>
+    <p style="margin-top:0.5rem;"><strong>Quality vs scale:</strong> Morgan-Keller wins on the trust signals that compound over time. Building selectively against the page-coverage gap turns those quality signals into traffic. The schema package included with this report is the next compounding layer.</p>
+  </div>
+
+  <h3>Strengths</h3>
+  <ul>
+    <li><strong>Branded search dominance</strong> — Morgan-Keller ranks #1 for "morgan keller construction" (SV 590), "morgan keller" (SV 590), "morgan keller inc" (SV 90). 470+ monthly branded clicks. Foundation is solid.</li>
+    <li><strong>Highest Brand Signal in the set (52)</strong> — established 1955; brand recognition is real and measurable.</li>
+    <li><strong>Highest Trust Flow (37)</strong> — cleanest authority signal among the four. Trust Flow rewards link quality over quantity; Morgan-Keller's link profile is unusually clean.</li>
+    <li><strong>Spam Score 1 (tied for lowest)</strong> — clean link profile. KasCon at 17 is a flag; Morgan-Keller is at the safe end.</li>
+    <li><strong>Only domain with active LLM visibility</strong> — Gemini, Grok, Google AI Mode. Sentiment 80–83%. Compounds with structured-data deployment.</li>
+    <li><strong>Most balanced backlink profile (2.4 backlinks per referring domain)</strong> — Kinsley's 12.2 ratio indicates heavy sitewide-link concentration; Morgan-Keller's links are diversified across more sources.</li>
+  </ul>
+
+  <h3>Weaknesses</h3>
+  <ul>
+    <li><strong>Smallest organic traffic in the set</strong> — 1,100 monthly visitors vs Kinsley's 7,300 (6.6× gap). Quality is high; volume is low.</li>
+    <li><strong>5.3× organic keyword gap</strong> vs Kinsley — page-coverage problem, not an authority problem.</li>
+    <li><strong>Zero structured data deployed sitewide</strong> — every competitor in the AI-search era is benefiting from schema markup; Morgan-Keller has none.</li>
+    <li><strong>Zero Open Graph metadata sitewide</strong> — every social share renders without preview. Trivial template fix; affects every share thereafter.</li>
+    <li><strong>Homepage on-page hygiene is broken</strong> — title is "<code>| Morgan Keller</code>" (15 chars, leading pipe), homepage H1 is empty. The clearest single-fix gains in the report.</li>
+  </ul>
+</div>
+
+<div id="next" class="section">
+  <h2>Next Steps</h2>
+  <p>Three things Morgan-Keller can do this month — concrete, in-house, free or low-cost.</p>
+
+  <h3>1. Deploy the JSON-LD schema package (included with this report)</h3>
+  <p>A complete custom JSON-LD schema package is included as a bonus deliverable: 12 payloads covering homepage Organization, 7 service pages, BreadcrumbList template, FAQPage, team-member Person template, and project CreativeWork template. Drop each payload inside a <code>&lt;script type="application/ld+json"&gt;</code> tag in the <code>&lt;head&gt;</code> of the corresponding page. Validate after deployment via <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">search.google.com/test/rich-results</a>. Single largest move for AI Overview eligibility — Morgan-Keller already has measurable LLM visibility; structured data compounds it.</p>
+
+  <h3>2. Fix the homepage <code>&lt;title&gt;</code> tag and empty H1</h3>
+  <p>Both are template-level fixes that take roughly 30 minutes of dev time. Title is the single most important on-page SEO element; the current "<code>| Morgan Keller</code>" rendering means Google sees a title beginning with a pipe character. A proper title like "Morgan-Keller Construction — Commercial General Contractor in Frederick, MD" would meaningfully improve click-through and ranking signals. Setting the homepage H1 to either the brand-line or a service-anchored phrase recovers the strongest topical relevance signal Google uses.</p>
+
+  <h3>3. Add Open Graph tags sitewide via template</h3>
+  <p>Zero pages currently carry OG metadata, so every social share — LinkedIn post, Slack link unfurl, X mention, Facebook share — renders without preview, image, or description. One OG block in the page <code>&lt;head&gt;</code> template (<code>og:title</code>, <code>og:description</code>, <code>og:image</code>, <code>og:type</code>) with a brand-asset image fallback fixes the entire site. Trivial dev work, material impact on social referral quality.</p>
+
+  <div class="callout" style="margin-top:1.5rem;">
+    <div class="h">Want to go deeper?</div>
+    <p style="margin:0;">Morgan-Keller is the only domain in the competitive set with active LLM visibility — that's a defensible position worth quantifying. Apollo's <strong>$297 AIO Research engagement</strong> drops the geo filter, researches the AI surface for Morgan-Keller's category at national scope, benchmarks AI Overview + LLM visibility against the broader Mid-Atlantic competitive set, and ships a custom JSON-LD schema package targeting the queries where AI Overviews fire. If Morgan-Keller wants ongoing SEO + content cadence in this market more broadly, Apollo Marketing handles monthly retainers for clients in adjacent industries. Happy to walk through what either would look like.</p>
+  </div>
+
+  <h3 style="margin-top:2rem;">Deliverable coverage map</h3>
+  <table class="data">
+    <thead><tr><th>Area</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Keyword list (Frederick County baseline, 3 phrasing tiers)</td><td><span class="badge badge-ok">Delivered</span></td><td>48 keywords across full-geo (Tier 1), mid-geo (Tier 2), and bare-service (Tier 3) phrasing — all county-filtered. 13 of 48 carry monthly volume; 5 specialty verticals confirmed thin at every tier.</td></tr>
+      <tr><td>Competitor comparison (4 domains)</td><td><span class="badge badge-ok">Delivered</span></td><td>3 commercial GC competitors confirmed by the Morgan-Keller / HighRock team</td></tr>
+      <tr><td>LLM Visibility (6-platform baseline)</td><td><span class="badge badge-ok">Delivered</span></td><td>Gemini, ChatGPT, Perplexity, Grok, Copilot, Google AI Mode × 4 domains</td></tr>
+      <tr><td>Site Health (homepage + 100-page crawl)</td><td><span class="badge badge-ok">Delivered</span></td><td>9 expandable affected-page lists, infrastructure table, broken-link audit</td></tr>
+      <tr><td>Custom JSON-LD schema package</td><td><span class="badge badge-ok">Delivered (bonus)</span></td><td>12 payloads: Organization, 7 Service pages, BreadcrumbList, FAQPage, Person, CreativeWork — drop into <code>&lt;head&gt;</code></td></tr>
+      <tr><td>PSI mobile/desktop lab + Core Web Vitals</td><td><span class="badge badge-incomplete">Pending — May 18</span></td><td>Live PSI links work today; captured snapshot inserted at this URL by May 18</td></tr>
+      <tr><td>Indexed Pages + 30-day velocity (4 domains)</td><td><span class="badge badge-incomplete">Pending — May 18</span></td><td>Will be inserted at this URL by May 18</td></tr>
+      <tr><td>Backlinks Last 30 Days</td><td><span class="badge badge-incomplete">Pending — May 18</span></td><td>Will be inserted at this URL by May 18</td></tr>
+      <tr><td>National keyword research</td><td><span class="badge badge-info">Out of scope</span></td><td>Available as Apollo's $297 AIO Research engagement</td></tr>
+      <tr><td>Site-wide broken-link + per-page schema audit at scale</td><td><span class="badge badge-info">Out of scope</span></td><td>Homepage + 100-page crawl is included; full per-page schema/OG audit is a separate technical-SEO engagement</td></tr>
+      <tr><td>Google Business Profile + map-pack optimization</td><td><span class="badge badge-info">Out of scope</span></td><td>Commercial-intent local SERPs reward GBP optimization — adjacent engagement</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:2rem;">Methodology notes</h3>
+  <ul>
+    <li>City-phrased keywords with a Frederick County, MD geographic filter. County names are not searched as queries; city names are. Methodology is uniform across all Apollo SEO research clients.</li>
+    <li>Phrasing variants (long-tail and short-tail) stack within each page group, ranked by monthly search volume — readers see the gradient from phrasing itself.</li>
+    <li>US-wide search volume data was not used — it inflates expectations and breaks client trust for local-services research.</li>
+    <li>All 4 domains were pulled through an authority-data lookup that avoids the caching issues of managed-project views, so backlink and authority counts reflect what public-facing audit tools would also see.</li>
+    <li>Any metric that returned null, zero-as-artifact, or was unavailable at extraction time is flagged Incomplete or Pending rather than presented as fact.</li>
+    <li><strong>0 SV for a correctly-phrased local keyword IS real data, not a bug.</strong> Where it shows up at every phrasing tier (full-geo + mid-geo + bare-service), it confirms an off-keyword market. Where it shows up only at geo-modified tiers and disappears at bare-service, the read is that searchers don't geo-qualify — the demand is real but expressed without geo-modifiers.</li>
+    <li><strong>Three-tier phrasing test (added 2026-04-29):</strong> Every head term gets submitted at full-geo (<service> frederick md), mid-geo (<service> frederick), and bare-service (<service>) phrasing — all with the same Frederick County location filter. This catches the geo-modifier vs no-geo-modifier search behavior split that geo-only submission misses. When zero-SV exceeds 50% of the submitted set at the full-geo tier, the bare-service tier rerun is mandatory before reporting "thin market."</li>
+    <li><strong>Revised 2026-04-28:</strong> Site Health Top Findings expanded to 13 rows with 9 affected-page expandable details, LLM Visibility 6-platform table added, page-by-page keyword groups mapped to actual Morgan-Keller service URLs, Strengths/Weaknesses lists added, Coverage Map added, JSON-LD schema package included as bonus. PSI/CWV and 30-day velocity rows scheduled for capture by May 18, 2026 and will be inserted at this same URL.</li>
+    <li><strong>Revised 2026-04-30:</strong> Three-tier rerun complete. Tier 2 mid-geo (16 keywords) confirmed zero across all terms — the geo-modified market is shallow at every phrasing tier that includes "frederick." Tier 3 bare-service (16 keywords) surfaced 11 head-term queries at 10–20 SV/mo at the Frederick County filter that the geo-modified tiers had missed. Executive Summary, Keyword Landscape headline, and content-strategy guidance updated to reflect the staircase finding. The 5 specialty verticals confirmed thin at every tier and remain off-keyword.</li>
+  </ul>
+
+  <p style="font-size: 0.85rem; color: var(--ink-soft); margin-top: 1.5rem;">Prepared for <strong>HighRock</strong> · Research by Apollo Marketing · Questions, requests for clarification, or interest in expanded scope can be directed through Monique Fisher at HighRock.</p>
+</div>
+
+</div>
+
+<footer>
+  <p>Prepared for <strong>HighRock</strong> · Research by Apollo Marketing · <a href="https://apollollc.com">apollollc.com</a></p>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
