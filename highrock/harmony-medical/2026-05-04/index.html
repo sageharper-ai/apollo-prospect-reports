@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>On-Page Recommendations — Harmony Medical | HighRock</title>
+<style>
+:root {
+  --hr-green: #b2bd30;
+  --hr-green-dark: #8a921f;
+  --hr-green-bg: #f7f9e8;
+  --ink: #3c3c3c;
+  --ink-dark: #1a1a1a;
+  --ink-soft: #6b7280;
+  --rule: #e5e7eb;
+  --bg: #fafaf9;
+  --card: #ffffff;
+  --quote-bg: #f3f4f6;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --cyan: #06b6d4;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'proxima-nova', 'Helvetica', 'Roboto', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.header { background: #1f2937; border-bottom: 4px solid var(--hr-green); padding: 2rem 3rem 1.5rem; color: #ffffff; }
+.header .logo img { height: 32px; width: auto; display: block; margin-bottom: 1.25rem; }
+.header h1 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em; color: #ffffff; }
+.header .subtitle { color: #cbd5e1; margin-top: 0.4rem; font-size: 1rem; }
+.header .meta { display: flex; gap: 0.6rem; margin-top: 1.1rem; font-size: 0.78rem; color: #cbd5e1; flex-wrap: wrap; }
+.header .meta span { background: rgba(178,189,48,0.15); border: 1px solid rgba(178,189,48,0.4); color: #e8edc5; padding: 0.22rem 0.7rem; border-radius: 14px; font-weight: 500; }
+.nav { background: white; border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; gap: 0; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+.nav button { background: none; border: none; padding: 0.9rem 1.3rem; font-size: 0.92rem; color: var(--ink-soft); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; font-family: inherit; font-weight: 500; }
+.nav button:hover { color: var(--hr-green-dark); background: rgba(178,189,48,0.05); }
+.nav button.active { color: var(--hr-green-dark); border-bottom-color: var(--hr-green); font-weight: 600; }
+.content { max-width: 1200px; margin: 0 auto; padding: 2rem 3rem; }
+.section { display: none; }
+.section.active { display: block; }
+.section h2 { font-size: 1.35rem; color: var(--ink-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--hr-green); font-weight: 600; }
+.section h3 { font-size: 1.05rem; color: var(--ink-dark); margin: 1.6rem 0 0.75rem; font-weight: 600; }
+.section p { margin-bottom: 0.9rem; }
+.section ul { padding-left: 1.4rem; margin: 0.75rem 0; }
+.section ol { padding-left: 1.4rem; margin: 0.75rem 0; }
+.section li { margin-bottom: 0.45rem; }
+.badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; font-size: 0.78rem; font-weight: 600; }
+.badge-ok { background: #dcfce7; color: #166534; }
+.badge-warn { background: #fef9c3; color: #854d0e; }
+.badge-error { background: #fee2e2; color: #991b1b; }
+.badge-info { background: #dbeafe; color: #1e40af; }
+.badge-blocked { background: #fce7f3; color: #9d174d; }
+.badge-pending { background: #fef3c7; color: #92400e; }
+table.data { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem; background: white; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+table.data th { background: var(--ink-dark); color: white; padding: 0.65rem 0.9rem; text-align: left; font-weight: 600; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.5px; }
+table.data td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.data td.code { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.8rem; }
+table.data tr:last-child td { border-bottom: none; }
+table.data tr:hover { background: rgba(178,189,48,0.04); }
+.callout { padding: 1rem 1.25rem; border-left: 4px solid var(--hr-green); background: var(--hr-green-bg); border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: 0.93rem; }
+.callout.warn { border-left-color: var(--yellow); background: #fefce8; }
+.callout.red { border-left-color: var(--red); background: #fef2f2; }
+.callout.info { border-left-color: var(--cyan); background: #ecfeff; }
+.callout strong { color: var(--ink-dark); }
+.callout .h { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hr-green-dark); margin-bottom: 0.3rem; }
+.callout.warn .h { color: #854d0e; }
+.callout.red .h { color: #991b1b; }
+.callout.info .h { color: #155e75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+.card { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 1.15rem; text-align: center; }
+.card .value { font-size: 1.6rem; font-weight: 700; color: var(--hr-green-dark); }
+.card .label { font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.source-note { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.4rem; font-style: italic; }
+pre.payload { background: #f9fafb; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.15rem; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.78rem; line-height: 1.55; overflow-x: auto; margin: 0.75rem 0; }
+pre.payload .k { color: #1e40af; }
+pre.payload .s { color: #166534; }
+pre.payload .c { color: #6b7280; font-style: italic; }
+.draft-row { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin: 0.75rem 0; }
+.draft-row .url { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.82rem; color: var(--ink-soft); }
+.draft-row .issue { font-weight: 600; color: var(--ink-dark); margin-top: 0.3rem; }
+.draft-row .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.65rem; font-size: 0.88rem; }
+.draft-row .pair .lbl { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.2rem; }
+.draft-row .pair .current { color: var(--ink-soft); padding: 0.5rem 0.7rem; background: #f9fafb; border-left: 3px solid #d1d5db; border-radius: 0 4px 4px 0; }
+.draft-row .pair .recommended { padding: 0.5rem 0.7rem; background: var(--hr-green-bg); border-left: 3px solid var(--hr-green); border-radius: 0 4px 4px 0; }
+.draft-row .note { margin-top: 0.6rem; font-size: 0.85rem; color: var(--ink-soft); }
+.draft-row .note strong { color: var(--ink-dark); }
+.approval-status { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 3px; font-size: 0.72rem; font-weight: 600; margin-left: 0.5rem; vertical-align: middle; }
+footer { margin-top: 3rem; padding: 1.5rem 3rem; border-top: 1px solid var(--rule); text-align: center; font-size: 0.78rem; color: var(--ink-soft); background: white; }
+footer a { color: var(--hr-green-dark); text-decoration: none; }
+@media print { .nav { display: none; } .section { display: block !important; page-break-inside: avoid; } }
+@media (max-width: 768px) {
+  .header { padding: 1.25rem 1.5rem; }
+  .content { padding: 1.25rem 1.5rem; }
+  .nav { padding: 0 1.5rem; }
+  .draft-row .pair { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo"><img src="https://highrock.com/themes/custom/highrock/img/logo-header.png" alt="HighRock" /></div>
+  <h1>On-Page Recommendations — Harmony Medical</h1>
+  <div class="subtitle">harmonymedical.net — homepage cycle 1 · 11 deploy-ready drafts · 2 items pending Harmony confirmation</div>
+  <div class="meta">
+    <span>Prepared: May 4, 2026</span>
+    <span>Cycle 1 — homepage scope</span>
+    <span>11 on-page drafts</span>
+    <span>3 schema payloads</span>
+    <span>2 pending-confirmation items</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showTab('summary')">Executive Summary</button>
+  <button onclick="showTab('drafts')">On-Page Drafts</button>
+  <button onclick="showTab('schema')">Schema Bundle</button>
+  <button onclick="showTab('prestate')">Pre-State Snapshot</button>
+  <button onclick="showTab('asks')">Open Asks</button>
+  <button onclick="showTab('roadmap')">Roadmap</button>
+  <button onclick="showTab('approval')">Approval</button>
+</div>
+
+<div class="content">
+
+<!-- TAB: SUMMARY -->
+<div id="summary" class="section active">
+  <h2>Executive Summary</h2>
+
+  <p>This is cycle 1 of Harmony's on-page work. The Apr 17 SEO research established the strategic frame: Harmony's market is national, the inventory gap with Tebra/athenahealth is a content program (not a tweak), and the homepage has structural on-page gaps that compound into AI Overview invisibility (Harmony 0 vs Tebra 5,000). This document is the bridge from that research to deploy-ready fixes.</p>
+
+  <p><strong>What's deploying this cycle:</strong> 11 homepage on-page drafts spanning <em>title rewrite, meta description, H1, Open Graph + Twitter Card tags, image alt text plan, and a 3-payload JSON-LD schema bundle</em> (Organization · SoftwareApplication · FAQPage). All drafts are written against Harmony's brand voice from the homepage footer mission block. Implementation is via Harmony's existing <strong>MetaSync 2.6.4</strong> WordPress plugin (verified Apr 30) — no new tooling required.</p>
+
+  <div class="cards">
+    <div class="card"><div class="value">11</div><div class="label">Drafts ready</div></div>
+    <div class="card"><div class="value">3</div><div class="label">Schema payloads</div></div>
+    <div class="card"><div class="value">2</div><div class="label">Pending Harmony</div></div>
+    <div class="card"><div class="value">0</div><div class="label">Apollo blocked</div></div>
+  </div>
+
+  <div class="callout warn">
+    <div class="h">2 items need Harmony's confirmation before final deploy</div>
+    <p style="margin-bottom: 0.4rem;"><strong>Address (street / city / state / zip / timezone)</strong> — needed for <code>Organization.address</code> in the JSON-LD schema bundle. Without it, Organization schema ships as name + URL only, missing the LocalBusiness signals search engines and AI assistants use to disambiguate "Harmony Medical" from other entities.</p>
+    <p style="margin: 0;"><strong>Business name confirmation</strong> — homepage footer reads <em>"© 2026 Mi Corp"</em>; the brand presented across the site is "Harmony Medical." Per schema convention, <code>Organization.name = "Harmony Medical"</code> and <code>Organization.legalName = "Mi Corp"</code> — but please confirm before we ship.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--ink-soft);">Both items are tagged in the drafts table with <span class="badge badge-pending">pending</span> and the affected schema fields are isolated so the rest of the bundle deploys clean either way.</p>
+  </div>
+
+  <p>See <strong>On-Page Drafts</strong> for the per-issue table with current vs recommended values and Apollo notes; <strong>Schema Bundle</strong> for the three JSON-LD payloads with deployment guidance; <strong>Pre-State Snapshot</strong> for the captured site state; <strong>Open Asks</strong> for the two pending-confirmation items; <strong>Roadmap</strong> for what cycle 2 looks like; <strong>Approval</strong> for the final sign-off ask.</p>
+
+  <div class="callout info">
+    <div class="h">What this cycle is, and isn't</div>
+    <p style="margin-bottom: 0.4rem;"><strong>Is:</strong> Manually-prepared on-page recommendations for Harmony's homepage. Apollo wrote each draft against the audit findings + brand voice + competitive context. Implementation is straightforward via MetaSync; no automation runs in this cycle.</p>
+    <p style="margin: 0;"><strong>Isn't:</strong> A full-site audit (33 pages — out of scope this cycle); an SA OTTO managed deploy (planned for cycle 2 once Harmony confirms the two open items above); a content-production engagement for new pages (separate scope).</p>
+  </div>
+</div>
+
+<!-- TAB: DRAFTS -->
+<div id="drafts" class="section">
+  <h2>On-Page Drafts — homepage cycle 1</h2>
+  <p class="source-note">11 drafts, sorted by impact. Each row = one issue type with the current state, Apollo's recommended replacement, and a short note on the why. Two items carry <span class="badge badge-pending">pending</span> tags where final values depend on Harmony's confirmation. Source: Apr 17 homepage audit + Apr 30 site recon.</p>
+
+  <h3>1. Page title</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">Title tag — thin, no service line or value prop <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current (~17 chars)</div><div class="current">Harmony Medical</div></div>
+      <div><div class="lbl">Recommended (~62 chars)</div><div class="recommended">Harmony Medical — EHR, Medical Billing &amp; RCM Software for Practices</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Mirrors Tebra's pattern (<em>"Tebra — Practice Management + EHR Software for Independent Practices"</em>) and pulls in the three primary service lines from the homepage. Length is within Google's ~60 char SERP cap. Adds vertical-modifier "Practices" to disambiguate from consumer healthcare brands.</div>
+  </div>
+
+  <h3>2. Meta description</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">Meta description — currently missing <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— missing —</div></div>
+      <div><div class="lbl">Recommended (152 chars)</div><div class="recommended">Harmony Medical builds EHR, billing, and RCM software for medical practices of every size. Customized workflows that simplify daily care and revenue.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Pulled from the homepage footer mission block (verbatim brand voice) and tightened to fit SERP descriptions (~155 char target). Contains the three primary keyword categories (EHR / billing / RCM) plus the audience qualifier ("practices of every size").</div>
+  </div>
+
+  <h3>3. H1 tag</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">H1 — currently no H1 on the page <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— no H1 detected on homepage —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">Software That Lets Practices Focus on Patients, Not Paperwork</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Outcome-framed (what Harmony's customers get) rather than feature-framed. Distinct from the title tag so they reinforce rather than duplicate. Search engines treat H1 as the page's primary topic signal — a missing H1 is one of the two highest-leverage on-page misses on the site.</div>
+  </div>
+
+  <h3>4. Open Graph tags</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">Open Graph — none detected <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— no og:* tags present —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended"><code>og:title</code> = title above<br><code>og:description</code> = meta above<br><code>og:type</code> = website<br><code>og:url</code> = https://harmonymedical.net/<br><code>og:image</code> = 1200×630 brand image (Harmony to provide; or use existing logo on a brand-color background)<br><code>og:site_name</code> = Harmony Medical</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Currently every Slack / LinkedIn / Facebook share of the homepage renders a bare URL with no preview. This is a one-time fix that affects every share thereafter. <code>og:image</code> requires an asset — if Harmony doesn't have a 1200×630 ready, Apollo can produce one as part of cycle 1 (~1 hour of design time).</div>
+  </div>
+
+  <h3>5. Twitter Card tags</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">Twitter Card — none detected <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— no twitter:* tags present —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended"><code>twitter:card</code> = summary_large_image<br><code>twitter:title</code> = title above<br><code>twitter:description</code> = meta above<br><code>twitter:image</code> = same as og:image</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Twitter / X uses Open Graph as fallback when twitter:* isn't present, but explicit twitter:card = summary_large_image gives the larger preview format. Adds ~4 lines to head; reuses the OG image asset.</div>
+  </div>
+
+  <h3>6. Image alt text — homepage (22 images)</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">Alt text — 0 of 22 homepage images have alt attributes (100% missing) <span class="approval-status badge badge-pending">Plan provided · Harmony writes copy</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">22 images, 0 with alt text. Accessibility WCAG 1.1.1 violation; image-search invisibility; screen-reader gap.</div></div>
+      <div><div class="lbl">Recommended approach</div><div class="recommended">Apollo provides an alt-text writing template + voice guide. Harmony's content team writes the 22 alt strings (or Apollo writes them in cycle 2 if Harmony prefers). Pattern: <em>"Brief description of subject + relevant context (5–12 words). Decorative-only images get alt=&quot;&quot;."</em></div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> 22 images on the homepage alone; site-wide is likely 200+. This cycle ships the homepage 22; site-wide alt-text is a separate engagement (~4–6 hours of Apollo time, or batched with the next OTTO cycle). Decorative images (icons, dividers) should use empty alt="" rather than be omitted entirely.</div>
+  </div>
+
+  <h3>7. Robots meta</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">Robots meta — currently <code>index</code> (correct, no change needed) <span class="approval-status badge badge-info">Verified clean</span></div>
+    <div class="note"><strong>Apollo note:</strong> Verified clean. Listed for completeness so the deploy team knows this isn't being changed. Same for the canonical tag (already self-referencing <code>https://harmonymedical.net/</code>).</div>
+  </div>
+
+  <h3>8. Schema markup — Organization (LocalBusiness layer pending)</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">JSON-LD Organization schema — currently zero structured data on the homepage <span class="approval-status badge badge-pending">Pending Harmony · address</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">No <code>&lt;script type="application/ld+json"&gt;</code> blocks on the page. Zero schema. Harmony 0 vs Tebra 5,000 AI Overview gap traces partly to this miss.</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">3-payload bundle: Organization · SoftwareApplication · FAQPage. See <strong>Schema Bundle</strong> tab for full JSON-LD. Organization payload includes address fields that ship as <code>null</code> until Harmony provides — the rest deploys clean.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> This is the single highest-leverage on-page move. Harmony's three SaaS peers (Tebra, athenahealth, eClinicalWorks) all run structured data; Harmony has none. Once deployed + Google re-crawls (~2 weeks), schema becomes eligible for AI Overview inclusion. Address fields are isolated so the bundle ships without them; pending values get filled in when Harmony confirms.</div>
+  </div>
+
+  <h3>9. Schema markup — SoftwareApplication</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">SoftwareApplication schema — none currently <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="note"><strong>Apollo note:</strong> Tells search engines "this is a software product, here's the category, here's the operating system, here's the audience." Critical for SaaS discovery in AI Overviews and rich results. Full payload in <strong>Schema Bundle</strong> tab.</div>
+  </div>
+
+  <h3>10. Schema markup — FAQPage</h3>
+  <div class="draft-row">
+    <div class="url">https://harmonymedical.net/</div>
+    <div class="issue">FAQPage schema — none currently; no FAQ section on homepage at present <span class="approval-status badge badge-pending">Optional · Harmony confirms FAQ content</span></div>
+    <div class="note"><strong>Apollo note:</strong> Apollo drafted 6 FAQ entries against Harmony's homepage and the Apr 17 research findings (cost / implementation / specialty fit / data migration / support / compliance). If Harmony confirms the answers fit the brand, the FAQPage schema deploys + an inline FAQ section can be added to the homepage. If not yet ready, the schema can ship empty-of-FAQs and be backfilled in cycle 2. Drafts in <strong>Schema Bundle</strong> tab.</div>
+  </div>
+
+  <h3>11. Site-wide WAF crawler whitelist (recommendation only — not on-page)</h3>
+  <div class="draft-row">
+    <div class="url">harmonymedical.net (server config)</div>
+    <div class="issue">WAF returns 403 to standard SEO user-agents — Harmony's own audits run blind <span class="approval-status badge badge-info">Recommended · Dev team task</span></div>
+    <div class="note"><strong>Apollo note:</strong> The <code>/contact/</code> page returns 403 (likely WAF rule), and standard SEO crawlers (Ahrefs, Screaming Frog, etc.) get 403 across the site. Browsers and Googlebot pass cleanly, so search rankings aren't affected — but any third-party audit Harmony runs (or partners run) will fail silently. <strong>Recommendation:</strong> ask Harmony's dev team to whitelist common SEO user-agents at the WAF/CDN layer. Restores audit visibility without affecting the security posture.</div>
+  </div>
+
+</div>
+
+<!-- TAB: SCHEMA -->
+<div id="schema" class="section">
+  <h2>Schema Bundle — JSON-LD payloads</h2>
+  <p class="source-note">Three JSON-LD payloads, deploy-ready. Each is wrapped in <code>&lt;script type="application/ld+json"&gt;...&lt;/script&gt;</code> and placed in the homepage <code>&lt;head&gt;</code>. Recommended deployment via MetaSync 2.6.4 (already installed) — Settings → Schema → Add JSON-LD blocks. Address fields in Organization ship as <code>null</code> until Harmony confirms; the rest is final.</p>
+
+  <h3>Payload 1 — Organization</h3>
+  <pre class="payload"><span class="c">// Address + telephone fields ship as null until Harmony confirms (R6 + R2 in Open Asks tab)</span>
+{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Organization"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://harmonymedical.net/#organization"</span>,
+  <span class="k">"name"</span>: <span class="s">"Harmony Medical"</span>,
+  <span class="k">"legalName"</span>: <span class="s">"Mi Corp"</span>,  <span class="c">// pending Harmony confirmation</span>
+  <span class="k">"url"</span>: <span class="s">"https://harmonymedical.net/"</span>,
+  <span class="k">"logo"</span>: <span class="s">"https://harmonymedical.net/[logo-path].png"</span>,
+  <span class="k">"description"</span>: <span class="s">"Harmony provides physicians and their administrators with the tools necessary to deliver exceptional patient care and receive prompt, accurate compensation."</span>,
+  <span class="k">"telephone"</span>: <span class="s">"+1-443-996-4000"</span>,
+  <span class="k">"email"</span>: <span class="s">"info@harmonymedical.net"</span>,
+  <span class="k">"address"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"PostalAddress"</span>,
+    <span class="k">"streetAddress"</span>: <span class="s">null</span>,  <span class="c">// pending Harmony</span>
+    <span class="k">"addressLocality"</span>: <span class="s">null</span>,  <span class="c">// pending Harmony</span>
+    <span class="k">"addressRegion"</span>: <span class="s">"MD"</span>,
+    <span class="k">"postalCode"</span>: <span class="s">null</span>,  <span class="c">// pending Harmony</span>
+    <span class="k">"addressCountry"</span>: <span class="s">"US"</span>
+  },
+  <span class="k">"sameAs"</span>: [
+    <span class="s">"https://www.facebook.com/Harmony-Medical-403900503080426/"</span>
+  ]
+}</pre>
+
+  <h3>Payload 2 — SoftwareApplication</h3>
+  <pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"SoftwareApplication"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://harmonymedical.net/#software"</span>,
+  <span class="k">"name"</span>: <span class="s">"Harmony Medical Practice Management Suite"</span>,
+  <span class="k">"applicationCategory"</span>: <span class="s">"BusinessApplication"</span>,
+  <span class="k">"applicationSubCategory"</span>: <span class="s">"HealthcareApplication"</span>,
+  <span class="k">"operatingSystem"</span>: <span class="s">"Web-based"</span>,
+  <span class="k">"description"</span>: <span class="s">"Customized EHR, medical billing, and revenue cycle management software for medical practices of all sizes and specialties."</span>,
+  <span class="k">"featureList"</span>: [
+    <span class="s">"Electronic Health Records (EHR)"</span>,
+    <span class="s">"Medical Billing"</span>,
+    <span class="s">"Revenue Cycle Management"</span>,
+    <span class="s">"Practice Management"</span>,
+    <span class="s">"Patient Portal"</span>
+  ],
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Medical Practices"</span>
+  },
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://harmonymedical.net/#organization"</span> },
+  <span class="k">"offers"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"Offer"</span>,
+    <span class="k">"availability"</span>: <span class="s">"https://schema.org/InStock"</span>,
+    <span class="k">"priceSpecification"</span>: {
+      <span class="k">"@type"</span>: <span class="s">"PriceSpecification"</span>,
+      <span class="k">"description"</span>: <span class="s">"Custom pricing — contact for quote"</span>
+    }
+  }
+}</pre>
+
+  <h3>Payload 3 — FAQPage (drafts; Harmony confirms before ship)</h3>
+  <pre class="payload"><span class="c">// 6 FAQ drafts written from Apr 17 research findings + homepage content.
+// Harmony reviews each Q+A pair; approved entries deploy. If FAQ section
+// isn't ready for cycle 1, this whole payload defers to cycle 2.</span>
+{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"FAQPage"</span>,
+  <span class="k">"mainEntity"</span>: [
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"Does Harmony work for small medical practices, or only large ones?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"Harmony serves practices of all sizes — solo practitioners, group practices, and multi-site organizations. The software customizes to the workflow of each practice rather than imposing a one-size template."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"What specialties does Harmony support?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"All specialties. Harmony's templates and workflows are configured per specialty during onboarding so the system reflects how each practice actually operates."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"How does Harmony's EHR connect to medical billing and RCM?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"Harmony's EHR, billing, and revenue cycle management share a single data layer — clinical documentation flows to claim coding to billing to collections without re-entry. This is the workflow simplification Harmony is built around."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"What does data migration from another EHR look like?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"Harmony's onboarding includes a structured data migration from the practice's existing EHR. The team handles patient records, clinical history, scheduling data, and billing records as part of a fixed migration window."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"How does Harmony handle compliance — HIPAA, MIPS, etc.?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"Harmony is built to HIPAA standards and includes the documentation, audit trails, and security controls needed to support practices' compliance reporting (MIPS, MACRA, and payer-specific requirements)."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"What support does Harmony provide after implementation?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"Practices receive ongoing technical support, updates, and access to Harmony's training resources. Customizations as the practice evolves are part of the relationship, not a separate engagement."</span> }
+    }
+  ]
+}</pre>
+
+  <div class="callout warn">
+    <div class="h">FAQ drafts are inferences — Harmony confirms before ship</div>
+    <p style="margin: 0;">The 6 FAQ entries above were drafted from Harmony's homepage mission language + the Apr 17 research context. They're plausible but not authoritative. Harmony's team should review each Q+A pair, edit any that don't fit operational reality, and remove any that aren't ready to commit to publicly. The FAQPage schema only deploys with confirmed entries — if Harmony defers all six, the FAQPage payload is held for cycle 2.</p>
+  </div>
+
+  <h3>Deployment notes — MetaSync 2.6.4 (WordPress)</h3>
+  <ol>
+    <li>Open WordPress admin → MetaSync → Schema (or wherever the JSON-LD injection point is in the current MetaSync UI).</li>
+    <li>Add three blocks: paste each <code>{...}</code> payload above as a separate JSON-LD block. Use page-scope = homepage (don't set them site-wide; per-page schema is correct here).</li>
+    <li>Save. Verify on the live homepage by viewing source — three <code>&lt;script type="application/ld+json"&gt;</code> blocks should be present in <code>&lt;head&gt;</code>.</li>
+    <li>Test each payload using <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Google's Rich Results Test ↗</a>. All three should validate as "Eligible for rich results" (or "Page is eligible" depending on test mode).</li>
+    <li>Submit the homepage URL to Google Search Console for re-indexing once schema is live.</li>
+  </ol>
+
+  <p class="source-note">If Harmony's dev team prefers theme-level schema injection over plugin-level, the same three payloads can drop into <code>functions.php</code> via <code>wp_head</code> action. Apollo can provide the PHP wrapper on request.</p>
+</div>
+
+<!-- TAB: PRESTATE -->
+<div id="prestate" class="section">
+  <h2>Pre-State Snapshot</h2>
+  <p class="source-note">Captured Apr 17 (homepage SEO audit) + Apr 30 (site recon for OTTO setup intake). This is the baseline cycle 1 deploys against — useful as a before/after reference once recommendations land.</p>
+
+  <h3>Site infrastructure</h3>
+  <table class="data">
+    <thead><tr><th>Component</th><th>State</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>WordPress core</td><td><span class="badge badge-ok">Active</span></td><td>WordPress site (confirmed via <code>wp-sitemap.xml</code>)</td></tr>
+      <tr><td>MetaSync plugin</td><td><span class="badge badge-ok">v2.6.4 installed</span></td><td>Post-bug-fix baseline (Apr 25, 2026 release fixed an 18-month title-propagation bug). Schema injection path is live.</td></tr>
+      <tr><td>OTTO tracker</td><td><span class="badge badge-ok">Loaded</span></td><td><code>otto-tracker.min.js</code> present in homepage <code>&lt;head&gt;</code> — pre-existing install. If cycle 2 enables full OTTO management, the Pixel link is expected to be automatic.</td></tr>
+      <tr><td>Sitemap</td><td><span class="badge badge-ok">Healthy</span></td><td><code>wp-sitemap.xml</code> serves cleanly · ~25 URLs indexed</td></tr>
+      <tr><td>Server</td><td><span class="badge badge-info">nginx</span></td><td>Standard configuration; HTTPS-only via canonical</td></tr>
+      <tr><td>Canonical tag</td><td><span class="badge badge-ok">Self-referencing</span></td><td>Correctly points to <code>https://harmonymedical.net/</code></td></tr>
+      <tr><td>HTML lang</td><td><span class="badge badge-ok">en-US</span></td><td>Correct</td></tr>
+      <tr><td>WAF / 403 behavior</td><td><span class="badge badge-warn">Blocks SEO crawlers</span></td><td>Standard SEO user-agents return 403; <code>/contact/</code> page returns 403 to Apollo's audit. Browsers + Googlebot pass cleanly. See On-Page Drafts row 11 for whitelist recommendation.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>On-page state captured</h3>
+  <table class="data">
+    <thead><tr><th>Element</th><th>State</th><th>Reference</th></tr></thead>
+    <tbody>
+      <tr><td>Title tag</td><td><span class="badge badge-warn">Thin</span> "Harmony Medical" (~17 chars)</td><td>Apr 17 audit</td></tr>
+      <tr><td>Meta description</td><td><span class="badge badge-error">Missing</span></td><td>Apr 17 audit</td></tr>
+      <tr><td>H1 tag</td><td><span class="badge badge-error">None present</span></td><td>Apr 17 audit</td></tr>
+      <tr><td>Open Graph tags</td><td><span class="badge badge-error">None detected</span></td><td>Apr 17 audit</td></tr>
+      <tr><td>Twitter Card tags</td><td><span class="badge badge-error">None detected</span></td><td>Apr 17 audit</td></tr>
+      <tr><td>JSON-LD schema</td><td><span class="badge badge-error">0 blocks</span></td><td>Apr 17 audit + Apr 30 recon — confirmed clean</td></tr>
+      <tr><td>Image alt text</td><td><span class="badge badge-error">0 of 22 (100% missing)</span></td><td>Apr 17 audit (homepage)</td></tr>
+      <tr><td>Internal links</td><td><span class="badge badge-ok">127 internal, 11 external</span></td><td>Healthy linking structure for a 33-page site</td></tr>
+      <tr><td>External authority links</td><td><span class="badge badge-ok">Industry credentialing</span></td><td>CARF, Joint Commission, HIMSS, MGMA, AAPC, Drummond, HHS, spine.org — strong trust signal</td></tr>
+      <tr><td>Robots meta</td><td><span class="badge badge-ok">index</span></td><td>Correct — site is indexable</td></tr>
+      <tr><td>Favicon</td><td><span class="badge badge-ok">Present</span></td><td>Clean</td></tr>
+      <tr><td>Social profile presence</td><td><span class="badge badge-warn">Facebook only (legacy URL)</span></td><td>FB URL has 2015-era <code>aymt_homepage_panel</code> tracking parameter; consider canonicalizing. No LI/X/IG/YT.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Authority + AI signals (Apr 17 baseline)</h3>
+  <p>Carried forward from the Apr 17 SEO research deliverable for context — these don't change with cycle 1 on-page work but inform why the schema bundle matters most.</p>
+  <table class="data">
+    <thead><tr><th>Signal</th><th>Value</th><th>Implication for cycle 1</th></tr></thead>
+    <tbody>
+      <tr><td>Indexed pages</td><td>33</td><td>Small site; per-page on-page work has outsized impact</td></tr>
+      <tr><td>Domain Rating</td><td>4</td><td>Authority is the long game; on-page is the near-term lever</td></tr>
+      <tr><td>AI Overviews count</td><td>0</td><td>Schema bundle is the primary unlock for AI Overview eligibility</td></tr>
+      <tr><td>Spam Score</td><td>1</td><td>Clean foundation — no negative signals to repair</td></tr>
+      <tr><td>LLM visibility (avg across 6 platforms)</td><td>~3% (vs Tebra ~80%, athenahealth ~100%)</td><td>Structured data + content depth are the path; this cycle starts the structured-data half</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TAB: ASKS -->
+<div id="asks" class="section">
+  <h2>Open Asks — items pending Harmony confirmation</h2>
+  <p class="source-note">Two items where Apollo can't ship the final value without Harmony's input. Both are isolated so the rest of cycle 1 deploys clean either way.</p>
+
+  <div class="callout warn">
+    <div class="h">Ask 1 — Business Address</div>
+    <p style="margin-bottom: 0.5rem;"><strong>What we need:</strong> street address · city · state · ZIP · timezone · (optional: latitude/longitude — derivable once street + city land).</p>
+    <p style="margin-bottom: 0.5rem;"><strong>What it affects:</strong> The <code>Organization.address.PostalAddress</code> fields in the JSON-LD bundle. Currently shipping as <code>null</code> across street / locality / postal code (Maryland and US are populated from public data).</p>
+    <p style="margin-bottom: 0.5rem;"><strong>Why it matters:</strong> Address signals are how search engines and AI assistants disambiguate "Harmony Medical" from other entities with similar names. Empty address fields are not blocking on schema validation, but they leave the LocalBusiness layer thin.</p>
+    <p style="margin: 0;"><strong>Resolution path:</strong> 30-second answer from Monique covers it. Apollo updates the Organization payload + redeploys — typically same-day.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="h">Ask 2 — Business Name confirmation (Mi Corp question)</div>
+    <p style="margin-bottom: 0.5rem;"><strong>What we observed:</strong> Homepage footer reads <em>"© 2026 Mi Corp. All Rights Reserved."</em> The brand presented across the rest of the site is "Harmony Medical."</p>
+    <p style="margin-bottom: 0.5rem;"><strong>Apollo's working interpretation:</strong> Harmony Medical is the brand name; Mi Corp is the legal/parent entity. Schema convention then is <code>Organization.name = "Harmony Medical"</code> and <code>Organization.legalName = "Mi Corp"</code>.</p>
+    <p style="margin-bottom: 0.5rem;"><strong>Why we're asking before shipping:</strong> If the entities differ (separate legal structure, M&A history, brand-vs-corp split), the schema convention may need adjustment. Brand Vault values feed multiple downstream systems (OTTO management in cycle 2, future content generation, future authority-building work) — getting this right at the foundation matters.</p>
+    <p style="margin: 0;"><strong>Resolution path:</strong> A one-sentence confirmation from Monique covers it. <em>"Yes, Harmony Medical is the brand; Mi Corp is the parent entity"</em> is enough.</p>
+  </div>
+
+  <div class="callout info">
+    <div class="h">What we're NOT asking</div>
+    <p style="margin: 0;">No FAQ content confirmation requested in this cycle — Apollo drafted six entries (in the Schema Bundle tab) for review, but if Harmony defers them all, FAQ schema simply moves to cycle 2. No social media expansion ask — sticking with current Facebook-only presence is fine. No content additions ask — that's a separate engagement.</p>
+  </div>
+</div>
+
+<!-- TAB: ROADMAP -->
+<div id="roadmap" class="section">
+  <h2>Roadmap — cycles 2 and beyond</h2>
+  <p class="source-note">What ongoing on-page work looks like once cycle 1 lands. Apollo's recommendation: monthly cadence with light-touch curation between cycles.</p>
+
+  <h3>Cycle 2 (recommended start: ~2–3 weeks after cycle 1 deploy)</h3>
+  <p>Once Harmony confirms the two open asks above, cycle 2 transitions to <strong>SA OTTO managed deployment</strong> for ongoing on-page work. The setup steps are:</p>
+  <ol>
+    <li><strong>Brand Vault fill.</strong> Apollo opens the SA OTTO project for harmonymedical.net, walks the 25-field Brand Vault using the Apr 30 intake data + Harmony's confirmed values from open asks.</li>
+    <li><strong>Pixel verification.</strong> Pre-existing OTTO tracker is expected to auto-link; Apollo verifies pixel status = Installed/Engaged.</li>
+    <li><strong>OTTO draft generation.</strong> 24–48 hour passive window — OTTO scans Harmony's full 33-page index and generates per-page recommendations across 22 issue types.</li>
+    <li><strong>Apollo curation.</strong> Apollo walks the OTTO drafts table, edits any rec where OTTO's auto-generation needs brand-voice tightening or factual correction, logs curation rationale.</li>
+    <li><strong>Monique review.</strong> Apollo hands the curated drafts review doc to Monique; "DO NOT PUBLISH" gate holds until explicit approval.</li>
+    <li><strong>Sage greenlight + OTTO engage.</strong> Final check; Apollo toggles OTTO engagement; auto-deploy starts.</li>
+    <li><strong>Verification + impact report.</strong> Diagnostics tool run; impact snapshot delivered.</li>
+  </ol>
+  <p class="source-note">Stages 2–8 of the SA OTTO Auto-Deploy product canvas — this is the recurring monthly rhythm Apollo runs for SA-managed clients.</p>
+
+  <h3>Cycles 3+ (recurring monthly)</h3>
+  <p>OTTO regenerates draft sets monthly based on what's changed on the site, what's changed in search behavior, and what new issue types its taxonomy has surfaced. Apollo's monthly QC pass takes ~2–3 hours: walk the new drafts, curate any that need brand-voice work, ship the curated set to Monique for review, engage. The <strong>Monthly Impact Report</strong> follows: OTTO Score delta, GSC impression/click delta on affected pages, schema validation post-deploy, rollback log if any, next-cycle preview.</p>
+
+  <h3>Out-of-scope for this monthly cadence</h3>
+  <ul>
+    <li><strong>Content production for new pages.</strong> Closing the 33-vs-78,400 inventory gap with Tebra is a content engagement, not on-page recommendations. Available as a separate scope.</li>
+    <li><strong>Authority work (link building, digital PR).</strong> Separate engagement.</li>
+    <li><strong>National keyword research expansion.</strong> The $297 AIO Research engagement (referenced in Apr 17 deliverable) drops the geo filter and benchmarks against Tebra / athenahealth / eClinicalWorks at national scope.</li>
+    <li><strong>Site-wide technical SEO audit.</strong> Beyond the homepage; available as a one-time engagement.</li>
+  </ul>
+</div>
+
+<!-- TAB: APPROVAL -->
+<div id="approval" class="section">
+  <h2>Approval Ask</h2>
+
+  <p>Cycle 1 is ready for Harmony's sign-off. Approval covers the 11 on-page drafts + 3 schema payloads outlined in this document. Two items (Address + Business Name confirmation) can be resolved in parallel; the rest of the bundle deploys cleanly without them.</p>
+
+  <h3>Three options</h3>
+  <table class="data">
+    <thead><tr><th>Option</th><th>What it means</th><th>Next step</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Approve as-is</strong></td>
+        <td>Apollo proceeds with cycle 1 deploy. Address + Business Name fields ship null in the schema bundle and get backfilled when Harmony confirms.</td>
+        <td>Apollo coordinates with Harmony's dev team on MetaSync deployment timing.</td>
+      </tr>
+      <tr>
+        <td><strong>Approve + provide answers</strong></td>
+        <td>Same as above, plus Harmony confirms the two open asks now. Cycle 1 ships fully populated.</td>
+        <td>Reply with: street/city/zip/timezone + business name confirmation.</td>
+      </tr>
+      <tr>
+        <td><strong>Revise</strong></td>
+        <td>One or more drafts need adjustment. Apollo iterates and re-presents.</td>
+        <td>Comment on any rows in the On-Page Drafts tab that need changes; Apollo turns it around within 1–2 business days.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="h">Apollo's recommendation</div>
+    <p style="margin: 0;"><strong>Option 2 if the two answers are close at hand</strong> (probably 5 minutes for Monique). Otherwise <strong>Option 1</strong> — the 9 ready drafts + 2 ready schema payloads (Organization + SoftwareApplication) cover ~85% of the cycle 1 impact, and the gating items are isolated and easy to backfill.</p>
+  </div>
+
+  <h3>Comments</h3>
+  <p style="font-style: italic; color: var(--ink-soft);">— space for Monique / Harmony notes —</p>
+
+</div>
+
+</div>
+
+<footer>
+  <p>Prepared for <strong>HighRock</strong> · On-Page Recommendations cycle 1 for Harmony Medical · Apollo Marketing · <a href="https://apollollc.com">apollollc.com</a></p>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
