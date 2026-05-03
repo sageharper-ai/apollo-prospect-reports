@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>On-Page Recommendations — HighRock | Apollo Marketing</title>
+<style>
+:root {
+  --hr-green: #b2bd30;
+  --hr-green-dark: #8a921f;
+  --hr-green-bg: #f7f9e8;
+  --ink: #3c3c3c;
+  --ink-dark: #1a1a1a;
+  --ink-soft: #6b7280;
+  --rule: #e5e7eb;
+  --bg: #fafaf9;
+  --card: #ffffff;
+  --quote-bg: #f3f4f6;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --cyan: #06b6d4;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'proxima-nova', 'Helvetica', 'Roboto', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.header { background: #1f2937; border-bottom: 4px solid var(--hr-green); padding: 2rem 3rem 1.5rem; color: #ffffff; }
+.header .logo img { height: 32px; width: auto; display: block; margin-bottom: 1.25rem; }
+.header h1 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em; color: #ffffff; }
+.header .subtitle { color: #cbd5e1; margin-top: 0.4rem; font-size: 1rem; }
+.header .meta { display: flex; gap: 0.6rem; margin-top: 1.1rem; font-size: 0.78rem; color: #cbd5e1; flex-wrap: wrap; }
+.header .meta span { background: rgba(178,189,48,0.15); border: 1px solid rgba(178,189,48,0.4); color: #e8edc5; padding: 0.22rem 0.7rem; border-radius: 14px; font-weight: 500; }
+.nav { background: white; border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; gap: 0; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+.nav button { background: none; border: none; padding: 0.9rem 1.3rem; font-size: 0.92rem; color: var(--ink-soft); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; font-family: inherit; font-weight: 500; }
+.nav button:hover { color: var(--hr-green-dark); background: rgba(178,189,48,0.05); }
+.nav button.active { color: var(--hr-green-dark); border-bottom-color: var(--hr-green); font-weight: 600; }
+.content { max-width: 1200px; margin: 0 auto; padding: 2rem 3rem; }
+.section { display: none; }
+.section.active { display: block; }
+.section h2 { font-size: 1.35rem; color: var(--ink-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--hr-green); font-weight: 600; }
+.section h3 { font-size: 1.05rem; color: var(--ink-dark); margin: 1.6rem 0 0.75rem; font-weight: 600; }
+.section h4 { font-size: 0.95rem; color: var(--ink-dark); margin: 1.2rem 0 0.5rem; font-weight: 600; }
+.section p { margin-bottom: 0.9rem; }
+.section ul { padding-left: 1.4rem; margin: 0.75rem 0; }
+.section ol { padding-left: 1.4rem; margin: 0.75rem 0; }
+.section li { margin-bottom: 0.45rem; }
+.badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; font-size: 0.78rem; font-weight: 600; }
+.badge-ok { background: #dcfce7; color: #166534; }
+.badge-warn { background: #fef9c3; color: #854d0e; }
+.badge-error { background: #fee2e2; color: #991b1b; }
+.badge-info { background: #dbeafe; color: #1e40af; }
+.badge-pending { background: #fef3c7; color: #92400e; }
+table.data { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem; background: white; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+table.data th { background: var(--ink-dark); color: white; padding: 0.65rem 0.9rem; text-align: left; font-weight: 600; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.5px; }
+table.data td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.data td.code { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.8rem; }
+table.data tr:last-child td { border-bottom: none; }
+table.data tr:hover { background: rgba(178,189,48,0.04); }
+.callout { padding: 1rem 1.25rem; border-left: 4px solid var(--hr-green); background: var(--hr-green-bg); border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: 0.93rem; }
+.callout.warn { border-left-color: var(--yellow); background: #fefce8; }
+.callout.red { border-left-color: var(--red); background: #fef2f2; }
+.callout.info { border-left-color: var(--cyan); background: #ecfeff; }
+.callout strong { color: var(--ink-dark); }
+.callout .h { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hr-green-dark); margin-bottom: 0.3rem; }
+.callout.warn .h { color: #854d0e; }
+.callout.red .h { color: #991b1b; }
+.callout.info .h { color: #155e75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+.card { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 1.15rem; text-align: center; }
+.card .value { font-size: 1.6rem; font-weight: 700; color: var(--hr-green-dark); }
+.card .label { font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.source-note { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.4rem; font-style: italic; }
+pre.payload { background: #f9fafb; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.15rem; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.78rem; line-height: 1.55; overflow-x: auto; margin: 0.75rem 0; }
+pre.payload .k { color: #1e40af; }
+pre.payload .s { color: #166534; }
+pre.payload .c { color: #6b7280; font-style: italic; }
+.draft-row { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin: 0.75rem 0; }
+.draft-row .url { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.82rem; color: var(--ink-soft); }
+.draft-row .issue { font-weight: 600; color: var(--ink-dark); margin-top: 0.3rem; }
+.draft-row .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.65rem; font-size: 0.88rem; }
+.draft-row .pair .lbl { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.2rem; }
+.draft-row .pair .current { color: var(--ink-soft); padding: 0.5rem 0.7rem; background: #f9fafb; border-left: 3px solid #d1d5db; border-radius: 0 4px 4px 0; }
+.draft-row .pair .recommended { padding: 0.5rem 0.7rem; background: var(--hr-green-bg); border-left: 3px solid var(--hr-green); border-radius: 0 4px 4px 0; }
+.draft-row .note { margin-top: 0.6rem; font-size: 0.85rem; color: var(--ink-soft); }
+.draft-row .note strong { color: var(--ink-dark); }
+.approval-status { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 3px; font-size: 0.72rem; font-weight: 600; margin-left: 0.5rem; vertical-align: middle; }
+footer { margin-top: 3rem; padding: 1.5rem 3rem; border-top: 1px solid var(--rule); text-align: center; font-size: 0.78rem; color: var(--ink-soft); background: white; }
+footer a { color: var(--hr-green-dark); text-decoration: none; }
+@media print { .nav { display: none; } .section { display: block !important; page-break-inside: avoid; } }
+@media (max-width: 768px) {
+  .header { padding: 1.25rem 1.5rem; }
+  .content { padding: 1.25rem 1.5rem; }
+  .nav { padding: 0 1.5rem; }
+  .draft-row .pair { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo"><img src="https://highrock.com/themes/custom/highrock/img/logo-header.png" alt="HighRock" /></div>
+  <h1>On-Page Recommendations — HighRock</h1>
+  <div class="subtitle">highrock.com — Drupal · Cycle 1 covering homepage + 3 priority pages · 18 deploy-ready drafts</div>
+  <div class="meta">
+    <span>Prepared: May 4, 2026</span>
+    <span>Cycle 1 — homepage + /services + /work + /about</span>
+    <span>18 drafts ready</span>
+    <span>5 schema payloads</span>
+    <span>Drupal: existing Metatag module configured + Schema.org Metatag module install</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showTab('summary')">Executive Summary</button>
+  <button onclick="showTab('drafts')">On-Page Drafts</button>
+  <button onclick="showTab('schema')">Schema Bundle</button>
+  <button onclick="showTab('prestate')">Pre-State Snapshot</button>
+  <button onclick="showTab('asks')">Open Asks</button>
+  <button onclick="showTab('roadmap')">Roadmap</button>
+  <button onclick="showTab('approval')">Approval</button>
+</div>
+
+<div class="content">
+
+<!-- TAB: SUMMARY -->
+<div id="summary" class="section active">
+  <h2>Executive Summary</h2>
+
+  <p>HighRock's on-page foundation is in better shape than typical baseline audits suggest — but with a consistent set of gaps that compound into AI Overview invisibility and inconsistent SERP previews. The <strong>Drupal Metatag module is already installed and configured</strong> for Open Graph tags across every audited page. Image alt text is on every image (a rare positive — most audits find big gaps here). Canonicals are correct site-wide.</p>
+
+  <p><strong>What's missing across the site:</strong> Twitter Card tags (configurable on the existing Metatag module), JSON-LD structured data (requires the Schema.org Metatag submodule install), and explicit robots meta. <strong>Per-page issues</strong>: homepage and /work both lack an H1 (one of the two most common cause-of-invisibility patterns), several titles are too short to carry value-prop weight (15–19 chars where 50–65 fits), and the /services meta description gets SERP-truncated at 343 chars. Most fixes are short — the heavy lift is the Schema.org Metatag module install + per-payload configuration.</p>
+
+  <div class="cards">
+    <div class="card"><div class="value">18</div><div class="label">Drafts ready</div></div>
+    <div class="card"><div class="value">5</div><div class="label">Schema payloads</div></div>
+    <div class="card"><div class="value">4</div><div class="label">Pages this cycle</div></div>
+    <div class="card"><div class="value">0</div><div class="label">Apollo blocked</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="h">The Drupal-config nuance — why this is a smaller dev lift than it looks</div>
+    <p style="margin-bottom: 0.4rem;"><strong>Existing Metatag module IS deployed and configured per-page.</strong> Apollo verified: every audited page emits <code>og:site_name</code>, <code>og:type</code>, <code>og:url</code>, <code>og:title</code>, <code>og:description</code>. That means the foundation work is done — Twitter Card sub-fields are configurable inside the same module, no new install needed.</p>
+    <p style="margin: 0;"><strong>One module install required:</strong> Schema.org Metatag (<code>drupal/schema_metatag</code>) — extends the existing Metatag module with structured-data field types. Composer install + enable + per-content-type config. Apollo can walk the dev lead through it in a 30-min sync if useful.</p>
+  </div>
+
+  <p>See <strong>On-Page Drafts</strong> for the per-issue table; <strong>Schema Bundle</strong> for JSON-LD payloads + Drupal deployment guidance; <strong>Pre-State Snapshot</strong> for what was captured today; <strong>Open Asks</strong> for the two confirmation items; <strong>Roadmap</strong> for cycle 2 + sub-service page expansion; <strong>Approval</strong> for sign-off.</p>
+
+  <div class="callout info">
+    <div class="h">What this cycle is, and isn't</div>
+    <p style="margin-bottom: 0.4rem;"><strong>Is:</strong> Manually-prepared on-page recommendations for HighRock's homepage + /services + /work + /about. Each draft is written against current page state captured today + HighRock's brand voice from on-site copy ("Elevate your brand," "Strategy · Creativity · Innovation," team-and-mountain framing on /about). Implementation by HighRock's Drupal team — module config + Schema.org module install.</p>
+    <p style="margin: 0;"><strong>Isn't:</strong> Service-line sub-pages (8 confirmed at <code>/services/strategic-marketing</code>, <code>/services/creative</code>, etc. — recommended for cycle 2); individual case-study pages under /work (cycle 2 or 3); content production for new pages (separate scope); a full-site audit (cycle 1 covers 4 pages of ~60+).</p>
+  </div>
+</div>
+
+<!-- TAB: DRAFTS -->
+<div id="drafts" class="section">
+  <h2>On-Page Drafts — cycle 1</h2>
+  <p class="source-note">18 drafts across 4 pages, sorted by URL then by issue priority. Each row: URL · issue type · current state · recommended state · Apollo note. Source: real-browser audit captured 2026-05-03.</p>
+
+  <h3>Homepage — https://highrock.com/</h3>
+
+  <h4>1. H1 tag — currently missing</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/</div>
+    <div class="issue">No H1 on the page; "Elevate your brand" lives in H2 <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— no H1 detected; hero "Elevate your brand" rendered as H2 —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">Elevate Your Brand</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> The brand voice already lives on the page — it's just in the wrong heading level. Promoting the existing hero phrase to H1 keeps the design-side typography work intact while giving search engines + AI assistants the page's primary topic signal. Lowest-friction high-leverage move on the homepage.</div>
+  </div>
+
+  <h4>2. og:url + og:title — minor inconsistencies</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/</div>
+    <div class="issue">og:url says <code>/home</code> while canonical says <code>/</code>; og:title is "Homepage" <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current og:url</div><div class="current">https://highrock.com/home</div></div>
+      <div><div class="lbl">Recommended og:url</div><div class="recommended">https://highrock.com/</div></div>
+    </div>
+    <div class="pair">
+      <div><div class="lbl">Current og:title</div><div class="current">Homepage</div></div>
+      <div><div class="lbl">Recommended og:title</div><div class="recommended">HighRock — Creative Services Agency</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Two small fixes that compound on every Slack/LinkedIn/Facebook share. og:url should match the canonical (search engines flag mismatches as a soft confusion signal). og:title is what social-share previews display as their headline — "Homepage" is generic; the value-prop framing reads better.</div>
+  </div>
+
+  <h4>3. Twitter Card tags — missing</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/</div>
+    <div class="issue">No <code>twitter:*</code> tags emitted <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— no twitter tags present —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended"><code>twitter:card</code> = summary_large_image<br><code>twitter:title</code> = HighRock — Creative Services Agency<br><code>twitter:description</code> = same as meta description<br><code>twitter:image</code> = same as og:image (HighRock to provide 1200×630 if not yet set)</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> X/Twitter falls back to OG when twitter:card isn't explicit, but <code>summary_large_image</code> renders the bigger preview — better engagement on shares. Configurable in the existing Drupal Metatag module (Twitter Card sub-fields, no new install).</div>
+  </div>
+
+  <h4>4. JSON-LD schema — missing</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/</div>
+    <div class="issue">No structured data on the page <span class="approval-status badge badge-ok">Ready · payload in Schema Bundle tab</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— zero <code>&lt;script type="application/ld+json"&gt;</code> blocks —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">Bundle: Organization (root) + ProfessionalService (creative agency variant) + BreadcrumbList. See <strong>Schema Bundle</strong> tab for full payloads + Drupal deployment.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Single highest-leverage on-page move site-wide. AI Overviews + rich results draw heavily from structured data; HighRock's competitive set (creative agencies in DC/Baltimore) is unevenly schema-equipped — first-mover advantage available.</div>
+  </div>
+
+  <h4>5. Robots meta — missing (defaults work, explicit is house-standard)</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/</div>
+    <div class="issue">No <code>&lt;meta name="robots"&gt;</code> emitted <span class="approval-status badge badge-info">Optional polish</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— absent (search engines default to index/follow) —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended"><code>&lt;meta name="robots" content="index, follow"&gt;</code> — explicit affirmative, covers same defaults but documents intent</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Not blocking — the absence of the tag means index/follow by default, which is correct here. Adding the explicit version is house-standard for completeness and prevents any future config tool from accidentally writing a different value. Apply site-wide via the Metatag module's "Default" scope.</div>
+  </div>
+
+  <h3>/services — https://highrock.com/services</h3>
+
+  <h4>6. Title tag — too short</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/services</div>
+    <div class="issue">Title is "Services | HighRock" (19 chars) — leaves ~46 chars unused <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">Services | HighRock</div></div>
+      <div><div class="lbl">Recommended (~63 chars)</div><div class="recommended">Creative Agency Services — Strategy, Design, Web, Video | HighRock</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Pulls the four highest-traffic service categories into the title for SERP comprehension at-a-glance. Keeps "HighRock" anchored at the end (brand reinforcement). Within the ~60-char SERP cap.</div>
+  </div>
+
+  <h4>7. Meta description — too long (343 chars)</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/services</div>
+    <div class="issue">Meta is 343 chars — Google truncates around 155–160 in SERP <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current (343 chars)</div><div class="current">Strategy Creativity Innovation HighRock is a full-service marketing agency that thrives on strategy, creativity, and innovation. We craft tailored solutions that not only elevate brands but also drive real results. From dynamic digital campaigns to cutting-edge design, we partner with businesses to transform ideas into impactful experiences.</div></div>
+      <div><div class="lbl">Recommended (~155 chars)</div><div class="recommended">HighRock is a full-service creative agency. Strategy, creativity, and innovation across web, video, branding, and digital — tailored to elevate your brand.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Preserves the trinity (Strategy/Creativity/Innovation), the "elevate your brand" close, and the service-breadth signal — just within the SERP-displayable window. The fuller copy can stay in body content for AI-search context.</div>
+  </div>
+
+  <h4>8. H1 — multiple H1s, recommend consolidation</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/services</div>
+    <div class="issue">3 separate H1s ("Strategy" / "Creativity" / "Innovation") <span class="approval-status badge badge-warn">Design coordination</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">3 sequential H1 elements wrapping each pillar word</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">Single H1: <em>"Strategy. Creativity. Innovation."</em><br>Pillar words become <code>&lt;span&gt;</code> with display:block — visual treatment preserved, semantic structure cleaned.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Multiple H1s aren't strictly broken (HTML5 allows multiple H1s), but search engines prefer a single primary topic signal per page. Recommended fix preserves the design (each word can still be its own visual line) while emitting one H1 to crawlers. Coordinate with HighRock's design lead — likely a CSS-only or template-only change.</div>
+  </div>
+
+  <h4>9. Twitter Card — missing</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/services</div>
+    <div class="issue">No twitter:* tags <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— absent —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended"><code>twitter:card</code> = summary_large_image · <code>twitter:title</code> = "Creative Agency Services" · <code>twitter:description</code> = recommended meta above · <code>twitter:image</code> = page-or-site OG image</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Same module-config path as homepage. Configure once for /services content type via Metatag module defaults; applies to all service pages by default and individual sub-services can override.</div>
+  </div>
+
+  <h4>10. JSON-LD schema — missing (ProfessionalService + ItemList)</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/services</div>
+    <div class="issue">No structured data <span class="approval-status badge badge-ok">Ready · payloads in Schema Bundle tab</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— zero schema —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">ProfessionalService (creative agency variant of Organization) + ItemList wrapping the 8 sub-service pages as Service objects.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> ItemList of 8 sub-services helps Google understand HighRock's service taxonomy and may surface as a sitelinks block. Each Service object links to its sub-page (cycle 2 will add per-sub-service schema for full depth).</div>
+  </div>
+
+  <h3>/work — https://highrock.com/work</h3>
+
+  <h4>11. Title — too short</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/work</div>
+    <div class="issue">"Work | HighRock" (15 chars) — under-utilized <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">Work | HighRock</div></div>
+      <div><div class="lbl">Recommended (~64 chars)</div><div class="recommended">Creative Agency Portfolio — Brand, Video, Web Case Studies | HighRock</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Surfaces the three highest-volume work categories visible in the portfolio (brand work, video production, web design — confirmed from the 56 case studies on the page). "Portfolio" is the term prospect-clients search; "Case Studies" reinforces the buyer-evaluation context.</div>
+  </div>
+
+  <h4>12. H1 — missing</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/work</div>
+    <div class="issue">No page H1 — only filter labels and case-study titles <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— no H1 detected; first heading is "Filter by Service" (H3) —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">Our Work</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Short, direct, matches the URL slug. If HighRock prefers a longer treatment ("The HighRock Portfolio" is also strong), either works — the priority is to have ONE before the filter section.</div>
+  </div>
+
+  <h4>13. Twitter Card — missing</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/work</div>
+    <div class="issue">No twitter:* tags <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— absent —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended"><code>twitter:card</code> = summary_large_image · <code>twitter:title</code> = "HighRock Work" · <code>twitter:description</code> = current meta · <code>twitter:image</code> = a featured-case-study image (rotates with page if dynamic)</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Same module-config path. The Twitter image could be configured to pull the most recent featured case study — that's a Drupal Twig adjustment if dynamic, or a static recent feature otherwise.</div>
+  </div>
+
+  <h4>14. JSON-LD schema — missing (CollectionPage + ItemList)</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/work</div>
+    <div class="issue">No structured data <span class="approval-status badge badge-ok">Ready · payload in Schema Bundle tab</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— zero schema —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">CollectionPage with ItemList of top N case studies as CreativeWork entries. Cycle 2/3 adds per-case-study CreativeWork on individual case-study URLs.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> CreativeWork is the right type for case studies (vs. SoftwareApplication or Product). Allows Google to understand each case study as a discrete creative output. Cycle 1 ships the page-level CollectionPage; per-case-study schema is cycle 2 or 3 work given there are 56 case studies.</div>
+  </div>
+
+  <h3>/about — https://highrock.com/about</h3>
+
+  <h4>15. Title — too short</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/about</div>
+    <div class="issue">"About | HighRock" (16 chars) <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">About | HighRock</div></div>
+      <div><div class="lbl">Recommended (~50 chars)</div><div class="recommended">About HighRock — The Team Behind the Brand Work</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Pairs the brand name with the page's actual content (the team) and the proof (the brand work). The "behind the brand work" framing creates a natural cross-link for visitors browsing /work who want to know who's behind it.</div>
+  </div>
+
+  <h4>16. Meta description — slightly long (248 chars), tighten</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/about</div>
+    <div class="issue">Meta is 248 chars — partially truncated in SERP <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current (248 chars)</div><div class="current">The HighRock Team HighRock is powered by people that possess a wide array of expertise and skills that can rise to the challenges of diverse markets. It's all about the right breadth of experience—and the willingness to climb the mountain together.</div></div>
+      <div><div class="lbl">Recommended (~155 chars)</div><div class="recommended">HighRock is powered by people with a wide breadth of expertise — and the willingness to climb the mountain together. Meet the team behind the brand work.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Preserves the team metaphor verbatim ("climb the mountain together"), drops the redundant opening "The HighRock Team" (already in H1 + title), adds an outbound link signal ("Meet the team") that hints to clicks.</div>
+  </div>
+
+  <h4>17. Twitter Card — missing</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/about</div>
+    <div class="issue">No twitter:* tags <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— absent —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended"><code>twitter:card</code> = summary_large_image · <code>twitter:title</code> = "About HighRock" · <code>twitter:description</code> = recommended meta above · <code>twitter:image</code> = team photo or HighRock logo card</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Same configurable path. Team photo (if available) is the more engagement-optimal image; logo card works as fallback.</div>
+  </div>
+
+  <h4>18. JSON-LD schema — missing (AboutPage + Organization)</h4>
+  <div class="draft-row">
+    <div class="url">https://highrock.com/about</div>
+    <div class="issue">No structured data <span class="approval-status badge badge-ok">Ready · payload in Schema Bundle tab</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— zero schema —</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">AboutPage + Organization (linked to root Organization via <code>@id</code>). If Person schema for individual team members is desired, add per-person; that's typically cycle 2 work after Organization is in place.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> AboutPage is the schema.org-recommended type for "about us" pages. Linking to the root Organization via shared <code>@id</code> creates a single canonical entity reference across all schema. Person schema for team members is a meaningful add for cycle 2 (Google E-E-A-T expertise signals).</div>
+  </div>
+
+</div>
+
+<!-- TAB: SCHEMA -->
+<div id="schema" class="section">
+  <h2>Schema Bundle — JSON-LD payloads</h2>
+  <p class="source-note">Five JSON-LD payloads, deploy-ready. All wrapped in <code>&lt;script type="application/ld+json"&gt;</code> blocks. Recommended deployment via Schema.org Metatag Drupal module (composer install + per-content-type config). Twig template fallback documented below.</p>
+
+  <h3>Payload 1 — Organization (root, deploys on every page)</h3>
+  <pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Organization"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span>,
+  <span class="k">"name"</span>: <span class="s">"HighRock"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/"</span>,
+  <span class="k">"logo"</span>: <span class="s">"https://highrock.com/themes/custom/highrock/img/logo-header.png"</span>,
+  <span class="k">"description"</span>: <span class="s">"Full-service creative agency. Strategy, creativity, and innovation across web, video, branding, and digital."</span>,
+  <span class="k">"telephone"</span>: <span class="s">"+1-301-791-1221"</span>,
+  <span class="k">"email"</span>: <span class="s">"help@highrock.com"</span>,
+  <span class="k">"address"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"PostalAddress"</span>,
+    <span class="k">"streetAddress"</span>: <span class="s">"[Headquarters street address — confirm with HighRock]"</span>,
+    <span class="k">"addressLocality"</span>: <span class="s">"[city]"</span>,
+    <span class="k">"addressRegion"</span>: <span class="s">"MD"</span>,
+    <span class="k">"postalCode"</span>: <span class="s">"[ZIP]"</span>,
+    <span class="k">"addressCountry"</span>: <span class="s">"US"</span>
+  },
+  <span class="k">"sameAs"</span>: [
+    <span class="s">"[LinkedIn URL — confirm]"</span>,
+    <span class="s">"[Instagram URL — confirm]"</span>,
+    <span class="s">"[Facebook URL — confirm]"</span>
+  ]
+}</pre>
+
+  <h3>Payload 2 — ProfessionalService (homepage + /services, creative-agency variant)</h3>
+  <pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"ProfessionalService"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#professionalservice"</span>,
+  <span class="k">"name"</span>: <span class="s">"HighRock"</span>,
+  <span class="k">"description"</span>: <span class="s">"Full-service creative agency offering strategy, creativity, and innovation across brand work, web development, video production, training, 3D/VR, digital marketing, and SEO."</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/"</span>,
+  <span class="k">"image"</span>: <span class="s">"https://highrock.com/themes/custom/highrock/img/logo-header.png"</span>,
+  <span class="k">"priceRange"</span>: <span class="s">"$$$"</span>,
+  <span class="k">"parentOrganization"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"hasOfferCatalog"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"OfferCatalog"</span>,
+    <span class="k">"name"</span>: <span class="s">"HighRock Service Lines"</span>,
+    <span class="k">"itemListElement"</span>: [
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Strategic Marketing"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/strategic-marketing"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Creative"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/creative"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Web Development"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/web-development"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Training &amp; Development"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/training-development"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"3D / VR"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/3d-vr"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Digital Marketing"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/digital-marketing"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Search Engine Optimization (SEO)"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/search-engine-optimization-seo"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Video Production"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/video-production"</span> } }
+    ]
+  }
+}</pre>
+
+  <h3>Payload 3 — CollectionPage for /work (with ItemList of top case studies)</h3>
+  <pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CollectionPage"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work#collection"</span>,
+  <span class="k">"name"</span>: <span class="s">"HighRock Work"</span>,
+  <span class="k">"description"</span>: <span class="s">"Creative agency portfolio — brand, video, web design, and 3D/VR case studies."</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work"</span>,
+  <span class="k">"isPartOf"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"mainEntity"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"ItemList"</span>,
+    <span class="k">"itemListElement"</span>: [
+      <span class="c">// Top N case studies as ListItem with embedded CreativeWork.
+      // Cycle 1 ships the top 10 by featured-status; cycle 2 expands to all 56 + per-page CreativeWork schema.</span>
+      { <span class="k">"@type"</span>: <span class="s">"ListItem"</span>, <span class="k">"position"</span>: 1, <span class="k">"item"</span>: { <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>, <span class="k">"name"</span>: <span class="s">"Hub City Football Club"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/hub-city-football-club"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"ListItem"</span>, <span class="k">"position"</span>: 2, <span class="k">"item"</span>: { <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>, <span class="k">"name"</span>: <span class="s">"BMC Insurance: Keeping You Covered"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/bmc-insurance-keeping-you-covered"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"ListItem"</span>, <span class="k">"position"</span>: 3, <span class="k">"item"</span>: { <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>, <span class="k">"name"</span>: <span class="s">"Coca Cola &amp; NCG Cinema: Cherry Chill Campaign"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/coca-cola-ncg-cinema-cherry-chill-campaign"</span> } }
+      <span class="c">// ... add positions 4–10 from the featured set</span>
+    ]
+  }
+}</pre>
+
+  <h3>Payload 4 — AboutPage for /about</h3>
+  <pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"AboutPage"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/about#aboutpage"</span>,
+  <span class="k">"name"</span>: <span class="s">"About HighRock"</span>,
+  <span class="k">"description"</span>: <span class="s">"HighRock is powered by people with a wide breadth of expertise — and the willingness to climb the mountain together."</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/about"</span>,
+  <span class="k">"mainEntity"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> }
+}</pre>
+
+  <h3>Payload 5 — BreadcrumbList (per page; example for /services)</h3>
+  <pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"BreadcrumbList"</span>,
+  <span class="k">"itemListElement"</span>: [
+    { <span class="k">"@type"</span>: <span class="s">"ListItem"</span>, <span class="k">"position"</span>: 1, <span class="k">"name"</span>: <span class="s">"Home"</span>, <span class="k">"item"</span>: <span class="s">"https://highrock.com/"</span> },
+    { <span class="k">"@type"</span>: <span class="s">"ListItem"</span>, <span class="k">"position"</span>: 2, <span class="k">"name"</span>: <span class="s">"Services"</span>, <span class="k">"item"</span>: <span class="s">"https://highrock.com/services"</span> }
+  ]
+}</pre>
+  <p class="source-note">BreadcrumbList replicated per cycle-1 page with appropriate URL chain. The <code>schema_breadcrumb_list</code> field type in the Schema.org Metatag module auto-generates breadcrumbs from Drupal's menu structure if configured — likely faster than per-page hand-config.</p>
+
+  <h3>Drupal deployment — Schema.org Metatag module path (recommended)</h3>
+  <ol>
+    <li><strong>Composer install + enable.</strong> <code>composer require drupal/schema_metatag</code> · <code>drush en schema_metatag</code> (or admin → Extend → enable). Module pairs with the existing Metatag module already deployed for OG tags.</li>
+    <li><strong>Configure the schema types Apollo's bundle uses.</strong> Admin → Configuration → Search and metadata → Metatag → Settings → enable: <code>schema_organization</code>, <code>schema_professional_service</code>, <code>schema_collection_page</code>, <code>schema_about_page</code>, <code>schema_breadcrumb_list</code>, <code>schema_creative_work</code>.</li>
+    <li><strong>Set defaults.</strong> Admin → Configuration → Metatag → Add default metatag → Global scope for Organization root payload (deploys on every page); per-content-type for ProfessionalService (homepage + /services), CollectionPage (work), AboutPage (about).</li>
+    <li><strong>Map Drupal field tokens to schema fields.</strong> Each schema field accepts Drupal tokens (e.g., <code>[node:title]</code>, <code>[node:field_service_description]</code>) so payloads stay in sync with content edits.</li>
+    <li><strong>Twitter Card configuration (no new install — uses existing Metatag module).</strong> Same Metatag config UI: enable Twitter Card sub-fields, set defaults per content type.</li>
+    <li><strong>Validate.</strong> Live URLs → Google's <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Rich Results Test</a> → confirm "Eligible for rich results" on each schema type. Test all 5 payload types before bulk-applying.</li>
+    <li><strong>Submit affected URLs to Google Search Console</strong> for re-indexing once schema is live. Re-index window typically 3–14 days for surface-level inclusion; AI Overview eligibility builds over weeks.</li>
+  </ol>
+
+  <h3>Drupal deployment — Twig template fallback (only if module doesn't fit)</h3>
+  <p>If specific schema types aren't supported by the Schema.org Metatag module's field set, JSON-LD can drop directly into <code>themes/custom/highrock/templates/html.html.twig</code>:</p>
+  <pre class="payload"><span class="c">// In themes/custom/highrock/templates/html.html.twig — head section</span>
+&lt;script type="application/ld+json"&gt;
+{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Organization"</span>,
+  <span class="k">"name"</span>: <span class="s">"HighRock"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/"</span>
+  <span class="c">// + remaining fields from Payload 1</span>
+}
+&lt;/script&gt;
+{% if node.bundle == 'service_landing' %}
+&lt;script type="application/ld+json"&gt;{ ... ProfessionalService payload ... }&lt;/script&gt;
+{% endif %}</pre>
+  <p class="source-note">Twig fallback is more code per template but gives finer control if Drupal-side field mapping isn't viable. Apollo's recommendation: use the module path. Twig is the escape hatch.</p>
+</div>
+
+<!-- TAB: PRESTATE -->
+<div id="prestate" class="section">
+  <h2>Pre-State Snapshot</h2>
+  <p class="source-note">Captured 2026-05-03 via real-browser audit (real browser bypasses Cloudflare). 4 pages: homepage, /services, /work, /about. Data feeds the cycle 1 drafts above and the cycle 2 baseline.</p>
+
+  <h3>Site infrastructure</h3>
+  <table class="data">
+    <thead><tr><th>Component</th><th>State</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>CMS</td><td><span class="badge badge-info">Drupal</span></td><td>Custom theme at <code>themes/custom/highrock/</code>. Drupal version not exposed in <code>&lt;meta name="generator"&gt;</code> (best-practice for security; version visible only via admin or asset paths).</td></tr>
+      <tr><td>Metatag module</td><td><span class="badge badge-ok">Installed + configured</span></td><td>OG tags emit per-page across all 4 audited pages. Foundation work is done — Twitter Card sub-fields are configurable on the same module without new install.</td></tr>
+      <tr><td>Schema.org Metatag submodule</td><td><span class="badge badge-warn">Not installed (or not configured)</span></td><td>Zero JSON-LD blocks across all 4 pages. Composer install + per-content-type config closes this gap.</td></tr>
+      <tr><td>WAF / CDN</td><td><span class="badge badge-warn">Cloudflare</span></td><td>Returns 403 to standard SEO user-agents. Browsers + Googlebot pass cleanly. Apollo's audit used a real-browser tooling path. Recommendation: whitelist common SEO user-agents at WAF for HighRock's own audit visibility (not blocking).</td></tr>
+      <tr><td>Theme</td><td><span class="badge badge-info">Custom</span></td><td><code>themes/custom/highrock/</code> — Twig fallback edits land here if needed.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Per-page state — current</h3>
+  <table class="data">
+    <thead><tr><th>Element</th><th>/</th><th>/services</th><th>/work</th><th>/about</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Title length</strong></td><td>55 ✅</td><td>19 ⚠️</td><td>15 ⚠️</td><td>16 ⚠️</td></tr>
+      <tr><td><strong>Meta description</strong></td><td>146 ✅</td><td>343 ⚠️</td><td>146 ✅</td><td>248 ⚠️</td></tr>
+      <tr><td><strong>Canonical</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td><strong>H1 count</strong></td><td>0 ❌</td><td>3 ⚠️</td><td>0 ❌</td><td>1 ✅</td></tr>
+      <tr><td><strong>OG tags</strong></td><td>5 ✅ (minor inconsistencies)</td><td>5 ✅</td><td>5 ✅</td><td>5 ✅</td></tr>
+      <tr><td><strong>Twitter Card</strong></td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td></tr>
+      <tr><td><strong>JSON-LD schema</strong></td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td></tr>
+      <tr><td><strong>Robots meta</strong></td><td>— (defaults)</td><td>— (defaults)</td><td>— (defaults)</td><td>— (defaults)</td></tr>
+      <tr><td><strong>Image count / alt</strong></td><td>43 / 43 ✅</td><td>0 (text page)</td><td>63 / 63 ✅</td><td>34 / 34 ✅</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Service-line sub-pages (discovered, cycle 2 scope)</h3>
+  <ul>
+    <li>/services/strategic-marketing</li>
+    <li>/services/creative</li>
+    <li>/services/web-development</li>
+    <li>/services/training-development</li>
+    <li>/services/3d-vr</li>
+    <li>/services/digital-marketing</li>
+    <li>/services/search-engine-optimization-seo</li>
+    <li>/services/video-production</li>
+  </ul>
+
+  <h3>Holistic SEO baseline (third-party scoring, captured 2026-05-03)</h3>
+  <table class="data">
+    <thead><tr><th>Pillar</th><th>Score</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Technical SEO</td><td>—</td><td>Captured site-state directly in audit above; full technical audit available as a separate engagement.</td></tr>
+      <tr><td>Content Quality</td><td>43/100 🟠</td><td>Surface-level optimization (titles, metas, headings) is below mid — primarily the issues this cycle 1 addresses.</td></tr>
+      <tr><td>Authority</td><td>—</td><td>Backlink profile + ref domains captured separately if useful; not blocking cycle 1.</td></tr>
+      <tr><td>UX Signals</td><td>—</td><td>Engagement metrics not in scope for cycle 1.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TAB: ASKS -->
+<div id="asks" class="section">
+  <h2>Open Asks</h2>
+  <p class="source-note">Items where Apollo can't ship the final value without HighRock's input. Tracked separately from per-page drafts (which are populated and ready).</p>
+
+  <div class="callout warn">
+    <div class="h">Ask 1 — Confirm headquarters address for Organization schema</div>
+    <p style="margin-bottom: 0.5rem;"><strong>What we need:</strong> street address · city · state (MD already inferred) · ZIP for the <code>Organization.address.PostalAddress</code> field in Payload 1.</p>
+    <p style="margin: 0;"><strong>Resolution path:</strong> One-line answer from Monique. Without it, the Organization schema ships with placeholder address values that should be replaced before final deploy.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="h">Ask 2 — Confirm social profile URLs for Organization sameAs</div>
+    <p style="margin-bottom: 0.5rem;"><strong>What we need:</strong> canonical URLs for HighRock's LinkedIn, Instagram, Facebook (any others — X/Twitter, YouTube, Vimeo for video work). These populate the <code>sameAs</code> array which helps search engines link branded results to the right entity across the web.</p>
+    <p style="margin: 0;"><strong>Resolution path:</strong> Monique provides URLs OR the dev team can pull from existing site footer (often configured but not currently linked into schema).</p>
+  </div>
+
+  <div class="callout info">
+    <div class="h">Ask 3 (optional) — Featured case studies for /work CollectionPage ItemList</div>
+    <p style="margin: 0;">Cycle 1 ships the CollectionPage with a default top-3 featured set (the first three case studies visible on /work). If HighRock has a preferred top-10 featured set for the schema's ItemList ordering, Apollo updates Payload 3. Not blocking — defaults work.</p>
+  </div>
+
+  <div class="callout info">
+    <div class="h">What we're NOT asking</div>
+    <p style="margin: 0;">No vertical confirmation needed (audit confirmed creative services agency from on-site copy). No FAQ content (no FAQ section currently on cycle-1 pages). No content additions (separate scope).</p>
+  </div>
+</div>
+
+<!-- TAB: ROADMAP -->
+<div id="roadmap" class="section">
+  <h2>Roadmap — cycles 2 and beyond</h2>
+
+  <h3>Cycle 2 (recommended start: ~3–4 weeks after cycle 1 deploy)</h3>
+  <p>Cycle 2 expands into the eight service-line sub-pages discovered during cycle 1 capture. Apollo:</p>
+  <ol>
+    <li>Captures raw state for each sub-service page via the same real-browser audit method.</li>
+    <li>Drafts per-page on-page recommendations (titles, metas, H1s, schema as Service nested under the parent ProfessionalService).</li>
+    <li>Adds per-sub-service Service schema to the cycle 1 ProfessionalService payload's <code>hasOfferCatalog</code> via the module's per-page override.</li>
+    <li>Reviews cycle 1 deploy results — Google Rich Results Test pass/fail per schema type, GSC indexation lift on the 4 cycle-1 URLs, any rollback decisions.</li>
+  </ol>
+
+  <h3>Cycle 3+ — case-study schema (CreativeWork) for /work</h3>
+  <p>The /work page has 56 case studies. Cycle 1 ships CollectionPage with top-N as ItemList. Cycle 3 expands per-case-study CreativeWork schema on individual case-study URLs. This is significant scope (56 pages of per-page audit + draft); cycle 3 may span multiple cycles or batch by featured-status / industry.</p>
+
+  <h3>Recurring quarterly</h3>
+  <p>Drupal sites without OTTO management run on a slower cadence than SA-managed sites — quarterly is realistic. Each cycle picks up a new content tier or refreshes outdated drafts. The <strong>Quarterly Impact Report</strong> follows: pages affected since last cycle, GSC impression/click delta, schema validation snapshot, content-gap recommendations queued for next cycle.</p>
+
+  <h3>Out-of-scope for this cadence</h3>
+  <ul>
+    <li><strong>Content production for new pages</strong> — separate engagement.</li>
+    <li><strong>Authority work (link building, digital PR)</strong> — separate engagement.</li>
+    <li><strong>Drupal performance optimization (Core Web Vitals)</strong> — overlaps with on-page but warrants its own scope; available on request.</li>
+    <li><strong>Site migration (Drupal version upgrade, theme rebuild)</strong> — separate engagement.</li>
+  </ul>
+</div>
+
+<!-- TAB: APPROVAL -->
+<div id="approval" class="section">
+  <h2>Approval Ask</h2>
+
+  <p>Cycle 1 is ready for HighRock's sign-off. Approval covers the 18 on-page drafts + 5 schema payloads + Drupal deployment guidance.</p>
+
+  <h3>Three options</h3>
+  <table class="data">
+    <thead><tr><th>Option</th><th>What it means</th><th>Next step</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Approve as-is</strong></td>
+        <td>Apollo proceeds with cycle 1 deploy plan. HighRock dev team handles the Drupal-side implementation per the Schema Bundle deployment notes. Address + sameAs values backfilled when Monique provides.</td>
+        <td>HighRock confirms Drupal team availability for cycle 1 implementation window.</td>
+      </tr>
+      <tr>
+        <td><strong>Approve + dev coordination</strong></td>
+        <td>Same as above, plus Apollo runs a 30-min sync with HighRock's Drupal lead to walk through Schema.org Metatag module install + per-content-type config. Saves the dev team setup time.</td>
+        <td>Monique connects Apollo with the Drupal lead.</td>
+      </tr>
+      <tr>
+        <td><strong>Revise</strong></td>
+        <td>One or more drafts need adjustment. Apollo iterates and re-presents within 1–2 business days.</td>
+        <td>Comment on any rows in the On-Page Drafts tab.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="h">Apollo's recommendation</div>
+    <p style="margin: 0;"><strong>Option 2.</strong> The Schema.org Metatag module install + per-content-type config is a one-time Drupal-side configuration that Apollo can walk the dev lead through in 30 minutes. After that, ongoing cycles are pure draft delivery; no recurring dev sync needed.</p>
+  </div>
+
+  <h3>Comments</h3>
+  <p style="font-style: italic; color: var(--ink-soft);">— space for HighRock notes —</p>
+
+</div>
+
+</div>
+
+<footer>
+  <p>On-Page Recommendations cycle 1 for <strong>HighRock</strong> (highrock.com) · Apollo Marketing · <a href="https://apollollc.com">apollollc.com</a></p>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
