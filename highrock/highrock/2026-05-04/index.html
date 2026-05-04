@@ -88,11 +88,11 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 <div class="header">
   <div class="logo"><img src="https://highrock.com/themes/custom/highrock/img/logo-header.png" alt="HighRock" /></div>
   <h1>On-Page Recommendations — HighRock</h1>
-  <div class="subtitle">highrock.com — Drupal · Cycle 1 covering homepage + 3 priority pages · Real estate vertical positioning · Mid-Atlantic</div>
+  <div class="subtitle">highrock.com — Drupal · Cycle 1 full-site coverage · 27 pages + 3 new real-estate landing-page templates · Mid-Atlantic</div>
   <div class="meta">
     <span>Prepared: May 4, 2026</span>
-    <span>4 pages · Mid-Atlantic real estate positioning</span>
-    <span>5 schema payloads</span>
+    <span>27 pages audited · multi-vertical brand · real-estate vertical sub-pages</span>
+    <span>26 schema payloads</span>
     <span>Drupal: existing Metatag module + Schema.org Metatag submodule install</span>
   </div>
 </div>
@@ -116,13 +116,13 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 
   <p>HighRock's on-page recommendations are anchored around the strategic positioning Monique provided in the SEO research intake: <strong>Mid-Atlantic real estate creative agency, with Luxury Real Estate Brand Identity & 3D Visualization, Real Estate Growth Marketing, and Full-Service Creative Partner as the keyword targets</strong>. The site's foundation is solid — Drupal Metatag module is configured per-page for Open Graph, all 140+ images have alt text, canonicals are correct site-wide. The gaps are that titles, meta descriptions, H1s, and OG titles currently signal "creative agency" generically rather than the real estate vertical Monique is targeting for SEO growth, and zero pages carry structured data.</p>
 
-  <p>Cycle 1 closes both gaps: every title, meta, H1, and OG title for the four priority pages (homepage, /services, /work, /about) is rewritten around the real estate vertical + Mid-Atlantic positioning, and a 5-payload JSON-LD schema bundle adds structured data with audience targeting and Mid-Atlantic service area. None of HighRock's three competitors named in Monique's intake (mojo.biz, warschawski.com, mghus.com) own real estate vertical positioning — that's whitespace HighRock can claim.</p>
+  <p>Cycle 1 closes both gaps with full-site coverage: 27 pages now carry rewritten title/meta/H1/OG/Twitter recommendations, and 26 JSON-LD payloads ship as a deploy-ready bundle. Coverage breaks down as 4 parent pages (homepage, /services, /work, /about) + 8 service sub-pages + 12 featured case studies (the set HighRock features on its own homepage) + 3 site infrastructure pages (/insights, /contact, /careers). Plus 3 new real-estate landing-page templates the dev team can build directly. None of HighRock's three competitors named in Monique's intake (mojo.biz, warschawski.com, mghus.com) own real-estate vertical positioning — that's whitespace HighRock can claim.</p>
 
   <div class="cards">
-    <div class="card"><div class="value">4</div><div class="label">Pages this cycle</div></div>
-    <div class="card"><div class="value">18</div><div class="label">On-page edits</div></div>
-    <div class="card"><div class="value">5</div><div class="label">Schema payloads</div></div>
-    <div class="card"><div class="value">3</div><div class="label">Pending HighRock</div></div>
+    <div class="card"><div class="value">27</div><div class="label">Pages this cycle</div></div>
+    <div class="card"><div class="value">190+</div><div class="label">On-page edits</div></div>
+    <div class="card"><div class="value">26</div><div class="label">Schema payloads</div></div>
+    <div class="card"><div class="value">3</div><div class="label">New page templates</div></div>
   </div>
 
   <div class="callout">
@@ -213,6 +213,338 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
       <tr><td>S.3</td><td>WAF user-agent whitelist</td><td class="muted">Cloudflare returns 403 to standard SEO crawlers</td><td class="code">Whitelist common SEO user-agents (Ahrefs, SEMrush, Screaming Frog, Botify) for HighRock's own audit visibility — not blocking</td></tr>
     </tbody>
   </table>
+<!-- CYCLE 1 EXPANSION SPLICE -->
+<h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Service sub-pages (cycle 1 expansion)</h3>
+<h3>Strategic Marketing — <code>https://highrock.com/services/strategic-marketing</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>5.1</td><td>Title (56 chars)</td><td class="muted">Strategic Marketing | HighRock (30 chars)</td><td class="code">Strategic Marketing — Positioning &amp; Campaigns | HighRock</td></tr>
+      <tr><td>5.2</td><td>Meta description (144 chars)</td><td class="muted">HighRock&#x27;s strategic marketing services help you define your business&#x27;s goals, identify target audiences, and develop data-driven campaigns that drive measurable results. This includes market research... (453 chars)</td><td class="code">HighRock&#x27;s strategic marketing — market research, brand positioning, competitive analysis, and multi-channel campaigns built for measurable ROI.</td></tr>
+      <tr><td>5.3</td><td>H1</td><td class="muted">Strategic Marketing</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>5.4</td><td>og:title</td><td class="muted">Strategic Marketing</td><td class="code">Strategic Marketing — Positioning &amp; Campaigns</td></tr>
+      <tr><td>5.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>5.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>5.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fstrategic-marketing" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Creative — <code>https://highrock.com/services/creative</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>6.1</td><td>Title (54 chars)</td><td class="muted">Creative | HighRock (19 chars)</td><td class="code">Creative Services — Brand Identity &amp; Design | HighRock</td></tr>
+      <tr><td>6.2</td><td>Meta description (142 chars)</td><td class="muted">HighRock&#x27;s creative services bring brands to life with visually compelling and strategically crafted designs. From logos and branding to digital and print materials, we create eye-catching assets that... (406 chars)</td><td class="code">HighRock&#x27;s creative services — logos, brand identity systems, and digital and print design built to engage audiences and elevate your message.</td></tr>
+      <tr><td>6.3</td><td>H1</td><td class="muted">Creative</td><td class="code">Creative Services</td></tr>
+      <tr><td>6.4</td><td>og:title</td><td class="muted">Creative</td><td class="code">Creative Services — Brand Identity &amp; Design</td></tr>
+      <tr><td>6.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>6.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>6.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fcreative" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Web Development — <code>https://highrock.com/services/web-development</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>7.1</td><td>Title (54 chars)</td><td class="muted">Web Development | HighRock (26 chars)</td><td class="code">Web Development — Custom Websites &amp; Hosting | HighRock</td></tr>
+      <tr><td>7.2</td><td>Meta description (142 chars)</td><td class="muted">HighRock designs and develops custom websites that blend creativity with functionality, ensuring an engaging user experience tailored to your brand. From sleek landing pages to complex database-driven... (388 chars)</td><td class="code">Custom websites by HighRock — mobile-friendly design, database-driven platforms, and reliable hosting built for ambitious Mid-Atlantic brands.</td></tr>
+      <tr><td>7.3</td><td>H1</td><td class="muted">Web Development</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>7.4</td><td>og:title</td><td class="muted">Web Development</td><td class="code">Web Development — Custom Websites &amp; Hosting</td></tr>
+      <tr><td>7.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>7.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>7.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fweb-development" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Training &amp; Development — <code>https://highrock.com/services/training-development</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>8.1</td><td>Title (58 chars)</td><td class="muted">Training &amp; Development | HighRock (33 chars)</td><td class="code">Training &amp; Development — Custom LMS &amp; Workshops | HighRock</td></tr>
+      <tr><td>8.2</td><td>Meta description (151 chars)</td><td class="muted">HighRock&#x27;s training and development services equip your teams with the skills and knowledge needed to thrive in rapidly evolving industries. We offer customized workshops, hands-on training sessions, ... (456 chars)</td><td class="code">HighRock training &amp; development — customized workshops, hands-on sessions, and web-based learning management portals built to drive measurable results.</td></tr>
+      <tr><td>8.3</td><td>H1</td><td class="muted">Training &amp; Development</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>8.4</td><td>og:title</td><td class="muted">Training &amp; Development</td><td class="code">Training &amp; Development — Custom LMS &amp; Workshops</td></tr>
+      <tr><td>8.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>8.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>8.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Ftraining-development" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>3D / VR — <code>https://highrock.com/services/3d-vr</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>9.1</td><td>Title (60 chars)</td><td class="muted">3D / VR | HighRock (18 chars)</td><td class="code">3D &amp; VR — Visualization, AR, Virtual Walkthroughs | HighRock</td></tr>
+      <tr><td>9.2</td><td>Meta description (157 chars)</td><td class="muted">HighRock&#x27;s 3D &amp; VR services bring brands to life with immersive, interactive experiences that captivate audiences. From virtual walkthroughs and product visualizations to augmented reality (AR) activa... (451 chars)</td><td class="code">HighRock 3D &amp; VR — virtual walkthroughs, product visualization, and AR experiences for real estate, retail, and entertainment brands across the Mid-Atlantic.</td></tr>
+      <tr><td>9.3</td><td>H1</td><td class="muted">3D / VR</td><td class="code">3D &amp; VR</td></tr>
+      <tr><td>9.4</td><td>og:title</td><td class="muted">3D / VR</td><td class="code">3D &amp; VR — Visualization, AR, Virtual Walkthroughs</td></tr>
+      <tr><td>9.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>9.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>9.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2F3d-vr" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Digital Marketing — <code>https://highrock.com/services/digital-marketing</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>10.1</td><td>Title (58 chars)</td><td class="muted">Digital Marketing | HighRock (28 chars)</td><td class="code">Digital Marketing — Online Brand Building &amp; ROI | HighRock</td></tr>
+      <tr><td>10.2</td><td>Meta description (153 chars)</td><td class="muted">The world of digital marketing entails a swath of strategies, media vehicles, and trends that are always changing and pushing the market forward. Digital marketing tactics are highly accessible and co... (381 chars)</td><td class="code">HighRock digital marketing — paid media, social, content, and analytics under one roof. Strategy and execution for online brand building that drives ROI.</td></tr>
+      <tr><td>10.3</td><td>H1</td><td class="muted">Digital Marketing</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>10.4</td><td>og:title</td><td class="muted">Digital Marketing</td><td class="code">Digital Marketing — Online Brand Building &amp; ROI</td></tr>
+      <tr><td>10.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>10.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>10.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fdigital-marketing" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Search Engine Optimization (SEO) — <code>https://highrock.com/services/search-engine-optimization-seo</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>11.1</td><td>Title (60 chars)</td><td class="muted">Search Engine Optimization (SEO) | HighRock (43 chars)</td><td class="code">Search Engine Optimization (SEO) — Organic Growth | HighRock</td></tr>
+      <tr><td>11.2</td><td>Meta description (149 chars)</td><td class="muted">Preserve your brand identity by maximizing your search engine results. Drive organic traffic by ranking your website through search engine optimization (SEO). Attract visitors who can potentially beco... (293 chars)</td><td class="code">HighRock SEO — on-site optimization, content marketing, backlink building, and transparent reporting to drive organic traffic and lasting visibility.</td></tr>
+      <tr><td>11.3</td><td>H1</td><td class="muted">Search Engine Optimization (SEO)</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>11.4</td><td>og:title</td><td class="muted">Search Engine Optimization (SEO)</td><td class="code">Search Engine Optimization (SEO) — Organic Growth</td></tr>
+      <tr><td>11.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>11.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>11.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fsearch-engine-optimization-seo" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Video Production — <code>https://highrock.com/services/video-production</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>12.1</td><td>Title (57 chars)</td><td class="muted">Video Production | HighRock (27 chars)</td><td class="code">Video Production — Brand Stories &amp; Commercials | HighRock</td></tr>
+      <tr><td>12.2</td><td>Meta description (152 chars)</td><td class="muted">HighRock&#x27;s video production services bring your brand’s story to life with high-quality, engaging content tailored for any platform. From concept development and scripting to filming, animation, and p... (449 chars)</td><td class="code">HighRock video production — concept, scripting, filming, animation, and post for brand stories, commercials, and social. End-to-end production in-house.</td></tr>
+      <tr><td>12.3</td><td>H1</td><td class="muted">Video Production</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>12.4</td><td>og:title</td><td class="muted">Video Production</td><td class="code">Video Production — Brand Stories &amp; Commercials</td></tr>
+      <tr><td>12.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>12.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>12.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fvideo-production" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+
+<h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Featured case studies (cycle 1 expansion — top 12 from homepage)</h3>
+<p class="source-note">These 12 case studies are the set HighRock features on its own homepage. Cycle 1 covers each with title/meta/H1/OG/Twitter/CreativeWork schema. Top-N final ordering pending Monique's confirmation — Apollo recommends featuring real-estate work first.</p>
+<h3>Matan Port 460 — <code>https://highrock.com/work/matan-port-460</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS1.1</td><td>Title (56 chars)</td><td class="muted">Matan Port 460 | HighRock (25 chars)</td><td class="code">Matan Port 460 — Industrial Real Estate Brand | HighRock</td></tr>
+      <tr><td>CS1.2</td><td>Meta description (146 chars)</td><td class="muted">When Rockefeller Group and Matan Companies formed a joint venture partnership to develop Port 460 Logistics Center, they needed fresh designs and content, and a sharp, new website. Beginning with bran... (413 chars)</td><td class="code">Brand strategy, website refresh, header video, and creative for Rockefeller Group and Matan&#x27;s Port 460 Logistics Center near the Port of Virginia.</td></tr>
+      <tr><td>CS1.3</td><td>H1</td><td class="muted">Matan Port 460</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS1.4</td><td>og:title</td><td class="muted">Matan Port 460</td><td class="code">Matan Port 460 — Industrial Real Estate Brand</td></tr>
+      <tr><td>CS1.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS1.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS1.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fmatan-port-460" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>BMC Insurance — <code>https://highrock.com/work/bmc-insurance-keeping-you-covered</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS2.1</td><td>Title (57 chars)</td><td class="muted">BMC Insurance: Keeping You Covered | HighRock (45 chars)</td><td class="code">BMC Insurance — Brand Modernization Case Study | HighRock</td></tr>
+      <tr><td>CS2.2</td><td>Meta description (140 chars)</td><td class="muted">BMC Insurance partnered with HighRock to modernize their brand and unify their marketing presence. The goal wasn’t to reinvent who they were, but to reveal it more clearly: a trusted, community-driven... (251 chars)</td><td class="code">Brand modernization and unified marketing for BMC Insurance — a trusted, community-driven agency built on protection, care, and consistency.</td></tr>
+      <tr><td>CS2.3</td><td>H1</td><td class="muted">BMC Insurance: Keeping You Covered</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS2.4</td><td>og:title</td><td class="muted">BMC Insurance: Keeping You Covered</td><td class="code">BMC Insurance — Brand Modernization Case Study</td></tr>
+      <tr><td>CS2.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS2.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS2.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fbmc-insurance-keeping-you-covered" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Coca-Cola &amp; NCG Cinema — <code>https://highrock.com/work/coca-cola-ncg-cinema-cherry-chill-campaign</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS3.1</td><td>Title (55 chars)</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign | HighRock (56 chars)</td><td class="code">Coca-Cola x NCG Cinema Cherry Chill Campaign | HighRock</td></tr>
+      <tr><td>CS3.2</td><td>Meta description (151 chars)</td><td class="muted">In collaboration with Coca-Cola, NCG Cinema entrusted us with a thrilling challenge: launching a new and exclusive soda flavor, “Cherry Chill.” This festive, holiday cinema marketing campaign occurred... (418 chars)</td><td class="code">26 theaters, 6 weeks, soda flavor launch — HighRock&#x27;s Cherry Chill campaign for Coca-Cola and NCG Cinema brought &#x27;Chill&#x27; penguins on-screen and online.</td></tr>
+      <tr><td>CS3.3</td><td>H1</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign</td><td class="code">Coca-Cola &amp; NCG Cinema: Cherry Chill Campaign</td></tr>
+      <tr><td>CS3.4</td><td>og:title</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign</td><td class="code">Coca-Cola x NCG Cinema Cherry Chill Campaign</td></tr>
+      <tr><td>CS3.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS3.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS3.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fcoca-cola-ncg-cinema-cherry-chill-campaign" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>FM Industries — <code>https://highrock.com/work/fm-industries-cleanroom-training</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS4.1</td><td>Title (51 chars)</td><td class="muted">FM Industries Cleanroom Training | HighRock (43 chars)</td><td class="code">FM Industries Cleanroom Training Program | HighRock</td></tr>
+      <tr><td>CS4.2</td><td>Meta description (155 chars)</td><td class="muted">FM Industries needed a cleanroom training program that went beyond the basics—something engaging, accurate, and built to support long-term retention. With cleanroom operations central to their manufac... (307 chars)</td><td class="code">Engaging, accurate cleanroom training for FM Industries — a 5-year HighRock partnership building learner-centered programs that scale across manufacturing.</td></tr>
+      <tr><td>CS4.3</td><td>H1</td><td class="muted">FM Industries Cleanroom Training</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS4.4</td><td>og:title</td><td class="muted">FM Industries Cleanroom Training</td><td class="code">FM Industries Cleanroom Training Program</td></tr>
+      <tr><td>CS4.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS4.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS4.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Ffm-industries-cleanroom-training" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Hub City Football Club — <code>https://highrock.com/work/hub-city-football-club</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS5.1</td><td>Title (51 chars)</td><td class="muted">Hub City Football Club | HighRock (33 chars)</td><td class="code">Hub City FC — Hagerstown Brand &amp; Website | HighRock</td></tr>
+      <tr><td>CS5.2</td><td>Meta description (140 chars)</td><td class="muted">The Hub City Football Club Black Roses needed a website that told a story that was true to the region and true to the future they had in mind for their team. (157 chars)</td><td class="code">Local, gritty, full of heart, with a touch of rebellion — HighRock&#x27;s brand and website for Hub City Football Club&#x27;s debut Hagerstown season.</td></tr>
+      <tr><td>CS5.3</td><td>H1</td><td class="muted">Hub City Football Club</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS5.4</td><td>og:title</td><td class="muted">Hub City Football Club</td><td class="code">Hub City FC — Hagerstown Brand &amp; Website</td></tr>
+      <tr><td>CS5.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS5.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS5.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fhub-city-football-club" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Impact Architects — <code>https://highrock.com/work/impact-architects-animated-video</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS6.1</td><td>Title (55 chars)</td><td class="muted">Impact Architects Animated Video | HighRock (43 chars)</td><td class="code">Impact Architects — 90-Second Animated Video | HighRock</td></tr>
+      <tr><td>CS6.2</td><td>Meta description (152 chars)</td><td class="muted">By the time Impact Architects connected with HighRock, they had tried so many different ways to create an explainer video of their Impact Tracker tool...to no avail. They needed an animated video of 9... (390 chars)</td><td class="code">A 90-second animated explainer for Impact Architects&#x27; Impact Tracker tool — voiceover, music, and seamless transitions selling the service to prospects.</td></tr>
+      <tr><td>CS6.3</td><td>H1</td><td class="muted">Impact Architects Animated Video</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS6.4</td><td>og:title</td><td class="muted">Impact Architects Animated Video</td><td class="code">Impact Architects — 90-Second Animated Video</td></tr>
+      <tr><td>CS6.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS6.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS6.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fimpact-architects-animated-video" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Meritus School of Osteopathic Medicine — <code>https://highrock.com/work/meritus-school-osteopathic-medicine-fly-through-animation</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS7.1</td><td>Title (51 chars)</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation | HighRock (71 chars)</td><td class="code">Meritus Osteopathic Medicine Fly-Through | HighRock</td></tr>
+      <tr><td>CS7.2</td><td>Meta description (151 chars)</td><td class="muted">Meritus was on a mission to improve health in the Hagerstown, MD region. As an anchor to the community, they felt it necessary to open a space that would change the lives of over 200,000 people in the... (295 chars)</td><td class="code">Fly-through animation and brand storytelling for Meritus School of Osteopathic Medicine — a Hagerstown anchor serving 200,000 people across the region.</td></tr>
+      <tr><td>CS7.3</td><td>H1</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation</td><td class="code">Meritus School of Osteopathic Medicine: Fly-Through Animation</td></tr>
+      <tr><td>CS7.4</td><td>og:title</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation</td><td class="code">Meritus Osteopathic Medicine Fly-Through</td></tr>
+      <tr><td>CS7.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS7.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS7.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fmeritus-school-osteopathic-medicine-fly-through-animation" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Point Blank Technologies — <code>https://highrock.com/work/point-blank-technologies-brand-development</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS8.1</td><td>Title (57 chars)</td><td class="muted">Point Blank Technologies Brand Development | HighRock (53 chars)</td><td class="code">Point Blank Technologies — Cybersecurity Brand | HighRock</td></tr>
+      <tr><td>CS8.2</td><td>Meta description (153 chars)</td><td class="muted">Point Blank Technologies needed new brand direction that exuded sophistication, confidence, and above all, security. (116 chars)</td><td class="code">Brand direction, logo, and website for Point Blank Technologies — a cybersecurity and engineering firm built on sophistication, confidence, and security.</td></tr>
+      <tr><td>CS8.3</td><td>H1</td><td class="muted">Point Blank Technologies Brand Development</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS8.4</td><td>og:title</td><td class="muted">Point Blank Technologies Brand Development</td><td class="code">Point Blank Technologies — Cybersecurity Brand</td></tr>
+      <tr><td>CS8.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS8.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS8.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fpoint-blank-technologies-brand-development" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>SKYROCKET — <code>https://highrock.com/work/skyrocket</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS9.1</td><td>Title (52 chars)</td><td class="muted">SKYROCKET | HighRock (20 chars)</td><td class="code">SKYROCKET — Youth Movement Brand Identity | HighRock</td></tr>
+      <tr><td>CS9.2</td><td>Meta description (152 chars)</td><td class="muted">Our team worked collaboratively with a passionate young dreamer to bring his vision to life. (92 chars)</td><td class="code">Brand identity and storytelling for SKYROCKET — a youth movement built on resilience, creativity, and personal growth, turning setbacks into launchpads.</td></tr>
+      <tr><td>CS9.3</td><td>H1</td><td class="muted">SKYROCKET</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS9.4</td><td>og:title</td><td class="muted">SKYROCKET</td><td class="code">SKYROCKET — Youth Movement Brand Identity</td></tr>
+      <tr><td>CS9.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS9.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS9.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fskyrocket" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Spichers Branding — <code>https://highrock.com/work/spichers-branding</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS10.1</td><td>Title (54 chars)</td><td class="muted">Spichers Branding | HighRock (28 chars)</td><td class="code">Spichers Appliances — 70-Year Brand Refresh | HighRock</td></tr>
+      <tr><td>CS10.2</td><td>Meta description (146 chars)</td><td class="muted">Spichers is a Maryland-based family-owned and operated appliance store with roots back to 1955. While the appliance game has advanced and technology has changed how business is handled, Spichers&#x27; comm... (398 chars)</td><td class="code">Brand and logo refresh for Spichers — a Maryland family-owned appliance store since 1955, opening its third location with a new HighRock identity.</td></tr>
+      <tr><td>CS10.3</td><td>H1</td><td class="muted">Spichers Branding</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS10.4</td><td>og:title</td><td class="muted">Spichers Branding</td><td class="code">Spichers Appliances — 70-Year Brand Refresh</td></tr>
+      <tr><td>CS10.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS10.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS10.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fspichers-branding" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>UMD BioPark — <code>https://highrock.com/work/university-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS11.1</td><td>Title (52 chars)</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables | HighRock (106 chars)</td><td class="code">UMD BioPark - Brand &amp; Design Deliverables | HighRock</td></tr>
+      <tr><td>CS11.2</td><td>Meta description (140 chars)</td><td class="muted">UMBioPark reached out to HighRock requesting fresh designs for various client and public-facing deliverables. As a premier biomedical research park on the vibrant academic medical center campus of the... (431 chars)</td><td class="code">Marketing collateral, signage, and design deliverables for University of Maryland BioPark — a premier biomedical research park in Baltimore.</td></tr>
+      <tr><td>CS11.3</td><td>H1</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables</td><td class="code">University of Maryland BioPark: Design Deliverables</td></tr>
+      <tr><td>CS11.4</td><td>og:title</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables</td><td class="code">UMD BioPark - Brand &amp; Design Deliverables</td></tr>
+      <tr><td>CS11.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS11.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS11.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Funiversity-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Washington County Chamber — <code>https://highrock.com/work/washington-county-chamber-commerce-branding-development</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>CS12.1</td><td>Title (56 chars)</td><td class="muted">Washington County Chamber of Commerce Branding Development | HighRock (69 chars)</td><td class="code">Washington County Chamber of Commerce Rebrand | HighRock</td></tr>
+      <tr><td>CS12.2</td><td>Meta description (153 chars)</td><td class="muted">The Washington County Chamber of Commerce in Hagerstown, Maryland, has long served as a vital resource for local businesses, fostering growth and collaboration. To stay forward thinking and inspire me... (345 chars)</td><td class="code">Comprehensive rebrand for the Washington County Chamber of Commerce — modernizing Hagerstown&#x27;s chamber identity to inspire members and connect community.</td></tr>
+      <tr><td>CS12.3</td><td>H1</td><td class="muted">Washington County Chamber of Commerce Branding Development</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>CS12.4</td><td>og:title</td><td class="muted">Washington County Chamber of Commerce Branding Development</td><td class="code">Washington County Chamber of Commerce Rebrand</td></tr>
+      <tr><td>CS12.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>CS12.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>CS12.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fwashington-county-chamber-commerce-branding-development" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+
+<h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Site infrastructure pages</h3>
+<h3>Insights — <code>https://highrock.com/insights</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>I1.1</td><td>Title (51 chars)</td><td class="muted">Insights | HighRock (19 chars)</td><td class="code">HighRock Insights - Marketing Trends &amp; Perspectives</td></tr>
+      <tr><td>I1.2</td><td>Meta description (152 chars)</td><td class="muted">Stay ahead of the curve with digital marketing insights, industry trends, and expert perspectives from the HighRock team. (121 chars)</td><td class="code">Stay ahead of the curve with digital marketing insights, industry trends, and expert perspectives from the HighRock team - Hagerstown&#x27;s creative agency.</td></tr>
+      <tr><td>I1.3</td><td>H1 (missing)</td><td class="muted">— no H1 detected —</td><td class="code">HighRock Insights</td></tr>
+      <tr><td>I1.4</td><td>og:title</td><td class="muted">Insights</td><td class="code">HighRock Insights - Marketing Trends &amp; Perspectives</td></tr>
+      <tr><td>I1.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>I1.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>I1.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CollectionPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Finsights" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Contact — <code>https://highrock.com/contact</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>I2.1</td><td>Title (58 chars)</td><td class="muted">Contact | HighRock (18 chars)</td><td class="code">Contact HighRock — Hagerstown Mid-Atlantic Creative Agency</td></tr>
+      <tr><td>I2.2</td><td>Meta description (149 chars)</td><td class="muted">Phone &amp; Email Phone (301) 791-1221   Sales sales@highrock.com Book an appointment (Mon-Fri, 9am - 5pm)   Support (112 chars)</td><td class="code">Talk to HighRock - call (301) 791-1221, email sales@highrock.com, or visit our Hagerstown, MD studio. Mon-Fri, 9am-5pm. Mid-Atlantic creative agency.</td></tr>
+      <tr><td>I2.3</td><td>H1 (missing)</td><td class="muted">— no H1 detected —</td><td class="code">Contact HighRock</td></tr>
+      <tr><td>I2.4</td><td>og:title</td><td class="muted">Contact</td><td class="code">Contact HighRock — Hagerstown Mid-Atlantic Creative Agency</td></tr>
+      <tr><td>I2.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>I2.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>I2.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">ContactPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fcontact" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+<h3>Careers — <code>https://highrock.com/careers</code></h3>
+<table class="data">
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <tbody>
+      <tr><td>I3.1</td><td>Title (52 chars)</td><td class="muted">Careers | HighRock (18 chars)</td><td class="code">Careers at HighRock — Hagerstown Mid-Atlantic Agency</td></tr>
+      <tr><td>I3.2</td><td>Meta description (144 chars)</td><td class="muted">HighRock is seeking skilled professionals to support our agency projects. View current job openings and apply today. (116 chars)</td><td class="code">Join HighRock - Hagerstown&#x27;s full-service creative agency. Current openings include freelance Drupal and WordPress developer roles. Apply today.</td></tr>
+      <tr><td>I3.3</td><td>H1</td><td class="muted">careers @ highrock</td><td class="code">No change — already on-topic</td></tr>
+      <tr><td>I3.4</td><td>og:title</td><td class="muted">Careers</td><td class="code">Careers at HighRock — Hagerstown Mid-Atlantic Agency</td></tr>
+      <tr><td>I3.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
+      <tr><td>I3.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
+      <tr><td>I3.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">WebPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+  </tbody>
+</table>
+<p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fcareers" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
+
+<!-- /CYCLE 1 EXPANSION SPLICE -->
+
 </div>
 
 <!-- TAB: NEW PAGE TEMPLATES -->
@@ -346,9 +678,14 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
     <span class="k">"@type"</span>: <span class="s">"OfferCatalog"</span>,
     <span class="k">"name"</span>: <span class="s">"HighRock Service Lines"</span>,
     <span class="k">"itemListElement"</span>: [
-      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Real Estate Brand Identity"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/creative"</span> } },
-      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"3D Visualization for Real Estate"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/3d-vr"</span> } },
-      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Real Estate Growth Marketing"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/strategic-marketing"</span> } },
+      <span class="c">// Existing service sub-pages (audited 2026-05-04 — exact URLs)</span>
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Strategic Marketing"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/strategic-marketing"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Creative Services"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/creative"</span> } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"3D &amp; VR"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/3d-vr"</span> } },
+      <span class="c">// New real-estate vertical landing pages (cycle 2 builds — slugs pending HighRock confirmation)</span>
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Real Estate Brand Identity"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/real-estate-brand-identity"</span>, <span class="k">"audience"</span>: { <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>, <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Luxury Real Estate Brands"</span> } } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Luxury Real Estate 3D Visualization"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/real-estate-3d-visualization"</span>, <span class="k">"audience"</span>: { <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>, <span class="k">"audienceType"</span>: <span class="s">"Real Estate Developers, Brokers"</span> } } },
+      { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Real Estate Growth Marketing"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/real-estate-growth-marketing"</span>, <span class="k">"audience"</span>: { <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>, <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals"</span> } } },
       { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Web Development"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/web-development"</span> } },
       { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Video Production"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/video-production"</span> } },
       { <span class="k">"@type"</span>: <span class="s">"Offer"</span>, <span class="k">"itemOffered"</span>: { <span class="k">"@type"</span>: <span class="s">"Service"</span>, <span class="k">"name"</span>: <span class="s">"Digital Marketing"</span>, <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/digital-marketing"</span> } },
@@ -411,6 +748,331 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
     <li>Validate each URL via Google's <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Rich Results Test ↗</a></li>
     <li>Submit URLs to Google Search Console for re-indexing</li>
   </ol>
+<!-- CYCLE 1 EXPANSION SPLICE -->
+<h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Sub-service Service schemas (8 payloads)</h3>
+<p class="source-note">Each Service schema references the root Organization via <code>@id</code> and lists the Mid-Atlantic service area. Audience field defaults multi-vertical (real estate + healthcare + hospitality + manufacturing) — adjust per page if HighRock wants narrower targeting on specific sub-services.</p>
+<h3>Sub-service: Strategic Marketing</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/strategic-marketing</code></p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/services/strategic-marketing#service"</span>,
+  <span class="k">"name"</span>: <span class="s">"Strategic Marketing"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"Marketing Strategy, Brand Positioning, Multi-Channel Campaigns"</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"areaServed"</span>: [<span class="s">"Maryland"</span>, <span class="s">"Virginia"</span>, <span class="s">"Washington, D.C."</span>, <span class="s">"Pennsylvania"</span>, <span class="s">"West Virginia"</span>, <span class="s">"Delaware"</span>],
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/strategic-marketing"</span>,
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
+  }
+}</pre>
+<h3>Sub-service: Creative Services</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/creative</code></p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/services/creative#service"</span>,
+  <span class="k">"name"</span>: <span class="s">"Creative Services"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"Brand Identity Design, Logo Design, Graphic Design"</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"areaServed"</span>: [<span class="s">"Maryland"</span>, <span class="s">"Virginia"</span>, <span class="s">"Washington, D.C."</span>, <span class="s">"Pennsylvania"</span>, <span class="s">"West Virginia"</span>, <span class="s">"Delaware"</span>],
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/creative"</span>,
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
+  }
+}</pre>
+<h3>Sub-service: Web Development</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/web-development</code></p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/services/web-development#service"</span>,
+  <span class="k">"name"</span>: <span class="s">"Web Development"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"Web Design, Web Development, Web Hosting"</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"areaServed"</span>: [<span class="s">"Maryland"</span>, <span class="s">"Virginia"</span>, <span class="s">"Washington, D.C."</span>, <span class="s">"Pennsylvania"</span>, <span class="s">"West Virginia"</span>, <span class="s">"Delaware"</span>],
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/web-development"</span>,
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
+  }
+}</pre>
+<h3>Sub-service: Training &amp; Development</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/training-development</code></p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/services/training-development#service"</span>,
+  <span class="k">"name"</span>: <span class="s">"Training &amp; Development"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"Custom Training Programs, Learning Management Systems"</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"areaServed"</span>: [<span class="s">"Maryland"</span>, <span class="s">"Virginia"</span>, <span class="s">"Washington, D.C."</span>, <span class="s">"Pennsylvania"</span>, <span class="s">"West Virginia"</span>, <span class="s">"Delaware"</span>],
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/training-development"</span>,
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
+  }
+}</pre>
+<h3>Sub-service: 3D &amp; VR Services</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/3d-vr</code></p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/services/3d-vr#service"</span>,
+  <span class="k">"name"</span>: <span class="s">"3D &amp; VR Services"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"3D Visualization, Virtual Reality, Augmented Reality, Architectural Rendering"</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"areaServed"</span>: [<span class="s">"Maryland"</span>, <span class="s">"Virginia"</span>, <span class="s">"Washington, D.C."</span>, <span class="s">"Pennsylvania"</span>, <span class="s">"West Virginia"</span>, <span class="s">"Delaware"</span>],
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/3d-vr"</span>,
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
+  }
+}</pre>
+<h3>Sub-service: Digital Marketing</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/digital-marketing</code></p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/services/digital-marketing#service"</span>,
+  <span class="k">"name"</span>: <span class="s">"Digital Marketing"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"Paid Media, Social Media Marketing, Content Marketing, Analytics"</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"areaServed"</span>: [<span class="s">"Maryland"</span>, <span class="s">"Virginia"</span>, <span class="s">"Washington, D.C."</span>, <span class="s">"Pennsylvania"</span>, <span class="s">"West Virginia"</span>, <span class="s">"Delaware"</span>],
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/digital-marketing"</span>,
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
+  }
+}</pre>
+<h3>Sub-service: Search Engine Optimization</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/search-engine-optimization-seo</code></p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/services/search-engine-optimization-seo#service"</span>,
+  <span class="k">"name"</span>: <span class="s">"Search Engine Optimization"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"On-Site Optimization, Content Marketing, Backlink Building, SEO Reporting"</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"areaServed"</span>: [<span class="s">"Maryland"</span>, <span class="s">"Virginia"</span>, <span class="s">"Washington, D.C."</span>, <span class="s">"Pennsylvania"</span>, <span class="s">"West Virginia"</span>, <span class="s">"Delaware"</span>],
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/search-engine-optimization-seo"</span>,
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
+  }
+}</pre>
+<h3>Sub-service: Video Production</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/video-production</code></p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/services/video-production#service"</span>,
+  <span class="k">"name"</span>: <span class="s">"Video Production"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"Video Production, Animation, Post-Production, Brand Storytelling"</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"areaServed"</span>: [<span class="s">"Maryland"</span>, <span class="s">"Virginia"</span>, <span class="s">"Washington, D.C."</span>, <span class="s">"Pennsylvania"</span>, <span class="s">"West Virginia"</span>, <span class="s">"Delaware"</span>],
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/services/video-production"</span>,
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"BusinessAudience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
+  }
+}</pre>
+
+<h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Case study CreativeWork schemas (12 payloads)</h3>
+<p class="source-note">Each CreativeWork references the root Organization as creator. <code>about</code> field carries the industry vertical for AI Overview eligibility on industry-specific queries.</p>
+<h3>Case study: Matan Port 460</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/matan-port-460</code> · <strong>Industry:</strong> Real Estate</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/matan-port-460#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"Matan Port 460"</span>,
+  <span class="k">"description"</span>: <span class="s">"Industrial Real Estate Brand"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/matan-port-460"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Real Estate"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Web Development"</span>, <span class="s">"Video Production"</span>, <span class="s">"Creative"</span>]
+}</pre>
+<h3>Case study: BMC Insurance: Keeping You Covered</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/bmc-insurance-keeping-you-covered</code> · <strong>Industry:</strong> Insurance</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/bmc-insurance-keeping-you-covered#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"BMC Insurance: Keeping You Covered"</span>,
+  <span class="k">"description"</span>: <span class="s">"Insurance Brand Modernization"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/bmc-insurance-keeping-you-covered"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Insurance"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Creative"</span>, <span class="s">"Marketing"</span>]
+}</pre>
+<h3>Case study: Coca Cola &amp; NCG Cinema: Cherry Chill Campaign</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/coca-cola-ncg-cinema-cherry-chill-campaign</code> · <strong>Industry:</strong> CPG / Entertainment</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/coca-cola-ncg-cinema-cherry-chill-campaign#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"Coca Cola &amp; NCG Cinema: Cherry Chill Campaign"</span>,
+  <span class="k">"description"</span>: <span class="s">"Beverage Brand Activation"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/coca-cola-ncg-cinema-cherry-chill-campaign"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"CPG / Entertainment"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Campaign Strategy"</span>, <span class="s">"Creative"</span>, <span class="s">"Media Production"</span>]
+}</pre>
+<h3>Case study: FM Industries Cleanroom Training</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/fm-industries-cleanroom-training</code> · <strong>Industry:</strong> Manufacturing</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/fm-industries-cleanroom-training#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"FM Industries Cleanroom Training"</span>,
+  <span class="k">"description"</span>: <span class="s">"Cleanroom Training Program"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/fm-industries-cleanroom-training"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Manufacturing"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Training & Development"</span>, <span class="s">"LMS"</span>, <span class="s">"Instructional Design"</span>]
+}</pre>
+<h3>Case study: Hub City Football Club</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/hub-city-football-club</code> · <strong>Industry:</strong> Sports</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/hub-city-football-club#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"Hub City Football Club"</span>,
+  <span class="k">"description"</span>: <span class="s">"Sports Brand &amp; Website"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/hub-city-football-club"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Sports"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Web Development"</span>, <span class="s">"Creative"</span>]
+}</pre>
+<h3>Case study: Impact Architects Animated Video</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/impact-architects-animated-video</code> · <strong>Industry:</strong> Social Impact / Tech</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/impact-architects-animated-video#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"Impact Architects Animated Video"</span>,
+  <span class="k">"description"</span>: <span class="s">"90-Second Animated Video"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/impact-architects-animated-video"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Social Impact / Tech"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Video Production"</span>, <span class="s">"Animation"</span>, <span class="s">"Voiceover"</span>]
+}</pre>
+<h3>Case study: Meritus School of Osteopathic Medicine Fly-Through Animation</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/meritus-school-osteopathic-medicine-fly-through-animation</code> · <strong>Industry:</strong> Healthcare / Education</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/meritus-school-osteopathic-medicine-fly-through-animation#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"Meritus School of Osteopathic Medicine Fly-Through Animation"</span>,
+  <span class="k">"description"</span>: <span class="s">"Fly-Through Animation for Medical Education"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/meritus-school-osteopathic-medicine-fly-through-animation"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Healthcare / Education"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"3D Animation"</span>, <span class="s">"Brand Storytelling"</span>]
+}</pre>
+<h3>Case study: Point Blank Technologies Brand Development</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/point-blank-technologies-brand-development</code> · <strong>Industry:</strong> Cybersecurity / Engineering</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/point-blank-technologies-brand-development#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"Point Blank Technologies Brand Development"</span>,
+  <span class="k">"description"</span>: <span class="s">"Cybersecurity Brand Development"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/point-blank-technologies-brand-development"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Cybersecurity / Engineering"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Web Development"</span>, <span class="s">"Creative"</span>]
+}</pre>
+<h3>Case study: SKYROCKET</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/skyrocket</code> · <strong>Industry:</strong> Lifestyle / Youth</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/skyrocket#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"SKYROCKET"</span>,
+  <span class="k">"description"</span>: <span class="s">"Youth Movement Brand Identity"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/skyrocket"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Lifestyle / Youth"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Brand Identity"</span>, <span class="s">"Storytelling"</span>]
+}</pre>
+<h3>Case study: Spichers Branding</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/spichers-branding</code> · <strong>Industry:</strong> Retail / Family Business</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/spichers-branding#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"Spichers Branding"</span>,
+  <span class="k">"description"</span>: <span class="s">"Appliance Retail Brand Refresh"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/spichers-branding"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Retail / Family Business"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Brand Refresh"</span>, <span class="s">"Logo Design"</span>, <span class="s">"Video Production"</span>]
+}</pre>
+<h3>Case study: University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/university-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables</code> · <strong>Industry:</strong> Education / Bioscience</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/university-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables"</span>,
+  <span class="k">"description"</span>: <span class="s">"Biomedical Research Park Marketing Collateral"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/university-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Education / Bioscience"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Brand Design"</span>, <span class="s">"Print Collateral"</span>, <span class="s">"Signage"</span>]
+}</pre>
+<h3>Case study: Washington County Chamber of Commerce Branding Development</h3>
+<p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/washington-county-chamber-commerce-branding-development</code> · <strong>Industry:</strong> Civic / Membership Org</p>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CreativeWork"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/work/washington-county-chamber-commerce-branding-development#creativework"</span>,
+  <span class="k">"name"</span>: <span class="s">"Washington County Chamber of Commerce Branding Development"</span>,
+  <span class="k">"description"</span>: <span class="s">"Chamber of Commerce Rebrand"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/work/washington-county-chamber-commerce-branding-development"</span>,
+  <span class="k">"creator"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> },
+  <span class="k">"about"</span>: <span class="s">"Civic / Membership Org"</span>,
+  <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Visual Identity"</span>, <span class="s">"Member Engagement"</span>]
+}</pre>
+
+<h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Site infrastructure schemas (3 payloads)</h3>
+<h3>/insights — CollectionPage</h3>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CollectionPage"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/insights#collection"</span>,
+  <span class="k">"name"</span>: <span class="s">"HighRock Insights"</span>,
+  <span class="k">"description"</span>: <span class="s">"Marketing trends, industry perspectives, and creative agency insights from the HighRock team."</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/insights"</span>,
+  <span class="k">"isPartOf"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> }
+}</pre>
+<h3>/contact — ContactPage</h3>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"ContactPage"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/contact#contactpage"</span>,
+  <span class="k">"name"</span>: <span class="s">"Contact HighRock"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/contact"</span>,
+  <span class="k">"mainEntity"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> }
+}</pre>
+<h3>/careers — CollectionPage (+ JobPosting where active)</h3>
+<pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"CollectionPage"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://highrock.com/careers#careers"</span>,
+  <span class="k">"name"</span>: <span class="s">"Careers @ HighRock"</span>,
+  <span class="k">"description"</span>: <span class="s">"Open roles at HighRock, a Mid-Atlantic creative agency in Hagerstown, MD."</span>,
+  <span class="k">"url"</span>: <span class="s">"https://highrock.com/careers"</span>,
+  <span class="k">"isPartOf"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> }
+}</pre>
+<p class="source-note">For each active job posting, add a separate JobPosting schema with <code>title</code>, <code>description</code>, <code>employmentType</code>, <code>hiringOrganization</code> (@id ref), <code>jobLocation</code>, and <code>datePosted</code>. The current "Freelance Drupal & WordPress Developer" listing is the first instance.</p>
+
+<!-- /CYCLE 1 EXPANSION SPLICE -->
+
 </div>
 
 <!-- TAB: PRESTATE -->
@@ -457,50 +1119,113 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
       <tr><td>Direct competitors (Monique-named)</td><td>mojo.biz · warschawski.com · mghus.com — none own real estate vertical positioning</td></tr>
     </tbody>
   </table>
+<!-- CYCLE 1 EXPANSION SPLICE -->
+<h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Cycle 1 expansion — captured 2026-05-04 (real-browser audit)</h3>
+<table class="data">
+  <thead><tr><th>URL</th><th>Title</th><th>Meta</th><th>H1</th><th>Twitter</th><th>Schema</th></tr></thead>
+  <tbody>
+    <tr><td colspan="6" style="background:#f3f4f6; font-weight:600; padding:0.5rem 0.9rem;">Service sub-pages</td></tr>
+<tr><td><code>/services/strategic-marketing</code></td><td>30 ⚠️</td><td>453 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/services/creative</code></td><td>19 ⚠️</td><td>406 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/services/web-development</code></td><td>26 ⚠️</td><td>388 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/services/training-development</code></td><td>33 ⚠️</td><td>456 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/services/3d-vr</code></td><td>18 ⚠️</td><td>451 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/services/digital-marketing</code></td><td>28 ⚠️</td><td>381 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/services/search-engine-optimization-seo</code></td><td>43 ⚠️</td><td>293 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/services/video-production</code></td><td>27 ⚠️</td><td>449 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td colspan="6" style="background:#f3f4f6; font-weight:600; padding:0.5rem 0.9rem;">Case studies (top 12 featured)</td></tr>
+<tr><td><code>/work/matan-port-460</code></td><td>25 ⚠️</td><td>413 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/bmc-insurance-keeping-you-covered</code></td><td>45 ⚠️</td><td>251 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/coca-cola-ncg-cinema-cherry-chill-campaign</code></td><td>56 ✅</td><td>418 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/fm-industries-cleanroom-training</code></td><td>43 ⚠️</td><td>307 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/hub-city-football-club</code></td><td>33 ⚠️</td><td>157 ✅</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/impact-architects-animated-video</code></td><td>43 ⚠️</td><td>390 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/meritus-school-osteopathic-medicine-fly-through-animation</code></td><td>71 ⚠️</td><td>295 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/point-blank-technologies-brand-development</code></td><td>53 ✅</td><td>116 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/skyrocket</code></td><td>20 ⚠️</td><td>92 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/spichers-branding</code></td><td>28 ⚠️</td><td>398 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/university-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables</code></td><td>106 ⚠️</td><td>431 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/work/washington-county-chamber-commerce-branding-development</code></td><td>69 ⚠️</td><td>345 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td colspan="6" style="background:#f3f4f6; font-weight:600; padding:0.5rem 0.9rem;">Site infrastructure</td></tr>
+<tr><td><code>/insights</code></td><td>19 ⚠️</td><td>121 ⚠️</td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/contact</code></td><td>18 ⚠️</td><td>112 ⚠️</td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td></tr>
+<tr><td><code>/careers</code></td><td>18 ⚠️</td><td>116 ⚠️</td><td>1 ✅</td><td>0 ❌</td><td>0 ❌</td></tr>
+  </tbody>
+</table>
+<p class="source-note">23 additional pages captured. <strong>Title gaps:</strong> 14 pages too short (most sub-services); 1 too long (UMD BioPark, 106 chars). <strong>Meta gaps:</strong> 16 pages over 160-char SERP cap; 4 under 140-char minimum. <strong>H1:</strong> /insights and /contact missing H1 entirely. <strong>Twitter Card:</strong> 0/23 (universal gap; module config). <strong>JSON-LD:</strong> 0/23 (universal gap; submodule install).</p>
+
+<!-- /CYCLE 1 EXPANSION SPLICE -->
+
 </div>
 
 <!-- TAB: ASKS -->
 <div id="asks" class="section">
   <h2>Open Asks</h2>
 
-  <div class="callout warn">
-    <div class="h">Ask 1 — Confirm LinkedIn URL for Organization sameAs</div>
-    <p style="margin: 0;">Apollo found Instagram, Facebook, YouTube. Need LinkedIn (and any other canonical social profiles) to populate <code>Organization.sameAs</code>.</p>
+  
+<!-- CYCLE 1 EXPANSION SPLICE -->
+  <div class="callout">
+    <div class="h">Confirmed in cycle 1 expansion (no longer pending)</div>
+    <p style="margin: 0;">LinkedIn URL: <code>https://www.linkedin.com/company/high-rock-studios/</code> — pre-populated in Organization <code>sameAs</code>. Top-12 case studies sourced from HighRock's own homepage feature set.</p>
   </div>
 
   <div class="callout warn">
-    <div class="h">Ask 2 — Confirm preferred top-10 featured case studies for /work CollectionPage</div>
-    <p style="margin: 0;">Apollo defaulted to first 3 visible case studies (Matan Port 460, UMD BioPark, BMC Insurance). HighRock's preferred top-10 ordering — ideally weighted toward real estate work for the vertical positioning — populates the ItemList.</p>
+    <div class="h">Ask 1 — Confirm case study top-N priority for /work CollectionPage ordering</div>
+    <p style="margin: 0;">Cycle 1 includes all 12 homepage-featured case studies. If HighRock wants a narrower top-8 or specific positional ordering (e.g., real estate first), comment in Implementation Checklist or send a list. Apollo defaults to: real estate (Matan Port 460) → flagship multi-service (Coca-Cola × NCG, BMC Insurance) → vertical-diverse remainder.</p>
   </div>
 
   <div class="callout warn">
-    <div class="h">Ask 3 — Real estate vertical sub-page roadmap</div>
-    <p style="margin: 0;">Cycle 2 candidates: dedicated real estate landing pages for the 3 keyword targets (e.g., <code>/services/real-estate-brand-identity</code>, <code>/services/real-estate-3d-visualization</code>, <code>/services/real-estate-growth-marketing</code>). Confirm whether HighRock wants these built.</p>
+    <div class="h">Ask 2 — Confirm slugs + build timeline for the 3 new real-estate landing pages</div>
+    <p style="margin: 0;">Cycle 1 ships templates for <code>/services/real-estate-brand-identity</code>, <code>/services/real-estate-3d-visualization</code>, <code>/services/real-estate-growth-marketing</code>. Confirm slug preferences, target build window, and which dev resource. Pages can launch independently; Apollo recommends Page 1 first.</p>
   </div>
+
+  <div class="callout warn">
+    <div class="h">Ask 3 — Confirm any non-listed social profiles for sameAs</div>
+    <p style="margin: 0;">Apollo populated Instagram, Facebook, YouTube, LinkedIn from the homepage. If HighRock has Vimeo, X/Twitter, Behance, or other canonical profiles to add, share URLs.</p>
+  </div>
+
+  <div class="callout">
+    <div class="h">Ask 4 — Confirm cycle cadence + scope for cycle 2</div>
+    <p style="margin: 0;">Recommend quarterly cadence per Drupal manual cadence baseline. Cycle 2 (~3 months out) builds the 3 new real-estate landing pages and runs a recurring health check. Confirm whether faster cadence is desired and whether additional verticals (healthcare, hospitality) get dedicated landing pages in cycle 3+.</p>
+  </div>
+<!-- /CYCLE 1 EXPANSION SPLICE -->
+
 </div>
 
 <!-- TAB: ROADMAP -->
 <div id="roadmap" class="section">
   <h2>Roadmap</h2>
 
-  <h3>Cycle 2 — real estate vertical landing pages (~3–4 weeks after cycle 1)</h3>
-  <p>If HighRock confirms (Ask 3), cycle 2 builds dedicated landing pages for the three Monique-confirmed keyword targets. Each page gets its own on-page treatment + Service-type schema with real estate audience.</p>
+  
+<!-- CYCLE 1 EXPANSION SPLICE -->
+  <h3>Cycle 1 — DELIVERED (this document)</h3>
+  <p>Full-site coverage: 4 parent pages (homepage, /services, /work, /about) + 8 service sub-pages + 12 featured case studies + 3 site infrastructure pages (/insights, /contact, /careers) + 3 new real-estate landing-page templates. <strong>27 pages of recommendations + 26 schema payloads.</strong> Implementation Checklist is copy-paste ready; Schema Bundle is deploy-ready via Schema.org Metatag submodule.</p>
 
-  <h3>Cycle 3 — service-line sub-pages</h3>
-  <p>The eight existing /services/* sub-pages (strategic marketing, creative, web development, training-development, 3d-vr, digital marketing, SEO, video production). Per-page on-page + per-sub-service Service schema nested under the parent ProfessionalService.</p>
+  <h3>Cycle 2 — Real-estate landing-page builds (~3-4 weeks)</h3>
+  <p>HighRock dev team builds the 3 new real-estate vertical landing pages from cycle 1 templates. Apollo provides 30-min Schema.org Metatag submodule walkthrough on first cycle 2 task. Pages launch independently; Page 1 (Real Estate Brand Identity) recommended first as natural pairing with existing Creative service. Cross-link triangle goes live with Page 3.</p>
 
-  <h3>Cycle 4+ — case study pages (CreativeWork)</h3>
-  <p>Per-case-study CreativeWork schema on individual /work/* pages. 56 case studies — batch by featured-status / industry. Real estate work batched first.</p>
+  <h3>Cycle 3 — Recurring health check + content depth (quarterly cadence)</h3>
+  <ul>
+    <li><strong>Schema validation pass:</strong> Apollo crawls, runs Rich Results Test on every deployed payload, flags any breakage from Drupal core / module updates.</li>
+    <li><strong>GSC / analytics review:</strong> 90-day delta on indexed pages, impressions, clicks, average position. Identify which cycle 1 fixes moved the needle.</li>
+    <li><strong>Content depth on /insights:</strong> per-post BlogPosting schema rollout, FAQPage candidates flagged on top-traffic posts.</li>
+    <li><strong>Career listings:</strong> JobPosting schema rolled out for any active openings.</li>
+    <li><strong>Cycle 1 gap closures:</strong> address any items pending HighRock confirmation (top-N ordering, additional sameAs profiles).</li>
+  </ul>
 
-  <h3>Quarterly cadence</h3>
-  <p>Drupal manual deliverables run quarterly. Each cycle = a new content tier + cross-cycle health check (GSC indexation lift, Rich Results Test pass/fail per schema, content gaps queued for next cycle).</p>
+  <h3>Cycle 4+ — Vertical expansion (optional)</h3>
+  <p>If HighRock targets additional verticals for SEO (healthcare, hospitality, manufacturing), apply the same dedicated-landing-page pattern: per-vertical title/H1/schema with audience targeting. Each vertical = 2-3 pages.</p>
 
   <h3>Out of scope for this cadence</h3>
   <ul>
-    <li>Content production for new pages — separate engagement</li>
+    <li>Content production (page body copy, blog posts) — separate engagement</li>
     <li>Authority work (link building, digital PR) — separate engagement</li>
     <li>Drupal performance optimization (Core Web Vitals) — separate engagement</li>
+    <li>Real-estate landing-page body copy + imagery — HighRock builds; Apollo can collaborate as separate creative engagement</li>
   </ul>
+
+<!-- /CYCLE 1 EXPANSION SPLICE -->
+
 </div>
 
 <!-- TAB: APPROVAL -->
