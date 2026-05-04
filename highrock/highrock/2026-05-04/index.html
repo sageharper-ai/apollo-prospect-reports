@@ -100,6 +100,7 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 <div class="nav">
   <button class="active" onclick="showTab('summary')">Executive Summary</button>
   <button onclick="showTab('checklist')">Implementation Checklist</button>
+  <button onclick="showTab('newpages')">New Page Templates</button>
   <button onclick="showTab('schema')">Schema Bundle</button>
   <button onclick="showTab('prestate')">Pre-State Snapshot</button>
   <button onclick="showTab('asks')">Open Asks</button>
@@ -212,6 +213,82 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
       <tr><td>S.3</td><td>WAF user-agent whitelist</td><td class="muted">Cloudflare returns 403 to standard SEO crawlers</td><td class="code">Whitelist common SEO user-agents (Ahrefs, SEMrush, Screaming Frog, Botify) for HighRock's own audit visibility — not blocking</td></tr>
     </tbody>
   </table>
+</div>
+
+<!-- TAB: NEW PAGE TEMPLATES -->
+<div id="newpages" class="section">
+  <h2>New Page Templates — Real Estate Vertical</h2>
+  <p class="source-note">Three new pages recommended for HighRock to build, each carrying one of Monique's keyword targets. Each template is a complete build spec — title, H1, H2 outline, meta, image plan, internal links, schema, and AIO blocks. The dev team can build directly from these specs; the homepage stays vertical-agnostic.</p>
+
+  <div class="callout">
+    <div class="h">Why new pages, not just homepage edits</div>
+    <p style="margin: 0;">Real estate is the SEO target per Monique's intake; the homepage serves all of HighRock's verticals (real estate, healthcare, hospitality, etc.). Vertical SEO lives on dedicated landing pages with vertical-specific titles, H1s, schema, and content. These three pages let HighRock claim the real estate vertical's whitespace without narrowing the homepage's brand.</p>
+  </div>
+
+  <h3>Page 1 — Real Estate Brand Identity</h3>
+  <p class="source-note"><strong>Recommended URL:</strong> <code>https://highrock.com/services/real-estate-brand-identity</code><br><strong>Targets keyword:</strong> "Luxury Real Estate Brand Identity & 3D Visualization"</p>
+  <table class="data">
+    <thead><tr><th style="width:22%;">Element</th><th>Specification</th></tr></thead>
+    <tbody>
+      <tr><td>Title (57 chars)</td><td class="code">Real Estate Brand Identity &amp; 3D Visualization | HighRock</td></tr>
+      <tr><td>Meta description (140 chars)</td><td class="code">Luxury real estate brand identity by HighRock — naming, logos, brand systems, and 3D visualization for Mid-Atlantic developers and brokers.</td></tr>
+      <tr><td>H1</td><td class="code">Real Estate Brand Identity &amp; 3D Visualization</td></tr>
+      <tr><td>H2 outline (5 sections)</td><td class="code">1. Brand Systems for Real Estate Developers<br>2. Brand Identity for Luxury Real Estate Listings<br>3. Pairing Brand Identity with 3D Visualization<br>4. Selected Real Estate Brand Work<br>5. Start a Brand Identity Project</td></tr>
+      <tr><td>Images + alt text plan</td><td class="code">Hero: brand-system layout for a luxury real estate project<br>Alt: Real estate brand identity system — logo, palette, and typography for a luxury Mid-Atlantic development<br><br>Process visual: 3D brand visualization rendering<br>Alt: 3D brand visualization for a luxury real estate property exterior<br><br>Gallery: 3–4 case-study thumbnails (each with project name + "real estate" + "Mid-Atlantic" where applicable)</td></tr>
+      <tr><td>Internal linking</td><td class="code">Inbound (link TO this page from): /, /services, /work, /about<br>Outbound (link FROM this page to): /services/real-estate-3d-visualization, /services/real-estate-growth-marketing, /work (real estate filtered), /contact</td></tr>
+      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "Brand Identity Design" · provider: HighRock Organization · audience: Real Estate Professionals · areaServed: Mid-Atlantic states · isRelatedTo: 3D Visualization Service</td></tr>
+      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What does a real estate brand identity system include?<br>Q: How does brand identity affect luxury real estate listing performance?<br>Q: What's the typical timeline for a real estate brand identity project?<br>Q: How do brand identity and 3D visualization work together for real estate launches?</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 2rem;">Page 2 — Luxury Real Estate 3D Visualization</h3>
+  <p class="source-note"><strong>Recommended URL:</strong> <code>https://highrock.com/services/real-estate-3d-visualization</code><br><strong>Targets keyword:</strong> "Luxury Real Estate Brand Identity & 3D Visualization" (paired with Page 1)</p>
+  <table class="data">
+    <thead><tr><th style="width:22%;">Element</th><th>Specification</th></tr></thead>
+    <tbody>
+      <tr><td>Title (48 chars)</td><td class="code">Luxury Real Estate 3D Visualization | HighRock</td></tr>
+      <tr><td>Meta description (139 chars)</td><td class="code">Architectural 3D visualization, interior renderings, and VR walkthroughs for luxury real estate. Mid-Atlantic real estate creative partner.</td></tr>
+      <tr><td>H1</td><td class="code">Luxury Real Estate 3D Visualization</td></tr>
+      <tr><td>H2 outline (5 sections)</td><td class="code">1. Architectural Renderings &amp; Exterior Visualization<br>2. Interior Renderings &amp; Virtual Staging<br>3. VR Walkthroughs for Real Estate Marketing<br>4. Selected 3D Real Estate Work<br>5. Discuss a 3D Visualization Project</td></tr>
+      <tr><td>Images + alt text plan</td><td class="code">Hero: architectural exterior render<br>Alt: Luxury real estate exterior rendering by HighRock — Mid-Atlantic development<br><br>Interior render: virtual staging<br>Alt: Interior virtual staging rendering for a luxury real estate listing<br><br>VR demo: walkthrough screenshot<br>Alt: VR walkthrough demo for a real estate development marketing campaign</td></tr>
+      <tr><td>Internal linking</td><td class="code">Inbound: /, /services, /services/real-estate-brand-identity, /work<br>Outbound: /services/real-estate-brand-identity, /services/real-estate-growth-marketing, /work/matan-port-460, /contact</td></tr>
+      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "3D Visualization, VR, Architectural Rendering" · provider: HighRock Organization · audience: Real Estate Professionals (Developers, Brokers, Agencies) · areaServed: Mid-Atlantic</td></tr>
+      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What's included in a real estate 3D visualization project?<br>Q: When do developers use 3D visualization vs photography?<br>Q: How does VR change real estate marketing for pre-construction listings?<br>Q: How long does a real estate 3D rendering project typically take?</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 2rem;">Page 3 — Real Estate Growth Marketing</h3>
+  <p class="source-note"><strong>Recommended URL:</strong> <code>https://highrock.com/services/real-estate-growth-marketing</code><br><strong>Targets keyword:</strong> "Real Estate Growth Marketing &amp; Campaign Execution"</p>
+  <table class="data">
+    <thead><tr><th style="width:22%;">Element</th><th>Specification</th></tr></thead>
+    <tbody>
+      <tr><td>Title (52 chars)</td><td class="code">Real Estate Growth Marketing &amp; Campaigns | HighRock</td></tr>
+      <tr><td>Meta description (146 chars)</td><td class="code">Real estate growth marketing — brand campaigns, digital strategy, content, and lead generation for luxury Mid-Atlantic developers and brokers.</td></tr>
+      <tr><td>H1</td><td class="code">Real Estate Growth Marketing &amp; Campaign Execution</td></tr>
+      <tr><td>H2 outline (5 sections)</td><td class="code">1. Brand Campaigns for Real Estate Launches<br>2. Digital Strategy &amp; Lead Generation<br>3. Content &amp; Storytelling for Real Estate Brands<br>4. Selected Campaign Work<br>5. Start a Real Estate Marketing Engagement</td></tr>
+      <tr><td>Images + alt text plan</td><td class="code">Hero: campaign asset montage<br>Alt: Real estate brand campaign assets by HighRock — Mid-Atlantic developer launch<br><br>Performance dashboard: analytics view<br>Alt: Real estate marketing campaign analytics dashboard<br><br>Content piece: brand storytelling ad<br>Alt: Real estate brand storytelling campaign asset</td></tr>
+      <tr><td>Internal linking</td><td class="code">Inbound: /, /services, /work (filtered to campaign work)<br>Outbound: /services/real-estate-brand-identity, /services/real-estate-3d-visualization, /work, /contact</td></tr>
+      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "Marketing, Digital Strategy, Campaign Execution" · provider: HighRock Organization · audience: Real Estate Professionals · areaServed: Mid-Atlantic</td></tr>
+      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What does real estate growth marketing include?<br>Q: How are real estate launch campaigns structured?<br>Q: What's the typical timeline for a real estate marketing engagement?<br>Q: How does HighRock measure real estate campaign performance?</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 2rem;">Build sequence + cross-page strategy</h3>
+  <ul>
+    <li><strong>Build Page 1 first</strong> (Real Estate Brand Identity) — pairs naturally with HighRock's existing Creative service line and supports the strongest of Monique's keyword targets.</li>
+    <li><strong>Build Page 2 second</strong> (3D Visualization) — pairs with Page 1; the keyword target "Brand Identity & 3D Visualization" is dual-page when split this way.</li>
+    <li><strong>Build Page 3 third</strong> (Growth Marketing) — covers the campaign-execution side of Monique's keyword phrase 2.</li>
+    <li><strong>Cross-link triangle:</strong> all three pages link to each other in their "Related real estate services" footer block. This creates a tight internal linking cluster that signals topical authority on real estate to Google.</li>
+    <li><strong>Update /services parent page</strong> — add a "Real Estate Specialty" callout linking to all three sub-pages. This is the bridge between HighRock's broad services landing and the vertical-targeted sub-pages.</li>
+  </ul>
+
+  <h3>Drupal deployment notes for new pages</h3>
+  <ul>
+    <li>Create as Drupal nodes under the existing service content type (or a new "Service Landing" content type if needed for the H2-section block layout).</li>
+    <li>Each page configures its own Metatag default override (title, meta, OG, Twitter, JSON-LD).</li>
+    <li>Schema.org Metatag submodule (installed per cycle 1) handles per-page Service + FAQ JSON-LD via field tokens.</li>
+    <li>Internal linking: confirm Drupal navigation/menu placement for the three new pages — likely sub-items under /services.</li>
+  </ul>
 </div>
 
 <!-- TAB: SCHEMA -->
