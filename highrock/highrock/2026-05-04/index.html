@@ -81,6 +81,22 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
   .content { padding: 1.25rem 1.5rem; }
   .nav { padding: 0 1.5rem; }
 }
+
+/* === Dev implementation tracker (Implementation Checklist tab only) === */
+.checklist-cell-th { width: 7%; text-align: center; }
+.row-check-cell { text-align: center; vertical-align: middle; }
+.row-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--hr-green-dark); }
+tr.completed td:not(.row-check-cell) { color: var(--ink-soft); text-decoration: line-through; opacity: 0.55; }
+tr.completed td.row-check-cell { background: var(--hr-green-bg); }
+.page-progress { font-size: 0.82rem; color: var(--ink-soft); font-weight: 500; margin-left: 0.75rem; padding: 0.1rem 0.55rem; border: 1px solid var(--rule); border-radius: 12px; vertical-align: middle; }
+.page-progress.complete { color: var(--hr-green-dark); border-color: var(--hr-green); background: var(--hr-green-bg); font-weight: 600; }
+.global-progress { background: var(--hr-green-bg); border: 1px solid var(--hr-green); border-radius: 8px; padding: 0.85rem 1.1rem; margin: 0 0 1.5rem; font-size: 0.95rem; }
+.global-progress strong { color: var(--hr-green-dark); }
+.global-progress .progress-bar { background: white; height: 8px; border-radius: 4px; margin-top: 0.55rem; overflow: hidden; border: 1px solid var(--rule); }
+.global-progress .progress-bar-fill { background: var(--hr-green); height: 100%; transition: width 0.3s ease; }
+.global-progress .global-help { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.55rem; }
+.global-progress .reset-btn { float: right; background: white; border: 1px solid var(--rule); color: var(--ink-soft); font-size: 0.74rem; padding: 0.2rem 0.6rem; border-radius: 4px; cursor: pointer; }
+.global-progress .reset-btn:hover { color: var(--red); border-color: var(--red); }
 </style>
 </head>
 <body>
@@ -134,194 +150,201 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 <!-- TAB: CHECKLIST -->
 <div id="checklist" class="section">
   <h2>Implementation Checklist</h2>
+  <div class="global-progress">
+    <button class="reset-btn" onclick="if(confirm('Reset all completion checkboxes for this deliverable?')){localStorage.removeItem('highrock-onpage-2026-05-04-progress');location.reload();}">Reset progress</button>
+    <strong>Implementation progress &mdash;</strong> <span class="global-text">0 of 0 recommendations complete</span>
+    <div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div>
+    <p class="global-help">Tick each row as your dev team completes it. Progress saves to this browser (localStorage); it persists across visits on this device. Use the per-page badges next to each heading to track section completion.</p>
+  </div>
+
   <p class="source-note">Per-page tables, copy-paste-ready. Two one-time setups apply across all pages: (1) enable Twitter Card sub-fields on the existing Drupal Metatag module; (2) install the Schema.org Metatag submodule (<code>composer require drupal/schema_metatag</code>).</p>
 
   <h3>Homepage — <code>https://highrock.com/</code></h3>
   <table class="data">
-    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th></tr></thead>
+    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
     <tbody>
-      <tr><td>1.1</td><td>Title (59 chars)</td><td class="muted">Creative Services | Web Development | Video | Marketing</td><td class="code">HighRock | Mid-Atlantic Creative Agency — Brand, Web, Video</td></tr>
-      <tr><td>1.2</td><td>Meta description (143 chars)</td><td class="muted">With experience in website development, strategic marketing, branding, video production, & creative design, HighRock can help with all your needs.</td><td class="code">HighRock is a Mid-Atlantic creative agency for brand identity, 3D visualization, web, video, and growth marketing — built for ambitious brands.</td></tr>
-      <tr><td>1.3</td><td>H1 (currently missing)</td><td class="muted">— no H1 detected —</td><td class="code">Brand Strategy, Design &amp; 3D Visualization for Mid-Atlantic Real Estate</td></tr>
-      <tr><td>1.4</td><td>og:url</td><td class="muted">https://highrock.com/home</td><td class="code">https://highrock.com/</td></tr>
-      <tr><td>1.5</td><td>og:title</td><td class="muted">Homepage</td><td class="code">HighRock — Mid-Atlantic Creative Agency</td></tr>
-      <tr><td>1.6</td><td>og:description</td><td class="muted">(matches old meta — update with new meta above)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>1.7</td><td>twitter:card</td><td class="muted">— missing —</td><td class="code">summary_large_image</td></tr>
-      <tr><td>1.8</td><td>twitter:title</td><td class="muted">— missing —</td><td class="code">HighRock — Mid-Atlantic Creative Agency</td></tr>
-      <tr><td>1.9</td><td>twitter:description</td><td class="muted">— missing —</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>1.10</td><td>twitter:image</td><td class="muted">— missing —</td><td class="code">(same as og:image — 1200×630 brand asset)</td></tr>
-      <tr><td>1.11</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Organization + ProfessionalService (with real estate audience + Mid-Atlantic service area + OfferCatalog) + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
-      <tr><td>1.12</td><td>Robots meta</td><td class="muted">— absent (defaults to index/follow) —</td><td class="code">&lt;meta name="robots" content="index, follow"&gt;</td></tr>
+      <tr><td>1.1</td><td>Title (59 chars)</td><td class="muted">Creative Services | Web Development | Video | Marketing</td><td class="code">HighRock | Mid-Atlantic Creative Agency — Brand, Web, Video</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.1" aria-label="Mark step 1.1 complete"></td></tr>
+      <tr><td>1.2</td><td>Meta description (143 chars)</td><td class="muted">With experience in website development, strategic marketing, branding, video production, & creative design, HighRock can help with all your needs.</td><td class="code">HighRock is a Mid-Atlantic creative agency for brand identity, 3D visualization, web, video, and growth marketing — built for ambitious brands.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.2" aria-label="Mark step 1.2 complete"></td></tr>
+      <tr><td>1.3</td><td>H1 (currently missing)</td><td class="muted">— no H1 detected —</td><td class="code">Brand Strategy, Design &amp; 3D Visualization for Mid-Atlantic Real Estate</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.3" aria-label="Mark step 1.3 complete"></td></tr>
+      <tr><td>1.4</td><td>og:url</td><td class="muted">https://highrock.com/home</td><td class="code">https://highrock.com/</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.4" aria-label="Mark step 1.4 complete"></td></tr>
+      <tr><td>1.5</td><td>og:title</td><td class="muted">Homepage</td><td class="code">HighRock — Mid-Atlantic Creative Agency</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.5" aria-label="Mark step 1.5 complete"></td></tr>
+      <tr><td>1.6</td><td>og:description</td><td class="muted">(matches old meta — update with new meta above)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.6" aria-label="Mark step 1.6 complete"></td></tr>
+      <tr><td>1.7</td><td>twitter:card</td><td class="muted">— missing —</td><td class="code">summary_large_image</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.7" aria-label="Mark step 1.7 complete"></td></tr>
+      <tr><td>1.8</td><td>twitter:title</td><td class="muted">— missing —</td><td class="code">HighRock — Mid-Atlantic Creative Agency</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.8" aria-label="Mark step 1.8 complete"></td></tr>
+      <tr><td>1.9</td><td>twitter:description</td><td class="muted">— missing —</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.9" aria-label="Mark step 1.9 complete"></td></tr>
+      <tr><td>1.10</td><td>twitter:image</td><td class="muted">— missing —</td><td class="code">(same as og:image — 1200×630 brand asset)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.10" aria-label="Mark step 1.10 complete"></td></tr>
+      <tr><td>1.11</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Organization + ProfessionalService (with real estate audience + Mid-Atlantic service area + OfferCatalog) + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.11" aria-label="Mark step 1.11 complete"></td></tr>
+      <tr><td>1.12</td><td>Robots meta</td><td class="muted">— absent (defaults to index/follow) —</td><td class="code">&lt;meta name="robots" content="index, follow"&gt;</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="1.12" aria-label="Mark step 1.12 complete"></td></tr>
     </tbody>
   </table>
   <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2F" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 
   <h3>/services — <code>https://highrock.com/services</code></h3>
   <table class="data">
-    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th></tr></thead>
+    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
     <tbody>
-      <tr><td>2.1</td><td>Title (59 chars)</td><td class="muted">Services | HighRock</td><td class="code">Creative Agency Services — Brand, Web, Video, 3D | HighRock</td></tr>
-      <tr><td>2.2</td><td>Meta description (151 chars)</td><td class="muted">(343 chars — SERP-truncated)</td><td class="code">Creative agency services — brand identity, 3D visualization, web development, video production, training, and growth marketing for Mid-Atlantic brands.</td></tr>
-      <tr><td>2.3</td><td>H1</td><td class="muted">3 separate H1s: "Strategy" / "Creativity" / "Innovation"</td><td class="code">&lt;h1&gt;&lt;span&gt;Strategy.&lt;/span&gt; &lt;span&gt;Creativity.&lt;/span&gt; &lt;span&gt;Innovation.&lt;/span&gt;&lt;/h1&gt;<br>(single H1, design preserved with span display:block)</td></tr>
-      <tr><td>2.4</td><td>og:title</td><td class="muted">Services</td><td class="code">HighRock Creative Services</td></tr>
-      <tr><td>2.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>2.6</td><td>twitter:card</td><td class="muted">— missing —</td><td class="code">summary_large_image</td></tr>
-      <tr><td>2.7</td><td>twitter:title / description / image</td><td class="muted">— missing —</td><td class="code">Match og:* values</td></tr>
-      <tr><td>2.8</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">ProfessionalService (with real estate audience + Mid-Atlantic service area + 8-service OfferCatalog) + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>2.1</td><td>Title (59 chars)</td><td class="muted">Services | HighRock</td><td class="code">Creative Agency Services — Brand, Web, Video, 3D | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="2.1" aria-label="Mark step 2.1 complete"></td></tr>
+      <tr><td>2.2</td><td>Meta description (151 chars)</td><td class="muted">(343 chars — SERP-truncated)</td><td class="code">Creative agency services — brand identity, 3D visualization, web development, video production, training, and growth marketing for Mid-Atlantic brands.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="2.2" aria-label="Mark step 2.2 complete"></td></tr>
+      <tr><td>2.3</td><td>H1</td><td class="muted">3 separate H1s: "Strategy" / "Creativity" / "Innovation"</td><td class="code">&lt;h1&gt;&lt;span&gt;Strategy.&lt;/span&gt; &lt;span&gt;Creativity.&lt;/span&gt; &lt;span&gt;Innovation.&lt;/span&gt;&lt;/h1&gt;<br>(single H1, design preserved with span display:block)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="2.3" aria-label="Mark step 2.3 complete"></td></tr>
+      <tr><td>2.4</td><td>og:title</td><td class="muted">Services</td><td class="code">HighRock Creative Services</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="2.4" aria-label="Mark step 2.4 complete"></td></tr>
+      <tr><td>2.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="2.5" aria-label="Mark step 2.5 complete"></td></tr>
+      <tr><td>2.6</td><td>twitter:card</td><td class="muted">— missing —</td><td class="code">summary_large_image</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="2.6" aria-label="Mark step 2.6 complete"></td></tr>
+      <tr><td>2.7</td><td>twitter:title / description / image</td><td class="muted">— missing —</td><td class="code">Match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="2.7" aria-label="Mark step 2.7 complete"></td></tr>
+      <tr><td>2.8</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">ProfessionalService (with real estate audience + Mid-Atlantic service area + 8-service OfferCatalog) + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="2.8" aria-label="Mark step 2.8 complete"></td></tr>
     </tbody>
   </table>
   <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 
   <h3>/work — <code>https://highrock.com/work</code></h3>
   <table class="data">
-    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th></tr></thead>
+    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
     <tbody>
-      <tr><td>3.1</td><td>Title (55 chars)</td><td class="muted">Work | HighRock</td><td class="code">HighRock Portfolio — Brand, Web, Video, 3D Case Studies</td></tr>
-      <tr><td>3.2</td><td>Meta description (147 chars)</td><td class="muted">From strategy to execution, explore the campaigns and brand work that define what HighRock does best. See our latest client work and case studies.</td><td class="code">Selected creative work — brand identity, 3D visualization, video, and integrated campaigns for ambitious brands across the Mid-Atlantic and beyond.</td></tr>
-      <tr><td>3.3</td><td>H1 (currently missing)</td><td class="muted">— no H1 detected —</td><td class="code">HighRock Creative Portfolio</td></tr>
-      <tr><td>3.4</td><td>og:title</td><td class="muted">Work</td><td class="code">HighRock Portfolio</td></tr>
-      <tr><td>3.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>3.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values; image rotates with featured case study if dynamic</td></tr>
-      <tr><td>3.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CollectionPage + ItemList of top N case studies (CreativeWork, prioritize real estate work first) + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>3.1</td><td>Title (55 chars)</td><td class="muted">Work | HighRock</td><td class="code">HighRock Portfolio — Brand, Web, Video, 3D Case Studies</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="3.1" aria-label="Mark step 3.1 complete"></td></tr>
+      <tr><td>3.2</td><td>Meta description (147 chars)</td><td class="muted">From strategy to execution, explore the campaigns and brand work that define what HighRock does best. See our latest client work and case studies.</td><td class="code">Selected creative work — brand identity, 3D visualization, video, and integrated campaigns for ambitious brands across the Mid-Atlantic and beyond.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="3.2" aria-label="Mark step 3.2 complete"></td></tr>
+      <tr><td>3.3</td><td>H1 (currently missing)</td><td class="muted">— no H1 detected —</td><td class="code">HighRock Creative Portfolio</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="3.3" aria-label="Mark step 3.3 complete"></td></tr>
+      <tr><td>3.4</td><td>og:title</td><td class="muted">Work</td><td class="code">HighRock Portfolio</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="3.4" aria-label="Mark step 3.4 complete"></td></tr>
+      <tr><td>3.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="3.5" aria-label="Mark step 3.5 complete"></td></tr>
+      <tr><td>3.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values; image rotates with featured case study if dynamic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="3.6" aria-label="Mark step 3.6 complete"></td></tr>
+      <tr><td>3.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CollectionPage + ItemList of top N case studies (CreativeWork, prioritize real estate work first) + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="3.7" aria-label="Mark step 3.7 complete"></td></tr>
     </tbody>
   </table>
   <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 
   <h3>/about — <code>https://highrock.com/about</code></h3>
   <table class="data">
-    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th></tr></thead>
+    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
     <tbody>
-      <tr><td>4.1</td><td>Title (50 chars)</td><td class="muted">About | HighRock</td><td class="code">About HighRock — Mid-Atlantic Creative Agency Team</td></tr>
-      <tr><td>4.2</td><td>Meta description (144 chars)</td><td class="muted">(248 chars)</td><td class="code">HighRock is powered by people with breadth of expertise and the willingness to climb the mountain together. Meet the Mid-Atlantic creative team.</td></tr>
-      <tr><td>4.3</td><td>H1</td><td class="muted">The HighRock Team</td><td class="code">The HighRock Team (no change — already on-topic)</td></tr>
-      <tr><td>4.4</td><td>og:title</td><td class="muted">About</td><td class="code">About HighRock</td></tr>
-      <tr><td>4.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>4.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:*; team photo or HighRock logo card</td></tr>
-      <tr><td>4.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">AboutPage (links to root Organization via @id) + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>4.1</td><td>Title (50 chars)</td><td class="muted">About | HighRock</td><td class="code">About HighRock — Mid-Atlantic Creative Agency Team</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="4.1" aria-label="Mark step 4.1 complete"></td></tr>
+      <tr><td>4.2</td><td>Meta description (144 chars)</td><td class="muted">(248 chars)</td><td class="code">HighRock is powered by people with breadth of expertise and the willingness to climb the mountain together. Meet the Mid-Atlantic creative team.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="4.2" aria-label="Mark step 4.2 complete"></td></tr>
+      <tr><td>4.3</td><td>H1</td><td class="muted">The HighRock Team</td><td class="code">The HighRock Team (no change — already on-topic)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="4.3" aria-label="Mark step 4.3 complete"></td></tr>
+      <tr><td>4.4</td><td>og:title</td><td class="muted">About</td><td class="code">About HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="4.4" aria-label="Mark step 4.4 complete"></td></tr>
+      <tr><td>4.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="4.5" aria-label="Mark step 4.5 complete"></td></tr>
+      <tr><td>4.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:*; team photo or HighRock logo card</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="4.6" aria-label="Mark step 4.6 complete"></td></tr>
+      <tr><td>4.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">AboutPage (links to root Organization via @id) + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="4.7" aria-label="Mark step 4.7 complete"></td></tr>
     </tbody>
   </table>
   <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fabout" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 
   <h3>Site-wide</h3>
   <table class="data">
-    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th></tr></thead>
+    <thead><tr><th style="width:14%;">Step</th><th style="width:22%;">Field</th><th style="width:32%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
     <tbody>
-      <tr><td>S.1</td><td>Robots meta default</td><td class="muted">— absent —</td><td class="code">Add Metatag default at Global scope: &lt;meta name="robots" content="index, follow"&gt;</td></tr>
-      <tr><td>S.2</td><td>Image alt text</td><td class="muted">All 140+ images carry alt — clean</td><td class="code">No change required</td></tr>
-      <tr><td>S.3</td><td>WAF user-agent whitelist</td><td class="muted">Cloudflare returns 403 to standard SEO crawlers</td><td class="code">Whitelist common SEO user-agents (Ahrefs, SEMrush, Screaming Frog, Botify) for HighRock's own audit visibility — not blocking</td></tr>
+      <tr><td>S.1</td><td>Robots meta default</td><td class="muted">— absent —</td><td class="code">Add Metatag default at Global scope: &lt;meta name="robots" content="index, follow"&gt;</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="S.1" aria-label="Mark step S.1 complete"></td></tr>
+      <tr><td>S.2</td><td>Image alt text</td><td class="muted">All 140+ images carry alt — clean</td><td class="code">No change required</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="S.2" aria-label="Mark step S.2 complete"></td></tr>
+      <tr><td>S.3</td><td>WAF user-agent whitelist</td><td class="muted">Cloudflare returns 403 to standard SEO crawlers</td><td class="code">Whitelist common SEO user-agents (Ahrefs, SEMrush, Screaming Frog, Botify) for HighRock's own audit visibility — not blocking</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="S.3" aria-label="Mark step S.3 complete"></td></tr>
     </tbody>
   </table>
 <!-- EXPANDED COVERAGE SPLICE -->
 <h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Service sub-pages</h3>
 <h3>Strategic Marketing — <code>https://highrock.com/services/strategic-marketing</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>5.1</td><td>Title (56 chars)</td><td class="muted">Strategic Marketing | HighRock (30 chars)</td><td class="code">Strategic Marketing — Positioning &amp; Campaigns | HighRock</td></tr>
-      <tr><td>5.2</td><td>Meta description (144 chars)</td><td class="muted">HighRock&#x27;s strategic marketing services help you define your business&#x27;s goals, identify target audiences, and develop data-driven campaigns that drive measurable results. This includes market research... (453 chars)</td><td class="code">HighRock&#x27;s strategic marketing — market research, brand positioning, competitive analysis, and multi-channel campaigns built for measurable ROI.</td></tr>
-      <tr><td>5.3</td><td>H1</td><td class="muted">Strategic Marketing</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>5.4</td><td>og:title</td><td class="muted">Strategic Marketing</td><td class="code">Strategic Marketing — Positioning &amp; Campaigns</td></tr>
-      <tr><td>5.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>5.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>5.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>5.1</td><td>Title (56 chars)</td><td class="muted">Strategic Marketing | HighRock (30 chars)</td><td class="code">Strategic Marketing — Positioning &amp; Campaigns | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="5.1" aria-label="Mark step 5.1 complete"></td></tr>
+      <tr><td>5.2</td><td>Meta description (144 chars)</td><td class="muted">HighRock&#x27;s strategic marketing services help you define your business&#x27;s goals, identify target audiences, and develop data-driven campaigns that drive measurable results. This includes market research... (453 chars)</td><td class="code">HighRock&#x27;s strategic marketing — market research, brand positioning, competitive analysis, and multi-channel campaigns built for measurable ROI.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="5.2" aria-label="Mark step 5.2 complete"></td></tr>
+      <tr><td>5.3</td><td>H1</td><td class="muted">Strategic Marketing</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="5.3" aria-label="Mark step 5.3 complete"></td></tr>
+      <tr><td>5.4</td><td>og:title</td><td class="muted">Strategic Marketing</td><td class="code">Strategic Marketing — Positioning &amp; Campaigns</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="5.4" aria-label="Mark step 5.4 complete"></td></tr>
+      <tr><td>5.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="5.5" aria-label="Mark step 5.5 complete"></td></tr>
+      <tr><td>5.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="5.6" aria-label="Mark step 5.6 complete"></td></tr>
+      <tr><td>5.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="5.7" aria-label="Mark step 5.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fstrategic-marketing" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Creative — <code>https://highrock.com/services/creative</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>6.1</td><td>Title (54 chars)</td><td class="muted">Creative | HighRock (19 chars)</td><td class="code">Creative Services — Brand Identity &amp; Design | HighRock</td></tr>
-      <tr><td>6.2</td><td>Meta description (142 chars)</td><td class="muted">HighRock&#x27;s creative services bring brands to life with visually compelling and strategically crafted designs. From logos and branding to digital and print materials, we create eye-catching assets that... (406 chars)</td><td class="code">HighRock&#x27;s creative services — logos, brand identity systems, and digital and print design built to engage audiences and elevate your message.</td></tr>
-      <tr><td>6.3</td><td>H1</td><td class="muted">Creative</td><td class="code">Creative Services</td></tr>
-      <tr><td>6.4</td><td>og:title</td><td class="muted">Creative</td><td class="code">Creative Services — Brand Identity &amp; Design</td></tr>
-      <tr><td>6.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>6.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>6.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>6.1</td><td>Title (54 chars)</td><td class="muted">Creative | HighRock (19 chars)</td><td class="code">Creative Services — Brand Identity &amp; Design | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="6.1" aria-label="Mark step 6.1 complete"></td></tr>
+      <tr><td>6.2</td><td>Meta description (142 chars)</td><td class="muted">HighRock&#x27;s creative services bring brands to life with visually compelling and strategically crafted designs. From logos and branding to digital and print materials, we create eye-catching assets that... (406 chars)</td><td class="code">HighRock&#x27;s creative services — logos, brand identity systems, and digital and print design built to engage audiences and elevate your message.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="6.2" aria-label="Mark step 6.2 complete"></td></tr>
+      <tr><td>6.3</td><td>H1</td><td class="muted">Creative</td><td class="code">Creative Services</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="6.3" aria-label="Mark step 6.3 complete"></td></tr>
+      <tr><td>6.4</td><td>og:title</td><td class="muted">Creative</td><td class="code">Creative Services — Brand Identity &amp; Design</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="6.4" aria-label="Mark step 6.4 complete"></td></tr>
+      <tr><td>6.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="6.5" aria-label="Mark step 6.5 complete"></td></tr>
+      <tr><td>6.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="6.6" aria-label="Mark step 6.6 complete"></td></tr>
+      <tr><td>6.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="6.7" aria-label="Mark step 6.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fcreative" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Web Development — <code>https://highrock.com/services/web-development</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>7.1</td><td>Title (54 chars)</td><td class="muted">Web Development | HighRock (26 chars)</td><td class="code">Web Development — Custom Websites &amp; Hosting | HighRock</td></tr>
-      <tr><td>7.2</td><td>Meta description (142 chars)</td><td class="muted">HighRock designs and develops custom websites that blend creativity with functionality, ensuring an engaging user experience tailored to your brand. From sleek landing pages to complex database-driven... (388 chars)</td><td class="code">Custom websites by HighRock — mobile-friendly design, database-driven platforms, and reliable hosting built for ambitious Mid-Atlantic brands.</td></tr>
-      <tr><td>7.3</td><td>H1</td><td class="muted">Web Development</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>7.4</td><td>og:title</td><td class="muted">Web Development</td><td class="code">Web Development — Custom Websites &amp; Hosting</td></tr>
-      <tr><td>7.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>7.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>7.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>7.1</td><td>Title (54 chars)</td><td class="muted">Web Development | HighRock (26 chars)</td><td class="code">Web Development — Custom Websites &amp; Hosting | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="7.1" aria-label="Mark step 7.1 complete"></td></tr>
+      <tr><td>7.2</td><td>Meta description (142 chars)</td><td class="muted">HighRock designs and develops custom websites that blend creativity with functionality, ensuring an engaging user experience tailored to your brand. From sleek landing pages to complex database-driven... (388 chars)</td><td class="code">Custom websites by HighRock — mobile-friendly design, database-driven platforms, and reliable hosting built for ambitious Mid-Atlantic brands.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="7.2" aria-label="Mark step 7.2 complete"></td></tr>
+      <tr><td>7.3</td><td>H1</td><td class="muted">Web Development</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="7.3" aria-label="Mark step 7.3 complete"></td></tr>
+      <tr><td>7.4</td><td>og:title</td><td class="muted">Web Development</td><td class="code">Web Development — Custom Websites &amp; Hosting</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="7.4" aria-label="Mark step 7.4 complete"></td></tr>
+      <tr><td>7.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="7.5" aria-label="Mark step 7.5 complete"></td></tr>
+      <tr><td>7.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="7.6" aria-label="Mark step 7.6 complete"></td></tr>
+      <tr><td>7.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="7.7" aria-label="Mark step 7.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fweb-development" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Training &amp; Development — <code>https://highrock.com/services/training-development</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>8.1</td><td>Title (58 chars)</td><td class="muted">Training &amp; Development | HighRock (33 chars)</td><td class="code">Training &amp; Development — Custom LMS &amp; Workshops | HighRock</td></tr>
-      <tr><td>8.2</td><td>Meta description (151 chars)</td><td class="muted">HighRock&#x27;s training and development services equip your teams with the skills and knowledge needed to thrive in rapidly evolving industries. We offer customized workshops, hands-on training sessions, ... (456 chars)</td><td class="code">HighRock training &amp; development — customized workshops, hands-on sessions, and web-based learning management portals built to drive measurable results.</td></tr>
-      <tr><td>8.3</td><td>H1</td><td class="muted">Training &amp; Development</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>8.4</td><td>og:title</td><td class="muted">Training &amp; Development</td><td class="code">Training &amp; Development — Custom LMS &amp; Workshops</td></tr>
-      <tr><td>8.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>8.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>8.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>8.1</td><td>Title (58 chars)</td><td class="muted">Training &amp; Development | HighRock (33 chars)</td><td class="code">Training &amp; Development — Custom LMS &amp; Workshops | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="8.1" aria-label="Mark step 8.1 complete"></td></tr>
+      <tr><td>8.2</td><td>Meta description (151 chars)</td><td class="muted">HighRock&#x27;s training and development services equip your teams with the skills and knowledge needed to thrive in rapidly evolving industries. We offer customized workshops, hands-on training sessions, ... (456 chars)</td><td class="code">HighRock training &amp; development — customized workshops, hands-on sessions, and web-based learning management portals built to drive measurable results.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="8.2" aria-label="Mark step 8.2 complete"></td></tr>
+      <tr><td>8.3</td><td>H1</td><td class="muted">Training &amp; Development</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="8.3" aria-label="Mark step 8.3 complete"></td></tr>
+      <tr><td>8.4</td><td>og:title</td><td class="muted">Training &amp; Development</td><td class="code">Training &amp; Development — Custom LMS &amp; Workshops</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="8.4" aria-label="Mark step 8.4 complete"></td></tr>
+      <tr><td>8.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="8.5" aria-label="Mark step 8.5 complete"></td></tr>
+      <tr><td>8.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="8.6" aria-label="Mark step 8.6 complete"></td></tr>
+      <tr><td>8.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="8.7" aria-label="Mark step 8.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Ftraining-development" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>3D / VR — <code>https://highrock.com/services/3d-vr</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>9.1</td><td>Title (60 chars)</td><td class="muted">3D / VR | HighRock (18 chars)</td><td class="code">3D &amp; VR — Visualization, AR, Virtual Walkthroughs | HighRock</td></tr>
-      <tr><td>9.2</td><td>Meta description (157 chars)</td><td class="muted">HighRock&#x27;s 3D &amp; VR services bring brands to life with immersive, interactive experiences that captivate audiences. From virtual walkthroughs and product visualizations to augmented reality (AR) activa... (451 chars)</td><td class="code">HighRock 3D &amp; VR — virtual walkthroughs, product visualization, and AR experiences for real estate, retail, and entertainment brands across the Mid-Atlantic.</td></tr>
-      <tr><td>9.3</td><td>H1</td><td class="muted">3D / VR</td><td class="code">3D &amp; VR</td></tr>
-      <tr><td>9.4</td><td>og:title</td><td class="muted">3D / VR</td><td class="code">3D &amp; VR — Visualization, AR, Virtual Walkthroughs</td></tr>
-      <tr><td>9.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>9.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>9.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>9.1</td><td>Title (60 chars)</td><td class="muted">3D / VR | HighRock (18 chars)</td><td class="code">3D &amp; VR — Visualization, AR, Virtual Walkthroughs | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="9.1" aria-label="Mark step 9.1 complete"></td></tr>
+      <tr><td>9.2</td><td>Meta description (157 chars)</td><td class="muted">HighRock&#x27;s 3D &amp; VR services bring brands to life with immersive, interactive experiences that captivate audiences. From virtual walkthroughs and product visualizations to augmented reality (AR) activa... (451 chars)</td><td class="code">HighRock 3D &amp; VR — virtual walkthroughs, product visualization, and AR experiences for real estate, retail, and entertainment brands across the Mid-Atlantic.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="9.2" aria-label="Mark step 9.2 complete"></td></tr>
+      <tr><td>9.3</td><td>H1</td><td class="muted">3D / VR</td><td class="code">3D &amp; VR</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="9.3" aria-label="Mark step 9.3 complete"></td></tr>
+      <tr><td>9.4</td><td>og:title</td><td class="muted">3D / VR</td><td class="code">3D &amp; VR — Visualization, AR, Virtual Walkthroughs</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="9.4" aria-label="Mark step 9.4 complete"></td></tr>
+      <tr><td>9.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="9.5" aria-label="Mark step 9.5 complete"></td></tr>
+      <tr><td>9.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="9.6" aria-label="Mark step 9.6 complete"></td></tr>
+      <tr><td>9.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="9.7" aria-label="Mark step 9.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2F3d-vr" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Digital Marketing — <code>https://highrock.com/services/digital-marketing</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>10.1</td><td>Title (58 chars)</td><td class="muted">Digital Marketing | HighRock (28 chars)</td><td class="code">Digital Marketing — Online Brand Building &amp; ROI | HighRock</td></tr>
-      <tr><td>10.2</td><td>Meta description (153 chars)</td><td class="muted">The world of digital marketing entails a swath of strategies, media vehicles, and trends that are always changing and pushing the market forward. Digital marketing tactics are highly accessible and co... (381 chars)</td><td class="code">HighRock digital marketing — paid media, social, content, and analytics under one roof. Strategy and execution for online brand building that drives ROI.</td></tr>
-      <tr><td>10.3</td><td>H1</td><td class="muted">Digital Marketing</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>10.4</td><td>og:title</td><td class="muted">Digital Marketing</td><td class="code">Digital Marketing — Online Brand Building &amp; ROI</td></tr>
-      <tr><td>10.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>10.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>10.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>10.1</td><td>Title (58 chars)</td><td class="muted">Digital Marketing | HighRock (28 chars)</td><td class="code">Digital Marketing — Online Brand Building &amp; ROI | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="10.1" aria-label="Mark step 10.1 complete"></td></tr>
+      <tr><td>10.2</td><td>Meta description (153 chars)</td><td class="muted">The world of digital marketing entails a swath of strategies, media vehicles, and trends that are always changing and pushing the market forward. Digital marketing tactics are highly accessible and co... (381 chars)</td><td class="code">HighRock digital marketing — paid media, social, content, and analytics under one roof. Strategy and execution for online brand building that drives ROI.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="10.2" aria-label="Mark step 10.2 complete"></td></tr>
+      <tr><td>10.3</td><td>H1</td><td class="muted">Digital Marketing</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="10.3" aria-label="Mark step 10.3 complete"></td></tr>
+      <tr><td>10.4</td><td>og:title</td><td class="muted">Digital Marketing</td><td class="code">Digital Marketing — Online Brand Building &amp; ROI</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="10.4" aria-label="Mark step 10.4 complete"></td></tr>
+      <tr><td>10.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="10.5" aria-label="Mark step 10.5 complete"></td></tr>
+      <tr><td>10.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="10.6" aria-label="Mark step 10.6 complete"></td></tr>
+      <tr><td>10.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="10.7" aria-label="Mark step 10.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fdigital-marketing" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Search Engine Optimization (SEO) — <code>https://highrock.com/services/search-engine-optimization-seo</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>11.1</td><td>Title (60 chars)</td><td class="muted">Search Engine Optimization (SEO) | HighRock (43 chars)</td><td class="code">Search Engine Optimization (SEO) — Organic Growth | HighRock</td></tr>
-      <tr><td>11.2</td><td>Meta description (149 chars)</td><td class="muted">Preserve your brand identity by maximizing your search engine results. Drive organic traffic by ranking your website through search engine optimization (SEO). Attract visitors who can potentially beco... (293 chars)</td><td class="code">HighRock SEO — on-site optimization, content marketing, backlink building, and transparent reporting to drive organic traffic and lasting visibility.</td></tr>
-      <tr><td>11.3</td><td>H1</td><td class="muted">Search Engine Optimization (SEO)</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>11.4</td><td>og:title</td><td class="muted">Search Engine Optimization (SEO)</td><td class="code">Search Engine Optimization (SEO) — Organic Growth</td></tr>
-      <tr><td>11.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>11.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>11.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>11.1</td><td>Title (60 chars)</td><td class="muted">Search Engine Optimization (SEO) | HighRock (43 chars)</td><td class="code">Search Engine Optimization (SEO) — Organic Growth | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="11.1" aria-label="Mark step 11.1 complete"></td></tr>
+      <tr><td>11.2</td><td>Meta description (149 chars)</td><td class="muted">Preserve your brand identity by maximizing your search engine results. Drive organic traffic by ranking your website through search engine optimization (SEO). Attract visitors who can potentially beco... (293 chars)</td><td class="code">HighRock SEO — on-site optimization, content marketing, backlink building, and transparent reporting to drive organic traffic and lasting visibility.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="11.2" aria-label="Mark step 11.2 complete"></td></tr>
+      <tr><td>11.3</td><td>H1</td><td class="muted">Search Engine Optimization (SEO)</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="11.3" aria-label="Mark step 11.3 complete"></td></tr>
+      <tr><td>11.4</td><td>og:title</td><td class="muted">Search Engine Optimization (SEO)</td><td class="code">Search Engine Optimization (SEO) — Organic Growth</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="11.4" aria-label="Mark step 11.4 complete"></td></tr>
+      <tr><td>11.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="11.5" aria-label="Mark step 11.5 complete"></td></tr>
+      <tr><td>11.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="11.6" aria-label="Mark step 11.6 complete"></td></tr>
+      <tr><td>11.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="11.7" aria-label="Mark step 11.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fsearch-engine-optimization-seo" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Video Production — <code>https://highrock.com/services/video-production</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>12.1</td><td>Title (57 chars)</td><td class="muted">Video Production | HighRock (27 chars)</td><td class="code">Video Production — Brand Stories &amp; Commercials | HighRock</td></tr>
-      <tr><td>12.2</td><td>Meta description (152 chars)</td><td class="muted">HighRock&#x27;s video production services bring your brand’s story to life with high-quality, engaging content tailored for any platform. From concept development and scripting to filming, animation, and p... (449 chars)</td><td class="code">HighRock video production — concept, scripting, filming, animation, and post for brand stories, commercials, and social. End-to-end production in-house.</td></tr>
-      <tr><td>12.3</td><td>H1</td><td class="muted">Video Production</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>12.4</td><td>og:title</td><td class="muted">Video Production</td><td class="code">Video Production — Brand Stories &amp; Commercials</td></tr>
-      <tr><td>12.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>12.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>12.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>12.1</td><td>Title (57 chars)</td><td class="muted">Video Production | HighRock (27 chars)</td><td class="code">Video Production — Brand Stories &amp; Commercials | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="12.1" aria-label="Mark step 12.1 complete"></td></tr>
+      <tr><td>12.2</td><td>Meta description (152 chars)</td><td class="muted">HighRock&#x27;s video production services bring your brand’s story to life with high-quality, engaging content tailored for any platform. From concept development and scripting to filming, animation, and p... (449 chars)</td><td class="code">HighRock video production — concept, scripting, filming, animation, and post for brand stories, commercials, and social. End-to-end production in-house.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="12.2" aria-label="Mark step 12.2 complete"></td></tr>
+      <tr><td>12.3</td><td>H1</td><td class="muted">Video Production</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="12.3" aria-label="Mark step 12.3 complete"></td></tr>
+      <tr><td>12.4</td><td>og:title</td><td class="muted">Video Production</td><td class="code">Video Production — Brand Stories &amp; Commercials</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="12.4" aria-label="Mark step 12.4 complete"></td></tr>
+      <tr><td>12.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="12.5" aria-label="Mark step 12.5 complete"></td></tr>
+      <tr><td>12.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="12.6" aria-label="Mark step 12.6 complete"></td></tr>
+      <tr><td>12.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">Service + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="12.7" aria-label="Mark step 12.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices%2Fvideo-production" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
@@ -330,169 +353,169 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 <p class="source-note">These 12 case studies are the set HighRock features on its own homepage. Each gets title/meta/H1/OG/Twitter/CreativeWork schema in this audit. Top-N final ordering pending Monique's confirmation — Apollo recommends featuring real-estate work first.</p>
 <h3>Matan Port 460 — <code>https://highrock.com/work/matan-port-460</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS1.1</td><td>Title (56 chars)</td><td class="muted">Matan Port 460 | HighRock (25 chars)</td><td class="code">Matan Port 460 — Industrial Real Estate Brand | HighRock</td></tr>
-      <tr><td>CS1.2</td><td>Meta description (146 chars)</td><td class="muted">When Rockefeller Group and Matan Companies formed a joint venture partnership to develop Port 460 Logistics Center, they needed fresh designs and content, and a sharp, new website. Beginning with bran... (413 chars)</td><td class="code">Brand strategy, website refresh, header video, and creative for Rockefeller Group and Matan&#x27;s Port 460 Logistics Center near the Port of Virginia.</td></tr>
-      <tr><td>CS1.3</td><td>H1</td><td class="muted">Matan Port 460</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS1.4</td><td>og:title</td><td class="muted">Matan Port 460</td><td class="code">Matan Port 460 — Industrial Real Estate Brand</td></tr>
-      <tr><td>CS1.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS1.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS1.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS1.1</td><td>Title (56 chars)</td><td class="muted">Matan Port 460 | HighRock (25 chars)</td><td class="code">Matan Port 460 — Industrial Real Estate Brand | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS1.1" aria-label="Mark step CS1.1 complete"></td></tr>
+      <tr><td>CS1.2</td><td>Meta description (146 chars)</td><td class="muted">When Rockefeller Group and Matan Companies formed a joint venture partnership to develop Port 460 Logistics Center, they needed fresh designs and content, and a sharp, new website. Beginning with bran... (413 chars)</td><td class="code">Brand strategy, website refresh, header video, and creative for Rockefeller Group and Matan&#x27;s Port 460 Logistics Center near the Port of Virginia.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS1.2" aria-label="Mark step CS1.2 complete"></td></tr>
+      <tr><td>CS1.3</td><td>H1</td><td class="muted">Matan Port 460</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS1.3" aria-label="Mark step CS1.3 complete"></td></tr>
+      <tr><td>CS1.4</td><td>og:title</td><td class="muted">Matan Port 460</td><td class="code">Matan Port 460 — Industrial Real Estate Brand</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS1.4" aria-label="Mark step CS1.4 complete"></td></tr>
+      <tr><td>CS1.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS1.5" aria-label="Mark step CS1.5 complete"></td></tr>
+      <tr><td>CS1.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS1.6" aria-label="Mark step CS1.6 complete"></td></tr>
+      <tr><td>CS1.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS1.7" aria-label="Mark step CS1.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fmatan-port-460" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>BMC Insurance — <code>https://highrock.com/work/bmc-insurance-keeping-you-covered</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS2.1</td><td>Title (57 chars)</td><td class="muted">BMC Insurance: Keeping You Covered | HighRock (45 chars)</td><td class="code">BMC Insurance — Brand Modernization Case Study | HighRock</td></tr>
-      <tr><td>CS2.2</td><td>Meta description (140 chars)</td><td class="muted">BMC Insurance partnered with HighRock to modernize their brand and unify their marketing presence. The goal wasn’t to reinvent who they were, but to reveal it more clearly: a trusted, community-driven... (251 chars)</td><td class="code">Brand modernization and unified marketing for BMC Insurance — a trusted, community-driven agency built on protection, care, and consistency.</td></tr>
-      <tr><td>CS2.3</td><td>H1</td><td class="muted">BMC Insurance: Keeping You Covered</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS2.4</td><td>og:title</td><td class="muted">BMC Insurance: Keeping You Covered</td><td class="code">BMC Insurance — Brand Modernization Case Study</td></tr>
-      <tr><td>CS2.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS2.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS2.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS2.1</td><td>Title (57 chars)</td><td class="muted">BMC Insurance: Keeping You Covered | HighRock (45 chars)</td><td class="code">BMC Insurance — Brand Modernization Case Study | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS2.1" aria-label="Mark step CS2.1 complete"></td></tr>
+      <tr><td>CS2.2</td><td>Meta description (140 chars)</td><td class="muted">BMC Insurance partnered with HighRock to modernize their brand and unify their marketing presence. The goal wasn’t to reinvent who they were, but to reveal it more clearly: a trusted, community-driven... (251 chars)</td><td class="code">Brand modernization and unified marketing for BMC Insurance — a trusted, community-driven agency built on protection, care, and consistency.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS2.2" aria-label="Mark step CS2.2 complete"></td></tr>
+      <tr><td>CS2.3</td><td>H1</td><td class="muted">BMC Insurance: Keeping You Covered</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS2.3" aria-label="Mark step CS2.3 complete"></td></tr>
+      <tr><td>CS2.4</td><td>og:title</td><td class="muted">BMC Insurance: Keeping You Covered</td><td class="code">BMC Insurance — Brand Modernization Case Study</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS2.4" aria-label="Mark step CS2.4 complete"></td></tr>
+      <tr><td>CS2.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS2.5" aria-label="Mark step CS2.5 complete"></td></tr>
+      <tr><td>CS2.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS2.6" aria-label="Mark step CS2.6 complete"></td></tr>
+      <tr><td>CS2.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS2.7" aria-label="Mark step CS2.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fbmc-insurance-keeping-you-covered" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Coca-Cola &amp; NCG Cinema — <code>https://highrock.com/work/coca-cola-ncg-cinema-cherry-chill-campaign</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS3.1</td><td>Title (55 chars)</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign | HighRock (56 chars)</td><td class="code">Coca-Cola x NCG Cinema Cherry Chill Campaign | HighRock</td></tr>
-      <tr><td>CS3.2</td><td>Meta description (151 chars)</td><td class="muted">In collaboration with Coca-Cola, NCG Cinema entrusted us with a thrilling challenge: launching a new and exclusive soda flavor, “Cherry Chill.” This festive, holiday cinema marketing campaign occurred... (418 chars)</td><td class="code">26 theaters, 6 weeks, soda flavor launch — HighRock&#x27;s Cherry Chill campaign for Coca-Cola and NCG Cinema brought &#x27;Chill&#x27; penguins on-screen and online.</td></tr>
-      <tr><td>CS3.3</td><td>H1</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign</td><td class="code">Coca-Cola &amp; NCG Cinema: Cherry Chill Campaign</td></tr>
-      <tr><td>CS3.4</td><td>og:title</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign</td><td class="code">Coca-Cola x NCG Cinema Cherry Chill Campaign</td></tr>
-      <tr><td>CS3.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS3.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS3.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS3.1</td><td>Title (55 chars)</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign | HighRock (56 chars)</td><td class="code">Coca-Cola x NCG Cinema Cherry Chill Campaign | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS3.1" aria-label="Mark step CS3.1 complete"></td></tr>
+      <tr><td>CS3.2</td><td>Meta description (151 chars)</td><td class="muted">In collaboration with Coca-Cola, NCG Cinema entrusted us with a thrilling challenge: launching a new and exclusive soda flavor, “Cherry Chill.” This festive, holiday cinema marketing campaign occurred... (418 chars)</td><td class="code">26 theaters, 6 weeks, soda flavor launch — HighRock&#x27;s Cherry Chill campaign for Coca-Cola and NCG Cinema brought &#x27;Chill&#x27; penguins on-screen and online.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS3.2" aria-label="Mark step CS3.2 complete"></td></tr>
+      <tr><td>CS3.3</td><td>H1</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign</td><td class="code">Coca-Cola &amp; NCG Cinema: Cherry Chill Campaign</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS3.3" aria-label="Mark step CS3.3 complete"></td></tr>
+      <tr><td>CS3.4</td><td>og:title</td><td class="muted">Coca Cola &amp; NCG Cinema: Cherry Chill Campaign</td><td class="code">Coca-Cola x NCG Cinema Cherry Chill Campaign</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS3.4" aria-label="Mark step CS3.4 complete"></td></tr>
+      <tr><td>CS3.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS3.5" aria-label="Mark step CS3.5 complete"></td></tr>
+      <tr><td>CS3.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS3.6" aria-label="Mark step CS3.6 complete"></td></tr>
+      <tr><td>CS3.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS3.7" aria-label="Mark step CS3.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fcoca-cola-ncg-cinema-cherry-chill-campaign" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>FM Industries — <code>https://highrock.com/work/fm-industries-cleanroom-training</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS4.1</td><td>Title (51 chars)</td><td class="muted">FM Industries Cleanroom Training | HighRock (43 chars)</td><td class="code">FM Industries Cleanroom Training Program | HighRock</td></tr>
-      <tr><td>CS4.2</td><td>Meta description (155 chars)</td><td class="muted">FM Industries needed a cleanroom training program that went beyond the basics—something engaging, accurate, and built to support long-term retention. With cleanroom operations central to their manufac... (307 chars)</td><td class="code">Engaging, accurate cleanroom training for FM Industries — a 5-year HighRock partnership building learner-centered programs that scale across manufacturing.</td></tr>
-      <tr><td>CS4.3</td><td>H1</td><td class="muted">FM Industries Cleanroom Training</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS4.4</td><td>og:title</td><td class="muted">FM Industries Cleanroom Training</td><td class="code">FM Industries Cleanroom Training Program</td></tr>
-      <tr><td>CS4.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS4.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS4.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS4.1</td><td>Title (51 chars)</td><td class="muted">FM Industries Cleanroom Training | HighRock (43 chars)</td><td class="code">FM Industries Cleanroom Training Program | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS4.1" aria-label="Mark step CS4.1 complete"></td></tr>
+      <tr><td>CS4.2</td><td>Meta description (155 chars)</td><td class="muted">FM Industries needed a cleanroom training program that went beyond the basics—something engaging, accurate, and built to support long-term retention. With cleanroom operations central to their manufac... (307 chars)</td><td class="code">Engaging, accurate cleanroom training for FM Industries — a 5-year HighRock partnership building learner-centered programs that scale across manufacturing.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS4.2" aria-label="Mark step CS4.2 complete"></td></tr>
+      <tr><td>CS4.3</td><td>H1</td><td class="muted">FM Industries Cleanroom Training</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS4.3" aria-label="Mark step CS4.3 complete"></td></tr>
+      <tr><td>CS4.4</td><td>og:title</td><td class="muted">FM Industries Cleanroom Training</td><td class="code">FM Industries Cleanroom Training Program</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS4.4" aria-label="Mark step CS4.4 complete"></td></tr>
+      <tr><td>CS4.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS4.5" aria-label="Mark step CS4.5 complete"></td></tr>
+      <tr><td>CS4.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS4.6" aria-label="Mark step CS4.6 complete"></td></tr>
+      <tr><td>CS4.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS4.7" aria-label="Mark step CS4.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Ffm-industries-cleanroom-training" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Hub City Football Club — <code>https://highrock.com/work/hub-city-football-club</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS5.1</td><td>Title (51 chars)</td><td class="muted">Hub City Football Club | HighRock (33 chars)</td><td class="code">Hub City FC — Hagerstown Brand &amp; Website | HighRock</td></tr>
-      <tr><td>CS5.2</td><td>Meta description (140 chars)</td><td class="muted">The Hub City Football Club Black Roses needed a website that told a story that was true to the region and true to the future they had in mind for their team. (157 chars)</td><td class="code">Local, gritty, full of heart, with a touch of rebellion — HighRock&#x27;s brand and website for Hub City Football Club&#x27;s debut Hagerstown season.</td></tr>
-      <tr><td>CS5.3</td><td>H1</td><td class="muted">Hub City Football Club</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS5.4</td><td>og:title</td><td class="muted">Hub City Football Club</td><td class="code">Hub City FC — Hagerstown Brand &amp; Website</td></tr>
-      <tr><td>CS5.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS5.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS5.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS5.1</td><td>Title (51 chars)</td><td class="muted">Hub City Football Club | HighRock (33 chars)</td><td class="code">Hub City FC — Hagerstown Brand &amp; Website | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS5.1" aria-label="Mark step CS5.1 complete"></td></tr>
+      <tr><td>CS5.2</td><td>Meta description (140 chars)</td><td class="muted">The Hub City Football Club Black Roses needed a website that told a story that was true to the region and true to the future they had in mind for their team. (157 chars)</td><td class="code">Local, gritty, full of heart, with a touch of rebellion — HighRock&#x27;s brand and website for Hub City Football Club&#x27;s debut Hagerstown season.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS5.2" aria-label="Mark step CS5.2 complete"></td></tr>
+      <tr><td>CS5.3</td><td>H1</td><td class="muted">Hub City Football Club</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS5.3" aria-label="Mark step CS5.3 complete"></td></tr>
+      <tr><td>CS5.4</td><td>og:title</td><td class="muted">Hub City Football Club</td><td class="code">Hub City FC — Hagerstown Brand &amp; Website</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS5.4" aria-label="Mark step CS5.4 complete"></td></tr>
+      <tr><td>CS5.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS5.5" aria-label="Mark step CS5.5 complete"></td></tr>
+      <tr><td>CS5.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS5.6" aria-label="Mark step CS5.6 complete"></td></tr>
+      <tr><td>CS5.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS5.7" aria-label="Mark step CS5.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fhub-city-football-club" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Impact Architects — <code>https://highrock.com/work/impact-architects-animated-video</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS6.1</td><td>Title (55 chars)</td><td class="muted">Impact Architects Animated Video | HighRock (43 chars)</td><td class="code">Impact Architects — 90-Second Animated Video | HighRock</td></tr>
-      <tr><td>CS6.2</td><td>Meta description (152 chars)</td><td class="muted">By the time Impact Architects connected with HighRock, they had tried so many different ways to create an explainer video of their Impact Tracker tool...to no avail. They needed an animated video of 9... (390 chars)</td><td class="code">A 90-second animated explainer for Impact Architects&#x27; Impact Tracker tool — voiceover, music, and seamless transitions selling the service to prospects.</td></tr>
-      <tr><td>CS6.3</td><td>H1</td><td class="muted">Impact Architects Animated Video</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS6.4</td><td>og:title</td><td class="muted">Impact Architects Animated Video</td><td class="code">Impact Architects — 90-Second Animated Video</td></tr>
-      <tr><td>CS6.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS6.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS6.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS6.1</td><td>Title (55 chars)</td><td class="muted">Impact Architects Animated Video | HighRock (43 chars)</td><td class="code">Impact Architects — 90-Second Animated Video | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS6.1" aria-label="Mark step CS6.1 complete"></td></tr>
+      <tr><td>CS6.2</td><td>Meta description (152 chars)</td><td class="muted">By the time Impact Architects connected with HighRock, they had tried so many different ways to create an explainer video of their Impact Tracker tool...to no avail. They needed an animated video of 9... (390 chars)</td><td class="code">A 90-second animated explainer for Impact Architects&#x27; Impact Tracker tool — voiceover, music, and seamless transitions selling the service to prospects.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS6.2" aria-label="Mark step CS6.2 complete"></td></tr>
+      <tr><td>CS6.3</td><td>H1</td><td class="muted">Impact Architects Animated Video</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS6.3" aria-label="Mark step CS6.3 complete"></td></tr>
+      <tr><td>CS6.4</td><td>og:title</td><td class="muted">Impact Architects Animated Video</td><td class="code">Impact Architects — 90-Second Animated Video</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS6.4" aria-label="Mark step CS6.4 complete"></td></tr>
+      <tr><td>CS6.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS6.5" aria-label="Mark step CS6.5 complete"></td></tr>
+      <tr><td>CS6.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS6.6" aria-label="Mark step CS6.6 complete"></td></tr>
+      <tr><td>CS6.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS6.7" aria-label="Mark step CS6.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fimpact-architects-animated-video" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Meritus School of Osteopathic Medicine — <code>https://highrock.com/work/meritus-school-osteopathic-medicine-fly-through-animation</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS7.1</td><td>Title (51 chars)</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation | HighRock (71 chars)</td><td class="code">Meritus Osteopathic Medicine Fly-Through | HighRock</td></tr>
-      <tr><td>CS7.2</td><td>Meta description (151 chars)</td><td class="muted">Meritus was on a mission to improve health in the Hagerstown, MD region. As an anchor to the community, they felt it necessary to open a space that would change the lives of over 200,000 people in the... (295 chars)</td><td class="code">Fly-through animation and brand storytelling for Meritus School of Osteopathic Medicine — a Hagerstown anchor serving 200,000 people across the region.</td></tr>
-      <tr><td>CS7.3</td><td>H1</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation</td><td class="code">Meritus School of Osteopathic Medicine: Fly-Through Animation</td></tr>
-      <tr><td>CS7.4</td><td>og:title</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation</td><td class="code">Meritus Osteopathic Medicine Fly-Through</td></tr>
-      <tr><td>CS7.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS7.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS7.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS7.1</td><td>Title (51 chars)</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation | HighRock (71 chars)</td><td class="code">Meritus Osteopathic Medicine Fly-Through | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS7.1" aria-label="Mark step CS7.1 complete"></td></tr>
+      <tr><td>CS7.2</td><td>Meta description (151 chars)</td><td class="muted">Meritus was on a mission to improve health in the Hagerstown, MD region. As an anchor to the community, they felt it necessary to open a space that would change the lives of over 200,000 people in the... (295 chars)</td><td class="code">Fly-through animation and brand storytelling for Meritus School of Osteopathic Medicine — a Hagerstown anchor serving 200,000 people across the region.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS7.2" aria-label="Mark step CS7.2 complete"></td></tr>
+      <tr><td>CS7.3</td><td>H1</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation</td><td class="code">Meritus School of Osteopathic Medicine: Fly-Through Animation</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS7.3" aria-label="Mark step CS7.3 complete"></td></tr>
+      <tr><td>CS7.4</td><td>og:title</td><td class="muted">Meritus School of Osteopathic Medicine Fly-Through Animation</td><td class="code">Meritus Osteopathic Medicine Fly-Through</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS7.4" aria-label="Mark step CS7.4 complete"></td></tr>
+      <tr><td>CS7.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS7.5" aria-label="Mark step CS7.5 complete"></td></tr>
+      <tr><td>CS7.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS7.6" aria-label="Mark step CS7.6 complete"></td></tr>
+      <tr><td>CS7.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS7.7" aria-label="Mark step CS7.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fmeritus-school-osteopathic-medicine-fly-through-animation" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Point Blank Technologies — <code>https://highrock.com/work/point-blank-technologies-brand-development</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS8.1</td><td>Title (57 chars)</td><td class="muted">Point Blank Technologies Brand Development | HighRock (53 chars)</td><td class="code">Point Blank Technologies — Cybersecurity Brand | HighRock</td></tr>
-      <tr><td>CS8.2</td><td>Meta description (153 chars)</td><td class="muted">Point Blank Technologies needed new brand direction that exuded sophistication, confidence, and above all, security. (116 chars)</td><td class="code">Brand direction, logo, and website for Point Blank Technologies — a cybersecurity and engineering firm built on sophistication, confidence, and security.</td></tr>
-      <tr><td>CS8.3</td><td>H1</td><td class="muted">Point Blank Technologies Brand Development</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS8.4</td><td>og:title</td><td class="muted">Point Blank Technologies Brand Development</td><td class="code">Point Blank Technologies — Cybersecurity Brand</td></tr>
-      <tr><td>CS8.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS8.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS8.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS8.1</td><td>Title (57 chars)</td><td class="muted">Point Blank Technologies Brand Development | HighRock (53 chars)</td><td class="code">Point Blank Technologies — Cybersecurity Brand | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS8.1" aria-label="Mark step CS8.1 complete"></td></tr>
+      <tr><td>CS8.2</td><td>Meta description (153 chars)</td><td class="muted">Point Blank Technologies needed new brand direction that exuded sophistication, confidence, and above all, security. (116 chars)</td><td class="code">Brand direction, logo, and website for Point Blank Technologies — a cybersecurity and engineering firm built on sophistication, confidence, and security.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS8.2" aria-label="Mark step CS8.2 complete"></td></tr>
+      <tr><td>CS8.3</td><td>H1</td><td class="muted">Point Blank Technologies Brand Development</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS8.3" aria-label="Mark step CS8.3 complete"></td></tr>
+      <tr><td>CS8.4</td><td>og:title</td><td class="muted">Point Blank Technologies Brand Development</td><td class="code">Point Blank Technologies — Cybersecurity Brand</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS8.4" aria-label="Mark step CS8.4 complete"></td></tr>
+      <tr><td>CS8.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS8.5" aria-label="Mark step CS8.5 complete"></td></tr>
+      <tr><td>CS8.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS8.6" aria-label="Mark step CS8.6 complete"></td></tr>
+      <tr><td>CS8.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS8.7" aria-label="Mark step CS8.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fpoint-blank-technologies-brand-development" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>SKYROCKET — <code>https://highrock.com/work/skyrocket</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS9.1</td><td>Title (52 chars)</td><td class="muted">SKYROCKET | HighRock (20 chars)</td><td class="code">SKYROCKET — Youth Movement Brand Identity | HighRock</td></tr>
-      <tr><td>CS9.2</td><td>Meta description (152 chars)</td><td class="muted">Our team worked collaboratively with a passionate young dreamer to bring his vision to life. (92 chars)</td><td class="code">Brand identity and storytelling for SKYROCKET — a youth movement built on resilience, creativity, and personal growth, turning setbacks into launchpads.</td></tr>
-      <tr><td>CS9.3</td><td>H1</td><td class="muted">SKYROCKET</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS9.4</td><td>og:title</td><td class="muted">SKYROCKET</td><td class="code">SKYROCKET — Youth Movement Brand Identity</td></tr>
-      <tr><td>CS9.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS9.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS9.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS9.1</td><td>Title (52 chars)</td><td class="muted">SKYROCKET | HighRock (20 chars)</td><td class="code">SKYROCKET — Youth Movement Brand Identity | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS9.1" aria-label="Mark step CS9.1 complete"></td></tr>
+      <tr><td>CS9.2</td><td>Meta description (152 chars)</td><td class="muted">Our team worked collaboratively with a passionate young dreamer to bring his vision to life. (92 chars)</td><td class="code">Brand identity and storytelling for SKYROCKET — a youth movement built on resilience, creativity, and personal growth, turning setbacks into launchpads.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS9.2" aria-label="Mark step CS9.2 complete"></td></tr>
+      <tr><td>CS9.3</td><td>H1</td><td class="muted">SKYROCKET</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS9.3" aria-label="Mark step CS9.3 complete"></td></tr>
+      <tr><td>CS9.4</td><td>og:title</td><td class="muted">SKYROCKET</td><td class="code">SKYROCKET — Youth Movement Brand Identity</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS9.4" aria-label="Mark step CS9.4 complete"></td></tr>
+      <tr><td>CS9.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS9.5" aria-label="Mark step CS9.5 complete"></td></tr>
+      <tr><td>CS9.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS9.6" aria-label="Mark step CS9.6 complete"></td></tr>
+      <tr><td>CS9.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS9.7" aria-label="Mark step CS9.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fskyrocket" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Spichers Branding — <code>https://highrock.com/work/spichers-branding</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS10.1</td><td>Title (54 chars)</td><td class="muted">Spichers Branding | HighRock (28 chars)</td><td class="code">Spichers Appliances — 70-Year Brand Refresh | HighRock</td></tr>
-      <tr><td>CS10.2</td><td>Meta description (146 chars)</td><td class="muted">Spichers is a Maryland-based family-owned and operated appliance store with roots back to 1955. While the appliance game has advanced and technology has changed how business is handled, Spichers&#x27; comm... (398 chars)</td><td class="code">Brand and logo refresh for Spichers — a Maryland family-owned appliance store since 1955, opening its third location with a new HighRock identity.</td></tr>
-      <tr><td>CS10.3</td><td>H1</td><td class="muted">Spichers Branding</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS10.4</td><td>og:title</td><td class="muted">Spichers Branding</td><td class="code">Spichers Appliances — 70-Year Brand Refresh</td></tr>
-      <tr><td>CS10.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS10.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS10.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS10.1</td><td>Title (54 chars)</td><td class="muted">Spichers Branding | HighRock (28 chars)</td><td class="code">Spichers Appliances — 70-Year Brand Refresh | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS10.1" aria-label="Mark step CS10.1 complete"></td></tr>
+      <tr><td>CS10.2</td><td>Meta description (146 chars)</td><td class="muted">Spichers is a Maryland-based family-owned and operated appliance store with roots back to 1955. While the appliance game has advanced and technology has changed how business is handled, Spichers&#x27; comm... (398 chars)</td><td class="code">Brand and logo refresh for Spichers — a Maryland family-owned appliance store since 1955, opening its third location with a new HighRock identity.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS10.2" aria-label="Mark step CS10.2 complete"></td></tr>
+      <tr><td>CS10.3</td><td>H1</td><td class="muted">Spichers Branding</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS10.3" aria-label="Mark step CS10.3 complete"></td></tr>
+      <tr><td>CS10.4</td><td>og:title</td><td class="muted">Spichers Branding</td><td class="code">Spichers Appliances — 70-Year Brand Refresh</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS10.4" aria-label="Mark step CS10.4 complete"></td></tr>
+      <tr><td>CS10.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS10.5" aria-label="Mark step CS10.5 complete"></td></tr>
+      <tr><td>CS10.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS10.6" aria-label="Mark step CS10.6 complete"></td></tr>
+      <tr><td>CS10.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS10.7" aria-label="Mark step CS10.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fspichers-branding" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>UMD BioPark — <code>https://highrock.com/work/university-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS11.1</td><td>Title (52 chars)</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables | HighRock (106 chars)</td><td class="code">UMD BioPark - Brand &amp; Design Deliverables | HighRock</td></tr>
-      <tr><td>CS11.2</td><td>Meta description (140 chars)</td><td class="muted">UMBioPark reached out to HighRock requesting fresh designs for various client and public-facing deliverables. As a premier biomedical research park on the vibrant academic medical center campus of the... (431 chars)</td><td class="code">Marketing collateral, signage, and design deliverables for University of Maryland BioPark — a premier biomedical research park in Baltimore.</td></tr>
-      <tr><td>CS11.3</td><td>H1</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables</td><td class="code">University of Maryland BioPark: Design Deliverables</td></tr>
-      <tr><td>CS11.4</td><td>og:title</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables</td><td class="code">UMD BioPark - Brand &amp; Design Deliverables</td></tr>
-      <tr><td>CS11.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS11.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS11.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS11.1</td><td>Title (52 chars)</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables | HighRock (106 chars)</td><td class="code">UMD BioPark - Brand &amp; Design Deliverables | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS11.1" aria-label="Mark step CS11.1 complete"></td></tr>
+      <tr><td>CS11.2</td><td>Meta description (140 chars)</td><td class="muted">UMBioPark reached out to HighRock requesting fresh designs for various client and public-facing deliverables. As a premier biomedical research park on the vibrant academic medical center campus of the... (431 chars)</td><td class="code">Marketing collateral, signage, and design deliverables for University of Maryland BioPark — a premier biomedical research park in Baltimore.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS11.2" aria-label="Mark step CS11.2 complete"></td></tr>
+      <tr><td>CS11.3</td><td>H1</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables</td><td class="code">University of Maryland BioPark: Design Deliverables</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS11.3" aria-label="Mark step CS11.3 complete"></td></tr>
+      <tr><td>CS11.4</td><td>og:title</td><td class="muted">University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables</td><td class="code">UMD BioPark - Brand &amp; Design Deliverables</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS11.4" aria-label="Mark step CS11.4 complete"></td></tr>
+      <tr><td>CS11.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS11.5" aria-label="Mark step CS11.5 complete"></td></tr>
+      <tr><td>CS11.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS11.6" aria-label="Mark step CS11.6 complete"></td></tr>
+      <tr><td>CS11.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS11.7" aria-label="Mark step CS11.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Funiversity-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Washington County Chamber — <code>https://highrock.com/work/washington-county-chamber-commerce-branding-development</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>CS12.1</td><td>Title (56 chars)</td><td class="muted">Washington County Chamber of Commerce Branding Development | HighRock (69 chars)</td><td class="code">Washington County Chamber of Commerce Rebrand | HighRock</td></tr>
-      <tr><td>CS12.2</td><td>Meta description (153 chars)</td><td class="muted">The Washington County Chamber of Commerce in Hagerstown, Maryland, has long served as a vital resource for local businesses, fostering growth and collaboration. To stay forward thinking and inspire me... (345 chars)</td><td class="code">Comprehensive rebrand for the Washington County Chamber of Commerce — modernizing Hagerstown&#x27;s chamber identity to inspire members and connect community.</td></tr>
-      <tr><td>CS12.3</td><td>H1</td><td class="muted">Washington County Chamber of Commerce Branding Development</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>CS12.4</td><td>og:title</td><td class="muted">Washington County Chamber of Commerce Branding Development</td><td class="code">Washington County Chamber of Commerce Rebrand</td></tr>
-      <tr><td>CS12.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>CS12.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>CS12.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>CS12.1</td><td>Title (56 chars)</td><td class="muted">Washington County Chamber of Commerce Branding Development | HighRock (69 chars)</td><td class="code">Washington County Chamber of Commerce Rebrand | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS12.1" aria-label="Mark step CS12.1 complete"></td></tr>
+      <tr><td>CS12.2</td><td>Meta description (153 chars)</td><td class="muted">The Washington County Chamber of Commerce in Hagerstown, Maryland, has long served as a vital resource for local businesses, fostering growth and collaboration. To stay forward thinking and inspire me... (345 chars)</td><td class="code">Comprehensive rebrand for the Washington County Chamber of Commerce — modernizing Hagerstown&#x27;s chamber identity to inspire members and connect community.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS12.2" aria-label="Mark step CS12.2 complete"></td></tr>
+      <tr><td>CS12.3</td><td>H1</td><td class="muted">Washington County Chamber of Commerce Branding Development</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS12.3" aria-label="Mark step CS12.3 complete"></td></tr>
+      <tr><td>CS12.4</td><td>og:title</td><td class="muted">Washington County Chamber of Commerce Branding Development</td><td class="code">Washington County Chamber of Commerce Rebrand</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS12.4" aria-label="Mark step CS12.4 complete"></td></tr>
+      <tr><td>CS12.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS12.5" aria-label="Mark step CS12.5 complete"></td></tr>
+      <tr><td>CS12.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS12.6" aria-label="Mark step CS12.6 complete"></td></tr>
+      <tr><td>CS12.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CreativeWork + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="CS12.7" aria-label="Mark step CS12.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork%2Fwashington-county-chamber-commerce-branding-development" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
@@ -500,43 +523,43 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 <h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Site infrastructure pages</h3>
 <h3>Insights — <code>https://highrock.com/insights</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>I1.1</td><td>Title (51 chars)</td><td class="muted">Insights | HighRock (19 chars)</td><td class="code">HighRock Insights - Marketing Trends &amp; Perspectives</td></tr>
-      <tr><td>I1.2</td><td>Meta description (152 chars)</td><td class="muted">Stay ahead of the curve with digital marketing insights, industry trends, and expert perspectives from the HighRock team. (121 chars)</td><td class="code">Stay ahead of the curve with digital marketing insights, industry trends, and expert perspectives from the HighRock team - Hagerstown&#x27;s creative agency.</td></tr>
-      <tr><td>I1.3</td><td>H1 (missing)</td><td class="muted">— no H1 detected —</td><td class="code">HighRock Insights</td></tr>
-      <tr><td>I1.4</td><td>og:title</td><td class="muted">Insights</td><td class="code">HighRock Insights - Marketing Trends &amp; Perspectives</td></tr>
-      <tr><td>I1.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>I1.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>I1.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CollectionPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>I1.1</td><td>Title (51 chars)</td><td class="muted">Insights | HighRock (19 chars)</td><td class="code">HighRock Insights - Marketing Trends &amp; Perspectives</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I1.1" aria-label="Mark step I1.1 complete"></td></tr>
+      <tr><td>I1.2</td><td>Meta description (152 chars)</td><td class="muted">Stay ahead of the curve with digital marketing insights, industry trends, and expert perspectives from the HighRock team. (121 chars)</td><td class="code">Stay ahead of the curve with digital marketing insights, industry trends, and expert perspectives from the HighRock team - Hagerstown&#x27;s creative agency.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I1.2" aria-label="Mark step I1.2 complete"></td></tr>
+      <tr><td>I1.3</td><td>H1 (missing)</td><td class="muted">— no H1 detected —</td><td class="code">HighRock Insights</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I1.3" aria-label="Mark step I1.3 complete"></td></tr>
+      <tr><td>I1.4</td><td>og:title</td><td class="muted">Insights</td><td class="code">HighRock Insights - Marketing Trends &amp; Perspectives</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I1.4" aria-label="Mark step I1.4 complete"></td></tr>
+      <tr><td>I1.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I1.5" aria-label="Mark step I1.5 complete"></td></tr>
+      <tr><td>I1.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I1.6" aria-label="Mark step I1.6 complete"></td></tr>
+      <tr><td>I1.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">CollectionPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I1.7" aria-label="Mark step I1.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Finsights" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Contact — <code>https://highrock.com/contact</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>I2.1</td><td>Title (58 chars)</td><td class="muted">Contact | HighRock (18 chars)</td><td class="code">Contact HighRock — Hagerstown Mid-Atlantic Creative Agency</td></tr>
-      <tr><td>I2.2</td><td>Meta description (149 chars)</td><td class="muted">Phone &amp; Email Phone (301) 791-1221   Sales sales@highrock.com Book an appointment (Mon-Fri, 9am - 5pm)   Support (112 chars)</td><td class="code">Talk to HighRock - call (301) 791-1221, email sales@highrock.com, or visit our Hagerstown, MD studio. Mon-Fri, 9am-5pm. Mid-Atlantic creative agency.</td></tr>
-      <tr><td>I2.3</td><td>H1 (missing)</td><td class="muted">— no H1 detected —</td><td class="code">Contact HighRock</td></tr>
-      <tr><td>I2.4</td><td>og:title</td><td class="muted">Contact</td><td class="code">Contact HighRock — Hagerstown Mid-Atlantic Creative Agency</td></tr>
-      <tr><td>I2.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>I2.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>I2.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">ContactPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>I2.1</td><td>Title (58 chars)</td><td class="muted">Contact | HighRock (18 chars)</td><td class="code">Contact HighRock — Hagerstown Mid-Atlantic Creative Agency</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I2.1" aria-label="Mark step I2.1 complete"></td></tr>
+      <tr><td>I2.2</td><td>Meta description (149 chars)</td><td class="muted">Phone &amp; Email Phone (301) 791-1221   Sales sales@highrock.com Book an appointment (Mon-Fri, 9am - 5pm)   Support (112 chars)</td><td class="code">Talk to HighRock - call (301) 791-1221, email sales@highrock.com, or visit our Hagerstown, MD studio. Mon-Fri, 9am-5pm. Mid-Atlantic creative agency.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I2.2" aria-label="Mark step I2.2 complete"></td></tr>
+      <tr><td>I2.3</td><td>H1 (missing)</td><td class="muted">— no H1 detected —</td><td class="code">Contact HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I2.3" aria-label="Mark step I2.3 complete"></td></tr>
+      <tr><td>I2.4</td><td>og:title</td><td class="muted">Contact</td><td class="code">Contact HighRock — Hagerstown Mid-Atlantic Creative Agency</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I2.4" aria-label="Mark step I2.4 complete"></td></tr>
+      <tr><td>I2.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I2.5" aria-label="Mark step I2.5 complete"></td></tr>
+      <tr><td>I2.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I2.6" aria-label="Mark step I2.6 complete"></td></tr>
+      <tr><td>I2.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">ContactPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I2.7" aria-label="Mark step I2.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fcontact" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
 <h3>Careers — <code>https://highrock.com/careers</code></h3>
 <table class="data">
-  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th></tr></thead>
+  <thead><tr><th style="width:10%;">Step</th><th style="width:24%;">Field</th><th style="width:33%;">Current</th><th>Recommended</th><th class="checklist-cell-th">Done?</th></tr></thead>
   <tbody>
-      <tr><td>I3.1</td><td>Title (52 chars)</td><td class="muted">Careers | HighRock (18 chars)</td><td class="code">Careers at HighRock — Hagerstown Mid-Atlantic Agency</td></tr>
-      <tr><td>I3.2</td><td>Meta description (144 chars)</td><td class="muted">HighRock is seeking skilled professionals to support our agency projects. View current job openings and apply today. (116 chars)</td><td class="code">Join HighRock - Hagerstown&#x27;s full-service creative agency. Current openings include freelance Drupal and WordPress developer roles. Apply today.</td></tr>
-      <tr><td>I3.3</td><td>H1</td><td class="muted">careers @ highrock</td><td class="code">No change — already on-topic</td></tr>
-      <tr><td>I3.4</td><td>og:title</td><td class="muted">Careers</td><td class="code">Careers at HighRock — Hagerstown Mid-Atlantic Agency</td></tr>
-      <tr><td>I3.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td></tr>
-      <tr><td>I3.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td></tr>
-      <tr><td>I3.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">WebPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td></tr>
+      <tr><td>I3.1</td><td>Title (52 chars)</td><td class="muted">Careers | HighRock (18 chars)</td><td class="code">Careers at HighRock — Hagerstown Mid-Atlantic Agency</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I3.1" aria-label="Mark step I3.1 complete"></td></tr>
+      <tr><td>I3.2</td><td>Meta description (144 chars)</td><td class="muted">HighRock is seeking skilled professionals to support our agency projects. View current job openings and apply today. (116 chars)</td><td class="code">Join HighRock - Hagerstown&#x27;s full-service creative agency. Current openings include freelance Drupal and WordPress developer roles. Apply today.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I3.2" aria-label="Mark step I3.2 complete"></td></tr>
+      <tr><td>I3.3</td><td>H1</td><td class="muted">careers @ highrock</td><td class="code">No change — already on-topic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I3.3" aria-label="Mark step I3.3 complete"></td></tr>
+      <tr><td>I3.4</td><td>og:title</td><td class="muted">Careers</td><td class="code">Careers at HighRock — Hagerstown Mid-Atlantic Agency</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I3.4" aria-label="Mark step I3.4 complete"></td></tr>
+      <tr><td>I3.5</td><td>og:description</td><td class="muted">(matches old meta)</td><td class="code">(same as new meta description)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I3.5" aria-label="Mark step I3.5 complete"></td></tr>
+      <tr><td>I3.6</td><td>twitter:card / title / desc / image</td><td class="muted">— missing —</td><td class="code">summary_large_image; match og:* values</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I3.6" aria-label="Mark step I3.6 complete"></td></tr>
+      <tr><td>I3.7</td><td>JSON-LD blocks</td><td class="muted">— none —</td><td class="code">WebPage + BreadcrumbList. See <strong>Schema Bundle</strong>.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="I3.7" aria-label="Mark step I3.7 complete"></td></tr>
   </tbody>
 </table>
 <p class="source-note">Verify: <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fcareers" target="_blank" rel="noopener">Rich Results Test ↗</a></p>
@@ -1196,6 +1219,73 @@ function showTab(id) {
   event.target.classList.add('active');
   window.scrollTo(0, 0);
 }
+
+// === Dev implementation tracker ===
+(function() {
+  const STORAGE_KEY = 'highrock-onpage-2026-05-04-progress';
+  const checklistTab = document.getElementById('checklist');
+  if (!checklistTab) return;
+
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
+  }
+  function saveState(s) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch(e) { console.warn('localStorage unavailable'); }
+  }
+  const state = loadState();
+
+  // Initialize each checkbox from saved state
+  checklistTab.querySelectorAll('.row-check').forEach(cb => {
+    const id = cb.getAttribute('data-id');
+    if (state[id]) {
+      cb.checked = true;
+      cb.closest('tr').classList.add('completed');
+    }
+    cb.addEventListener('change', () => {
+      state[id] = cb.checked;
+      cb.closest('tr').classList.toggle('completed', cb.checked);
+      saveState(state);
+      updateRollups();
+    });
+  });
+
+  function updateRollups() {
+    // Per-page rollups (h3 sections within #checklist)
+    checklistTab.querySelectorAll('h3').forEach(h => {
+      // Find the next sibling table after this h3
+      let el = h.nextElementSibling;
+      while (el && el.tagName !== 'TABLE') {
+        if (el.tagName === 'H3' || el.tagName === 'H2') return;
+        el = el.nextElementSibling;
+      }
+      if (!el) return;
+      const cbs = el.querySelectorAll('.row-check');
+      if (cbs.length === 0) return;
+      const done = Array.from(cbs).filter(c => c.checked).length;
+      const total = cbs.length;
+      let span = h.querySelector('.page-progress');
+      if (!span) {
+        span = document.createElement('span');
+        span.className = 'page-progress';
+        h.appendChild(span);
+      }
+      span.textContent = done + ' / ' + total + ' done';
+      span.classList.toggle('complete', done === total && total > 0);
+    });
+
+    // Global rollup
+    const allCbs = checklistTab.querySelectorAll('.row-check');
+    const allDone = Array.from(allCbs).filter(c => c.checked).length;
+    const allTotal = allCbs.length;
+    const banner = checklistTab.querySelector('.global-progress');
+    if (banner) {
+      banner.querySelector('.global-text').textContent = allDone + ' of ' + allTotal + ' recommendations complete';
+      banner.querySelector('.progress-bar-fill').style.width = (allTotal > 0 ? (allDone/allTotal)*100 : 0) + '%';
+    }
+  }
+  updateRollups();
+})();
+
 </script>
 </body>
 </html>
