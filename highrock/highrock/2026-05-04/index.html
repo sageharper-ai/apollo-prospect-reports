@@ -82,7 +82,13 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
   .nav { padding: 0 1.5rem; }
 }
 
-/* === Dev implementation tracker (Implementation Checklist tab only) === */
+/* === Dev implementation tracker (Implementation Checklist + New Pages + Schema Bundle) === */
+.schema-deploy-label { font-size: 0.78rem; font-weight: 500; color: var(--ink-soft); border: 1px solid var(--rule); border-radius: 14px; padding: 0.18rem 0.7rem; margin-left: 0.6rem; vertical-align: middle; cursor: pointer; user-select: none; display: inline-flex; align-items: center; gap: 0.35rem; }
+.schema-deploy-label:hover { border-color: var(--hr-green); color: var(--hr-green-dark); }
+.schema-deploy-label input { width: 14px; height: 14px; cursor: pointer; accent-color: var(--hr-green-dark); margin: 0; }
+.schema-h3:has(.schema-deploy-check:checked) { color: var(--ink-soft); }
+.schema-h3:has(.schema-deploy-check:checked) + p, .schema-h3:has(.schema-deploy-check:checked) + .source-note + pre { opacity: 0.55; }
+
 .checklist-cell-th { width: 7%; text-align: center; }
 .row-check-cell { text-align: center; vertical-align: middle; }
 .row-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--hr-green-dark); }
@@ -571,6 +577,13 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
 <!-- TAB: NEW PAGE TEMPLATES -->
 <div id="newpages" class="section">
   <h2>New Page Templates — Real Estate Vertical</h2>
+  <div class="global-progress" data-scope="newpages">
+    <button class="reset-btn" onclick="if(confirm('Reset new-page build tracking?')){const s=JSON.parse(localStorage.getItem('highrock-onpage-2026-05-04-progress')||'{}');Object.keys(s).filter(k=>k.startsWith('NP')).forEach(k=>delete s[k]);localStorage.setItem('highrock-onpage-2026-05-04-progress',JSON.stringify(s));location.reload();}">Reset progress</button>
+    <strong>New-page build progress &mdash;</strong> <span class="global-text">0 of 0 build-spec rows complete</span>
+    <div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div>
+    <p class="global-help">Tick each spec row as your dev team builds it on the new real-estate landing pages. Three pages; cross-link triangle once all three are live.</p>
+  </div>
+
   <p class="source-note">Three new pages recommended for HighRock to build, each carrying one of Monique's keyword targets. Each template is a complete build spec — title, H1, H2 outline, meta, image plan, internal links, schema, and AIO blocks. The dev team can build directly from these specs; the homepage stays vertical-agnostic.</p>
 
   <div class="callout">
@@ -581,48 +594,48 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <h3>Page 1 — Real Estate Brand Identity</h3>
   <p class="source-note"><strong>Recommended URL:</strong> <code>https://highrock.com/services/real-estate-brand-identity</code><br><strong>Targets keyword:</strong> "Luxury Real Estate Brand Identity & 3D Visualization"</p>
   <table class="data">
-    <thead><tr><th style="width:22%;">Element</th><th>Specification</th></tr></thead>
+    <thead><tr><th style="width:22%;">Element</th><th>Specification</th><th class="checklist-cell-th">Done?</th></tr></thead>
     <tbody>
-      <tr><td>Title (57 chars)</td><td class="code">Real Estate Brand Identity &amp; 3D Visualization | HighRock</td></tr>
-      <tr><td>Meta description (140 chars)</td><td class="code">Luxury real estate brand identity by HighRock — naming, logos, complete brand systems, and 3D visualization for Mid-Atlantic developers and brokers.</td></tr>
-      <tr><td>H1</td><td class="code">Real Estate Brand Identity &amp; 3D Visualization</td></tr>
-      <tr><td>H2 outline (5 sections)</td><td class="code">1. Brand Systems for Real Estate Developers<br>2. Brand Identity for Luxury Real Estate Listings<br>3. Pairing Brand Identity with 3D Visualization<br>4. Selected Real Estate Brand Work<br>5. Start a Brand Identity Project</td></tr>
-      <tr><td>Images + alt text plan</td><td class="code">Hero: brand-system layout for a luxury real estate project<br>Alt: Real estate brand identity system — logo, palette, and typography for a luxury Mid-Atlantic development<br><br>Process visual: 3D brand visualization rendering<br>Alt: 3D brand visualization for a luxury real estate property exterior<br><br>Gallery: 3–4 case-study thumbnails (each with project name + "real estate" + "Mid-Atlantic" where applicable)</td></tr>
-      <tr><td>Internal linking</td><td class="code">Inbound (link TO this page from): /, /services, /work, /about<br>Outbound (link FROM this page to): /services/real-estate-3d-visualization, /services/real-estate-growth-marketing, /work (real estate filtered), /contact</td></tr>
-      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "Brand Identity Design" · provider: HighRock Organization · audience: Real Estate Professionals · areaServed: Mid-Atlantic states · isRelatedTo: 3D Visualization Service</td></tr>
-      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What does a real estate brand identity system include?<br>Q: How does brand identity affect luxury real estate listing performance?<br>Q: What's the typical timeline for a real estate brand identity project?<br>Q: How do brand identity and 3D visualization work together for real estate launches?</td></tr>
+      <tr><td>Title (57 chars)</td><td class="code">Real Estate Brand Identity &amp; 3D Visualization | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.1" aria-label="Mark new-page build step NP3.1 complete"></td></tr>
+      <tr><td>Meta description (140 chars)</td><td class="code">Luxury real estate brand identity by HighRock — naming, logos, complete brand systems, and 3D visualization for Mid-Atlantic developers and brokers.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.2" aria-label="Mark new-page build step NP3.2 complete"></td></tr>
+      <tr><td>H1</td><td class="code">Real Estate Brand Identity &amp; 3D Visualization</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.3" aria-label="Mark new-page build step NP3.3 complete"></td></tr>
+      <tr><td>H2 outline (5 sections)</td><td class="code">1. Brand Systems for Real Estate Developers<br>2. Brand Identity for Luxury Real Estate Listings<br>3. Pairing Brand Identity with 3D Visualization<br>4. Selected Real Estate Brand Work<br>5. Start a Brand Identity Project</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.4" aria-label="Mark new-page build step NP3.4 complete"></td></tr>
+      <tr><td>Images + alt text plan</td><td class="code">Hero: brand-system layout for a luxury real estate project<br>Alt: Real estate brand identity system — logo, palette, and typography for a luxury Mid-Atlantic development<br><br>Process visual: 3D brand visualization rendering<br>Alt: 3D brand visualization for a luxury real estate property exterior<br><br>Gallery: 3–4 case-study thumbnails (each with project name + "real estate" + "Mid-Atlantic" where applicable)</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.5" aria-label="Mark new-page build step NP3.5 complete"></td></tr>
+      <tr><td>Internal linking</td><td class="code">Inbound (link TO this page from): /, /services, /work, /about<br>Outbound (link FROM this page to): /services/real-estate-3d-visualization, /services/real-estate-growth-marketing, /work (real estate filtered), /contact</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.6" aria-label="Mark new-page build step NP3.6 complete"></td></tr>
+      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "Brand Identity Design" · provider: HighRock Organization · audience: Real Estate Professionals · areaServed: Mid-Atlantic states · isRelatedTo: 3D Visualization Service</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.7" aria-label="Mark new-page build step NP3.7 complete"></td></tr>
+      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What does a real estate brand identity system include?<br>Q: How does brand identity affect luxury real estate listing performance?<br>Q: What's the typical timeline for a real estate brand identity project?<br>Q: How do brand identity and 3D visualization work together for real estate launches?</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.8" aria-label="Mark new-page build step NP3.8 complete"></td></tr>
     </tbody>
   </table>
 
   <h3 style="margin-top: 2rem;">Page 2 — Luxury Real Estate 3D Visualization</h3>
   <p class="source-note"><strong>Recommended URL:</strong> <code>https://highrock.com/services/real-estate-3d-visualization</code><br><strong>Targets keyword:</strong> "Luxury Real Estate Brand Identity & 3D Visualization" (paired with Page 1)</p>
   <table class="data">
-    <thead><tr><th style="width:22%;">Element</th><th>Specification</th></tr></thead>
+    <thead><tr><th style="width:22%;">Element</th><th>Specification</th><th class="checklist-cell-th">Done?</th></tr></thead>
     <tbody>
-      <tr><td>Title (48 chars)</td><td class="code">Luxury Real Estate 3D Visualization & VR | HighRock</td></tr>
-      <tr><td>Meta description (139 chars)</td><td class="code">Architectural 3D visualization, interior renderings, and VR walkthroughs for luxury real estate by HighRock — Mid-Atlantic creative partner.</td></tr>
-      <tr><td>H1</td><td class="code">Luxury Real Estate 3D Visualization</td></tr>
-      <tr><td>H2 outline (5 sections)</td><td class="code">1. Architectural Renderings &amp; Exterior Visualization<br>2. Interior Renderings &amp; Virtual Staging<br>3. VR Walkthroughs for Real Estate Marketing<br>4. Selected 3D Real Estate Work<br>5. Discuss a 3D Visualization Project</td></tr>
-      <tr><td>Images + alt text plan</td><td class="code">Hero: architectural exterior render<br>Alt: Luxury real estate exterior rendering by HighRock — Mid-Atlantic development<br><br>Interior render: virtual staging<br>Alt: Interior virtual staging rendering for a luxury real estate listing<br><br>VR demo: walkthrough screenshot<br>Alt: VR walkthrough demo for a real estate development marketing campaign</td></tr>
-      <tr><td>Internal linking</td><td class="code">Inbound: /, /services, /services/real-estate-brand-identity, /work<br>Outbound: /services/real-estate-brand-identity, /services/real-estate-growth-marketing, /work/matan-port-460, /contact</td></tr>
-      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "3D Visualization, VR, Architectural Rendering" · provider: HighRock Organization · audience: Real Estate Professionals (Developers, Brokers, Agencies) · areaServed: Mid-Atlantic</td></tr>
-      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What's included in a real estate 3D visualization project?<br>Q: When do developers use 3D visualization vs photography?<br>Q: How does VR change real estate marketing for pre-construction listings?<br>Q: How long does a real estate 3D rendering project typically take?</td></tr>
+      <tr><td>Title (48 chars)</td><td class="code">Luxury Real Estate 3D Visualization & VR | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.9" aria-label="Mark new-page build step NP3.9 complete"></td></tr>
+      <tr><td>Meta description (139 chars)</td><td class="code">Architectural 3D visualization, interior renderings, and VR walkthroughs for luxury real estate by HighRock — Mid-Atlantic creative partner.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.10" aria-label="Mark new-page build step NP3.10 complete"></td></tr>
+      <tr><td>H1</td><td class="code">Luxury Real Estate 3D Visualization</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.11" aria-label="Mark new-page build step NP3.11 complete"></td></tr>
+      <tr><td>H2 outline (5 sections)</td><td class="code">1. Architectural Renderings &amp; Exterior Visualization<br>2. Interior Renderings &amp; Virtual Staging<br>3. VR Walkthroughs for Real Estate Marketing<br>4. Selected 3D Real Estate Work<br>5. Discuss a 3D Visualization Project</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.12" aria-label="Mark new-page build step NP3.12 complete"></td></tr>
+      <tr><td>Images + alt text plan</td><td class="code">Hero: architectural exterior render<br>Alt: Luxury real estate exterior rendering by HighRock — Mid-Atlantic development<br><br>Interior render: virtual staging<br>Alt: Interior virtual staging rendering for a luxury real estate listing<br><br>VR demo: walkthrough screenshot<br>Alt: VR walkthrough demo for a real estate development marketing campaign</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.13" aria-label="Mark new-page build step NP3.13 complete"></td></tr>
+      <tr><td>Internal linking</td><td class="code">Inbound: /, /services, /services/real-estate-brand-identity, /work<br>Outbound: /services/real-estate-brand-identity, /services/real-estate-growth-marketing, /work/matan-port-460, /contact</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.14" aria-label="Mark new-page build step NP3.14 complete"></td></tr>
+      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "3D Visualization, VR, Architectural Rendering" · provider: HighRock Organization · audience: Real Estate Professionals (Developers, Brokers, Agencies) · areaServed: Mid-Atlantic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.15" aria-label="Mark new-page build step NP3.15 complete"></td></tr>
+      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What's included in a real estate 3D visualization project?<br>Q: When do developers use 3D visualization vs photography?<br>Q: How does VR change real estate marketing for pre-construction listings?<br>Q: How long does a real estate 3D rendering project typically take?</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.16" aria-label="Mark new-page build step NP3.16 complete"></td></tr>
     </tbody>
   </table>
 
   <h3 style="margin-top: 2rem;">Page 3 — Real Estate Growth Marketing</h3>
   <p class="source-note"><strong>Recommended URL:</strong> <code>https://highrock.com/services/real-estate-growth-marketing</code><br><strong>Targets keyword:</strong> "Real Estate Growth Marketing &amp; Campaign Execution"</p>
   <table class="data">
-    <thead><tr><th style="width:22%;">Element</th><th>Specification</th></tr></thead>
+    <thead><tr><th style="width:22%;">Element</th><th>Specification</th><th class="checklist-cell-th">Done?</th></tr></thead>
     <tbody>
-      <tr><td>Title (52 chars)</td><td class="code">Real Estate Growth Marketing &amp; Campaigns | HighRock</td></tr>
-      <tr><td>Meta description (146 chars)</td><td class="code">Real estate growth marketing — brand campaigns, digital strategy, content, and lead generation for luxury Mid-Atlantic developers and brokers.</td></tr>
-      <tr><td>H1</td><td class="code">Real Estate Growth Marketing &amp; Campaign Execution</td></tr>
-      <tr><td>H2 outline (5 sections)</td><td class="code">1. Brand Campaigns for Real Estate Launches<br>2. Digital Strategy &amp; Lead Generation<br>3. Content &amp; Storytelling for Real Estate Brands<br>4. Selected Campaign Work<br>5. Start a Real Estate Marketing Engagement</td></tr>
-      <tr><td>Images + alt text plan</td><td class="code">Hero: campaign asset montage<br>Alt: Real estate brand campaign assets by HighRock — Mid-Atlantic developer launch<br><br>Performance dashboard: analytics view<br>Alt: Real estate marketing campaign analytics dashboard<br><br>Content piece: brand storytelling ad<br>Alt: Real estate brand storytelling campaign asset</td></tr>
-      <tr><td>Internal linking</td><td class="code">Inbound: /, /services, /work (filtered to campaign work)<br>Outbound: /services/real-estate-brand-identity, /services/real-estate-3d-visualization, /work, /contact</td></tr>
-      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "Marketing, Digital Strategy, Campaign Execution" · provider: HighRock Organization · audience: Real Estate Professionals · areaServed: Mid-Atlantic</td></tr>
-      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What does real estate growth marketing include?<br>Q: How are real estate launch campaigns structured?<br>Q: What's the typical timeline for a real estate marketing engagement?<br>Q: How does HighRock measure real estate campaign performance?</td></tr>
+      <tr><td>Title (52 chars)</td><td class="code">Real Estate Growth Marketing &amp; Campaigns | HighRock</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.17" aria-label="Mark new-page build step NP3.17 complete"></td></tr>
+      <tr><td>Meta description (146 chars)</td><td class="code">Real estate growth marketing — brand campaigns, digital strategy, content, and lead generation for luxury Mid-Atlantic developers and brokers.</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.18" aria-label="Mark new-page build step NP3.18 complete"></td></tr>
+      <tr><td>H1</td><td class="code">Real Estate Growth Marketing &amp; Campaign Execution</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.19" aria-label="Mark new-page build step NP3.19 complete"></td></tr>
+      <tr><td>H2 outline (5 sections)</td><td class="code">1. Brand Campaigns for Real Estate Launches<br>2. Digital Strategy &amp; Lead Generation<br>3. Content &amp; Storytelling for Real Estate Brands<br>4. Selected Campaign Work<br>5. Start a Real Estate Marketing Engagement</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.20" aria-label="Mark new-page build step NP3.20 complete"></td></tr>
+      <tr><td>Images + alt text plan</td><td class="code">Hero: campaign asset montage<br>Alt: Real estate brand campaign assets by HighRock — Mid-Atlantic developer launch<br><br>Performance dashboard: analytics view<br>Alt: Real estate marketing campaign analytics dashboard<br><br>Content piece: brand storytelling ad<br>Alt: Real estate brand storytelling campaign asset</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.21" aria-label="Mark new-page build step NP3.21 complete"></td></tr>
+      <tr><td>Internal linking</td><td class="code">Inbound: /, /services, /work (filtered to campaign work)<br>Outbound: /services/real-estate-brand-identity, /services/real-estate-3d-visualization, /work, /contact</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.22" aria-label="Mark new-page build step NP3.22 complete"></td></tr>
+      <tr><td>JSON-LD schema</td><td class="code">Service schema · @type: "Service" · serviceType: "Marketing, Digital Strategy, Campaign Execution" · provider: HighRock Organization · audience: Real Estate Professionals · areaServed: Mid-Atlantic</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.23" aria-label="Mark new-page build step NP3.23 complete"></td></tr>
+      <tr><td>AIO blocks (FAQ schema candidates)</td><td class="code">Q: What does real estate growth marketing include?<br>Q: How are real estate launch campaigns structured?<br>Q: What's the typical timeline for a real estate marketing engagement?<br>Q: How does HighRock measure real estate campaign performance?</td><td class="row-check-cell"><input type="checkbox" class="row-check" data-id="NP3.24" aria-label="Mark new-page build step NP3.24 complete"></td></tr>
     </tbody>
   </table>
 
@@ -647,9 +660,16 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
 <!-- TAB: SCHEMA -->
 <div id="schema" class="section">
   <h2>Schema Bundle — JSON-LD payloads</h2>
+  <div class="global-progress" data-scope="schema">
+    <button class="reset-btn" onclick="if(confirm('Reset schema-deploy tracking?')){const s=JSON.parse(localStorage.getItem('highrock-onpage-2026-05-04-progress')||'{}');Object.keys(s).filter(k=>k.startsWith('SB')).forEach(k=>delete s[k]);localStorage.setItem('highrock-onpage-2026-05-04-progress',JSON.stringify(s));location.reload();}">Reset progress</button>
+    <strong>Schema deploy progress &mdash;</strong> <span class="global-text">0 of 0 payloads deployed</span>
+    <div class="progress-bar"><div class="progress-bar-fill" style="width:0%"></div></div>
+    <p class="global-help">Tick each payload as your dev deploys it via the Schema.org Metatag submodule (or Twig fallback). Validate each via Google's Rich Results Test before marking done.</p>
+  </div>
+
   <p class="source-note">Five JSON-LD payloads, deploy-ready. Each wrapped in <code>&lt;script type="application/ld+json"&gt;</code>. Recommended deployment via Schema.org Metatag Drupal submodule.</p>
 
-  <h3>Payload 1 — Organization (deploys site-wide)</h3>
+  <h3 class="schema-h3">Payload 1 — Organization (deploys site-wide) <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB1" aria-label="Mark schema SB1 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
   <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
   <span class="k">"@type"</span>: <span class="s">"Organization"</span>,
@@ -679,7 +699,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   ]
 }</pre>
 
-  <h3>Payload 2 — ProfessionalService (homepage + /services)</h3>
+  <h3 class="schema-h3">Payload 2 — ProfessionalService (homepage + /services) <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB2" aria-label="Mark schema SB2 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
   <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
   <span class="k">"@type"</span>: <span class="s">"ProfessionalService"</span>,
@@ -716,7 +736,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   }
 }</pre>
 
-  <h3>Payload 3 — CollectionPage for /work</h3>
+  <h3 class="schema-h3">Payload 3 — CollectionPage for /work <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB3" aria-label="Mark schema SB3 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
   <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
   <span class="k">"@type"</span>: <span class="s">"CollectionPage"</span>,
@@ -738,7 +758,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   }
 }</pre>
 
-  <h3>Payload 4 — AboutPage for /about</h3>
+  <h3 class="schema-h3">Payload 4 — AboutPage for /about <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB4" aria-label="Mark schema SB4 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
   <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
   <span class="k">"@type"</span>: <span class="s">"AboutPage"</span>,
@@ -749,7 +769,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"mainEntity"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> }
 }</pre>
 
-  <h3>Payload 5 — BreadcrumbList (per page; example for /services)</h3>
+  <h3 class="schema-h3">Payload 5 — BreadcrumbList (per page; example for /services) <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB5" aria-label="Mark schema SB5 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
   <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
   <span class="k">"@type"</span>: <span class="s">"BreadcrumbList"</span>,
@@ -772,7 +792,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
 <!-- EXPANDED COVERAGE SPLICE -->
 <h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Sub-service Service schemas (8 payloads)</h3>
 <p class="source-note">Each Service schema references the root Organization via <code>@id</code> and lists the Mid-Atlantic service area. Audience field defaults multi-vertical (real estate + healthcare + hospitality + manufacturing) — adjust per page if HighRock wants narrower targeting on specific sub-services.</p>
-<h3>Sub-service: Strategic Marketing</h3>
+<h3 class="schema-h3">Sub-service: Strategic Marketing <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB6" aria-label="Mark schema SB6 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/strategic-marketing</code></p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -788,7 +808,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
     <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
   }
 }</pre>
-<h3>Sub-service: Creative Services</h3>
+<h3 class="schema-h3">Sub-service: Creative Services <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB7" aria-label="Mark schema SB7 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/creative</code></p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -804,7 +824,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
     <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
   }
 }</pre>
-<h3>Sub-service: Web Development</h3>
+<h3 class="schema-h3">Sub-service: Web Development <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB8" aria-label="Mark schema SB8 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/web-development</code></p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -820,7 +840,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
     <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
   }
 }</pre>
-<h3>Sub-service: Training &amp; Development</h3>
+<h3 class="schema-h3">Sub-service: Training &amp; Development <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB9" aria-label="Mark schema SB9 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/training-development</code></p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -836,7 +856,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
     <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
   }
 }</pre>
-<h3>Sub-service: 3D &amp; VR Services</h3>
+<h3 class="schema-h3">Sub-service: 3D &amp; VR Services <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB10" aria-label="Mark schema SB10 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/3d-vr</code></p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -852,7 +872,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
     <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
   }
 }</pre>
-<h3>Sub-service: Digital Marketing</h3>
+<h3 class="schema-h3">Sub-service: Digital Marketing <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB11" aria-label="Mark schema SB11 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/digital-marketing</code></p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -868,7 +888,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
     <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
   }
 }</pre>
-<h3>Sub-service: Search Engine Optimization</h3>
+<h3 class="schema-h3">Sub-service: Search Engine Optimization <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB12" aria-label="Mark schema SB12 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/search-engine-optimization-seo</code></p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -884,7 +904,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
     <span class="k">"audienceType"</span>: <span class="s">"Real Estate Professionals, Healthcare, Hospitality, Manufacturing, and Multi-Vertical Brands"</span>
   }
 }</pre>
-<h3>Sub-service: Video Production</h3>
+<h3 class="schema-h3">Sub-service: Video Production <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB13" aria-label="Mark schema SB13 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/services/video-production</code></p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -903,7 +923,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
 
 <h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Case study CreativeWork schemas (12 payloads)</h3>
 <p class="source-note">Each CreativeWork references the root Organization as creator. <code>about</code> field carries the industry vertical for AI Overview eligibility on industry-specific queries.</p>
-<h3>Case study: Matan Port 460</h3>
+<h3 class="schema-h3">Case study: Matan Port 460 <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB14" aria-label="Mark schema SB14 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/matan-port-460</code> · <strong>Industry:</strong> Real Estate</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -916,7 +936,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Real Estate"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Web Development"</span>, <span class="s">"Video Production"</span>, <span class="s">"Creative"</span>]
 }</pre>
-<h3>Case study: BMC Insurance: Keeping You Covered</h3>
+<h3 class="schema-h3">Case study: BMC Insurance: Keeping You Covered <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB15" aria-label="Mark schema SB15 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/bmc-insurance-keeping-you-covered</code> · <strong>Industry:</strong> Insurance</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -929,7 +949,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Insurance"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Creative"</span>, <span class="s">"Marketing"</span>]
 }</pre>
-<h3>Case study: Coca Cola &amp; NCG Cinema: Cherry Chill Campaign</h3>
+<h3 class="schema-h3">Case study: Coca Cola &amp; NCG Cinema: Cherry Chill Campaign <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB16" aria-label="Mark schema SB16 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/coca-cola-ncg-cinema-cherry-chill-campaign</code> · <strong>Industry:</strong> CPG / Entertainment</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -942,7 +962,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"CPG / Entertainment"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Campaign Strategy"</span>, <span class="s">"Creative"</span>, <span class="s">"Media Production"</span>]
 }</pre>
-<h3>Case study: FM Industries Cleanroom Training</h3>
+<h3 class="schema-h3">Case study: FM Industries Cleanroom Training <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB17" aria-label="Mark schema SB17 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/fm-industries-cleanroom-training</code> · <strong>Industry:</strong> Manufacturing</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -955,7 +975,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Manufacturing"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Training & Development"</span>, <span class="s">"LMS"</span>, <span class="s">"Instructional Design"</span>]
 }</pre>
-<h3>Case study: Hub City Football Club</h3>
+<h3 class="schema-h3">Case study: Hub City Football Club <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB18" aria-label="Mark schema SB18 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/hub-city-football-club</code> · <strong>Industry:</strong> Sports</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -968,7 +988,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Sports"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Web Development"</span>, <span class="s">"Creative"</span>]
 }</pre>
-<h3>Case study: Impact Architects Animated Video</h3>
+<h3 class="schema-h3">Case study: Impact Architects Animated Video <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB19" aria-label="Mark schema SB19 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/impact-architects-animated-video</code> · <strong>Industry:</strong> Social Impact / Tech</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -981,7 +1001,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Social Impact / Tech"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Video Production"</span>, <span class="s">"Animation"</span>, <span class="s">"Voiceover"</span>]
 }</pre>
-<h3>Case study: Meritus School of Osteopathic Medicine Fly-Through Animation</h3>
+<h3 class="schema-h3">Case study: Meritus School of Osteopathic Medicine Fly-Through Animation <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB20" aria-label="Mark schema SB20 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/meritus-school-osteopathic-medicine-fly-through-animation</code> · <strong>Industry:</strong> Healthcare / Education</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -994,7 +1014,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Healthcare / Education"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"3D Animation"</span>, <span class="s">"Brand Storytelling"</span>]
 }</pre>
-<h3>Case study: Point Blank Technologies Brand Development</h3>
+<h3 class="schema-h3">Case study: Point Blank Technologies Brand Development <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB21" aria-label="Mark schema SB21 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/point-blank-technologies-brand-development</code> · <strong>Industry:</strong> Cybersecurity / Engineering</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -1007,7 +1027,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Cybersecurity / Engineering"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Brand Strategy"</span>, <span class="s">"Web Development"</span>, <span class="s">"Creative"</span>]
 }</pre>
-<h3>Case study: SKYROCKET</h3>
+<h3 class="schema-h3">Case study: SKYROCKET <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB22" aria-label="Mark schema SB22 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/skyrocket</code> · <strong>Industry:</strong> Lifestyle / Youth</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -1020,7 +1040,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Lifestyle / Youth"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Brand Identity"</span>, <span class="s">"Storytelling"</span>]
 }</pre>
-<h3>Case study: Spichers Branding</h3>
+<h3 class="schema-h3">Case study: Spichers Branding <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB23" aria-label="Mark schema SB23 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/spichers-branding</code> · <strong>Industry:</strong> Retail / Family Business</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -1033,7 +1053,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Retail / Family Business"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Brand Refresh"</span>, <span class="s">"Logo Design"</span>, <span class="s">"Video Production"</span>]
 }</pre>
-<h3>Case study: University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables</h3>
+<h3 class="schema-h3">Case study: University of Maryland BioPark: Enhancing Visibility and Engagement Through Design Deliverables <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB24" aria-label="Mark schema SB24 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/university-maryland-biopark-enhancing-visibility-and-engagement-through-design-deliverables</code> · <strong>Industry:</strong> Education / Bioscience</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -1046,7 +1066,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"about"</span>: <span class="s">"Education / Bioscience"</span>,
   <span class="k">"keywords"</span>: [<span class="s">"Brand Design"</span>, <span class="s">"Print Collateral"</span>, <span class="s">"Signage"</span>]
 }</pre>
-<h3>Case study: Washington County Chamber of Commerce Branding Development</h3>
+<h3 class="schema-h3">Case study: Washington County Chamber of Commerce Branding Development <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB25" aria-label="Mark schema SB25 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <p class="source-note"><strong>Deploy on:</strong> <code>https://highrock.com/work/washington-county-chamber-commerce-branding-development</code> · <strong>Industry:</strong> Civic / Membership Org</p>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
@@ -1061,7 +1081,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
 }</pre>
 
 <h3 style="margin-top:2.5rem; padding-top: 1rem; border-top: 2px solid var(--hr-green);">Site infrastructure schemas (3 payloads)</h3>
-<h3>/insights — CollectionPage</h3>
+<h3 class="schema-h3">/insights — CollectionPage <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB26" aria-label="Mark schema SB26 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
   <span class="k">"@type"</span>: <span class="s">"CollectionPage"</span>,
@@ -1071,7 +1091,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"url"</span>: <span class="s">"https://highrock.com/insights"</span>,
   <span class="k">"isPartOf"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> }
 }</pre>
-<h3>/contact — ContactPage</h3>
+<h3 class="schema-h3">/contact — ContactPage <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB27" aria-label="Mark schema SB27 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
   <span class="k">"@type"</span>: <span class="s">"ContactPage"</span>,
@@ -1080,7 +1100,7 @@ tr.completed td.row-check-cell { background: var(--hr-green-bg); }
   <span class="k">"url"</span>: <span class="s">"https://highrock.com/contact"</span>,
   <span class="k">"mainEntity"</span>: { <span class="k">"@id"</span>: <span class="s">"https://highrock.com/#organization"</span> }
 }</pre>
-<h3>/careers — CollectionPage (+ JobPosting where active)</h3>
+<h3 class="schema-h3">/careers — CollectionPage (+ JobPosting where active) <label class="schema-deploy-label"><input type="checkbox" class="row-check schema-deploy-check" data-id="SB28" aria-label="Mark schema SB28 deployed"> <span class="schema-deploy-text">Deployed</span></label></h3>
 <pre class="payload">{
   <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
   <span class="k">"@type"</span>: <span class="s">"CollectionPage"</span>,
@@ -1220,11 +1240,14 @@ function showTab(id) {
   window.scrollTo(0, 0);
 }
 
-// === Dev implementation tracker ===
+// === Dev implementation tracker (3 tabs: Implementation Checklist, New Page Templates, Schema Bundle) ===
 (function() {
   const STORAGE_KEY = 'highrock-onpage-2026-05-04-progress';
-  const checklistTab = document.getElementById('checklist');
-  if (!checklistTab) return;
+  const TABS = [
+    { id: 'checklist',  text: 'recommendations complete' },
+    { id: 'newpages',   text: 'build-spec rows complete' },
+    { id: 'schema',     text: 'payloads deployed' },
+  ];
 
   function loadState() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
@@ -1234,54 +1257,64 @@ function showTab(id) {
   }
   const state = loadState();
 
-  // Initialize each checkbox from saved state
-  checklistTab.querySelectorAll('.row-check').forEach(cb => {
+  // Wire all checkboxes across all three tabs
+  document.querySelectorAll('.row-check').forEach(cb => {
     const id = cb.getAttribute('data-id');
     if (state[id]) {
       cb.checked = true;
-      cb.closest('tr').classList.add('completed');
+      const tr = cb.closest('tr');
+      if (tr) tr.classList.add('completed');
     }
     cb.addEventListener('change', () => {
       state[id] = cb.checked;
-      cb.closest('tr').classList.toggle('completed', cb.checked);
+      const tr = cb.closest('tr');
+      if (tr) tr.classList.toggle('completed', cb.checked);
       saveState(state);
       updateRollups();
     });
   });
 
   function updateRollups() {
-    // Per-page rollups (h3 sections within #checklist)
-    checklistTab.querySelectorAll('h3').forEach(h => {
-      // Find the next sibling table after this h3
-      let el = h.nextElementSibling;
-      while (el && el.tagName !== 'TABLE') {
-        if (el.tagName === 'H3' || el.tagName === 'H2') return;
-        el = el.nextElementSibling;
-      }
-      if (!el) return;
-      const cbs = el.querySelectorAll('.row-check');
-      if (cbs.length === 0) return;
-      const done = Array.from(cbs).filter(c => c.checked).length;
-      const total = cbs.length;
-      let span = h.querySelector('.page-progress');
-      if (!span) {
-        span = document.createElement('span');
-        span.className = 'page-progress';
-        h.appendChild(span);
-      }
-      span.textContent = done + ' / ' + total + ' done';
-      span.classList.toggle('complete', done === total && total > 0);
-    });
+    TABS.forEach(({ id, text }) => {
+      const tab = document.getElementById(id);
+      if (!tab) return;
 
-    // Global rollup
-    const allCbs = checklistTab.querySelectorAll('.row-check');
-    const allDone = Array.from(allCbs).filter(c => c.checked).length;
-    const allTotal = allCbs.length;
-    const banner = checklistTab.querySelector('.global-progress');
-    if (banner) {
-      banner.querySelector('.global-text').textContent = allDone + ' of ' + allTotal + ' recommendations complete';
-      banner.querySelector('.progress-bar-fill').style.width = (allTotal > 0 ? (allDone/allTotal)*100 : 0) + '%';
-    }
+      // Per-page/per-section rollups
+      tab.querySelectorAll('h3').forEach(h => {
+        // Find the next sibling table or pre block
+        let el = h.nextElementSibling;
+        while (el && el.tagName !== 'TABLE' && el.tagName !== 'PRE') {
+          if (el.tagName === 'H3' || el.tagName === 'H2') return;
+          el = el.nextElementSibling;
+        }
+        if (!el) return;
+        // Skip h3s that already have an inline schema-deploy-check (those are per-payload labels, not group)
+        const inlineCheck = h.querySelector('.schema-deploy-check');
+        if (inlineCheck) return; // self-contained, no rollup needed
+        const cbs = el.querySelectorAll ? el.querySelectorAll('.row-check') : [];
+        if (cbs.length === 0) return;
+        const done = Array.from(cbs).filter(c => c.checked).length;
+        const total = cbs.length;
+        let span = h.querySelector('.page-progress');
+        if (!span) {
+          span = document.createElement('span');
+          span.className = 'page-progress';
+          h.appendChild(span);
+        }
+        span.textContent = done + ' / ' + total + ' done';
+        span.classList.toggle('complete', done === total && total > 0);
+      });
+
+      // Tab-level rollup banner
+      const allCbs = tab.querySelectorAll('.row-check');
+      const allDone = Array.from(allCbs).filter(c => c.checked).length;
+      const allTotal = allCbs.length;
+      const banner = tab.querySelector('.global-progress');
+      if (banner) {
+        banner.querySelector('.global-text').textContent = allDone + ' of ' + allTotal + ' ' + text;
+        banner.querySelector('.progress-bar-fill').style.width = (allTotal > 0 ? (allDone/allTotal)*100 : 0) + '%';
+      }
+    });
   }
   updateRollups();
 })();
