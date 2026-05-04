@@ -112,6 +112,7 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
 <div class="nav">
   <button class="active" onclick="showTab('summary')">Executive Summary</button>
   <button onclick="showTab('drafts')">On-Page Drafts</button>
+  <button onclick="showTab('checklist')">Implementation Checklist</button>
   <button onclick="showTab('schema')">Schema Bundle</button>
   <button onclick="showTab('prestate')">Pre-State Snapshot</button>
   <button onclick="showTab('asks')">Open Asks</button>
@@ -164,9 +165,9 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
     <div class="issue">No H1 on the page; "Elevate your brand" lives in H2 <span class="approval-status badge badge-ok">Ready</span></div>
     <div class="pair">
       <div><div class="lbl">Current</div><div class="current">— no H1 detected; hero "Elevate your brand" rendered as H2 —</div></div>
-      <div><div class="lbl">Recommended</div><div class="recommended">Elevate Your Brand</div></div>
+      <div><div class="lbl">Recommended (two-line treatment)</div><div class="recommended"><strong>Elevate Your Brand</strong><br><span style="font-weight: 400; font-size: 0.92em;">Strategic creative services for brands going higher</span><br><span style="display: block; margin-top: 0.4rem; font-size: 0.78em; color: var(--ink-soft); font-style: italic;">Hero stays as the visual anchor; the sub-line carries topic signal ("creative services") that search engines and AI assistants need.</span></div></div>
     </div>
-    <div class="note"><strong>Apollo note:</strong> The brand voice already lives on the page — it's just in the wrong heading level. Promoting the existing hero phrase to H1 keeps the design-side typography work intact while giving search engines + AI assistants the page's primary topic signal. Lowest-friction high-leverage move on the homepage.</div>
+    <div class="note"><strong>Apollo note:</strong> Two-line treatment preserves "Elevate Your Brand" as the visual hero (the brand voice) while a smaller sub-line carries topic signal ("creative services," "strategic," "brands"). The hero phrase alone is brand voice but doesn't tell search engines or AI assistants what the page IS. The sub-line closes that gap without disrupting the visual design. If the design lead prefers a single-line H1, the strongest topical alternative is "Creative Services to Elevate Your Brand."</div>
   </div>
 
   <h4>2. og:url + og:title — minor inconsistencies</h4>
@@ -293,9 +294,9 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
     <div class="issue">No page H1 — only filter labels and case-study titles <span class="approval-status badge badge-ok">Ready</span></div>
     <div class="pair">
       <div><div class="lbl">Current</div><div class="current">— no H1 detected; first heading is "Filter by Service" (H3) —</div></div>
-      <div><div class="lbl">Recommended</div><div class="recommended">Our Work</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">Creative Agency Portfolio — Brand Work, Video, Design</div></div>
     </div>
-    <div class="note"><strong>Apollo note:</strong> Short, direct, matches the URL slug. If HighRock prefers a longer treatment ("The HighRock Portfolio" is also strong), either works — the priority is to have ONE before the filter section.</div>
+    <div class="note"><strong>Apollo note:</strong> "Our Work" alone is brand voice with no topic signal. The recommended H1 surfaces the three highest-volume work categories visible on the page (brand, video, design) plus the "creative agency portfolio" framing prospects search for. Pairs with the recommended title tag for SERP-meta consistency. If the design lead wants a shorter treatment, "HighRock Portfolio" carries brand + topic in three words.</div>
   </div>
 
   <h4>13. Twitter Card — missing</h4>
@@ -366,6 +367,92 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
     <div class="note"><strong>Apollo note:</strong> AboutPage is the schema.org-recommended type for "about us" pages. Linking to the root Organization via shared <code>@id</code> creates a single canonical entity reference across all schema. Person schema for team members is a meaningful add for cycle 2 (Google E-E-A-T expertise signals).</div>
   </div>
 
+</div>
+
+<!-- TAB: IMPLEMENTATION CHECKLIST -->
+<div id="checklist" class="section">
+  <h2>Implementation Checklist</h2>
+  <p class="source-note">Deploy-ready per-page checklist for HighRock's Drupal team. Each page = one block of sequential steps with copy-paste values. No narrative — that lives in <strong>On-Page Drafts</strong>. Use this tab to actually implement; use Drafts tab to review the rationale.</p>
+
+  <div class="callout">
+    <div class="h">Two one-time setups apply to every page below</div>
+    <ol style="margin: 0.5rem 0 0 1rem;">
+      <li><strong>Twitter Card sub-fields</strong> on the existing Drupal Metatag module (no new install) — configure once at Configuration → Search and metadata → Metatag → enable Twitter Card field set. Defaults applied per content-type.</li>
+      <li><strong>Schema.org Metatag submodule</strong> install — <code>composer require drupal/schema_metatag</code> then <code>drush en schema_metatag</code>. Enable schema types: <code>schema_organization</code>, <code>schema_professional_service</code>, <code>schema_collection_page</code>, <code>schema_about_page</code>, <code>schema_breadcrumb_list</code>.</li>
+    </ol>
+  </div>
+
+  <h3 style="margin-top: 2rem;">Page 1 — Homepage</h3>
+  <p class="source-note"><strong>URL:</strong> <code>https://highrock.com/</code></p>
+  <table class="data">
+    <thead><tr><th style="width:18%;">Step</th><th>Field</th><th>Value to deploy</th></tr></thead>
+    <tbody>
+      <tr><td>1.1 Add H1</td><td><code>&lt;h1&gt;</code> (currently missing)</td><td class="code">&lt;h1&gt;Elevate Your Brand&lt;br&gt;&lt;span class="hero-sub"&gt;Strategic creative services for brands going higher&lt;/span&gt;&lt;/h1&gt;<br><span style="color:var(--ink-soft); font-size:0.78rem; font-style:italic;">— or single-line: "Creative Services to Elevate Your Brand"</span></td></tr>
+      <tr><td>1.2 Fix og:url</td><td><code>og:url</code></td><td class="code">https://highrock.com/<br><span style="color:var(--ink-soft); font-size:0.78rem; font-style:italic;">— remove the /home suffix; match the canonical</span></td></tr>
+      <tr><td>1.3 Fix og:title</td><td><code>og:title</code></td><td class="code">HighRock — Creative Services Agency</td></tr>
+      <tr><td>1.4 Add Twitter Card set</td><td><code>twitter:card</code><br><code>twitter:title</code><br><code>twitter:description</code><br><code>twitter:image</code></td><td class="code">summary_large_image<br>HighRock — Creative Services Agency<br>[copy from existing meta description]<br>[same image asset as og:image]</td></tr>
+      <tr><td>1.5 Deploy schema</td><td>JSON-LD blocks (homepage scope)</td><td>Organization (Payload 1) + ProfessionalService (Payload 2) + BreadcrumbList. Full payloads in <strong>Schema Bundle</strong> tab.</td></tr>
+      <tr><td>1.6 Add robots meta (optional polish)</td><td><code>&lt;meta name="robots"&gt;</code></td><td class="code">&lt;meta name="robots" content="index, follow"&gt;</td></tr>
+    </tbody>
+  </table>
+  <p class="source-note"><strong>Verify after deploy:</strong> view-source on <code>https://highrock.com/</code> — confirm H1 present, og:url ends with <code>/</code>, twitter:card fields present, three <code>application/ld+json</code> blocks in head. Run <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2F" target="_blank" rel="noopener">Google Rich Results Test ↗</a>.</p>
+
+  <h3 style="margin-top: 2rem;">Page 2 — /services</h3>
+  <p class="source-note"><strong>URL:</strong> <code>https://highrock.com/services</code></p>
+  <table class="data">
+    <thead><tr><th style="width:18%;">Step</th><th>Field</th><th>Value to deploy</th></tr></thead>
+    <tbody>
+      <tr><td>2.1 Rewrite title</td><td><code>&lt;title&gt;</code></td><td class="code">Creative Agency Services — Strategy, Design, Web, Video | HighRock</td></tr>
+      <tr><td>2.2 Rewrite meta description</td><td><code>meta[name=description]</code></td><td class="code">HighRock is a full-service creative agency. Strategy, creativity, and innovation across web, video, branding, and digital — tailored to elevate your brand.</td></tr>
+      <tr><td>2.3 Consolidate H1s</td><td><code>&lt;h1&gt;</code> (currently 3 separate H1s)</td><td class="code">&lt;h1&gt;&lt;span&gt;Strategy.&lt;/span&gt; &lt;span&gt;Creativity.&lt;/span&gt; &lt;span&gt;Innovation.&lt;/span&gt;&lt;/h1&gt;<br><span style="color:var(--ink-soft); font-size:0.78rem; font-style:italic;">— design preserved; semantics cleaned to single H1. Coordinate with design lead — likely a CSS-only or template-only change.</span></td></tr>
+      <tr><td>2.4 Add Twitter Card set</td><td><code>twitter:*</code></td><td class="code">summary_large_image<br>Creative Agency Services<br>[recommended meta above]<br>[page or site OG image]</td></tr>
+      <tr><td>2.5 Deploy schema</td><td>JSON-LD blocks (services scope)</td><td>ProfessionalService (Payload 2 — includes 8-service OfferCatalog) + BreadcrumbList. Full payloads in <strong>Schema Bundle</strong> tab.</td></tr>
+    </tbody>
+  </table>
+  <p class="source-note"><strong>Verify after deploy:</strong> view-source on <code>https://highrock.com/services</code> — confirm new title, tightened meta, single H1, twitter:card fields, schema JSON-LD blocks. <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fservices" target="_blank" rel="noopener">Rich Results Test ↗</a>.</p>
+
+  <h3 style="margin-top: 2rem;">Page 3 — /work</h3>
+  <p class="source-note"><strong>URL:</strong> <code>https://highrock.com/work</code></p>
+  <table class="data">
+    <thead><tr><th style="width:18%;">Step</th><th>Field</th><th>Value to deploy</th></tr></thead>
+    <tbody>
+      <tr><td>3.1 Rewrite title</td><td><code>&lt;title&gt;</code></td><td class="code">Creative Agency Portfolio — Brand, Video, Web Case Studies | HighRock</td></tr>
+      <tr><td>3.2 Add H1</td><td><code>&lt;h1&gt;</code> (currently missing)</td><td class="code">&lt;h1&gt;Creative Agency Portfolio — Brand Work, Video, Design&lt;/h1&gt;<br><span style="color:var(--ink-soft); font-size:0.78rem; font-style:italic;">— or shorter: "HighRock Portfolio" — both work</span></td></tr>
+      <tr><td>3.3 Add Twitter Card set</td><td><code>twitter:*</code></td><td class="code">summary_large_image<br>HighRock Work<br>[current meta description]<br>[featured case-study image — rotates with page if dynamic]</td></tr>
+      <tr><td>3.4 Deploy schema</td><td>JSON-LD blocks (collection scope)</td><td>CollectionPage with ItemList of top N case studies as CreativeWork (Payload 3) + BreadcrumbList. Full payload in <strong>Schema Bundle</strong> tab.</td></tr>
+    </tbody>
+  </table>
+  <p class="source-note"><strong>Verify after deploy:</strong> <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fwork" target="_blank" rel="noopener">Rich Results Test ↗</a>.</p>
+
+  <h3 style="margin-top: 2rem;">Page 4 — /about</h3>
+  <p class="source-note"><strong>URL:</strong> <code>https://highrock.com/about</code></p>
+  <table class="data">
+    <thead><tr><th style="width:18%;">Step</th><th>Field</th><th>Value to deploy</th></tr></thead>
+    <tbody>
+      <tr><td>4.1 Rewrite title</td><td><code>&lt;title&gt;</code></td><td class="code">About HighRock — The Team Behind the Brand Work</td></tr>
+      <tr><td>4.2 Tighten meta description</td><td><code>meta[name=description]</code></td><td class="code">HighRock is powered by people with a wide breadth of expertise — and the willingness to climb the mountain together. Meet the team behind the brand work.</td></tr>
+      <tr><td>4.3 H1</td><td><code>&lt;h1&gt;</code></td><td class="code">The HighRock Team<br><span style="color:var(--ink-soft); font-size:0.78rem; font-style:italic;">— already present and on-topic; no change needed</span></td></tr>
+      <tr><td>4.4 Add Twitter Card set</td><td><code>twitter:*</code></td><td class="code">summary_large_image<br>About HighRock<br>[recommended meta above]<br>[team photo or HighRock logo card]</td></tr>
+      <tr><td>4.5 Deploy schema</td><td>JSON-LD blocks (about scope)</td><td>AboutPage (Payload 4) — links to root Organization via @id + BreadcrumbList. Full payload in <strong>Schema Bundle</strong> tab.</td></tr>
+    </tbody>
+  </table>
+  <p class="source-note"><strong>Verify after deploy:</strong> <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fhighrock.com%2Fabout" target="_blank" rel="noopener">Rich Results Test ↗</a>.</p>
+
+  <h3 style="margin-top: 2rem;">Site-wide recommendations (apply across all pages)</h3>
+  <table class="data">
+    <thead><tr><th style="width:18%;">Step</th><th>Field</th><th>Value to deploy</th></tr></thead>
+    <tbody>
+      <tr><td>S.1 Robots meta default</td><td><code>&lt;meta name="robots"&gt;</code> (Metatag default)</td><td class="code">&lt;meta name="robots" content="index, follow"&gt;<br><span style="color:var(--ink-soft); font-size:0.78rem; font-style:italic;">— explicit affirmative; Metatag module → Add default → Global scope.</span></td></tr>
+      <tr><td>S.2 WAF user-agent whitelist</td><td>Cloudflare WAF rules</td><td>Whitelist common SEO user-agents (Ahrefs, SEMrush, Screaming Frog, Botify, Sitebulb) for HighRock's own SEO tool visibility. Currently returns 403 to standard crawlers; Googlebot + browsers pass cleanly.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-top: 2rem;">Final verification (all pages, post-deploy)</h3>
+  <ol>
+    <li><strong>Run <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Google's Rich Results Test ↗</a></strong> on each of the 4 URLs. Expect "Eligible for rich results" on each schema type.</li>
+    <li><strong>Submit each URL to Google Search Console</strong> for re-indexing once changes are live.</li>
+    <li><strong>Confirm site-wide consistency:</strong> view-source on a 5th non-cycle-1 page (e.g., a service sub-page) and confirm Twitter Card defaults inherited — proves Metatag config is site-wide, not just per-page.</li>
+  </ol>
 </div>
 
 <!-- TAB: SCHEMA -->
