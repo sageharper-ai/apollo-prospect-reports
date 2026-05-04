@@ -1091,20 +1091,18 @@ footer a { color: var(--hr-green-dark); text-decoration: none; }
     </tbody>
   </table>
 
-  <h3>Per-page state captured</h3>
+  <h3>Per-page state captured (4 priority parent pages)</h3>
+  <p class="source-note">One row per URL. Numbers are character counts (Title, Meta) or item counts (H1s, OG/Twitter tags, JSON-LD blocks, images-with-alt). Cycle 1 expansion table below covers the 23 additional pages with the same format.</p>
   <table class="data">
-    <thead><tr><th>Element</th><th>/</th><th>/services</th><th>/work</th><th>/about</th></tr></thead>
+    <thead><tr><th>URL</th><th>Title (chars)</th><th>Meta (chars)</th><th>H1</th><th>OG</th><th>Twitter</th><th>Schema</th><th>Image alt</th></tr></thead>
     <tbody>
-      <tr><td><strong>Title length</strong></td><td>55 ✅</td><td>19 ⚠️</td><td>15 ⚠️</td><td>16 ⚠️</td></tr>
-      <tr><td><strong>Meta description</strong></td><td>146 ✅</td><td>343 ⚠️</td><td>146 ✅</td><td>248 ⚠️</td></tr>
-      <tr><td><strong>Canonical</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
-      <tr><td><strong>H1 count</strong></td><td>0 ❌</td><td>3 ⚠️</td><td>0 ❌</td><td>1 ✅</td></tr>
-      <tr><td><strong>OG tags</strong></td><td>5 ✅ (minor inconsistencies)</td><td>5 ✅</td><td>5 ✅</td><td>5 ✅</td></tr>
-      <tr><td><strong>Twitter Card</strong></td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td></tr>
-      <tr><td><strong>JSON-LD schema</strong></td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td><td>0 ❌</td></tr>
-      <tr><td><strong>Image alt coverage</strong></td><td>43 / 43 ✅</td><td>0 (text page)</td><td>63 / 63 ✅</td><td>34 / 34 ✅</td></tr>
+      <tr><td><code>highrock.com/</code></td><td>55 ✅</td><td>146 ✅</td><td>0 ❌</td><td>5 ✅</td><td>0 ❌</td><td>0 ❌</td><td>43 / 43 ✅</td></tr>
+      <tr><td><code>highrock.com/services</code></td><td>19 ⚠️</td><td>343 ⚠️</td><td>3 ⚠️</td><td>5 ✅</td><td>0 ❌</td><td>0 ❌</td><td>(text page)</td></tr>
+      <tr><td><code>highrock.com/work</code></td><td>15 ⚠️</td><td>146 ✅</td><td>0 ❌</td><td>5 ✅</td><td>0 ❌</td><td>0 ❌</td><td>63 / 63 ✅</td></tr>
+      <tr><td><code>highrock.com/about</code></td><td>16 ⚠️</td><td>248 ⚠️</td><td>1 ✅</td><td>5 ✅</td><td>0 ❌</td><td>0 ❌</td><td>34 / 34 ✅</td></tr>
     </tbody>
   </table>
+  <p class="source-note"><strong>How to read a cell:</strong> "<code>highrock.com/services</code> · Meta · 343 ⚠️" means the <em>parent</em> /services page has a 343-character meta description, which exceeds the 140&ndash;160 SERP cap. <strong>Canonical</strong> column omitted because all 4 pages have correct self-referencing canonicals (no issue).</p>
 
   <h3>Vertical positioning (per Monique's intake)</h3>
   <table class="data">
