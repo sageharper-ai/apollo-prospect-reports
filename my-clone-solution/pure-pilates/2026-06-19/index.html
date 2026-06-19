@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>On-Page Recommendations — Pure Pilates | My Clone Solution</title>
+<style>
+:root {
+  --hr-green: #b2bd30;
+  --hr-green-dark: #8a921f;
+  --hr-green-bg: #f7f9e8;
+  --ink: #3c3c3c;
+  --ink-dark: #1a1a1a;
+  --ink-soft: #6b7280;
+  --rule: #e5e7eb;
+  --bg: #fafaf9;
+  --card: #ffffff;
+  --quote-bg: #f3f4f6;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --cyan: #06b6d4;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'proxima-nova', 'Helvetica', 'Roboto', Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.header { background: #1f2937; border-bottom: 4px solid var(--hr-green); padding: 2rem 3rem 1.5rem; color: #ffffff; }
+.header .logo { display: inline-block; background: #ffffff; padding: 9px 14px; border-radius: 8px; margin-bottom: 1.25rem; }
+.header .logo img { height: 30px; width: auto; display: block; }
+.header h1 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em; color: #ffffff; }
+.header .subtitle { color: #cbd5e1; margin-top: 0.4rem; font-size: 1rem; }
+.header .meta { display: flex; gap: 0.6rem; margin-top: 1.1rem; font-size: 0.78rem; color: #cbd5e1; flex-wrap: wrap; }
+.header .meta span { background: rgba(178,189,48,0.15); border: 1px solid rgba(178,189,48,0.4); color: #e8edc5; padding: 0.22rem 0.7rem; border-radius: 14px; font-weight: 500; }
+.nav { background: white; border-bottom: 1px solid var(--rule); padding: 0 3rem; display: flex; gap: 0; position: sticky; top: 0; z-index: 100; flex-wrap: wrap; box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+.nav button { background: none; border: none; padding: 0.9rem 1.3rem; font-size: 0.92rem; color: var(--ink-soft); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; font-family: inherit; font-weight: 500; }
+.nav button:hover { color: var(--hr-green-dark); background: rgba(178,189,48,0.05); }
+.nav button.active { color: var(--hr-green-dark); border-bottom-color: var(--hr-green); font-weight: 600; }
+.content { max-width: 1200px; margin: 0 auto; padding: 2rem 3rem; }
+.section { display: none; }
+.section.active { display: block; }
+.section h2 { font-size: 1.35rem; color: var(--ink-dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--hr-green); font-weight: 600; }
+.section h3 { font-size: 1.05rem; color: var(--ink-dark); margin: 1.6rem 0 0.75rem; font-weight: 600; }
+.section p { margin-bottom: 0.9rem; }
+.section ul { padding-left: 1.4rem; margin: 0.75rem 0; }
+.section ol { padding-left: 1.4rem; margin: 0.75rem 0; }
+.section li { margin-bottom: 0.45rem; }
+.badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 3px; font-size: 0.78rem; font-weight: 600; }
+.badge-ok { background: #dcfce7; color: #166534; }
+.badge-warn { background: #fef9c3; color: #854d0e; }
+.badge-error { background: #fee2e2; color: #991b1b; }
+.badge-info { background: #dbeafe; color: #1e40af; }
+.badge-blocked { background: #fce7f3; color: #9d174d; }
+.badge-pending { background: #fef3c7; color: #92400e; }
+table.data { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.86rem; background: white; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; }
+table.data th { background: var(--ink-dark); color: white; padding: 0.65rem 0.9rem; text-align: left; font-weight: 600; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.5px; }
+table.data td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+table.data td.code { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.8rem; }
+table.data tr:last-child td { border-bottom: none; }
+table.data tr:hover { background: rgba(178,189,48,0.04); }
+.callout { padding: 1rem 1.25rem; border-left: 4px solid var(--hr-green); background: var(--hr-green-bg); border-radius: 0 6px 6px 0; margin: 1rem 0; font-size: 0.93rem; }
+.callout.warn { border-left-color: var(--yellow); background: #fefce8; }
+.callout.red { border-left-color: var(--red); background: #fef2f2; }
+.callout.info { border-left-color: var(--cyan); background: #ecfeff; }
+.callout strong { color: var(--ink-dark); }
+.callout .h { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--hr-green-dark); margin-bottom: 0.3rem; }
+.callout.warn .h { color: #854d0e; }
+.callout.red .h { color: #991b1b; }
+.callout.info .h { color: #155e75; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+.card { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 1.15rem; text-align: center; }
+.card .value { font-size: 1.6rem; font-weight: 700; color: var(--hr-green-dark); }
+.card .label { font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.source-note { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.4rem; font-style: italic; }
+pre.payload { background: #f9fafb; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.15rem; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.78rem; line-height: 1.55; overflow-x: auto; margin: 0.75rem 0; }
+pre.payload .k { color: #1e40af; }
+pre.payload .s { color: #166534; }
+pre.payload .c { color: #6b7280; font-style: italic; }
+.draft-row { background: white; border: 1px solid var(--rule); border-radius: 6px; padding: 1rem 1.25rem; margin: 0.75rem 0; }
+.draft-row .url { font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.82rem; color: var(--ink-soft); }
+.draft-row .issue { font-weight: 600; color: var(--ink-dark); margin-top: 0.3rem; }
+.draft-row .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.65rem; font-size: 0.88rem; }
+.draft-row .pair .lbl { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.2rem; }
+.draft-row .pair .current { color: var(--ink-soft); padding: 0.5rem 0.7rem; background: #f9fafb; border-left: 3px solid #d1d5db; border-radius: 0 4px 4px 0; }
+.draft-row .pair .recommended { padding: 0.5rem 0.7rem; background: var(--hr-green-bg); border-left: 3px solid var(--hr-green); border-radius: 0 4px 4px 0; }
+.draft-row .note { margin-top: 0.6rem; font-size: 0.85rem; color: var(--ink-soft); }
+.draft-row .note strong { color: var(--ink-dark); }
+.approval-status { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 3px; font-size: 0.72rem; font-weight: 600; margin-left: 0.5rem; vertical-align: middle; }
+footer { margin-top: 3rem; padding: 1.5rem 3rem; border-top: 1px solid var(--rule); text-align: center; font-size: 0.78rem; color: var(--ink-soft); background: white; }
+footer a { color: var(--hr-green-dark); text-decoration: none; }
+@media print { .nav { display: none; } .section { display: block !important; page-break-inside: avoid; } }
+@media (max-width: 768px) {
+  .header { padding: 1.25rem 1.5rem; }
+  .content { padding: 1.25rem 1.5rem; }
+  .nav { padding: 0 1.5rem; }
+  .draft-row .pair { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo"><img src="../../../assets/mcs-logo.png" alt="My Clone Solution" /></div>
+  <h1>On-Page Recommendations — Pure Pilates</h1>
+  <div class="subtitle">purepilatesnj.com — Summit, NJ · cycle 1 · 8 deploy-ready drafts · 3 schema payloads · 3 items pending Pure Pilates confirmation</div>
+  <div class="meta">
+    <span>Prepared: June 19, 2026</span>
+    <span>Cycle 1 — all 13 pages scoped</span>
+    <span>8 on-page drafts</span>
+    <span>3 schema payloads</span>
+    <span>3 pending-confirmation items</span>
+    <span>Internal review — Brook</span>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="active" onclick="showTab('summary')">Executive Summary</button>
+  <button onclick="showTab('drafts')">On-Page Drafts</button>
+  <button onclick="showTab('pagetable')">Per-Page Title &amp; H1 Table</button>
+  <button onclick="showTab('schema')">Schema Bundle</button>
+  <button onclick="showTab('prestate')">Pre-State Snapshot</button>
+  <button onclick="showTab('asks')">Open Asks</button>
+  <button onclick="showTab('roadmap')">Roadmap</button>
+  <button onclick="showTab('topicalmap')">Content Topical Map</button>
+  <button onclick="showTab('approval')">Approval</button>
+</div>
+
+<div class="content">
+
+<!-- TAB: SUMMARY -->
+<div id="summary" class="section active">
+  <h2>Executive Summary</h2>
+
+  <p>This is cycle 1 of Pure Pilates' on-page work. The June 16 SEO research established the strategic frame: Pure Pilates competes in a genuinely high-demand market — the "private pilates" family alone pulls roughly 7,500 low-difficulty monthly searches that describe exactly what the studio does — but the site is technically under-built across every page and speaks in internal labels ("Privates / Partners") instead of the words searchers type. This document is the bridge from that research to deploy-ready fixes.</p>
+
+  <p><strong>What's deploying this cycle:</strong> 8 homepage on-page drafts spanning <em>title rewrite, meta description, H1 consolidation, image alt text plan, and a 3-payload JSON-LD schema bundle</em> (LocalBusiness/HealthClub · Service · FAQPage). All drafts are written against Pure Pilates' confirmed homepage content and the June 16 research findings. Three items — business hours, a confirming phone number, and FAQ entry approval — require Carol's input before the affected fields finalize; the rest of the bundle deploys clean without them.</p>
+
+  <p>The <strong>Per-Page Title &amp; H1 Table</strong> covers all 13 site pages with current state and recommended changes — a broader scope than the homepage-only drafts, providing the full picture Carol and Brook can use to sequence implementation. One page — the Accessibility Statement — currently 404s and must be restored before any on-page work on that URL.</p>
+
+  <div class="cards">
+    <div class="card"><div class="value">8</div><div class="label">Drafts ready</div></div>
+    <div class="card"><div class="value">13</div><div class="label">Pages mapped</div></div>
+    <div class="card"><div class="value">3</div><div class="label">Schema payloads</div></div>
+    <div class="card"><div class="value">3</div><div class="label">Pending Pure Pilates</div></div>
+  </div>
+
+  <div class="callout warn">
+    <div class="h">3 items need Pure Pilates' confirmation before final values ship</div>
+    <p style="margin-bottom: 0.4rem;"><strong>Business hours</strong> — needed for <code>openingHoursSpecification</code> in the LocalBusiness schema. Without confirmed hours the field ships as <code>null</code>, leaving a gap in the signal search engines and map assistants use to surface the studio for "pilates near me" queries.</p>
+    <p style="margin-bottom: 0.4rem;"><strong>Phone number confirmation</strong> — the research report does not include a business phone number. The phone is being ported to a new IVR; the LocalBusiness schema <code>telephone</code> field ships as <code>null</code> pending Carol's confirmation of the final number. (Website footer phone, if present, is the source.)</p>
+    <p style="margin: 0;"><strong>FAQ content approval</strong> — Apollo drafted 5 FAQ entries from the homepage and June 16 research. These are plausible but not authoritative. Carol reviews each Q+A pair; only confirmed entries deploy. If all five are deferred, the FAQPage payload moves to cycle 2.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--ink-soft);">All three items are tagged in the drafts table with <span class="badge badge-pending">pending</span>. Affected schema fields are isolated so the rest of the bundle deploys cleanly either way.</p>
+  </div>
+
+  <p>See <strong>On-Page Drafts</strong> for the per-issue table with current vs recommended values and Apollo notes; <strong>Per-Page Title &amp; H1 Table</strong> for the full 13-page audit with recommended titles and H1s; <strong>Schema Bundle</strong> for the three JSON-LD payloads with deployment guidance; <strong>Pre-State Snapshot</strong> for the captured site state; <strong>Open Asks</strong> for the three pending-confirmation items; <strong>Roadmap</strong> for what cycle 2 looks like; <strong>Approval</strong> for the final sign-off ask.</p>
+
+  <div class="callout info">
+    <div class="h">What this cycle is, and isn't</div>
+    <p style="margin-bottom: 0.4rem;"><strong>Is:</strong> Manually-prepared on-page recommendations for Pure Pilates' homepage, plus a per-page title and H1 map covering all 13 pages. Apollo wrote each draft against the audit findings, the June 16 research, and Pure Pilates' confirmed service content. Implementation is through Pure Pilates' WordPress CMS — no new tooling required for the title, meta, H1 tags; schema deploys as JSON-LD blocks in the page head.</p>
+    <p style="margin: 0;"><strong>Isn't:</strong> Full on-page copy rewrites for all 13 pages (money pages are prioritized in cycle 2); content production for new pages (separate scope); authority or link-building work (separate engagement); Google Business Profile optimization (separate engagement).</p>
+  </div>
+</div>
+
+<!-- TAB: DRAFTS -->
+<div id="drafts" class="section">
+  <h2>On-Page Drafts — homepage cycle 1</h2>
+  <p class="source-note">8 drafts, sorted by impact. Each row = one issue type with the current state, Apollo's recommended replacement, and a short note on the why. Three items carry <span class="badge badge-pending">pending</span> tags where final values depend on Pure Pilates' confirmation. Source: June 16 homepage audit + June 16 site health findings.</p>
+
+  <h3>1. Page title</h3>
+  <div class="draft-row">
+    <div class="url">https://purepilatesnj.com/</div>
+    <div class="issue">Title tag — thin, generic, no service line or location signal <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current (~22 chars)</div><div class="current">Home - Pure Pilates NJ</div></div>
+      <div><div class="lbl">Recommended (~52 chars)</div><div class="recommended">Private Pilates Studio in Summit, NJ | Pure Pilates</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> The current title is the single most actionable fix on the site. "Private Pilates Studio in Summit, NJ" puts the primary service (<em>private pilates</em> — ~1,062 monthly searches at low difficulty) and the local anchor in exactly the words searchers type. Within Google's ~60 char SERP cap. The brand name trails so it anchors navigation without crowding the keyword signal.</div>
+  </div>
+
+  <h3>2. Meta description</h3>
+  <div class="draft-row">
+    <div class="url">https://purepilatesnj.com/</div>
+    <div class="issue">Meta description — currently missing on every page <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">— missing — (Google writes its own snippet for every page)</div></div>
+      <div><div class="lbl">Recommended (148 chars)</div><div class="recommended">Private Pilates sessions in Summit, NJ. One-on-one instruction, small groups, and reformer work with a trained Pilates specialist. Book your first session today.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Pulls the three core service types (private sessions, small groups, reformer) plus the location anchor and a booking call-to-action. Written in the active, direct voice that matches Pure Pilates' homepage content. Within SERP description cap (~155 chars). This is the first fix Carol can make today — zero technical overhead, fully in the WordPress editor.</div>
+  </div>
+
+  <h3>3. H1 tag</h3>
+  <div class="draft-row">
+    <div class="url">https://purepilatesnj.com/</div>
+    <div class="issue">H1 — homepage currently has 3 H1 tags; needs consolidation to one <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">3 H1s detected on homepage — multiple H1s dilute the page's primary topic signal for search engines.</div></div>
+      <div><div class="lbl">Recommended (single H1)</div><div class="recommended">Private Pilates Sessions in Summit, NJ — One-on-One, Every Time</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> Consolidate to exactly one H1 — the recommended text above — and demote the other two current H1s to H2. The recommended H1 is outcome- and service-framed: it names the format (one-on-one private sessions), the location (Summit, NJ), and the differentiator (every session is private, not a class). Distinct from the title tag so the two reinforce rather than duplicate. Each remaining page section's heading moves to H2.</div>
+  </div>
+
+  <h3>4. Image alt text — homepage (13 images)</h3>
+  <div class="draft-row">
+    <div class="url">https://purepilatesnj.com/</div>
+    <div class="issue">Alt text — 13 of 13 homepage images have no alt attributes (100% missing) <span class="approval-status badge badge-pending">Plan provided · Pure Pilates writes copy</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">13 homepage images, 0 with alt text. WCAG 1.1.1 accessibility violation; image-search invisibility; Lighthouse Accessibility score at 83 (below 90 threshold).</div></div>
+      <div><div class="lbl">Recommended approach</div><div class="recommended">Apollo provides an alt-text writing guide + voice pattern. Carol's team writes the 13 alt strings (or Apollo writes them in cycle 2 if preferred). Pattern: <em>"Brief description of subject + relevant context (5–12 words). Studio equipment and reformer images include 'Summit NJ Pilates studio.' Decorative-only images use alt=&quot;&quot;."</em></div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> The audit found 88 of 98 images across all 13 site pages with no alt text — the homepage's 13 are the highest-value starting point. Site-wide alt text is a separate engagement (~3–4 hours of Apollo time, or batched with the next site-wide cycle). Decorative images (dividers, background textures) use empty alt="" — omitting the attribute entirely is not the same thing.</div>
+  </div>
+
+  <h3>5. Robots meta</h3>
+  <div class="draft-row">
+    <div class="url">https://purepilatesnj.com/</div>
+    <div class="issue">Robots meta — site is open to all crawlers including AI assistants <span class="approval-status badge badge-info">Verified clean</span></div>
+    <div class="note"><strong>Apollo note:</strong> Verified clean. robots.txt has no agents blocked — AI assistants and search crawlers are all allowed. The only thing currently keeping Pure Pilates out of AI answers is the missing structured data, not a crawl block. Listed here for completeness so the deploy team knows nothing changes in this cycle.</div>
+  </div>
+
+  <h3>6. Schema markup — LocalBusiness / HealthClub</h3>
+  <div class="draft-row">
+    <div class="url">https://purepilatesnj.com/</div>
+    <div class="issue">JSON-LD schema — zero structured data across all 13 pages; first-mover opening since no local competitor has any either <span class="approval-status badge badge-pending">Pending Pure Pilates · hours + phone</span></div>
+    <div class="pair">
+      <div><div class="lbl">Current</div><div class="current">No <code>&lt;script type="application/ld+json"&gt;</code> blocks on any page. Zero schema sitewide. No local competitor (The Refinery, Managed Fitness, Bodies in Balance) has structured data either — field is wide open.</div></div>
+      <div><div class="lbl">Recommended</div><div class="recommended">3-payload bundle: LocalBusiness/HealthClub · Service · FAQPage. See <strong>Schema Bundle</strong> tab for full JSON-LD. Hours and phone ship as <code>null</code> until Carol provides — the rest deploys clean.</div></div>
+    </div>
+    <div class="note"><strong>Apollo note:</strong> This is the single highest-leverage on-page move for Pure Pilates. The June 16 research confirms no competitor in the local set carries structured data — so the first to add it earns the structured-data first-mover signal with search engines and AI assistants. Address is confirmed (Summit, NJ, Union County). Hours and phone are the only pending fields. Once deployed and Google re-crawls (~2 weeks), schema becomes eligible for local AI inclusion.</div>
+  </div>
+
+  <h3>7. Schema markup — Service</h3>
+  <div class="draft-row">
+    <div class="url">https://purepilatesnj.com/</div>
+    <div class="issue">Service schema — none currently; describes the studio's primary offering to search engines <span class="approval-status badge badge-ok">Ready</span></div>
+    <div class="note"><strong>Apollo note:</strong> The Service schema tells search engines "this business offers private Pilates sessions in Summit, NJ — here's the service type, the provider, the area served." Complements the LocalBusiness schema by adding the service layer that powers "private pilates near me" eligibility. Full payload in the <strong>Schema Bundle</strong> tab. No client input needed — drafted from confirmed homepage service content.</div>
+  </div>
+
+  <h3>8. Schema markup — FAQPage</h3>
+  <div class="draft-row">
+    <div class="url">https://purepilatesnj.com/</div>
+    <div class="issue">FAQPage schema — none currently; no FAQ section on the homepage at present <span class="approval-status badge badge-pending">Optional · Pure Pilates confirms FAQ content</span></div>
+    <div class="note"><strong>Apollo note:</strong> Apollo drafted 5 FAQ entries against Pure Pilates' homepage content and the June 16 research findings (private vs group sessions / beginner welcome / what to expect / Summit location / booking). If Carol confirms the answers fit the studio's voice, the FAQPage schema deploys + an inline FAQ section can be added to the homepage. If not ready, the schema defers to cycle 2. Drafts in the <strong>Schema Bundle</strong> tab.</div>
+  </div>
+
+  <h3>9. Site-wide WAF crawler whitelist (recommendation only — not on-page)</h3>
+  <div class="draft-row">
+    <div class="url">purepilatesnj.com (server config)</div>
+    <div class="issue">WAF / HTTP 403 — all 13 pages were loaded in a real browser because an automated crawl returned 403; SEO crawl tools run blind <span class="approval-status badge badge-info">Recommended · Dev team task</span></div>
+    <div class="note"><strong>Apollo note:</strong> The June 16 audit was conducted via real-browser page loads because a standard automated crawl returned HTTP 403 across the site. Browsers and Googlebot pass cleanly, so search rankings aren't affected — but any third-party audit or partner audit will fail silently. <strong>Recommendation:</strong> ask Pure Pilates' WordPress host or developer to whitelist common SEO crawler user-agents. Restores audit visibility without affecting security posture.</div>
+  </div>
+
+</div>
+
+<!-- TAB: PER-PAGE TABLE -->
+<div id="pagetable" class="section">
+  <h2>Per-Page Title &amp; H1 Table — All 13 Pages</h2>
+  <p class="source-note">Current state sourced from the June 16, 2026 real-browser audit. Recommended titles follow the pattern: money pages get a keyword-backed title in the format "[Primary keyword/service] in Summit, NJ | Pure Pilates" (~50–60 chars); utility pages get a clean "[Page] | Pure Pilates" title. Recommended H1s are outcome + service + location framed for money pages; simple and descriptive for utility pages. Meta descriptions are missing on all 13 pages — the homepage draft is in the On-Page Drafts tab; remaining pages are scoped for cycle 2.</p>
+
+  <div class="callout red">
+    <div class="h">⚠ Accessibility Statement — 404 page break</div>
+    <p style="margin: 0;">The Accessibility Statement page (<code>/accessibility-statement/</code>) currently returns a 404. The page title reads "Page not found" — meaning the page is broken or missing entirely, not just poorly optimized. <strong>This page must be restored before any on-page work can be done on this URL.</strong> The footer link pointing to it should also be audited. Carol's team or the site developer should restore the page and confirm the URL before cycle 2 includes it in scope.</p>
+  </div>
+
+  <table class="data" style="font-size: 0.82rem;">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>URL</th>
+        <th>Current Title</th>
+        <th>Recommended Title</th>
+        <th>Current H1</th>
+        <th>Recommended H1</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Homepage</strong></td>
+        <td class="code">/</td>
+        <td>Home - Pure Pilates NJ</td>
+        <td>Private Pilates Studio in Summit, NJ | Pure Pilates</td>
+        <td><span class="badge badge-warn">3 H1s</span></td>
+        <td>Private Pilates Sessions in Summit, NJ — One-on-One, Every Time</td>
+        <td>Consolidate 3 H1s to 1; demote others to H2. Highest-priority fix on the site.</td>
+      </tr>
+      <tr>
+        <td><strong>Services</strong></td>
+        <td class="code">/services/</td>
+        <td>Services - Pure Pilates NJ</td>
+        <td>Pilates Classes &amp; Private Sessions in Summit, NJ | Pure Pilates</td>
+        <td><span class="badge badge-warn">2 H1s</span></td>
+        <td>Private Pilates, Partner Work &amp; Small Groups in Summit, NJ</td>
+        <td>Consolidate 2 H1s to 1. Second-highest priority — this is the top conversion page. See also: Service Pages to Build (Roadmap tab) for individual page candidates.</td>
+      </tr>
+      <tr>
+        <td><strong>The Studio</strong></td>
+        <td class="code">/the-studio/</td>
+        <td>The Studio - Pure Pilates NJ</td>
+        <td>Private Pilates Studio in Summit, NJ | Pure Pilates</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>Our Summit, NJ Pilates Studio — Equipment, Space &amp; Instructors</td>
+        <td>Clean H1 count. Title and H1 update adds local + facility signal.</td>
+      </tr>
+      <tr>
+        <td><strong>The Pilates Method</strong></td>
+        <td class="code">/the-pilates-method/</td>
+        <td>The Pilates Method - Pure Pilates NJ</td>
+        <td>What Is the Pilates Method? | Pure Pilates Summit NJ</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>The Pilates Method — What It Is and Why It Works</td>
+        <td>Clean H1 count. Note: homepage link to this page carries stray trailing spaces in the URL — fix the link, not just the page.</td>
+      </tr>
+      <tr>
+        <td><strong>Get Started</strong></td>
+        <td class="code">/get-started/</td>
+        <td>Get Started - Pure Pilates NJ</td>
+        <td>Start Private Pilates in Summit, NJ | Pure Pilates</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>Ready to Start? Here's How Your First Session Works</td>
+        <td>Clean H1 count. Key conversion page — title should reflect the intent of someone actively looking to book.</td>
+      </tr>
+      <tr>
+        <td><strong>New Client Booking</strong></td>
+        <td class="code">/new-booking/</td>
+        <td>New Client Booking Page - Pure Pilates NJ</td>
+        <td>Book Your First Pilates Session in Summit, NJ | Pure Pilates</td>
+        <td><span class="badge badge-error">No H1</span></td>
+        <td>Book Your First Private Pilates Session</td>
+        <td>Missing H1 — add one. Carol confirmed the phone is being ported; she may also rename this page. Confirm URL slug before finalizing.</td>
+      </tr>
+      <tr>
+        <td><strong>Contact</strong></td>
+        <td class="code">/contact/</td>
+        <td>Contact - Pure Pilates NJ</td>
+        <td>Contact Pure Pilates — Summit, NJ Studio | Pure Pilates</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>Get in Touch with Pure Pilates in Summit, NJ</td>
+        <td>Clean H1 count. Location in title and H1 reinforces local signal and matches map/directions intent.</td>
+      </tr>
+      <tr>
+        <td><strong>Blog</strong></td>
+        <td class="code">/blog/</td>
+        <td>Blog - Pure Pilates NJ</td>
+        <td>Blog | Pure Pilates</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>Pure Pilates Blog</td>
+        <td>Utility page — clean title, simple H1. No keyword stuffing needed here.</td>
+      </tr>
+      <tr>
+        <td><strong>Shop</strong></td>
+        <td class="code">/shop-online/</td>
+        <td>Shop - Pure Pilates NJ</td>
+        <td>Shop | Pure Pilates</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>Pure Pilates Shop</td>
+        <td>Utility page — clean title, simple H1.</td>
+      </tr>
+      <tr>
+        <td><strong>Job Application</strong></td>
+        <td class="code">/job-application/</td>
+        <td>Job Application - Pure Pilates NJ</td>
+        <td>Join the Team | Pure Pilates</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>Join the Pure Pilates Team</td>
+        <td>Utility page — "Join the Team" reads better for candidates than "Job Application."</td>
+      </tr>
+      <tr>
+        <td><strong>Privacy Policy</strong></td>
+        <td class="code">/privacy-policy/</td>
+        <td>Privacy Policy - Pure Pilates NJ</td>
+        <td>Privacy Policy | Pure Pilates</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>Privacy Policy</td>
+        <td>Utility page — no keyword optimization needed; clean, standard naming.</td>
+      </tr>
+      <tr>
+        <td><strong>Legal</strong></td>
+        <td class="code">/legal/</td>
+        <td>Legal - Pure Pilates NJ</td>
+        <td>Legal | Pure Pilates</td>
+        <td><span class="badge badge-ok">1 H1</span></td>
+        <td>Legal</td>
+        <td>Utility page — no keyword optimization needed; clean, standard naming.</td>
+      </tr>
+      <tr style="background: #fef2f2;">
+        <td><strong>Accessibility Statement</strong></td>
+        <td class="code">/accessibility-statement/</td>
+        <td><span class="badge badge-error">Page not found — 404</span></td>
+        <td><em>Pending — restore page first</em></td>
+        <td><span class="badge badge-error">404 — no content</span></td>
+        <td><em>Pending — restore page first</em></td>
+        <td><strong>⚠ This page currently 404s.</strong> The title "Page not found" confirms it is broken or missing — not just poorly optimized. The footer link pointing here is broken. Restore the page before any on-page recommendations apply. Carol's team or site developer owns this fix.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="h">Recommendation pattern</div>
+    <p style="margin-bottom: 0.4rem;"><strong>Money pages</strong> (Homepage, Services, The Studio, The Pilates Method, Get Started, New Client Booking, Contact): keyword-backed titles ~50–60 chars in the pattern "[Primary keyword/service] in Summit, NJ | Pure Pilates" and an outcome + service + location H1. Primary keyword family: "private pilates studio Summit NJ," "pilates near me," "pilates classes Summit NJ" (private pilates family ≈ 7,500 monthly searches, low difficulty; "private pilates" alone ≈ 1,062 monthly searches).</p>
+    <p style="margin: 0;"><strong>Utility pages</strong> (Blog, Shop, Job Application, Privacy Policy, Legal): clean "[Page] | Pure Pilates" title + simple, descriptive H1. No keyword targeting. Meta descriptions on all 13 pages are missing and needed; homepage draft is in the On-Page Drafts tab; the remaining 12 pages are scoped for cycle 2.</p>
+  </div>
+</div>
+
+<!-- TAB: SCHEMA -->
+<div id="schema" class="section">
+  <h2>Schema Bundle — JSON-LD payloads</h2>
+  <p class="source-note">Three JSON-LD payloads, deploy-ready. Each is wrapped in <code>&lt;script type="application/ld+json"&gt;...&lt;/script&gt;</code> and placed in the homepage <code>&lt;head&gt;</code>. Implementation via the WordPress SEO plugin already active on the site (or theme-level <code>wp_head</code> hook — see deployment notes below). Hours and phone ship as <code>null</code> until Carol confirms; the rest is final.</p>
+
+  <h3>Payload 1 — LocalBusiness / HealthClub</h3>
+  <pre class="payload"><span class="c">// Hours + telephone ship as null until Pure Pilates confirms (Open Asks 1 + 2)</span>
+{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: [<span class="s">"LocalBusiness"</span>, <span class="s">"HealthClub"</span>],
+  <span class="k">"@id"</span>: <span class="s">"https://purepilatesnj.com/#business"</span>,
+  <span class="k">"name"</span>: <span class="s">"Pure Pilates"</span>,
+  <span class="k">"url"</span>: <span class="s">"https://purepilatesnj.com/"</span>,
+  <span class="k">"logo"</span>: <span class="s">"https://purepilatesnj.com/[logo-path].png"</span>,  <span class="c">// replace with actual logo path</span>
+  <span class="k">"description"</span>: <span class="s">"Private Pilates studio in Summit, NJ offering one-on-one Pilates sessions, partner work, and small group reformer classes with certified Pilates instructors."</span>,
+  <span class="k">"telephone"</span>: <span class="s">null</span>,  <span class="c">// pending Pure Pilates — phone being ported to new IVR; see Open Ask 2</span>
+  <span class="k">"address"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"PostalAddress"</span>,
+    <span class="k">"addressLocality"</span>: <span class="s">"Summit"</span>,
+    <span class="k">"addressRegion"</span>: <span class="s">"NJ"</span>,
+    <span class="k">"addressCountry"</span>: <span class="s">"US"</span>,
+    <span class="k">"streetAddress"</span>: <span class="s">null</span>  <span class="c">// not in research; Carol to confirm if desired</span>
+  },
+  <span class="k">"geo"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"GeoCoordinates"</span>,
+    <span class="k">"addressLocality"</span>: <span class="s">"Summit, NJ"</span>  <span class="c">// lat/lng available once street address confirmed</span>
+  },
+  <span class="k">"openingHoursSpecification"</span>: null,  <span class="c">// pending Pure Pilates — see Open Ask 1</span>
+  <span class="k">"priceRange"</span>: <span class="s">"$$"</span>,
+  <span class="k">"hasMap"</span>: <span class="s">"https://purepilatesnj.com/contact/"</span>,
+  <span class="k">"sameAs"</span>: []  <span class="c">// add social profile URLs when confirmed (Instagram, Facebook, etc.)</span>
+}</pre>
+
+  <h3>Payload 2 — Service</h3>
+  <pre class="payload">{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"Service"</span>,
+  <span class="k">"@id"</span>: <span class="s">"https://purepilatesnj.com/#private-pilates"</span>,
+  <span class="k">"name"</span>: <span class="s">"Private Pilates Sessions"</span>,
+  <span class="k">"serviceType"</span>: <span class="s">"Private Pilates Instruction"</span>,
+  <span class="k">"description"</span>: <span class="s">"One-on-one Pilates sessions on the reformer and mat with a certified Pilates instructor. Personalized to each client's goals, fitness level, and body. Available in Summit, NJ."</span>,
+  <span class="k">"provider"</span>: { <span class="k">"@id"</span>: <span class="s">"https://purepilatesnj.com/#business"</span> },
+  <span class="k">"areaServed"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"City"</span>,
+    <span class="k">"name"</span>: <span class="s">"Summit"</span>,
+    <span class="k">"addressRegion"</span>: <span class="s">"NJ"</span>
+  },
+  <span class="k">"audience"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"Audience"</span>,
+    <span class="k">"audienceType"</span>: <span class="s">"Adults seeking private Pilates instruction, beginners through advanced"</span>
+  },
+  <span class="k">"offers"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"Offer"</span>,
+    <span class="k">"availability"</span>: <span class="s">"https://schema.org/InStock"</span>,
+    <span class="k">"priceSpecification"</span>: {
+      <span class="k">"@type"</span>: <span class="s">"PriceSpecification"</span>,
+      <span class="k">"description"</span>: <span class="s">"Session pricing — contact or book via purepilatesnj.com/get-started/"</span>
+    }
+  },
+  <span class="k">"url"</span>: <span class="s">"https://purepilatesnj.com/services/"</span>
+}</pre>
+
+  <h3>Payload 3 — FAQPage (drafts — confirm before ship)</h3>
+  <pre class="payload"><span class="c">// 5 FAQ drafts written from Pure Pilates' homepage content + June 16 research findings.
+// Carol reviews each Q+A pair; approved entries deploy. If FAQ section
+// isn't ready for cycle 1, this whole payload defers to cycle 2.</span>
+{
+  <span class="k">"@context"</span>: <span class="s">"https://schema.org"</span>,
+  <span class="k">"@type"</span>: <span class="s">"FAQPage"</span>,
+  <span class="k">"mainEntity"</span>: [
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"What is a private Pilates session, and how is it different from a class?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"In a private Pilates session, you work one-on-one with a certified instructor the entire time. Every exercise, every cue, and every progression is tailored to your body and your goals — not built for a group. At Pure Pilates, all individual sessions are private."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"Do I need Pilates experience to start?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"No experience is needed. Pure Pilates works with beginners and with experienced movers alike. Your instructor will assess your starting point and build the session around where you are, not where a standard curriculum says you should be."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"What can I expect in my first session?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"Your first session includes a brief conversation about your goals and any injuries or limitations, followed by introductory work on the reformer and mat. You'll leave with a clear sense of what Pilates will feel like for your body specifically — and what to focus on next."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"Where is Pure Pilates located?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"Pure Pilates is located in Summit, New Jersey (Union County). Visit purepilatesnj.com/contact/ for directions and parking information."</span> }
+    },
+    {
+      <span class="k">"@type"</span>: <span class="s">"Question"</span>,
+      <span class="k">"name"</span>: <span class="s">"How do I book a session?"</span>,
+      <span class="k">"acceptedAnswer"</span>: { <span class="k">"@type"</span>: <span class="s">"Answer"</span>, <span class="k">"text"</span>: <span class="s">"New clients can book a first session at purepilatesnj.com/get-started/. Returning clients book through the studio directly. First-session availability is updated regularly — book early as private slots fill quickly."</span> }
+    }
+  ]
+}</pre>
+
+  <div class="callout warn">
+    <div class="h">FAQ drafts are inferences — Carol confirms before ship</div>
+    <p style="margin: 0;">The 5 FAQ entries above were drafted from Pure Pilates' homepage language and the June 16 research context. They are plausible but not authoritative. Carol's team should review each Q+A pair, edit any that don't match how the studio actually operates, and remove any that aren't ready to commit to publicly. The FAQPage schema only deploys with confirmed entries — if Carol defers all five, the payload holds for cycle 2.</p>
+  </div>
+
+  <h3>Deployment notes — WordPress</h3>
+  <ol>
+    <li>In the WordPress admin, navigate to the SEO plugin settings (Yoast, Rank Math, or equivalent active on the site). Look for a Schema / Structured Data section or a "Custom JSON-LD" injection field scoped to the homepage.</li>
+    <li>Add three separate JSON-LD blocks — paste each <code>{...}</code> payload above as its own block. Scope each to the homepage only, not site-wide.</li>
+    <li>Save. Verify on the live homepage by viewing page source — three <code>&lt;script type="application/ld+json"&gt;</code> blocks should appear in <code>&lt;head&gt;</code>.</li>
+    <li>Test each payload at <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Google's Rich Results Test ↗</a>. LocalBusiness and Service should validate; FAQPage validates once entries are confirmed and a visible FAQ section is on the page.</li>
+    <li>Submit the homepage URL in Google Search Console for re-indexing once schema is live.</li>
+  </ol>
+
+  <p class="source-note">If the WordPress SEO plugin doesn't support custom JSON-LD injection, the same three payloads can be added via the theme's <code>functions.php</code> using a <code>wp_head</code> action hook, scoped to the front page with <code>is_front_page()</code>. Apollo can provide the PHP wrapper on request.</p>
+</div>
+
+<!-- TAB: PRESTATE -->
+<div id="prestate" class="section">
+  <h2>Pre-State Snapshot</h2>
+  <p class="source-note">Captured June 16, 2026 — full 13-page real-browser audit. This is the baseline cycle 1 deploys against; useful as a before/after reference once recommendations land.</p>
+
+  <h3>Site infrastructure</h3>
+  <table class="data">
+    <thead><tr><th>Component</th><th>State</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>CMS</td><td><span class="badge badge-ok">WordPress</span></td><td>Confirmed via site structure and crawl findings.</td></tr>
+      <tr><td>SEO plugin</td><td><span class="badge badge-warn">Unknown version</span></td><td>An SEO plugin is likely active (OG tags present site-wide) but the specific plugin and version were not confirmed in the June 16 audit. Verify before schema deployment to confirm the JSON-LD injection path.</td></tr>
+      <tr><td>XML Sitemap</td><td><span class="badge badge-ok">Found</span></td><td>Published at <code>/sitemap_index.xml</code> — search engines can discover all pages.</td></tr>
+      <tr><td>Canonical tags</td><td><span class="badge badge-ok">Self-referencing</span></td><td>Self-referencing canonicals in place — no duplicate-content risk.</td></tr>
+      <tr><td>Open Graph</td><td><span class="badge badge-ok">Present (not optimized)</span></td><td>OG tags present site-wide — shared links show a preview. Values are currently generic (default page titles); updating the title and meta description via the WordPress SEO plugin will flow through to the OG layer automatically in most configurations.</td></tr>
+      <tr><td>robots.txt</td><td><span class="badge badge-ok">Open to all crawlers</span></td><td>No agents blocked — AI assistants and search crawlers are all permitted.</td></tr>
+      <tr><td>WAF / 403 behavior</td><td><span class="badge badge-warn">Blocks automated crawlers</span></td><td>Standard automated crawls return HTTP 403 sitewide. Real-browser loads pass cleanly, as do Googlebot and AI crawlers. Third-party audits run blind. See On-Page Draft 9 for whitelist recommendation.</td></tr>
+      <tr><td>Broken / malformed links</td><td><span class="badge badge-warn">2 found</span></td><td><code>/accessibility-statement/</code> (footer link) returns a 404. Homepage link to <code>/the-pilates-method/</code> carries stray trailing spaces in the URL. Both flagged for Carol's team to fix — not on-page copy issues, but structural.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>On-page state captured</h3>
+  <table class="data">
+    <thead><tr><th>Element</th><th>State</th><th>Reference</th></tr></thead>
+    <tbody>
+      <tr><td>Title tag</td><td><span class="badge badge-warn">Thin</span> "Home - Pure Pilates NJ" (~22 chars)</td><td>June 16 audit</td></tr>
+      <tr><td>Meta description</td><td><span class="badge badge-error">Missing — all 13 pages</span></td><td>June 16 audit</td></tr>
+      <tr><td>H1 tag</td><td><span class="badge badge-warn">3 H1s on homepage</span></td><td>June 16 audit — Services page also has 2 H1s; /new-booking/ has none</td></tr>
+      <tr><td>Open Graph tags</td><td><span class="badge badge-warn">Present but generic</span></td><td>June 16 audit — tags exist, values not optimized</td></tr>
+      <tr><td>Twitter Card tags</td><td><span class="badge badge-error">None detected</span></td><td>June 16 audit — site relies on OG fallback</td></tr>
+      <tr><td>JSON-LD schema</td><td><span class="badge badge-error">0 blocks — all 13 pages</span></td><td>June 16 audit — confirmed zero structured data sitewide</td></tr>
+      <tr><td>Image alt text</td><td><span class="badge badge-error">88 of 98 missing (90%)</span></td><td>June 16 audit — homepage: 13 of 13 missing</td></tr>
+      <tr><td>Robots meta</td><td><span class="badge badge-ok">Open</span></td><td>Correct — site is indexable and AI-crawlable</td></tr>
+      <tr><td>Favicon</td><td><span class="badge badge-ok">Present</span></td><td>Clean</td></tr>
+      <tr><td>Social profile presence</td><td><span class="badge badge-warn">Not confirmed in audit</span></td><td>Social URLs not surfaced in the June 16 research — Carol to provide for schema <code>sameAs</code> field</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Authority + AI signals (June 16 baseline)</h3>
+  <p>Carried forward from the June 16 SEO research deliverable. These don't change with cycle 1 on-page work but establish why the schema bundle is the highest-leverage move.</p>
+  <table class="data">
+    <thead><tr><th>Signal</th><th>Value</th><th>Implication for cycle 1</th></tr></thead>
+    <tbody>
+      <tr><td>Indexed pages</td><td>1,122</td><td>Larger index than local competitors; per-page on-page depth work has strong leverage.</td></tr>
+      <tr><td>Domain Rating</td><td>4</td><td>Low authority; on-page is the near-term lever while authority builds over time.</td></tr>
+      <tr><td>Organic keywords</td><td>213</td><td>Below The Refinery (576); keyword depth is the gap. Schema + title rewrites start closing it.</td></tr>
+      <tr><td>Total monthly traffic (est.)</td><td>89</td><td>Low relative to indexed pages — on-page signals are under-serving the content that exists.</td></tr>
+      <tr><td>Structured data — full competitor set</td><td>None (0 of 4 competitors)</td><td>First-mover opening: no local competitor has any JSON-LD. Pure Pilates can own this signal category entirely.</td></tr>
+      <tr><td>Content Quality Score</td><td>43</td><td>Matches Bodies in Balance; beats Managed Fitness (37) and Equinox's content score (36). The Refinery (59) is the one local gap. Schema + content alignment close it.</td></tr>
+    </tbody>
+  </table>
+  <p class="source-note">Source: June 16, 2026 SEO research report. All figures are from that report's live data pull.</p>
+</div>
+
+<!-- TAB: ASKS -->
+<div id="asks" class="section">
+  <h2>Open Asks — items pending Pure Pilates confirmation</h2>
+  <p class="source-note">Three items where Apollo can't ship the final value without Carol's input. All are isolated so the rest of cycle 1 deploys clean either way.</p>
+
+  <div class="callout warn">
+    <div class="h">Ask 1 — Business Hours</div>
+    <p style="margin-bottom: 0.5rem;"><strong>What we need:</strong> Studio hours by day of week (e.g., Mon–Fri 7am–7pm, Sat 8am–1pm, Sun closed) — or a link to where hours are listed publicly if the site displays them.</p>
+    <p style="margin-bottom: 0.5rem;"><strong>What it affects:</strong> The <code>openingHoursSpecification</code> array in the LocalBusiness JSON-LD schema. Currently ships as <code>null</code>. Without it, the schema passes validation but misses the hours signal that Google Maps, Google Search, and AI assistants use to surface businesses for time-sensitive "near me" queries.</p>
+    <p style="margin-bottom: 0.5rem;"><strong>Why it matters:</strong> A significant share of "pilates studio near me" searches have implicit time intent — searchers want studios that are open now or today. Published hours in schema are one of the signals that surfaces a listing in those results.</p>
+    <p style="margin: 0;"><strong>Resolution path:</strong> One reply from Carol with a day-by-day hours list. Apollo updates the schema and redeploys — typically same-day.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="h">Ask 2 — Phone Number</div>
+    <p style="margin-bottom: 0.5rem;"><strong>What we need:</strong> The studio's public business phone number once the IVR port is complete. Carol confirmed on the June 17 call that the phone is being ported to a new IVR — the final number is pending.</p>
+    <p style="margin-bottom: 0.5rem;"><strong>What it affects:</strong> The <code>telephone</code> field in the LocalBusiness JSON-LD schema. Currently ships as <code>null</code>. Also affects Google Business Profile consistency — the phone in schema should match the phone in GBP for citation consistency.</p>
+    <p style="margin-bottom: 0.5rem;"><strong>Why it matters:</strong> Phone number is a core citation signal for local search rankings. Once the new number is confirmed and live, Carol provides it and Apollo drops it into the schema payload.</p>
+    <p style="margin: 0;"><strong>Resolution path:</strong> One sentence from Carol once the IVR port is complete. If a public phone number isn't applicable (booking-only-online model), Apollo notes that in the schema instead.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="h">Ask 3 — FAQ Content Approval</div>
+    <p style="margin-bottom: 0.5rem;"><strong>What we need:</strong> Carol's review of the 5 FAQ entries in the Schema Bundle tab. For each entry: approve as written, suggest edits, or remove from the cycle 1 deploy.</p>
+    <p style="margin-bottom: 0.5rem;"><strong>What it affects:</strong> The FAQPage JSON-LD payload (Payload 3 in the Schema Bundle). Also affects whether an inline FAQ section gets added to the homepage — the schema should reflect visible content, not invisible markup.</p>
+    <p style="margin-bottom: 0.5rem;"><strong>Why it matters:</strong> FAQ entries in schema feed directly into AI assistant answers and Google's People Also Ask results. The entries are Apollo's inference from the research — Carol should confirm they match how Pure Pilates actually wants to describe the studio.</p>
+    <p style="margin: 0;"><strong>Resolution path:</strong> Carol marks each of the 5 entries as "approved," "edit to: [text]," or "remove." Apollo finalizes the payload and sends for Brook's review before any schema deploys.</p>
+  </div>
+
+  <div class="callout info">
+    <div class="h">What we're NOT asking</div>
+    <p style="margin: 0;">No street address confirmation required this cycle — locality (Summit, NJ) is sufficient for the schema to validate and deploy. If Carol wants to add a street address for stronger local signals, Apollo can add it; it's not blocking. No social profile URLs requested this cycle — the <code>sameAs</code> field in the schema ships as an empty array and gets populated in cycle 2. New service pages (Private Pilates, Pilates for Seniors, Pilates Fusion, Beginner Pilates) are build candidates flagged in the Roadmap tab — Carol confirms scope when ready.</p>
+  </div>
+</div>
+
+<!-- TAB: ROADMAP -->
+<div id="roadmap" class="section">
+  <h2>Roadmap — cycles 2 and beyond</h2>
+  <p class="source-note">What ongoing on-page work looks like once cycle 1 lands. Apollo's recommendation: confirm the three open asks, then move to a managed monthly cadence for the rest of the site.</p>
+
+  <h3>Cycle 2 (recommended start: 2–3 weeks after cycle 1 deploy)</h3>
+  <p>Once Pure Pilates confirms the three open asks above and the homepage schema has been live long enough for Google to re-crawl (~2 weeks), cycle 2 extends on-page work to the money pages:</p>
+  <ol>
+    <li><strong>Services page on-page pass.</strong> Title rewrite (pulling "private pilates" language), meta description, H1 consolidation (currently 2 H1s), image alt text (15 images, 0 with alt). This is the single highest-traffic-potential page for the "private pilates near me" family.</li>
+    <li><strong>Get Started + New Client Booking pages.</strong> Title, meta, H1 (Booking page currently has no H1). Carol may rename the Booking page — confirm URL slug before finalizing. These are the conversion pages; on-page gaps here affect booking rates, not just rankings.</li>
+    <li><strong>Service schema extension.</strong> Add Service schema to the Services page; add LocalBusiness schema sitewide (not just homepage).</li>
+    <li><strong>Social sameAs fill.</strong> Add Pure Pilates' confirmed social profiles to the LocalBusiness schema <code>sameAs</code> array.</li>
+    <li><strong>Broken link resolution.</strong> Restore <code>/accessibility-statement/</code> or remove the footer link. Fix the trailing-space URL on the homepage Pilates Method link.</li>
+    <li><strong>Alt text — money pages.</strong> Services (15 images), The Studio (11 images), Get Started (8 images) — three pages, 34 images.</li>
+    <li><strong>Remaining page titles + H1s.</strong> Apply the per-page recommendations from the Per-Page Title &amp; H1 Table to The Studio, The Pilates Method, Contact, and utility pages.</li>
+  </ol>
+
+  <h3>Service Pages to Build (cycle 2 candidates)</h3>
+  <p>From the June 17 client call: Carol's tabbed <code>/services/</code> page should be split into individual indexable pages for both organic search relevance and stronger ad landing-page performance. Individual service pages outperform a single tabbed services page for both organic rankings and ad relevance (Quality Score). These are <strong>build candidates — Carol confirms scope</strong> before any page is created.</p>
+
+  <table class="data">
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>Proposed URL</th>
+        <th>Proposed Title (~55 chars)</th>
+        <th>Proposed H1</th>
+        <th>Primary Target Keyword</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Private Pilates</strong></td>
+        <td class="code">/private-pilates/</td>
+        <td>Private Pilates Sessions in Summit, NJ | Pure Pilates</td>
+        <td>One-on-One Private Pilates in Summit, NJ</td>
+        <td>private pilates (~1,062 mo.)</td>
+        <td>Dedicated landing page for the studio's flagship service; captures direct-intent search traffic and serves as the primary ad landing page for private session campaigns.</td>
+      </tr>
+      <tr>
+        <td><strong>Pilates for Seniors</strong></td>
+        <td class="code">/pilates-for-seniors/</td>
+        <td>Pilates for Seniors in Summit, NJ | Pure Pilates</td>
+        <td>Pilates for Seniors — Safe, Private, and Tailored to You</td>
+        <td>pilates for seniors (~1,300–2,400 mo.)</td>
+        <td>Targets a distinct, high-intent audience segment with specific physical needs; separating this from the main services page allows for audience-matched copy and ad targeting.</td>
+      </tr>
+      <tr>
+        <td><strong>Pilates Fusion</strong></td>
+        <td class="code">/pilates-fusion/</td>
+        <td>Pilates Fusion Classes in Summit, NJ | Pure Pilates</td>
+        <td>Pilates Fusion — Reformer Work Combined with Complementary Movement</td>
+        <td>pilates fusion (~880–1,600 mo.)</td>
+        <td>Differentiates the fusion format from standard private sessions; creates a standalone page for searchers specifically looking for a blended movement format.</td>
+      </tr>
+      <tr>
+        <td><strong>Beginner Pilates</strong></td>
+        <td class="code">/beginner-pilates/</td>
+        <td>Beginner Pilates Classes in Summit, NJ | Pure Pilates</td>
+        <td>New to Pilates? Start Here — Beginner Sessions in Summit, NJ</td>
+        <td>beginner pilates (~9,900 mo.)</td>
+        <td>Highest search-volume candidate in the set; addresses the most common barrier (intimidation/lack of experience) directly; strong conversion page for new-to-Pilates prospects.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <div class="h">Build candidates — Carol confirms scope</div>
+    <p style="margin: 0;">These pages do not exist yet and are not in scope for cycle 1. Apollo flags them here because building them is the single highest-leverage content move available once cycle 1 on-page work is deployed. Each represents real, confirmed search demand. Carol confirms which pages to build and in what order; Apollo scopes and produces each as a separate engagement.</p>
+  </div>
+
+  <h3>Cycles 3+ (recurring monthly)</h3>
+  <p>A monthly on-page cycle covers remaining pages (The Pilates Method, Blog, Contact, Shop, remaining utility pages), tracks schema validation health, monitors title/meta drift, and adds structured data for any new content. Each cycle closes with a brief impact snapshot: ranking position deltas on target terms, schema validation status, what changed and why.</p>
+
+  <h3>Out-of-scope for the on-page cadence</h3>
+  <ul>
+    <li><strong>New content pages.</strong> The four service page candidates above (Private Pilates, Pilates for Seniors, Pilates Fusion, Beginner Pilates) each represent real search demand (~880–9,900 monthly searches per term). Content production is a separate engagement from on-page optimization.</li>
+    <li><strong>Authority and link building.</strong> Separate engagement. Pure Pilates already leads its local competitors on referring domains (223) and recent backlink growth (+13 in 30 days) — the current backlink trajectory is healthy; accelerating it is a separate scope.</li>
+    <li><strong>Google Business Profile optimization.</strong> Not covered in this engagement. GBP optimization — hours, photos, posts, Q&A — is a separate engagement and complements what this on-page work builds.</li>
+    <li><strong>PageSpeed improvements.</strong> Total Blocking Time is 840ms on mobile (drag is heavy JavaScript). A developer-level performance engagement is the right vehicle — not on-page copy work.</li>
+    <li><strong>AI visibility tracking.</strong> Month-over-month measurement of how often Pure Pilates is named across AI platforms (ChatGPT, Perplexity, Google AI Overviews) is available as a follow-on once the schema foundation is in place.</li>
+  </ul>
+</div>
+
+<!-- TAB: CONTENT TOPICAL MAP -->
+<div id="topicalmap" class="section">
+  <h2>Content Topical Map — blog &amp; content plan (cycle 2+)</h2>
+
+  <p>These two topic maps guide blog and content production so the site builds topical authority around two core themes: (1) private and personalized Pilates sessions, and (2) Pilates in Summit, NJ. Each cluster below is a content theme the site should own; each row is a future article idea. This is a content plan for cycle 2 and beyond — separate from the cycle 1 on-page fixes above, and separate from the service page builds flagged in the Roadmap.</p>
+
+  <!-- ============================================================ -->
+  <!-- MAP 1: PRIVATE PILATES SESSION -->
+  <!-- ============================================================ -->
+  <h3>Private Pilates Session — 10 content clusters, 50 article ideas</h3>
+  <p class="source-note">Covers the full search universe around private, one-on-one, and personalized Pilates instruction — from benefits and beginner entry points through advanced technique, pricing transparency, and booking intent.</p>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Benefits of Private Pilates</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Benefits of Private Pilates Sessions</td><td>Informational</td><td>Why Choose Private Pilates Over Group Classes?</td></tr>
+      <tr><td>Private Pilates Instruction Advantages</td><td>Informational</td><td>Unlock the Benefits of Private Pilates Instruction</td></tr>
+      <tr><td>Personalized Pilates Training Benefits</td><td>Informational</td><td>Is Private Pilates Right for You? Discover the Advantages</td></tr>
+      <tr><td>Improve Wellness With Private Pilates</td><td>Informational</td><td>Discover How Private Pilates Enhances Wellness</td></tr>
+      <tr><td>Flexibility and Strength From Private Pilates</td><td>Informational</td><td>How Private Pilates Transforms Flexibility and Strength</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Personalized Pilates Programs</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Private Pilates Instruction Near Me</td><td>Navigational</td><td>Personalized Pilates Instruction Near You for Better Wellness</td></tr>
+      <tr><td>Customized Pilates Workout Plans</td><td>Commercial</td><td>What Makes Personalized Pilates Programs More Effective?</td></tr>
+      <tr><td>One-on-One Pilates Sessions Summit NJ</td><td>Transactional</td><td>How One-on-One Pilates Sessions Transform Your Fitness Journey</td></tr>
+      <tr><td>Virtual Personalized Pilates Classes</td><td>Commercial</td><td>Personalized Virtual Pilates Classes for Every Body</td></tr>
+      <tr><td>Benefits of Private Pilates Training</td><td>Informational</td><td>Discover the Unique Benefits of Private Pilates Training</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Virtual Pilates Sessions</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Virtual Private Pilates Sessions Summit NJ</td><td>Commercial</td><td>Virtual Private Pilates Sessions: Why Choose Us in Summit NJ</td></tr>
+      <tr><td>Online Pilates Classes Personalized Instruction</td><td>Transactional</td><td>Transform Your Well-Being With Personalized Online Pilates Instruction</td></tr>
+      <tr><td>One-on-One Virtual Pilates Training</td><td>Transactional</td><td>One-on-One Virtual Pilates: Why Choose Personalized Training</td></tr>
+      <tr><td>Private Pilates Instruction From Home</td><td>Transactional</td><td>Unlock the Benefits of Private Pilates Sessions at Home</td></tr>
+      <tr><td>Virtual Pilates Workouts for Wellness</td><td>Informational</td><td>Experience Virtual Pilates for Optimal Wellness</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Pilates for Beginners</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Private Pilates Classes for Beginners</td><td>Commercial</td><td>Private Pilates Classes for Beginners: What to Expect</td></tr>
+      <tr><td>Pilates Instruction Near Summit NJ</td><td>Navigational</td><td>Discover Best Pilates Classes Near Summit NJ</td></tr>
+      <tr><td>Virtual Pilates Sessions for Beginners</td><td>Transactional</td><td>Virtual Pilates Sessions for Beginners: Your Complete Guide</td></tr>
+      <tr><td>One-on-One Pilates Training Summit</td><td>Transactional</td><td>Experience One-on-One Pilates Training in Summit</td></tr>
+      <tr><td>Beginner Pilates Workout Plans Online</td><td>Informational</td><td>Beginner Pilates Plans for Total Body Transformation</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Advanced Pilates Techniques</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Advanced Pilates Techniques for Personal Training</td><td>Informational</td><td>Master Advanced Pilates Techniques for Personal Training</td></tr>
+      <tr><td>Private Pilates Sessions in Summit NJ</td><td>Transactional</td><td>Unlock Advanced Pilates Techniques in Summit NJ</td></tr>
+      <tr><td>Benefits of Advanced Pilates Exercises</td><td>Informational</td><td>How Advanced Pilates Techniques Transform Your Fitness Journey</td></tr>
+      <tr><td>Customized Pilates Routines for Experienced Clients</td><td>Commercial</td><td>Unlock Your Potential With Customized Pilates Routines</td></tr>
+      <tr><td>Virtual Advanced Pilates Classes Online</td><td>Commercial</td><td>Master Advanced Pilates Techniques in Virtual Classes</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Pilates and Mental Health</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Private Pilates Sessions for Mental Health</td><td>Informational</td><td>How Private Pilates Sessions Enhance Mental Health</td></tr>
+      <tr><td>Benefits of Pilates for Stress Relief</td><td>Informational</td><td>How Pilates Reduces Stress and Boosts Well-Being</td></tr>
+      <tr><td>Mental Health Improvement Through Pilates</td><td>Informational</td><td>How Pilates Enhances Mental Well-Being</td></tr>
+      <tr><td>Virtual Pilates Classes for Wellness</td><td>Commercial</td><td>Unlocking Mental Wellness With Virtual Pilates Classes</td></tr>
+      <tr><td>Personalized Pilates Instruction in Summit NJ</td><td>Commercial</td><td>How Pilates Boosts Mental Health in Summit NJ</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Pricing for Pilates Classes</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Private Pilates Session Pricing</td><td>Transactional</td><td>What Is Private Pilates Session Pricing in Summit?</td></tr>
+      <tr><td>Cost of Private Pilates Classes</td><td>Transactional</td><td>Cost of Private Pilates Classes in Summit NJ</td></tr>
+      <tr><td>Affordable Pilates Sessions in Summit NJ</td><td>Transactional</td><td>Affordable Pilates Pricing in Summit NJ</td></tr>
+      <tr><td>Pilates Pricing Packages for Individuals</td><td>Commercial</td><td>How to Choose the Right Pilates Class Package in Summit</td></tr>
+      <tr><td>Virtual Private Pilates Class Rates</td><td>Commercial</td><td>Virtual Private Pilates Class Rates Explained</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Client Success Stories</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Private Pilates Client Testimonials</td><td>Informational</td><td>Real Results: Private Pilates Client Transformations</td></tr>
+      <tr><td>Success Stories From Private Pilates Sessions</td><td>Informational</td><td>How Private Pilates Changes Lives in Summit, NJ</td></tr>
+      <tr><td>How Pilates Transformed My Health</td><td>Informational</td><td>How Pilates Transformed My Health Journey</td></tr>
+      <tr><td>Personalized Pilates Journey in Summit NJ</td><td>Commercial</td><td>What Clients Say About Their Pilates Journeys in Summit NJ</td></tr>
+      <tr><td>Client Achievements in Private Pilates Training</td><td>Informational</td><td>What Our Clients Achieve With Personalized Pilates Training</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Pilates Equipment Guide</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Pilates Equipment for Private Sessions</td><td>Commercial</td><td>Essential Pilates Equipment for Private Sessions</td></tr>
+      <tr><td>Best Pilates Reformer for Home Use</td><td>Commercial</td><td>Best Pilates Reformer for Home Use Explained</td></tr>
+      <tr><td>Essential Pilates Tools for Beginners</td><td>Informational</td><td>Essential Pilates Tools Every Beginner Needs</td></tr>
+      <tr><td>Choosing Pilates Equipment for Personalized Training</td><td>Informational</td><td>Best Pilates Equipment for Personalized Training Success</td></tr>
+      <tr><td>Benefits of Pilates Mats and Props</td><td>Informational</td><td>Benefits of Pilates Mats and Props Explained</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Booking Your Pilates Session</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Private Pilates Session Booking</td><td>Transactional</td><td>How to Book Your Private Pilates Session Effortlessly</td></tr>
+      <tr><td>Schedule Pilates Class Online</td><td>Transactional</td><td>Book Your Personalized Pilates Session Online Today</td></tr>
+      <tr><td>Virtual Pilates Sessions Summit NJ</td><td>Commercial</td><td>Virtual Pilates Sessions in Summit NJ: What to Expect</td></tr>
+      <tr><td>Personalized Pilates Instruction Near Me</td><td>Transactional</td><td>Personalized Pilates Instruction: Why Choose Private Sessions</td></tr>
+      <tr><td>Book One-on-One Pilates Lesson</td><td>Transactional</td><td>Book Your Private Pilates Session Today</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.8rem 0 0.5rem; color: var(--ink-dark);">Reader Questions (FAQ &amp; post ideas)</h4>
+  <p class="source-note">25 reader questions mapped from this topic — each works as a standalone FAQ answer, a blog post title, or a FAQPage schema candidate.</p>
+  <table class="data" style="font-size: 0.84rem;">
+    <thead><tr><th style="width:50%">Question</th><th style="width:50%">Question</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>What is the cost of a single private Pilates session at Pure Pilates NJ?</td>
+        <td>How do private Pilates sessions compare to group classes in terms of effectiveness?</td>
+      </tr>
+      <tr>
+        <td>Do you offer discounts for purchasing multiple private Pilates sessions in advance?</td>
+        <td>What are the differences between in-person and virtual private Pilates sessions?</td>
+      </tr>
+      <tr>
+        <td>Are there membership options available that reduce the price of private sessions?</td>
+        <td>Are private Pilates sessions more beneficial than other local fitness options?</td>
+      </tr>
+      <tr>
+        <td>Is there a cancellation policy that affects the cost of my private session?</td>
+        <td>What pricing differences exist between individual sessions and class packages?</td>
+      </tr>
+      <tr>
+        <td>What payment methods do you accept for booking private Pilates sessions?</td>
+        <td>What qualifications and experience do your instructors have for private Pilates sessions?</td>
+      </tr>
+      <tr>
+        <td>What if I have no prior experience with Pilates before starting private sessions?</td>
+        <td>How do you tailor private sessions to meet individual client needs and goals?</td>
+      </tr>
+      <tr>
+        <td>How do I know if private sessions will effectively address my specific fitness goals?</td>
+        <td>What safety measures are in place for in-person Pilates sessions?</td>
+      </tr>
+      <tr>
+        <td>What happens if I cannot attend my scheduled private Pilates session?</td>
+        <td>Can virtual sessions provide the same benefits as in-person private Pilates instruction?</td>
+      </tr>
+      <tr>
+        <td>Are private Pilates sessions suitable for individuals with physical limitations or injuries?</td>
+        <td>What are the cancellation and rescheduling policies for private Pilates sessions?</td>
+      </tr>
+      <tr>
+        <td>How do I assess the qualifications and experience of your Pilates instructors?</td>
+        <td>How can private Pilates sessions improve my overall physical and mental well-being?</td>
+      </tr>
+      <tr>
+        <td>How do your instructors' qualifications compare to those at other local studios?</td>
+        <td>Are virtual Pilates sessions as effective as in-person sessions for beginners?</td>
+      </tr>
+      <tr>
+        <td>Can I customize my private Pilates sessions to focus on specific goals or injuries?</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Are virtual Pilates sessions as effective as in-person sessions for beginners?</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ============================================================ -->
+  <!-- MAP 2: PILATES SUMMIT, NJ -->
+  <!-- ============================================================ -->
+  <h3 style="margin-top: 2.5rem;">Pilates Summit, NJ — 5 content clusters, 25 article ideas</h3>
+  <p class="source-note">Covers locally-anchored search intent — prospective clients searching specifically within Summit, NJ and surrounding areas, across class formats, benefits, and mindfulness angles.</p>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Pilates Classes Summit NJ</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Pilates Classes Near Summit NJ</td><td>Transactional</td><td>Discover the Best Pilates Classes Near Summit NJ</td></tr>
+      <tr><td>Private Pilates Sessions Summit NJ</td><td>Transactional</td><td>Discover Private Pilates Sessions in Summit NJ</td></tr>
+      <tr><td>Virtual Pilates Instruction Summit NJ</td><td>Transactional</td><td>Experience Virtual Pilates Instruction in Summit NJ</td></tr>
+      <tr><td>Best Pilates Studio Summit NJ</td><td>Commercial</td><td>Best Pilates Studio in Summit NJ for Every Goal</td></tr>
+      <tr><td>Pilates Fitness Classes for Beginners NJ</td><td>Informational</td><td>Discover Beginner-Friendly Pilates Classes in Summit NJ</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Benefits of Pilates</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Benefits of Pilates for Beginners</td><td>Informational</td><td>Why Pilates Is Ideal for Beginners in Summit</td></tr>
+      <tr><td>Improve Flexibility With Pilates Classes</td><td>Informational</td><td>How Pilates Classes Enhance Your Flexibility</td></tr>
+      <tr><td>Pilates for Stress Relief and Relaxation</td><td>Informational</td><td>How Pilates Alleviates Stress and Promotes Relaxation</td></tr>
+      <tr><td>Weight Loss Through Pilates Workouts</td><td>Transactional</td><td>Unlock Weight Loss With Pilates Sessions</td></tr>
+      <tr><td>Personalized Pilates Instruction in Summit NJ</td><td>Commercial</td><td>Discover the Advantages of Personalized Pilates Instruction</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Online Pilates Sessions</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Online Pilates Classes Summit NJ</td><td>Commercial</td><td>Discover Online Pilates Classes in Summit NJ</td></tr>
+      <tr><td>Virtual Pilates Sessions for Beginners</td><td>Commercial</td><td>Discover Virtual Pilates Sessions for Absolute Beginners</td></tr>
+      <tr><td>Live Pilates Instruction Summit NJ</td><td>Commercial</td><td>Live Pilates Instruction vs. On-Demand: Which Is Right for You?</td></tr>
+      <tr><td>Personalized Online Pilates Training</td><td>Transactional</td><td>Personalized Online Pilates Training for Every Body</td></tr>
+      <tr><td>On-Demand Pilates Workouts Summit NJ</td><td>Commercial</td><td>On-Demand Pilates Workouts for All Levels in Summit NJ</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Private Pilates Instruction</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Private Pilates Classes Summit NJ</td><td>Commercial</td><td>Experience the Benefits of Private Pilates Classes in Summit</td></tr>
+      <tr><td>Virtual Pilates Instruction Summit</td><td>Commercial</td><td>Virtual Pilates Instruction in Summit for All Levels</td></tr>
+      <tr><td>One-on-One Pilates Training Summit NJ</td><td>Transactional</td><td>Unlock Personalized Fitness With One-on-One Pilates</td></tr>
+      <tr><td>Affordable Private Pilates Lessons NJ</td><td>Commercial</td><td>Affordable Private Pilates Lessons in NJ: What You Need to Know</td></tr>
+      <tr><td>Personalized Pilates Sessions Near Me</td><td>Commercial</td><td>Personalized Pilates Sessions for Your Unique Needs</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.4rem 0 0.5rem; color: var(--ink-dark);">Wellness and Mindfulness</h4>
+  <table class="data">
+    <thead><tr><th>Keyword Focus</th><th>Intent</th><th>Suggested Article Title</th></tr></thead>
+    <tbody>
+      <tr><td>Pilates Classes Near Summit NJ</td><td>Transactional</td><td>Personalized Pilates Classes Near Summit NJ That Transform Wellness</td></tr>
+      <tr><td>Mindfulness Pilates Sessions Summit</td><td>Informational</td><td>Mindfulness Pilates: Enhance Your Well-Being in Summit</td></tr>
+      <tr><td>Virtual Pilates Instruction Summit NJ</td><td>Transactional</td><td>Experience Virtual Pilates for Mindfulness in Summit NJ</td></tr>
+      <tr><td>Wellness Benefits of Pilates</td><td>Informational</td><td>Discover Wellness Benefits of Pilates for Mind-Body Harmony</td></tr>
+      <tr><td>Personalized Pilates Training Summit NJ</td><td>Commercial</td><td>Personalized Pilates Training for Better Wellness</td></tr>
+    </tbody>
+  </table>
+
+  <h4 style="margin: 1.8rem 0 0.5rem; color: var(--ink-dark);">Reader Questions (FAQ &amp; post ideas)</h4>
+  <p class="source-note">25 reader questions mapped from this topic — each works as a standalone FAQ answer, a blog post title, or a FAQPage schema candidate.</p>
+  <table class="data" style="font-size: 0.84rem;">
+    <thead><tr><th style="width:50%">Question</th><th style="width:50%">Question</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>What are the pricing options for private Pilates sessions at Pure Pilates NJ?</td>
+        <td>What do previous clients say about their experiences at Pilates Summit, NJ?</td>
+      </tr>
+      <tr>
+        <td>Are there any discounts or packages for purchasing multiple Pilates classes?</td>
+        <td>How effective are Pilates classes at improving physical and mental well-being?</td>
+      </tr>
+      <tr>
+        <td>How does the cost of virtual Pilates sessions compare to in-person classes?</td>
+        <td>Are instructors at Pilates Summit experienced and qualified to provide personalized instruction?</td>
+      </tr>
+      <tr>
+        <td>Is there a membership fee required for attending Pilates classes regularly?</td>
+        <td>What are the cancellation policies if I can't attend a scheduled session?</td>
+      </tr>
+      <tr>
+        <td>Are there any additional costs associated with on-demand Pilates content or sessions?</td>
+        <td>How do the costs of classes compare to other Pilates studios in the area?</td>
+      </tr>
+      <tr>
+        <td>What if I have no prior experience with Pilates before joining the studio?</td>
+        <td>What are the benefits of Pilates for both physical and mental well-being?</td>
+      </tr>
+      <tr>
+        <td>How can I ensure that the virtual classes are as effective as in-person ones?</td>
+        <td>How do I choose between in-person and virtual Pilates sessions at your studio?</td>
+      </tr>
+      <tr>
+        <td>What should I do if I have specific physical limitations or injuries?</td>
+        <td>What qualifications and experience do your Pilates instructors have at Pure Pilates NJ?</td>
+      </tr>
+      <tr>
+        <td>How do I know which class format is best suited for my needs?</td>
+        <td>Are there any package deals or memberships available for regular Pilates sessions?</td>
+      </tr>
+      <tr>
+        <td>What guarantees do you offer if I don't see results from my sessions?</td>
+        <td>What should I expect during my first Pilates class at your studio?</td>
+      </tr>
+      <tr>
+        <td>How does Pure Pilates NJ differ from other Pilates studios in Summit, NJ?</td>
+        <td>Are your membership and pricing structures competitive with other Pilates studios?</td>
+      </tr>
+      <tr>
+        <td>What are the unique benefits of private sessions compared to group classes here?</td>
+        <td>How do the virtual Pilates options compare to in-person instruction at your studio?</td>
+      </tr>
+      <tr>
+        <td>What makes your instructors' qualifications stand out against other local fitness studios?</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- TAB: APPROVAL -->
+<div id="approval" class="section">
+  <h2>Approval Ask</h2>
+
+  <p>Cycle 1 is ready for Pure Pilates' sign-off. Approval covers the 8 on-page drafts + 3 schema payloads outlined in this document, plus the per-page title and H1 map for all 13 pages. Three items (business hours, phone number, and FAQ content approval) can be resolved in parallel with sign-off; the rest of the bundle deploys clean without them.</p>
+
+  <h3>Three options</h3>
+  <table class="data">
+    <thead><tr><th>Option</th><th>What it means</th><th>Next step</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Approve as-is</strong></td>
+        <td>Apollo proceeds with cycle 1 deploy. Hours, phone, and FAQ fields ship as <code>null</code> or empty in the schema bundle and get backfilled when Carol confirms.</td>
+        <td>Apollo coordinates deployment timing with Carol or the site's WordPress administrator.</td>
+      </tr>
+      <tr>
+        <td><strong>Approve + provide answers</strong></td>
+        <td>Same as above, plus Carol confirms the three open asks now. Cycle 1 ships fully populated with hours, phone, and FAQ entries.</td>
+        <td>Reply with: studio hours by day · business phone number (post-IVR port) · FAQ review (approve / edit / remove for each of the 5 entries in the Schema Bundle tab).</td>
+      </tr>
+      <tr>
+        <td><strong>Revise</strong></td>
+        <td>One or more drafts need adjustment. Apollo iterates and re-presents.</td>
+        <td>Comment on any rows in the On-Page Drafts tab or per-page table that need changes; Apollo turns around within 1–2 business days.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="h">Apollo's recommendation</div>
+    <p style="margin: 0;"><strong>Option 2 if the three answers are close at hand</strong> — hours + phone (pending IVR port completion) is a quick reply once the number is confirmed, and FAQ review is a quick scan. A fully populated cycle 1 is meaningfully stronger. Otherwise <strong>Option 1</strong> — the 5 fully ready drafts + 2 ready schema payloads (LocalBusiness and Service) cover the highest-leverage improvements, and the pending fields are isolated and easy to backfill in a same-day update.</p>
+  </div>
+
+  <h3>Comments</h3>
+  <p style="font-style: italic; color: var(--ink-soft);">— space for Carol / Pure Pilates notes —</p>
+
+</div>
+
+</div>
+
+<footer>
+  <p>Prepared for <strong>Pure Pilates</strong> · On-Page Recommendations cycle 1 · My Clone Solution · <a href="https://apollollc.com">apollollc.com</a></p>
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
